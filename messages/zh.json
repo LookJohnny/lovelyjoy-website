@@ -1,0 +1,235 @@
+{
+  "metadata": {
+    "title": "爱儿采 LovelyJoy - 毛绒玩具制造专家",
+    "description": "爱儿采（LovelyJoy）专注毛绒玩具设计与制造20余年，提供OEM/ODM一站式服务，从创意到量产，用心传递爱与温暖。"
+  },
+  "nav": {
+    "home": "首页",
+    "products": "产品中心",
+    "oemOdm": "OEM/ODM",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "header": {
+    "contactCta": "联系我们"
+  },
+  "language": {
+    "current": "中",
+    "switchTo": "English"
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "title": "乐享美好，传递温暖",
+          "subtitle": "20余年毛绒玩具制造经验，用匠心打造每一份陪伴",
+          "cta": "了解更多"
+        },
+        {
+          "title": "从创意到量产，一站式定制",
+          "subtitle": "专业OEM/ODM服务，让您的品牌故事触手可及",
+          "cta": "定制咨询"
+        },
+        {
+          "title": "品质保障，全球信赖",
+          "subtitle": "通过多项国际认证，产品远销全球30多个国家和地区",
+          "cta": "查看产品"
+        }
+      ]
+    },
+    "advantages": {
+      "items": [
+        {
+          "title": "行业经验",
+          "description": "深耕毛绒玩具制造领域，积累丰富的工艺技术与生产管理经验",
+          "number": "20",
+          "suffix": "年+"
+        },
+        {
+          "title": "OEM/ODM定制",
+          "description": "从概念设计到批量生产的全链路定制服务，支持来样来图定制",
+          "number": "1000",
+          "suffix": "款+"
+        },
+        {
+          "title": "品质管控",
+          "description": "严格执行国际质量标准，通过BSCI、ISO9001等多项权威认证",
+          "number": "100",
+          "suffix": "%"
+        },
+        {
+          "title": "准时交付",
+          "description": "高效的供应链管理与数字化生产流程，确保订单按时按质交付",
+          "number": "98",
+          "suffix": "%"
+        }
+      ]
+    },
+    "brandStory": {
+      "title": "关于爱儿采",
+      "description": "爱儿采（LovelyJoy）始创于中国义乌，20余年来专注毛绒玩具的设计与制造。我们相信，每一个毛绒玩具都是爱的载体，承载着陪伴与温暖。从选材到成品，我们用心雕琢每一个细节，只为传递那份触手可及的美好。",
+      "values": [
+        {
+          "title": "情感陪伴",
+          "description": "用柔软触感和精巧设计，创造有温度的陪伴"
+        },
+        {
+          "title": "情绪价值",
+          "description": "让每一件产品都成为快乐与幸福的源泉"
+        },
+        {
+          "title": "美学设计",
+          "description": "融合东方美学与国际潮流，打造独具魅力的毛绒艺术品"
+        }
+      ]
+    },
+    "products": {
+      "title": "热门产品",
+      "subtitle": "精选人气产品，感受爱儿采的匠心品质",
+      "viewAll": "查看全部产品"
+    },
+    "cta": {
+      "title": "开启您的毛绒玩具定制之旅",
+      "subtitle": "无论是品牌定制还是创意设计，我们都能为您提供专业的解决方案",
+      "button": "立即咨询"
+    }
+  },
+  "products": {
+    "title": "产品中心",
+    "subtitle": "丰富的产品线，满足不同场景的需求",
+    "categories": {
+      "all": "全部",
+      "plush": "毛绒公仔",
+      "pillow": "毛绒抱枕",
+      "keychain": "毛绒挂件",
+      "gift": "礼品定制",
+      "ip": "IP联名"
+    },
+    "inquireButton": "立即询价"
+  },
+  "oemOdm": {
+    "title": "OEM/ODM 定制服务",
+    "subtitle": "从创意到成品，全链路专业定制服务",
+    "metadata": {
+      "title": "OEM/ODM 定制服务 - 爱儿采 LovelyJoy",
+      "description": "爱儿采提供专业的毛绒玩具OEM/ODM定制服务，从需求沟通到包装出货，7步流程全链路品质保障。"
+    },
+    "cta": {
+      "title": "从一个想法到完美产品",
+      "subtitle": "无论您有怎样的创意构想，我们都能帮您实现",
+      "button": "立即联系我们"
+    },
+    "steps": [
+      {
+        "title": "需求沟通",
+        "description": "深入了解您的品牌定位、产品需求与目标市场"
+      },
+      {
+        "title": "概念设计",
+        "description": "专业设计团队将您的创意转化为详细的产品设计方案"
+      },
+      {
+        "title": "打样确认",
+        "description": "制作实物样品，反复调整直至完全满足您的要求"
+      },
+      {
+        "title": "材料采购",
+        "description": "严选优质面料与填充物，确保安全环保符合国际标准"
+      },
+      {
+        "title": "批量生产",
+        "description": "数字化生产管理系统，精准控制每一道工序的品质"
+      },
+      {
+        "title": "质量检测",
+        "description": "全流程品控，每件产品均经过严格的质量检测"
+      },
+      {
+        "title": "包装出货",
+        "description": "专业包装方案，安全高效的物流配送至全球各地"
+      }
+    ]
+  },
+  "about": {
+    "title": "关于爱儿采",
+    "story": {
+      "title": "品牌故事",
+      "content": "爱儿采（LovelyJoy）创立于中国义乌——全球小商品之都。自创立以来，我们始终专注于毛绒玩具的设计与制造，凭借20余年的行业深耕，已发展成为集研发设计、生产制造、品牌运营于一体的综合性毛绒玩具企业。我们的使命是\"乐享美好\"，用每一件产品传递爱与温暖，让世界因柔软而美好。"
+    },
+    "factory": {
+      "title": "生产实力",
+      "area": "工厂面积 5000+ 平方米",
+      "workers": "专业工人 200+ 人",
+      "capacity": "月产能 50万+ 件",
+      "markets": "产品远销 30+ 国家和地区"
+    },
+    "certifications": {
+      "title": "资质认证",
+      "list": [
+        "BSCI 商业社会责任认证",
+        "ISO 9001 质量管理体系认证",
+        "CE 欧盟安全认证",
+        "ASTM F963 美国玩具安全标准",
+        "EN 71 欧洲玩具安全标准",
+        "GB 6675 中国玩具安全标准"
+      ]
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "期待与您的合作，欢迎随时联系我们",
+    "metadata": {
+      "title": "联系我们 - 爱儿采 LovelyJoy",
+      "description": "联系爱儿采LovelyJoy，获取毛绒玩具OEM/ODM定制报价、样品索取或其他合作咨询。"
+    },
+    "form": {
+      "name": "您的姓名",
+      "email": "电子邮箱",
+      "company": "公司名称",
+      "phone": "联系电话",
+      "subject": "咨询主题",
+      "message": "留言内容",
+      "messagePlaceholder": "请描述您的需求，如产品类型、数量、交期等...",
+      "subjects": {
+        "oem": "OEM定制咨询",
+        "odm": "ODM设计开发",
+        "wholesale": "批量采购",
+        "sample": "样品索取",
+        "other": "其他咨询"
+      }
+    },
+    "submit": "提交留言",
+    "submitting": "提交中...",
+    "errors": {
+      "nameRequired": "请输入您的姓名",
+      "emailRequired": "请输入电子邮箱",
+      "emailInvalid": "请输入有效的电子邮箱地址",
+      "messageRequired": "请输入留言内容"
+    },
+    "success": "感谢您的留言！我们会在24小时内与您联系。",
+    "info": {
+      "address": "浙江省义乌市",
+      "email": "info@lovelyjoy.com",
+      "phone": "+86-579-XXXX-XXXX",
+      "wechat": "LovelyJoy_Official",
+      "workingHours": "周一至周六 8:00 - 18:00 (UTC+8)",
+      "addressLabel": "地址",
+      "workingHoursLabel": "工作时间",
+      "whatsapp": "+86-158-XXXX-XXXX"
+    }
+  },
+  "footer": {
+    "slogan": "乐享美好",
+    "description": "专注毛绒玩具设计与制造20余年，用心传递爱与温暖",
+    "quickLinks": "快速导航",
+    "links": {
+      "products": "产品中心",
+      "oemOdm": "OEM/ODM",
+      "about": "关于我们",
+      "contact": "联系我们",
+      "privacy": "隐私政策",
+      "terms": "使用条款"
+    },
+    "copyright": "© {year} 爱儿采 LovelyJoy. 保留所有权利。"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "metadata": {
+    "title": "LovelyJoy - Plush Toy Manufacturing Expert",
+    "description": "LovelyJoy specializes in plush toy design and manufacturing for over 20 years, offering full OEM/ODM services from concept to mass production, delivering love and warmth through every creation."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "oemOdm": "OEM/ODM",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "header": {
+    "contactCta": "Contact"
+  },
+  "language": {
+    "current": "EN",
+    "switchTo": "中文"
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "title": "Feel the Lovely, Spread the Joy",
+          "subtitle": "Over 20 years of plush toy craftsmanship, creating companionship with heart and soul",
+          "cta": "Learn More"
+        },
+        {
+          "title": "From Concept to Production, All-in-One Custom Service",
+          "subtitle": "Professional OEM/ODM services to bring your brand story to life",
+          "cta": "Get a Quote"
+        },
+        {
+          "title": "Certified Quality, Trusted Worldwide",
+          "subtitle": "Internationally certified products exported to over 30 countries and regions",
+          "cta": "View Products"
+        }
+      ]
+    },
+    "advantages": {
+      "items": [
+        {
+          "title": "Industry Experience",
+          "description": "Deep expertise in plush toy manufacturing with rich technical know-how and production management experience",
+          "number": "20",
+          "suffix": "Yrs+"
+        },
+        {
+          "title": "OEM/ODM Custom",
+          "description": "End-to-end customization from concept design to mass production, supporting custom samples and specifications",
+          "number": "1000",
+          "suffix": "SKUs+"
+        },
+        {
+          "title": "Quality Control",
+          "description": "Strict adherence to international quality standards with BSCI, ISO 9001 and other authoritative certifications",
+          "number": "100",
+          "suffix": "%"
+        },
+        {
+          "title": "On-time Delivery",
+          "description": "Efficient supply chain management and digitalized production processes ensuring timely and quality delivery",
+          "number": "98",
+          "suffix": "%"
+        }
+      ]
+    },
+    "brandStory": {
+      "title": "About LovelyJoy",
+      "description": "Founded in Yiwu, China, LovelyJoy has been dedicated to plush toy design and manufacturing for over 20 years. We believe every plush toy is a vessel of love, carrying companionship and warmth. From material selection to finished product, we carefully craft every detail to deliver tangible joy and comfort.",
+      "values": [
+        {
+          "title": "Emotional Companionship",
+          "description": "Creating heartfelt companionship through soft textures and delicate design"
+        },
+        {
+          "title": "Emotional Value",
+          "description": "Making every product a source of happiness and well-being"
+        },
+        {
+          "title": "Aesthetic Design",
+          "description": "Blending Eastern aesthetics with international trends to create uniquely charming plush art"
+        }
+      ]
+    },
+    "products": {
+      "title": "Featured Products",
+      "subtitle": "Discover our most popular creations, crafted with dedication and care",
+      "viewAll": "View All Products"
+    },
+    "cta": {
+      "title": "Start Your Plush Toy Journey",
+      "subtitle": "Whether it's brand customization or creative design, we offer professional solutions tailored to your needs",
+      "button": "Get in Touch"
+    }
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "A diverse product line to meet the needs of every occasion",
+    "categories": {
+      "all": "All",
+      "plush": "Plush Toys",
+      "pillow": "Plush Pillows",
+      "keychain": "Plush Keychains",
+      "gift": "Custom Gifts",
+      "ip": "Licensed IP"
+    },
+    "inquireButton": "Inquire Now"
+  },
+  "oemOdm": {
+    "title": "OEM/ODM Custom Services",
+    "subtitle": "From concept to finished product, full-chain professional customization",
+    "metadata": {
+      "title": "OEM/ODM Custom Services - LovelyJoy",
+      "description": "LovelyJoy offers professional plush toy OEM/ODM custom services, from requirement discussion to packaging & shipping, with full quality assurance across 7 steps."
+    },
+    "cta": {
+      "title": "From Idea to Perfect Product",
+      "subtitle": "Whatever creative vision you have, we can help bring it to life",
+      "button": "Contact Us Now"
+    },
+    "steps": [
+      {
+        "title": "Requirement Discussion",
+        "description": "In-depth understanding of your brand positioning, product requirements, and target market"
+      },
+      {
+        "title": "Concept Design",
+        "description": "Our professional design team transforms your ideas into detailed product design proposals"
+      },
+      {
+        "title": "Sample Confirmation",
+        "description": "Creating physical samples with iterative adjustments until your requirements are fully met"
+      },
+      {
+        "title": "Material Sourcing",
+        "description": "Carefully selected premium fabrics and fillings, ensuring safety and compliance with international standards"
+      },
+      {
+        "title": "Mass Production",
+        "description": "Digital production management system with precise quality control at every stage"
+      },
+      {
+        "title": "Quality Inspection",
+        "description": "End-to-end quality control with rigorous testing for every single product"
+      },
+      {
+        "title": "Packaging & Shipping",
+        "description": "Professional packaging solutions with safe and efficient logistics delivery worldwide"
+      }
+    ]
+  },
+  "about": {
+    "title": "About Us",
+    "story": {
+      "title": "Our Story",
+      "content": "LovelyJoy was founded in Yiwu, China — the world's capital of small commodities. Since our inception, we have been dedicated to plush toy design and manufacturing. With over 20 years of industry expertise, we have grown into a comprehensive plush toy enterprise integrating R&D design, production, and brand operations. Our mission is to 'Feel the Lovely, Spread the Joy' — delivering love and warmth through every product, making the world a softer, better place."
+    },
+    "factory": {
+      "title": "Production Capabilities",
+      "area": "Factory Area 5,000+ sqm",
+      "workers": "Skilled Workers 200+",
+      "capacity": "Monthly Capacity 500,000+ pcs",
+      "markets": "Exported to 30+ Countries & Regions"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "list": [
+        "BSCI Business Social Compliance Initiative",
+        "ISO 9001 Quality Management System",
+        "CE European Safety Certification",
+        "ASTM F963 US Toy Safety Standard",
+        "EN 71 European Toy Safety Standard",
+        "GB 6675 China Toy Safety Standard"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We look forward to working with you. Feel free to reach out anytime",
+    "metadata": {
+      "title": "Contact Us - LovelyJoy",
+      "description": "Contact LovelyJoy for plush toy OEM/ODM custom quotes, sample requests, or other business inquiries."
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "company": "Company Name",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "messagePlaceholder": "Please describe your requirements, such as product type, quantity, delivery timeline, etc.",
+      "subjects": {
+        "oem": "OEM Custom Inquiry",
+        "odm": "ODM Design & Development",
+        "wholesale": "Wholesale Purchase",
+        "sample": "Sample Request",
+        "other": "Other Inquiry"
+      }
+    },
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Please enter your message"
+    },
+    "success": "Thank you for your message! We will get back to you within 24 hours.",
+    "info": {
+      "address": "Yiwu, Zhejiang, China",
+      "email": "info@lovelyjoy.com",
+      "phone": "+86-579-XXXX-XXXX",
+      "wechat": "LovelyJoy_Official",
+      "workingHours": "Mon - Sat 8:00 AM - 6:00 PM (UTC+8)",
+      "addressLabel": "Address",
+      "workingHoursLabel": "Working Hours",
+      "whatsapp": "+86-158-XXXX-XXXX"
+    }
+  },
+  "footer": {
+    "slogan": "Feel the Lovely, Spread the Joy",
+    "description": "Specializing in plush toy design and manufacturing for over 20 years, delivering love and warmth with every creation",
+    "quickLinks": "Quick Links",
+    "links": {
+      "products": "Products",
+      "oemOdm": "OEM/ODM",
+      "about": "About Us",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "copyright": "© {year} LovelyJoy. All rights reserved."
+  }
+}
