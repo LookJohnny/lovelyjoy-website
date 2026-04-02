@@ -1,11 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Mail, Phone, MessageCircle, MapPin, Clock } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function ContactInfo() {
   const t = useTranslations("contact");
+  const locale = useLocale();
+  const isZh = locale === "zh";
 
   const infoItems = [
     {
@@ -30,13 +32,17 @@ export default function ContactInfo() {
       icon: MapPin,
       label: t("info.addressLabel"),
       value: t("info.address"),
-      href: `https://maps.google.com/?q=${encodeURIComponent(t("info.address"))}`,
+      href: isZh
+        ? `https://uri.amap.com/search?keyword=${encodeURIComponent(t("info.address"))}`
+        : `https://maps.google.com/?q=${encodeURIComponent(t("info.address"))}`,
     },
     {
       icon: MapPin,
       label: t("info.storeAddressLabel"),
       value: t("info.storeAddress"),
-      href: `https://maps.google.com/?q=${encodeURIComponent(t("info.storeAddress"))}`,
+      href: isZh
+        ? `https://uri.amap.com/search?keyword=${encodeURIComponent(t("info.storeAddress"))}`
+        : `https://maps.google.com/?q=${encodeURIComponent(t("info.storeAddress"))}`,
     },
     {
       icon: Clock,
@@ -90,19 +96,31 @@ export default function ContactInfo() {
         </div>
       </ScrollReveal>
 
-      {/* Google Maps embed */}
+      {/* Map embed: Amap for Chinese, Google Maps for English */}
       <ScrollReveal direction="right" delay={0.2}>
         <div className="overflow-hidden rounded-2xl">
-          <iframe
-            src="https://maps.google.com/maps?q=%E6%B5%99%E6%B1%9F%E7%9C%81%E4%B9%89%E4%B9%8C%E5%B8%82%E5%BB%BF%E4%B8%89%E9%87%8C%E6%80%9D%E6%BA%90%E8%B7%AF8%E5%8F%B7&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height={256}
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="LovelyJoy Factory Location"
-          />
+          {isZh ? (
+            <iframe
+              src="https://uri.amap.com/marker?position=120.148,29.272&name=%E4%B9%89%E4%B9%8C%E5%B8%82%E5%BB%BF%E4%B8%89%E9%87%8C%E6%80%9D%E6%BA%90%E8%B7%AF8%E5%8F%B7&src=lovelyjoy&coordinate=gaode&callnative=0"
+              width="100%"
+              height={256}
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="LovelyJoy 工厂位置"
+            />
+          ) : (
+            <iframe
+              src="https://maps.google.com/maps?q=%E6%B5%99%E6%B1%9F%E7%9C%81%E4%B9%89%E4%B9%8C%E5%B8%82%E5%BB%BF%E4%B8%89%E9%87%8C%E6%80%9D%E6%BA%90%E8%B7%AF8%E5%8F%B7&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height={256}
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="LovelyJoy Factory Location"
+            />
+          )}
         </div>
       </ScrollReveal>
     </div>
