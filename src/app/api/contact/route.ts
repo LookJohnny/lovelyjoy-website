@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, errors }, { status: 400 });
     }
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: "LovelyJoy Website <onboarding@resend.dev>",
       to: ["info.lovelyjoy@gmail.com"],
       subject: `[网站询盘] 来自 ${name.trim()}`,
@@ -42,7 +42,14 @@ export async function POST(request: Request) {
       `,
     });
 
-    return NextResponse.json({ success: true });
+    if (error) {
+      return NextResponse.json(
+        { success: false, errors: [error.message] },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json({ success: true, id: data?.id });
   } catch {
     return NextResponse.json(
       { success: false, errors: ["Failed to send message"] },
