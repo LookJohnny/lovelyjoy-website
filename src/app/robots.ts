@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://lovelyjoy.com/sitemap.xml",
+    sitemap: "https://lovelyjoy.cn/sitemap.xml",
   };
 }

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://lovelyjoy.com";
+const BASE_URL = "https://lovelyjoy.cn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["zh", "en"];

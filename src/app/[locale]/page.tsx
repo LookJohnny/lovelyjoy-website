@@ -13,8 +13,8 @@ function JsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'LovelyJoy 爱儿采',
-    url: 'https://lovelyjoy.com',
-    logo: 'https://lovelyjoy.com/images/brand/logo-color.jpeg',
+    url: 'https://lovelyjoy.cn',
+    logo: 'https://lovelyjoy.cn/images/brand/logo-color.jpeg',
     description:
       'Professional plush toy manufacturer with 20+ years experience. OEM/ODM services from design to mass production.',
     contactPoint: {

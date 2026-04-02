@@ -31,7 +31,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
   return {
-    metadataBase: new URL('https://lovelyjoy.com'),
+    metadataBase: new URL('https://lovelyjoy.cn'),
     title: t('title'),
     description: t('description'),
     icons: { icon: '/favicon.ico' },
