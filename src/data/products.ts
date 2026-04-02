@@ -12,11 +12,39 @@ export interface ProductItem {
 
 export const products: ProductItem[] = [
   {
-    id: "strawberry-bear",
-    name: "Strawberry Bear",
-    nameCn: "草莓熊",
-    image: "/images/products/strawberry-bear.jpeg",
-    category: "ip",
+    id: "spring-duck",
+    name: "Spring Duck",
+    nameCn: "春游鸭",
+    image: "/images/products/spring-duck.png",
+    category: "plush",
+  },
+  {
+    id: "sitting-dog",
+    name: "Sitting Puppy",
+    nameCn: "蹲姿小狗",
+    image: "/images/products/sitting-dog.png",
+    category: "plush",
+  },
+  {
+    id: "cat-neck-pillow",
+    name: "Cat Neck Pillow Series",
+    nameCn: "猫咪U型枕系列",
+    image: "/images/products/cat-neck-pillow.png",
+    category: "pillow",
+  },
+  {
+    id: "bean-bag-series",
+    name: "Soft Bean Bag Series",
+    nameCn: "软萌豆袋系列",
+    image: "/images/products/bean-bag-series.png",
+    category: "plush",
+  },
+  {
+    id: "piggy-series",
+    name: "Piggy Series",
+    nameCn: "小猪系列",
+    image: "/images/products/piggy-series.png",
+    category: "plush",
   },
   {
     id: "white-goose",
