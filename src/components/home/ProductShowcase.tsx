@@ -13,10 +13,34 @@ import { cn } from "@/lib/utils";
 
 const products = [
   {
-    name: "Strawberry Bear",
-    nameCn: "草莓熊",
-    image: "/images/products/strawberry-bear.jpeg",
-    category: "IP",
+    name: "Spring Duck",
+    nameCn: "春游鸭",
+    image: "/images/products/spring-duck.png",
+    category: "Plush",
+  },
+  {
+    name: "Sitting Puppy",
+    nameCn: "蹲姿小狗",
+    image: "/images/products/sitting-dog.png",
+    category: "Plush",
+  },
+  {
+    name: "Cat Neck Pillow Series",
+    nameCn: "猫咪U型枕系列",
+    image: "/images/products/cat-neck-pillow.png",
+    category: "Pillow",
+  },
+  {
+    name: "Soft Bean Bag Series",
+    nameCn: "软萌豆袋系列",
+    image: "/images/products/bean-bag-series.png",
+    category: "Plush",
+  },
+  {
+    name: "Piggy Series",
+    nameCn: "小猪系列",
+    image: "/images/products/piggy-series.png",
+    category: "Plush",
   },
   {
     name: "White Goose",
