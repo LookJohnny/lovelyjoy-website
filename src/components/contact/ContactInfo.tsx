@@ -90,13 +90,19 @@ export default function ContactInfo() {
         </div>
       </ScrollReveal>
 
-      {/* Map placeholder */}
+      {/* Google Maps embed */}
       <ScrollReveal direction="right" delay={0.2}>
-        <div className="flex h-64 items-center justify-center rounded-2xl bg-gray-200">
-          <div className="text-center">
-            <MapPin className="mx-auto h-8 w-8 text-brown-light" />
-            <p className="mt-2 text-sm text-brown-light">Map</p>
-          </div>
+        <div className="overflow-hidden rounded-2xl">
+          <iframe
+            src="https://maps.google.com/maps?q=%E6%B5%99%E6%B1%9F%E7%9C%81%E4%B9%89%E4%B9%8C%E5%B8%82%E5%BB%BF%E4%B8%89%E9%87%8C%E6%80%9D%E6%BA%90%E8%B7%AF8%E5%8F%B7&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height={256}
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="LovelyJoy Factory Location"
+          />
         </div>
       </ScrollReveal>
     </div>
