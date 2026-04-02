@@ -18,7 +18,7 @@ export default function ContactInfo() {
       icon: Phone,
       label: t("form.phone"),
       value: t("info.phone"),
-      href: `tel:${t("info.phone")}`,
+      href: `tel:${t("info.phone").replace(/\s/g, "")}`,
     },
     {
       icon: MessageCircle,
@@ -30,6 +30,13 @@ export default function ContactInfo() {
       icon: MapPin,
       label: t("info.addressLabel"),
       value: t("info.address"),
+      href: `https://maps.google.com/?q=${encodeURIComponent(t("info.address"))}`,
+    },
+    {
+      icon: MapPin,
+      label: t("info.storeAddressLabel"),
+      value: t("info.storeAddress"),
+      href: `https://maps.google.com/?q=${encodeURIComponent(t("info.storeAddress"))}`,
     },
     {
       icon: Clock,

@@ -84,7 +84,7 @@ export default async function Footer() {
               <li className="flex items-start gap-3 text-sm text-white/70">
                 <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-beige-brand" />
                 <a
-                  href={`tel:${CONTACT_INFO.phone}`}
+                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
                   className="transition-colors hover:text-beige-brand"
                 >
                   {CONTACT_INFO.phone}
@@ -103,7 +103,25 @@ export default async function Footer() {
               </li>
               <li className="flex items-start gap-3 text-sm text-white/70">
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-beige-brand" />
-                <span>{tContact('info.address')}</span>
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(tContact('info.address'))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-beige-brand"
+                >
+                  {tContact('info.address')}
+                </a>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-white/70">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-beige-brand" />
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(tContact('info.storeAddress'))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-beige-brand"
+                >
+                  {tContact('info.storeAddress')}
+                </a>
               </li>
             </ul>
           </div>

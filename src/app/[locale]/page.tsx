@@ -26,6 +26,7 @@ function JsonLd() {
     },
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'No.8 Siyuan Road, Niansan Li',
       addressLocality: 'Yiwu',
       addressRegion: 'Zhejiang',
       addressCountry: 'CN',

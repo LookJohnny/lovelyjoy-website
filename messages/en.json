@@ -14,7 +14,7 @@
     "contactCta": "Contact"
   },
   "language": {
-    "current": "EN",
+    "current": "中",
     "switchTo": "中文"
   },
   "home": {
@@ -208,14 +208,16 @@
     },
     "success": "Thank you for your message! We will get back to you within 24 hours.",
     "info": {
-      "address": "Yiwu, Zhejiang, China",
+      "address": "No.8 Siyuan Road, Niansan Li, Yiwu, Zhejiang, China",
+      "storeAddress": "4F-84556, Gate 188, Global Digital Trade Center, Yiwu",
       "email": "info@lovelyjoy.com",
-      "phone": "+86-579-XXXX-XXXX",
+      "phone": "+86 15957988866",
       "wechat": "LovelyJoy_Official",
       "workingHours": "Mon - Sat 8:00 AM - 6:00 PM (UTC+8)",
-      "addressLabel": "Address",
+      "addressLabel": "Factory",
+      "storeAddressLabel": "Showroom",
       "workingHoursLabel": "Working Hours",
-      "whatsapp": "+86-158-XXXX-XXXX"
+      "whatsapp": "+1 (626) 586 7567"
     }
   },
   "footer": {

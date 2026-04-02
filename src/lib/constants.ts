@@ -40,11 +40,15 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 export const CONTACT_INFO = {
   email: "info@lovelyjoy.com",
-  phone: "+86-579-8523-XXXX",
-  whatsapp: "+86-158-XXXX-XXXX",
+  phone: "+86 15957988866",
+  whatsapp: "+1 (626) 586 7567",
   address: {
-    en: "Yiwu, Zhejiang, China",
-    cn: "中国浙江省义乌市",
+    en: "No.8 Siyuan Road, Niansan Li, Yiwu, Zhejiang, China",
+    cn: "浙江省义乌市廿三里思源路8号",
+  },
+  storeAddress: {
+    en: "4F-84556, Gate 188, Global Digital Trade Center, Yiwu",
+    cn: "义乌市全球数贸中心188号门四楼84556",
   },
 } as const;
 

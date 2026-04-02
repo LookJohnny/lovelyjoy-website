@@ -14,7 +14,7 @@
     "contactCta": "联系我们"
   },
   "language": {
-    "current": "中",
+    "current": "EN",
     "switchTo": "English"
   },
   "home": {
@@ -208,14 +208,16 @@
     },
     "success": "感谢您的留言！我们会在24小时内与您联系。",
     "info": {
-      "address": "浙江省义乌市",
+      "address": "浙江省义乌市廿三里思源路8号",
+      "storeAddress": "义乌市全球数贸中心188号门四楼84556",
       "email": "info@lovelyjoy.com",
-      "phone": "+86-579-XXXX-XXXX",
+      "phone": "+86 15957988866",
       "wechat": "LovelyJoy_Official",
       "workingHours": "周一至周六 8:00 - 18:00 (UTC+8)",
-      "addressLabel": "地址",
+      "addressLabel": "工厂地址",
+      "storeAddressLabel": "门店地址",
       "workingHoursLabel": "工作时间",
-      "whatsapp": "+86-158-XXXX-XXXX"
+      "whatsapp": "+1 (626) 586 7567"
     }
   },
   "footer": {
