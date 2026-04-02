@@ -41,13 +41,13 @@ export async function generateMetadata({
       type: 'website',
       locale: locale === 'zh' ? 'zh_CN' : 'en_US',
       alternateLocale: locale === 'zh' ? 'en_US' : 'zh_CN',
-      images: [{ url: '/images/hero/hero-bear.jpeg', width: 1200, height: 630 }],
+      images: [{ url: '/images/hero/hero-bear.png', width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['/images/hero/hero-bear.jpeg'],
+      images: ['/images/hero/hero-bear.png'],
     },
     alternates: {
       languages: {

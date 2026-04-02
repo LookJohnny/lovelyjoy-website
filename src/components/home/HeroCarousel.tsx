@@ -9,9 +9,9 @@ import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const SLIDES = [
-  { image: "/images/hero/hero-bear.jpeg", href: "/about" },
-  { image: "/images/hero/hero-heart.jpeg", href: "/contact" },
-  { image: "/images/hero/hero-family.jpeg", href: "/products" },
+  { image: "/images/hero/hero-bear.png", href: "/about" },
+  { image: "/images/hero/hero-heart.png", href: "/contact" },
+  { image: "/images/hero/hero-family.png", href: "/products" },
 ];
 
 const AUTOPLAY_INTERVAL = 6000;
