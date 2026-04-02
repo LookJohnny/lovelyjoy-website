@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "LovelyJoy Website <onboarding@resend.dev>",
-      to: ["info@lovelyjoy.com"],
+      to: ["info.lovelyjoy@gmail.com"],
       subject: `[网站询盘] 来自 ${name.trim()}`,
       html: `
         <h2>新客户询盘</h2>
