@@ -70,15 +70,17 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Validate locale
-  if (!routing.locales.includes(locale as 'zh' | 'en')) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
   const messages = await getMessages();
+  const isRtl = locale === 'ar';
 
   return (
     <html
       lang={locale}
+      dir={isRtl ? 'rtl' : 'ltr'}
       className={`${quicksand.variable} ${notoSansSC.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">

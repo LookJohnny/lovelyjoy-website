@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "title": "LovelyJoy - Fabricante Profissional de Pelúcias | Serviços Personalizados OEM/ODM",
+    "description": "A LovelyJoy é uma fabricante líder de pelúcias em Yiwu, China, com mais de 20 anos de experiência. Oferecemos serviços profissionais de pelúcias personalizadas OEM/ODM, do design conceitual à produção em massa. Fábrica certificada BSCI e ISO 9001."
+  },
+  "nav": {
+    "home": "Início",
+    "products": "Produtos",
+    "oemOdm": "OEM/ODM",
+    "about": "Sobre Nós",
+    "contact": "Contato"
+  },
+  "header": {
+    "contactCta": "Contato"
+  },
+  "language": {
+    "current": "EN",
+    "switchTo": "English"
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "title": "Sinta o Encanto, Espalhe a Alegria",
+          "subtitle": "Mais de 20 anos de expertise em pelúcias, criando companhia com coração e dedicação",
+          "cta": "Saiba Mais"
+        },
+        {
+          "title": "Do Conceito à Produção, Serviço Completo Personalizado",
+          "subtitle": "Serviços profissionais OEM/ODM para dar vida à história da sua marca",
+          "cta": "Solicite um Orçamento"
+        },
+        {
+          "title": "Qualidade Certificada, Confiança Mundial",
+          "subtitle": "Produtos certificados internacionalmente exportados para mais de 30 países e regiões",
+          "cta": "Ver Produtos"
+        }
+      ]
+    },
+    "advantages": {
+      "items": [
+        {
+          "title": "Experiência no Setor",
+          "description": "Profunda expertise na fabricação de pelúcias com amplo conhecimento técnico e experiência em gestão de produção",
+          "number": "20",
+          "suffix": "Anos+"
+        },
+        {
+          "title": "Personalização OEM/ODM",
+          "description": "Personalização completa do design conceitual à produção em massa, com suporte a amostras e especificações sob medida",
+          "number": "1000",
+          "suffix": "SKUs+"
+        },
+        {
+          "title": "Controle de Qualidade",
+          "description": "Rigoroso cumprimento de padrões internacionais de qualidade com certificações BSCI, ISO 9001 e outras certificações reconhecidas",
+          "number": "100",
+          "suffix": "%"
+        },
+        {
+          "title": "Entrega Pontual",
+          "description": "Gestão eficiente da cadeia de suprimentos e processos de produção digitalizados garantindo entregas pontuais e com qualidade",
+          "number": "98",
+          "suffix": "%"
+        }
+      ]
+    },
+    "brandStory": {
+      "title": "Sobre a LovelyJoy",
+      "description": "Fundada em Yiwu, China, a LovelyJoy dedica-se ao design e fabricação de pelúcias há mais de 20 anos. Acreditamos que cada pelúcia é um veículo de amor, carregando companhia e aconchego. Da seleção de materiais ao produto final, elaboramos cada detalhe com cuidado para proporcionar alegria e conforto tangíveis.",
+      "valuesTitle": "O Que Torna Nossa Marca Única?",
+      "valuesSubtitle": "Construindo uma identidade visual de marca diferenciada",
+      "values": [
+        {
+          "title": "Companhia Emocional",
+          "description": "Criando companhia afetuosa por meio de texturas suaves e design delicado"
+        },
+        {
+          "title": "Valor Emocional",
+          "description": "Fazendo de cada produto uma fonte de felicidade e bem-estar"
+        },
+        {
+          "title": "Design Estético",
+          "description": "Unindo a estética oriental às tendências internacionais para criar pelúcias artisticamente encantadoras"
+        }
+      ]
+    },
+    "products": {
+      "title": "Produtos em Destaque",
+      "subtitle": "Conheça nossas criações mais populares, feitas com dedicação e carinho",
+      "viewAll": "Ver Todos os Produtos"
+    },
+    "cta": {
+      "title": "Comece Sua Jornada no Mundo das Pelúcias",
+      "subtitle": "Seja para personalização de marca ou design criativo, oferecemos soluções profissionais sob medida para suas necessidades",
+      "button": "Entre em Contato"
+    }
+  },
+  "products": {
+    "title": "Produtos",
+    "subtitle": "Uma linha diversificada de produtos para atender às necessidades de cada ocasião",
+    "categories": {
+      "all": "Todos",
+      "plush": "Pelúcias",
+      "pillow": "Almofadas de Pelúcia",
+      "keychain": "Chaveiros de Pelúcia",
+      "gift": "Presentes Personalizados",
+      "ip": "IP Licenciado"
+    },
+    "inquireButton": "Consulte Agora"
+  },
+  "oemOdm": {
+    "title": "Serviços Personalizados OEM/ODM",
+    "subtitle": "Do conceito ao produto final, personalização profissional em toda a cadeia",
+    "metadata": {
+      "title": "Serviços Personalizados OEM/ODM - LovelyJoy",
+      "description": "A LovelyJoy oferece serviços profissionais de pelúcias personalizadas OEM/ODM, da discussão de requisitos à embalagem e envio, com garantia total de qualidade em 7 etapas."
+    },
+    "cta": {
+      "title": "Da Ideia ao Produto Perfeito",
+      "subtitle": "Qualquer que seja sua visão criativa, podemos ajudar a torná-la realidade",
+      "button": "Fale Conosco Agora"
+    },
+    "steps": [
+      {
+        "title": "Discussão de Requisitos",
+        "description": "Compreensão aprofundada do posicionamento da sua marca, requisitos do produto e mercado-alvo"
+      },
+      {
+        "title": "Design Conceitual",
+        "description": "Nossa equipe profissional de design transforma suas ideias em propostas detalhadas de design de produto"
+      },
+      {
+        "title": "Confirmação de Amostra",
+        "description": "Criação de amostras físicas com ajustes iterativos até que seus requisitos sejam plenamente atendidos"
+      },
+      {
+        "title": "Seleção de Materiais",
+        "description": "Tecidos e enchimentos premium cuidadosamente selecionados, garantindo segurança e conformidade com padrões internacionais"
+      },
+      {
+        "title": "Produção em Massa",
+        "description": "Sistema digital de gestão de produção com controle de qualidade preciso em cada etapa"
+      },
+      {
+        "title": "Inspeção de Qualidade",
+        "description": "Controle de qualidade completo com testes rigorosos para cada produto individualmente"
+      },
+      {
+        "title": "Embalagem e Envio",
+        "description": "Soluções profissionais de embalagem com logística segura e eficiente para entregas em todo o mundo"
+      }
+    ]
+  },
+  "faq": {
+    "metadata": {
+      "title": "Perguntas Frequentes - LovelyJoy",
+      "description": "Perguntas frequentes sobre os serviços OEM/ODM de pelúcias da LovelyJoy, MOQ, desenvolvimento de amostras, prazos de produção e certificações."
+    },
+    "title": "Perguntas Frequentes",
+    "subtitle": "Tudo o que você precisa saber sobre nossos serviços OEM/ODM",
+    "contactCta": "Ainda tem dúvidas? Entre em contato diretamente conosco.",
+    "items": [
+      {
+        "q": "Qual é a quantidade mínima de pedido (MOQ)?",
+        "a": "Nosso MOQ padrão é de 500 peças por modelo. Para novos clientes, oferecemos pedidos experimentais flexíveis em pequenos lotes a partir de 200 peças para ajudar a testar o mercado."
+      },
+      {
+        "q": "Quanto tempo leva o desenvolvimento de amostras?",
+        "a": "O desenvolvimento de amostras normalmente leva de 7 a 15 dias úteis, dependendo da complexidade. Modificações simples em designs existentes podem ser concluídas em até 5 dias."
+      },
+      {
+        "q": "Qual é o prazo de produção?",
+        "a": "A produção padrão leva de 30 a 45 dias após a aprovação da amostra. Pedidos urgentes podem ser organizados em até 20 dias mediante taxa adicional, sujeito à disponibilidade da programação de produção."
+      },
+      {
+        "q": "Quais certificações seus produtos possuem?",
+        "a": "Nossos produtos atendem aos padrões de segurança ASTM F963 (EUA), EN 71 (UE), CE e GB 6675 (China). Nossa fábrica possui certificações BSCI e ISO 9001."
+      },
+      {
+        "q": "Vocês oferecem serviços de design (ODM)?",
+        "a": "Sim! Nossa equipe interna de design pode criar designs originais do zero com base no seu briefing, ou modificar designs existentes. Fornecemos renderizações 3D e amostras físicas antes da produção em massa."
+      },
+      {
+        "q": "Quais métodos de pagamento vocês aceitam?",
+        "a": "Aceitamos T/T (transferência bancária), L/C (carta de crédito) e PayPal. As condições padrão são 30% de entrada com 70% do saldo antes do embarque."
+      }
+    ]
+  },
+  "about": {
+    "title": "Sobre Nós",
+    "story": {
+      "title": "Nossa História",
+      "content": "A LovelyJoy foi fundada em Yiwu, China — a capital mundial dos pequenos commodities. Desde nossa fundação, temos nos dedicado ao design e fabricação de pelúcias. Com mais de 20 anos de expertise no setor, crescemos e nos tornamos uma empresa abrangente de pelúcias que integra design e P&D, produção e operações de marca. Nossa missão é 'Sentir o Encanto, Espalhar a Alegria' — entregando amor e aconchego através de cada produto, tornando o mundo um lugar mais macio e melhor."
+    },
+    "factory": {
+      "title": "Capacidade Produtiva",
+      "area": "Área Fabril 20.000+ m²",
+      "workers": "Funcionários Qualificados 300+",
+      "capacity": "Capacidade Mensal 500.000+ peças",
+      "markets": "Exportação para 30+ Países e Regiões"
+    },
+    "certifications": {
+      "title": "Certificações",
+      "list": [
+        "BSCI Iniciativa de Conformidade Social Empresarial",
+        "ISO 9001 Sistema de Gestão da Qualidade",
+        "CE Certificação Europeia de Segurança",
+        "ASTM F963 Norma de Segurança de Brinquedos dos EUA",
+        "EN 71 Norma Europeia de Segurança de Brinquedos",
+        "GB 6675 Norma Chinesa de Segurança de Brinquedos"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Fale Conosco",
+    "subtitle": "Estamos ansiosos para trabalhar com você. Sinta-se à vontade para entrar em contato a qualquer momento",
+    "metadata": {
+      "title": "Fale Conosco - LovelyJoy",
+      "description": "Entre em contato com a LovelyJoy para orçamentos personalizados de pelúcias OEM/ODM, solicitações de amostras ou outras consultas comerciais."
+    },
+    "form": {
+      "name": "Seu Nome",
+      "email": "Endereço de E-mail",
+      "company": "Nome da Empresa",
+      "phone": "Telefone",
+      "subject": "Assunto",
+      "message": "Mensagem",
+      "messagePlaceholder": "Por favor, descreva seus requisitos, como tipo de produto, quantidade, prazo de entrega, etc.",
+      "subjects": {
+        "oem": "Consulta OEM Personalizado",
+        "odm": "Design e Desenvolvimento ODM",
+        "wholesale": "Compra por Atacado",
+        "sample": "Solicitação de Amostra",
+        "other": "Outra Consulta"
+      }
+    },
+    "submit": "Enviar Mensagem",
+    "submitting": "Enviando...",
+    "errors": {
+      "nameRequired": "Por favor, insira seu nome",
+      "emailRequired": "Por favor, insira seu e-mail",
+      "emailInvalid": "Por favor, insira um endereço de e-mail válido",
+      "messageRequired": "Por favor, insira sua mensagem"
+    },
+    "success": "Obrigado pela sua mensagem! Retornaremos em até 24 horas.",
+    "info": {
+      "address": "No.8 Siyuan Road, Niansan Li, Yiwu, Zhejiang, China",
+      "storeAddress": "4F-84556, Gate 188, Global Digital Trade Center, Yiwu",
+      "email": "info@lovelyjoy.com",
+      "phone": "+86 15957988866",
+      "wechat": "LovelyJoy_Official",
+      "workingHours": "Seg - Sáb 8:00 - 18:00 (UTC+8)",
+      "addressLabel": "Fábrica",
+      "storeAddressLabel": "Showroom",
+      "workingHoursLabel": "Horário de Funcionamento",
+      "whatsapp": "+1 (626) 586 7567"
+    }
+  },
+  "blog": {
+    "metadata": {
+      "title": "Blog - Insights sobre Fabricação de Pelúcias | LovelyJoy",
+      "description": "Insights especializados sobre fabricação de pelúcias, serviços OEM/ODM, normas de segurança e tendências do setor pela LovelyJoy."
+    },
+    "title": "Blog",
+    "subtitle": "Insights do setor e expertise em fabricação",
+    "readMore": "Leia Mais"
+  },
+  "footer": {
+    "slogan": "Sinta o Encanto, Espalhe a Alegria",
+    "description": "Especializados em design e fabricação de pelúcias há mais de 20 anos, entregando amor e aconchego em cada criação",
+    "quickLinks": "Links Rápidos",
+    "links": {
+      "products": "Produtos",
+      "oemOdm": "OEM/ODM",
+      "about": "Sobre Nós",
+      "faq": "Perguntas Frequentes",
+      "blog": "Blog",
+      "contact": "Contato",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Serviço"
+    },
+    "copyright": "© {year} LovelyJoy. Todos os direitos reservados."
+  }
+}
