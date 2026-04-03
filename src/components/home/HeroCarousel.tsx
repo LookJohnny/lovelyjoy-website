@@ -101,7 +101,7 @@ export default function HeroCarousel() {
                   }}
                   className="inline-block"
                 >
-                  {char}
+                  {char === " " ? "\u00A0" : char}
                 </motion.span>
               ))}
             </h1>
