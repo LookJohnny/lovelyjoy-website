@@ -13,6 +13,12 @@ const LANGUAGES = [
   { code: 'es', label: 'Español' },
   { code: 'pt', label: 'Português' },
   { code: 'ar', label: 'العربية' },
+  { code: 'ru', label: 'Русский' },
+  { code: 'fr', label: 'Français' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'it', label: 'Italiano' },
+  { code: 'th', label: 'ไทย' },
+  { code: 'id', label: 'Bahasa' },
 ] as const;
 
 export default function LanguageSwitcher() {
@@ -59,13 +65,13 @@ export default function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-1 min-w-[140px] overflow-hidden rounded-xl border border-brown/10 bg-white py-1 shadow-lg">
+        <div className="absolute end-0 top-full z-50 mt-1 min-w-[140px] max-h-[320px] overflow-y-auto rounded-xl border border-brown/10 bg-white py-1 shadow-lg">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleSwitch(lang.code)}
               className={`
-                block w-full px-4 py-2 text-left text-sm transition-colors
+                block w-full px-4 py-2 text-start text-sm transition-colors
                 ${lang.code === locale
                   ? 'bg-sky-brand/10 font-semibold text-sky-brand'
                   : 'text-brown hover:bg-brown/5'

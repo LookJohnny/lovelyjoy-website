@@ -37,7 +37,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white shadow-2xl"
+            className="fixed inset-y-0 end-0 z-50 w-full max-w-sm bg-white shadow-2xl"
           >
             <div className="flex h-full flex-col px-6 py-6">
               {/* Top: Logo + Close */}

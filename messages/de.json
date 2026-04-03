@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "title": "LovelyJoy - Professioneller Plüschtier-Hersteller | OEM/ODM Maßanfertigungen",
+    "description": "LovelyJoy ist ein führender Plüschtier-Hersteller in Yiwu, China, mit über 20 Jahren Erfahrung. Wir bieten professionelle OEM/ODM-Dienstleistungen für maßgefertigte Plüschtiere — von der Konzeptentwicklung bis zur Serienproduktion. BSCI- und ISO 9001-zertifizierte Fabrik."
+  },
+  "nav": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "oemOdm": "OEM/ODM",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "header": {
+    "contactCta": "Kontakt"
+  },
+  "language": {
+    "current": "EN",
+    "switchTo": "English"
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "title": "Spüren Sie die Liebe, teilen Sie die Freude",
+          "subtitle": "Über 20 Jahre Handwerkskunst in der Plüschtierherstellung — mit Herz und Seele geschaffen",
+          "cta": "Mehr erfahren"
+        },
+        {
+          "title": "Vom Konzept zur Produktion — Ihr Komplettservice aus einer Hand",
+          "subtitle": "Professionelle OEM/ODM-Dienstleistungen, die Ihre Markengeschichte zum Leben erwecken",
+          "cta": "Angebot anfordern"
+        },
+        {
+          "title": "Zertifizierte Qualität, weltweit vertraut",
+          "subtitle": "International zertifizierte Produkte, exportiert in über 30 Länder und Regionen",
+          "cta": "Produkte ansehen"
+        }
+      ]
+    },
+    "advantages": {
+      "items": [
+        {
+          "title": "Branchenerfahrung",
+          "description": "Tiefgreifende Expertise in der Plüschtierherstellung mit umfangreichem technischem Know-how und Erfahrung im Produktionsmanagement",
+          "number": "20",
+          "suffix": " Jahre+"
+        },
+        {
+          "title": "OEM/ODM Maßanfertigung",
+          "description": "Durchgängige Individualisierung von der Konzeptentwicklung bis zur Serienproduktion, einschließlich Muster und Spezifikationen nach Maß",
+          "number": "1000",
+          "suffix": " SKUs+"
+        },
+        {
+          "title": "Qualitätskontrolle",
+          "description": "Strenge Einhaltung internationaler Qualitätsstandards mit BSCI-, ISO 9001- und weiteren anerkannten Zertifizierungen",
+          "number": "100",
+          "suffix": "%"
+        },
+        {
+          "title": "Pünktliche Lieferung",
+          "description": "Effizientes Lieferkettenmanagement und digitalisierte Produktionsprozesse für termingerechte und qualitätsgesicherte Lieferung",
+          "number": "98",
+          "suffix": "%"
+        }
+      ]
+    },
+    "brandStory": {
+      "title": "Über LovelyJoy",
+      "description": "LovelyJoy wurde in Yiwu, China, gegründet und widmet sich seit über 20 Jahren dem Design und der Herstellung von Plüschtieren. Wir sind überzeugt, dass jedes Plüschtier ein Gefäß der Liebe ist, das Geborgenheit und Wärme schenkt. Von der Materialauswahl bis zum fertigen Produkt gestalten wir jedes Detail mit Sorgfalt, um greifbare Freude und Behaglichkeit zu bieten.",
+      "valuesTitle": "Was macht unsere Marke einzigartig?",
+      "valuesSubtitle": "Eine unverwechselbare visuelle Markenidentität gestalten",
+      "values": [
+        {
+          "title": "Emotionale Begleitung",
+          "description": "Herzliche Geborgenheit durch weiche Texturen und feinfühliges Design schaffen"
+        },
+        {
+          "title": "Emotionaler Wert",
+          "description": "Jedes Produkt zu einer Quelle von Glück und Wohlbefinden machen"
+        },
+        {
+          "title": "Ästhetisches Design",
+          "description": "Östliche Ästhetik mit internationalen Trends verbinden, um einzigartig bezaubernde Plüschkunst zu schaffen"
+        }
+      ]
+    },
+    "products": {
+      "title": "Ausgewählte Produkte",
+      "subtitle": "Entdecken Sie unsere beliebtesten Kreationen, mit Hingabe und Sorgfalt gefertigt",
+      "viewAll": "Alle Produkte ansehen"
+    },
+    "cta": {
+      "title": "Starten Sie Ihre Reise in die Welt der Plüschtiere",
+      "subtitle": "Ob Markenindividualisierung oder kreatives Design — wir bieten professionelle Lösungen, die auf Ihre Bedürfnisse zugeschnitten sind",
+      "button": "Kontakt aufnehmen"
+    }
+  },
+  "products": {
+    "title": "Produkte",
+    "subtitle": "Ein vielfältiges Sortiment für jeden Anlass",
+    "categories": {
+      "all": "Alle",
+      "plush": "Plüschtiere",
+      "pillow": "Plüschkissen",
+      "keychain": "Plüsch-Schlüsselanhänger",
+      "gift": "Geschenke nach Maß",
+      "ip": "Lizenzierte IP"
+    },
+    "inquireButton": "Jetzt anfragen"
+  },
+  "oemOdm": {
+    "title": "OEM/ODM Maßanfertigungen",
+    "subtitle": "Vom Konzept zum fertigen Produkt — professionelle Individualisierung entlang der gesamten Wertschöpfungskette",
+    "metadata": {
+      "title": "OEM/ODM Maßanfertigungen - LovelyJoy",
+      "description": "LovelyJoy bietet professionelle OEM/ODM-Dienstleistungen für Plüschtiere — von der Anforderungsanalyse bis zu Verpackung und Versand, mit umfassender Qualitätssicherung in 7 Schritten."
+    },
+    "cta": {
+      "title": "Von der Idee zum perfekten Produkt",
+      "subtitle": "Welche kreative Vision Sie auch haben — wir helfen Ihnen, sie zu verwirklichen",
+      "button": "Kontaktieren Sie uns jetzt"
+    },
+    "steps": [
+      {
+        "title": "Anforderungsanalyse",
+        "description": "Umfassendes Verständnis Ihrer Markenpositionierung, Produktanforderungen und Ihres Zielmarktes"
+      },
+      {
+        "title": "Konzeptentwicklung",
+        "description": "Unser professionelles Designteam verwandelt Ihre Ideen in detaillierte Produktdesign-Vorschläge"
+      },
+      {
+        "title": "Musterfreigabe",
+        "description": "Erstellung physischer Muster mit iterativen Anpassungen, bis Ihre Anforderungen vollständig erfüllt sind"
+      },
+      {
+        "title": "Materialbeschaffung",
+        "description": "Sorgfältig ausgewählte hochwertige Stoffe und Füllmaterialien, die internationale Sicherheitsstandards erfüllen"
+      },
+      {
+        "title": "Serienproduktion",
+        "description": "Digitales Produktionsmanagementsystem mit präziser Qualitätskontrolle in jeder Phase"
+      },
+      {
+        "title": "Qualitätsprüfung",
+        "description": "Durchgängige Qualitätskontrolle mit strengen Tests für jedes einzelne Produkt"
+      },
+      {
+        "title": "Verpackung und Versand",
+        "description": "Professionelle Verpackungslösungen mit sicherer und effizienter Logistik weltweit"
+      }
+    ]
+  },
+  "faq": {
+    "metadata": {
+      "title": "FAQ - LovelyJoy",
+      "description": "Häufig gestellte Fragen zu OEM/ODM-Dienstleistungen von LovelyJoy, MOQ, Musterentwicklung, Produktionszeiten und Zertifizierungen."
+    },
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Alles, was Sie über unsere OEM/ODM-Dienstleistungen wissen müssen",
+    "contactCta": "Noch Fragen? Kontaktieren Sie uns direkt.",
+    "items": [
+      {
+        "q": "Wie hoch ist die Mindestbestellmenge (MOQ)?",
+        "a": "Unsere Standard-MOQ beträgt 500 Stück pro Modell. Für Neukunden bieten wir flexible Testbestellungen in Kleinserien ab 200 Stück an, um den Markt zu testen."
+      },
+      {
+        "q": "Wie lange dauert die Musterentwicklung?",
+        "a": "Die Musterentwicklung dauert je nach Komplexität in der Regel 7–15 Werktage. Einfache Änderungen an bestehenden Designs können in nur 5 Tagen umgesetzt werden."
+      },
+      {
+        "q": "Wie lang ist die Produktionszeit?",
+        "a": "Die Standardproduktion dauert 30–45 Tage nach Musterfreigabe. Eilaufträge können innerhalb von 20 Tagen gegen Aufpreis bearbeitet werden, vorbehaltlich der Produktionskapazität."
+      },
+      {
+        "q": "Welche Zertifizierungen haben Ihre Produkte?",
+        "a": "Unsere Produkte erfüllen die Sicherheitsstandards ASTM F963 (USA), EN 71 (EU), CE und GB 6675 (China). Unsere Fabrik ist nach BSCI und ISO 9001 zertifiziert."
+      },
+      {
+        "q": "Bieten Sie Designdienstleistungen (ODM) an?",
+        "a": "Ja! Unser internes Designteam kann auf Grundlage Ihres Briefings originale Designs von Grund auf erstellen oder bestehende Designs anpassen. Wir liefern 3D-Visualisierungen und physische Muster vor der Serienproduktion."
+      },
+      {
+        "q": "Welche Zahlungsmethoden akzeptieren Sie?",
+        "a": "Wir akzeptieren T/T (Banküberweisung), L/C (Akkreditiv) und PayPal. Standardkonditionen sind 30 % Anzahlung und 70 % Restbetrag vor Versand."
+      }
+    ]
+  },
+  "about": {
+    "title": "Über uns",
+    "story": {
+      "title": "Unsere Geschichte",
+      "content": "LovelyJoy wurde in Yiwu, China — der Welthauptstadt der Kleinwaren — gegründet. Seit unserer Gründung widmen wir uns dem Design und der Herstellung von Plüschtieren. Mit über 20 Jahren Branchenexpertise sind wir zu einem umfassenden Plüschtier-Unternehmen gewachsen, das Forschung & Entwicklung, Design, Produktion und Markenführung vereint. Unsere Mission lautet 'Spüren Sie die Liebe, teilen Sie die Freude' — Liebe und Wärme durch jedes Produkt zu vermitteln und die Welt ein wenig weicher und besser zu machen."
+    },
+    "factory": {
+      "title": "Produktionskapazitäten",
+      "area": "Fabrikfläche 20.000+ m²",
+      "workers": "Qualifizierte Mitarbeiter 300+",
+      "capacity": "Monatliche Kapazität 500.000+ Stück",
+      "markets": "Export in 30+ Länder und Regionen"
+    },
+    "certifications": {
+      "title": "Zertifizierungen",
+      "list": [
+        "BSCI Business Social Compliance Initiative",
+        "ISO 9001 Qualitätsmanagementsystem",
+        "CE Europäische Sicherheitszertifizierung",
+        "ASTM F963 US-amerikanischer Spielzeugsicherheitsstandard",
+        "EN 71 Europäischer Spielzeugsicherheitsstandard",
+        "GB 6675 Chinesischer Spielzeugsicherheitsstandard"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir freuen uns auf die Zusammenarbeit mit Ihnen. Kontaktieren Sie uns jederzeit",
+    "metadata": {
+      "title": "Kontakt - LovelyJoy",
+      "description": "Kontaktieren Sie LovelyJoy für OEM/ODM-Angebote für maßgefertigte Plüschtiere, Musteranfragen oder andere geschäftliche Anfragen."
+    },
+    "form": {
+      "name": "Ihr Name",
+      "email": "E-Mail-Adresse",
+      "company": "Firmenname",
+      "phone": "Telefonnummer",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "messagePlaceholder": "Bitte beschreiben Sie Ihre Anforderungen, z. B. Produkttyp, Menge, Lieferzeitrahmen usw.",
+      "subjects": {
+        "oem": "OEM-Fertigungsanfrage",
+        "odm": "ODM Design & Entwicklung",
+        "wholesale": "Großhandelseinkauf",
+        "sample": "Musteranfrage",
+        "other": "Sonstige Anfrage"
+      }
+    },
+    "submit": "Nachricht senden",
+    "submitting": "Wird gesendet...",
+    "errors": {
+      "nameRequired": "Bitte geben Sie Ihren Namen ein",
+      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "messageRequired": "Bitte geben Sie Ihre Nachricht ein"
+    },
+    "success": "Vielen Dank für Ihre Nachricht! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.",
+    "info": {
+      "address": "No.8 Siyuan Road, Niansan Li, Yiwu, Zhejiang, China",
+      "storeAddress": "4F-84556, Gate 188, Global Digital Trade Center, Yiwu",
+      "email": "info@lovelyjoy.com",
+      "phone": "+86 15957988866",
+      "wechat": "LovelyJoy_Official",
+      "workingHours": "Mo - Sa 8:00 - 18:00 Uhr (UTC+8)",
+      "addressLabel": "Fabrik",
+      "storeAddressLabel": "Showroom",
+      "workingHoursLabel": "Geschäftszeiten",
+      "whatsapp": "+1 (626) 586 7567"
+    }
+  },
+  "blog": {
+    "metadata": {
+      "title": "Blog - Einblicke in die Plüschtierherstellung | LovelyJoy",
+      "description": "Expertenwissen zur Plüschtierherstellung, OEM/ODM-Dienstleistungen, Sicherheitsstandards und Branchentrends von LovelyJoy."
+    },
+    "title": "Blog",
+    "subtitle": "Brancheneinblicke und Fertigungsexpertise",
+    "readMore": "Weiterlesen"
+  },
+  "footer": {
+    "slogan": "Spüren Sie die Liebe, teilen Sie die Freude",
+    "description": "Seit über 20 Jahren auf Plüschtierdesign und -herstellung spezialisiert — Liebe und Wärme in jeder Kreation",
+    "quickLinks": "Schnelllinks",
+    "links": {
+      "products": "Produkte",
+      "oemOdm": "OEM/ODM",
+      "about": "Über uns",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "contact": "Kontakt",
+      "privacy": "Datenschutzrichtlinie",
+      "terms": "Nutzungsbedingungen"
+    },
+    "copyright": "© {year} LovelyJoy. Alle Rechte vorbehalten."
+  }
+}

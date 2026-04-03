@@ -5,7 +5,7 @@ import { posts } from "@/data/posts";
 const BASE_URL = "https://lovelyjoy.cn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["zh", "en", "ja", "ko", "es", "pt", "ar"];
+  const locales = ["zh", "en", "ja", "ko", "es", "pt", "ar", "ru", "fr", "de", "it", "th", "id"];
   const routes = ["", "/products", "/oem-odm", "/about", "/faq", "/contact", "/blog", "/plush-toy-oem", "/custom-plush-manufacturer", "/factory-capability", "/safety-certifications"];
 
   const entries: MetadataRoute.Sitemap = [];

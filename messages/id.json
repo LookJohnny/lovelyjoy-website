@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "title": "LovelyJoy - Produsen Boneka Plush Profesional | Layanan OEM/ODM Kustom",
+    "description": "LovelyJoy adalah produsen boneka plush terkemuka di Yiwu, Tiongkok dengan pengalaman lebih dari 20 tahun. Kami menyediakan layanan OEM/ODM profesional untuk boneka plush kustom, dari desain konsep hingga produksi massal. Pabrik bersertifikasi BSCI dan ISO 9001."
+  },
+  "nav": {
+    "home": "Beranda",
+    "products": "Produk",
+    "oemOdm": "OEM/ODM",
+    "about": "Tentang Kami",
+    "contact": "Kontak"
+  },
+  "header": {
+    "contactCta": "Kontak"
+  },
+  "language": {
+    "current": "EN",
+    "switchTo": "English"
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "title": "Rasakan Kelembutan, Sebarkan Kebahagiaan",
+          "subtitle": "Lebih dari 20 tahun keahlian dalam pembuatan boneka plush, menciptakan kebersamaan dengan sepenuh hati",
+          "cta": "Pelajari Lebih Lanjut"
+        },
+        {
+          "title": "Dari Konsep hingga Produksi, Layanan Kustom Terpadu",
+          "subtitle": "Layanan OEM/ODM profesional untuk mewujudkan kisah merek Anda",
+          "cta": "Minta Penawaran"
+        },
+        {
+          "title": "Kualitas Bersertifikasi, Dipercaya di Seluruh Dunia",
+          "subtitle": "Produk bersertifikasi internasional yang diekspor ke lebih dari 30 negara dan wilayah",
+          "cta": "Lihat Produk"
+        }
+      ]
+    },
+    "advantages": {
+      "items": [
+        {
+          "title": "Pengalaman Industri",
+          "description": "Keahlian mendalam dalam produksi boneka plush dengan pengetahuan teknis dan pengalaman manajemen produksi yang kaya",
+          "number": "20",
+          "suffix": " Thn+"
+        },
+        {
+          "title": "OEM/ODM Kustom",
+          "description": "Kustomisasi menyeluruh dari desain konsep hingga produksi massal, mendukung sampel dan spesifikasi kustom",
+          "number": "1000",
+          "suffix": " SKUs+"
+        },
+        {
+          "title": "Pengendalian Mutu",
+          "description": "Kepatuhan ketat terhadap standar mutu internasional dengan sertifikasi BSCI, ISO 9001 dan akreditasi terpercaya lainnya",
+          "number": "100",
+          "suffix": "%"
+        },
+        {
+          "title": "Pengiriman Tepat Waktu",
+          "description": "Manajemen rantai pasok yang efisien dan proses produksi digital untuk memastikan pengiriman tepat waktu dan berkualitas",
+          "number": "98",
+          "suffix": "%"
+        }
+      ]
+    },
+    "brandStory": {
+      "title": "Tentang LovelyJoy",
+      "description": "Didirikan di Yiwu, Tiongkok, LovelyJoy telah mengabdikan diri pada desain dan produksi boneka plush selama lebih dari 20 tahun. Kami percaya setiap boneka plush adalah wadah kasih sayang, membawa kebersamaan dan kehangatan. Dari pemilihan bahan hingga produk jadi, kami dengan cermat mengerjakan setiap detail untuk memberikan kebahagiaan dan kenyamanan yang nyata.",
+      "valuesTitle": "Apa yang Membuat Merek Kami Istimewa?",
+      "valuesSubtitle": "Membangun identitas visual merek yang khas",
+      "values": [
+        {
+          "title": "Teman Setia",
+          "description": "Menciptakan kebersamaan yang tulus melalui tekstur lembut dan desain yang halus"
+        },
+        {
+          "title": "Nilai Emosional",
+          "description": "Menjadikan setiap produk sebagai sumber kebahagiaan dan kesejahteraan"
+        },
+        {
+          "title": "Desain Estetis",
+          "description": "Memadukan estetika Timur dengan tren internasional untuk menciptakan seni boneka plush dengan pesona yang unik"
+        }
+      ]
+    },
+    "products": {
+      "title": "Produk Unggulan",
+      "subtitle": "Temukan kreasi terpopuler kami, dibuat dengan dedikasi dan perhatian penuh",
+      "viewAll": "Lihat Semua Produk"
+    },
+    "cta": {
+      "title": "Mulai Perjalanan Anda di Dunia Boneka Plush",
+      "subtitle": "Baik untuk kustomisasi merek maupun desain kreatif, kami menawarkan solusi profesional yang disesuaikan dengan kebutuhan Anda",
+      "button": "Hubungi Kami"
+    }
+  },
+  "products": {
+    "title": "Produk",
+    "subtitle": "Lini produk yang beragam untuk memenuhi kebutuhan setiap kesempatan",
+    "categories": {
+      "all": "Semua",
+      "plush": "Boneka Plush",
+      "pillow": "Bantal Plush",
+      "keychain": "Gantungan Kunci Plush",
+      "gift": "Hadiah Kustom",
+      "ip": "IP Berlisensi"
+    },
+    "inquireButton": "Tanyakan Sekarang"
+  },
+  "oemOdm": {
+    "title": "Layanan OEM/ODM Kustom",
+    "subtitle": "Dari konsep hingga produk jadi, kustomisasi profesional sepanjang rantai nilai",
+    "metadata": {
+      "title": "Layanan OEM/ODM Kustom - LovelyJoy",
+      "description": "LovelyJoy menyediakan layanan OEM/ODM profesional untuk boneka plush, dari diskusi kebutuhan hingga pengemasan dan pengiriman, dengan jaminan mutu menyeluruh dalam 7 langkah."
+    },
+    "cta": {
+      "title": "Dari Ide Menjadi Produk Sempurna",
+      "subtitle": "Apa pun visi kreatif Anda, kami siap membantu mewujudkannya",
+      "button": "Hubungi Kami Sekarang"
+    },
+    "steps": [
+      {
+        "title": "Diskusi Kebutuhan",
+        "description": "Pemahaman mendalam tentang positioning merek, persyaratan produk, dan target pasar Anda"
+      },
+      {
+        "title": "Desain Konsep",
+        "description": "Tim desain profesional kami mengubah ide Anda menjadi proposal desain produk yang terperinci"
+      },
+      {
+        "title": "Konfirmasi Sampel",
+        "description": "Pembuatan sampel fisik dengan penyesuaian berulang hingga persyaratan Anda terpenuhi sepenuhnya"
+      },
+      {
+        "title": "Pengadaan Bahan",
+        "description": "Kain dan bahan isi berkualitas tinggi yang dipilih dengan cermat, memastikan keamanan dan kepatuhan terhadap standar internasional"
+      },
+      {
+        "title": "Produksi Massal",
+        "description": "Sistem manajemen produksi digital dengan pengendalian mutu yang presisi di setiap tahap"
+      },
+      {
+        "title": "Inspeksi Mutu",
+        "description": "Pengendalian mutu menyeluruh dengan pengujian ketat untuk setiap produk"
+      },
+      {
+        "title": "Pengemasan dan Pengiriman",
+        "description": "Solusi pengemasan profesional dengan logistik yang aman dan efisien ke seluruh dunia"
+      }
+    ]
+  },
+  "faq": {
+    "metadata": {
+      "title": "FAQ - LovelyJoy",
+      "description": "Pertanyaan yang sering diajukan tentang layanan OEM/ODM LovelyJoy, MOQ, pengembangan sampel, waktu produksi, dan sertifikasi."
+    },
+    "title": "Pertanyaan yang Sering Diajukan",
+    "subtitle": "Semua yang perlu Anda ketahui tentang layanan OEM/ODM kami",
+    "contactCta": "Masih ada pertanyaan? Hubungi kami secara langsung.",
+    "items": [
+      {
+        "q": "Berapa jumlah pesanan minimum (MOQ)?",
+        "a": "MOQ standar kami adalah 500 buah per model. Untuk pelanggan baru, kami menyediakan pesanan percobaan fleksibel dalam jumlah kecil mulai dari 200 buah untuk membantu Anda menguji pasar."
+      },
+      {
+        "q": "Berapa lama waktu pengembangan sampel?",
+        "a": "Pengembangan sampel biasanya membutuhkan 7-15 hari kerja tergantung pada tingkat kerumitan. Modifikasi sederhana pada desain yang sudah ada dapat diselesaikan dalam waktu 5 hari."
+      },
+      {
+        "q": "Berapa lama waktu produksi?",
+        "a": "Produksi standar membutuhkan 30-45 hari setelah persetujuan sampel. Pesanan mendesak dapat diatur dalam waktu 20 hari dengan biaya tambahan, tergantung ketersediaan jadwal produksi."
+      },
+      {
+        "q": "Sertifikasi apa saja yang dimiliki produk Anda?",
+        "a": "Produk kami memenuhi standar keamanan ASTM F963 (AS), EN 71 (UE), CE, dan GB 6675 (Tiongkok). Pabrik kami memiliki sertifikasi BSCI dan ISO 9001."
+      },
+      {
+        "q": "Apakah Anda menyediakan layanan desain (ODM)?",
+        "a": "Ya! Tim desain internal kami dapat membuat desain orisinal dari awal berdasarkan brief Anda, atau memodifikasi desain yang sudah ada. Kami menyediakan rendering 3D dan sampel fisik sebelum produksi massal."
+      },
+      {
+        "q": "Metode pembayaran apa saja yang Anda terima?",
+        "a": "Kami menerima T/T (transfer bank), L/C (letter of credit), dan PayPal. Ketentuan standar adalah uang muka 30% dengan sisa 70% sebelum pengiriman."
+      }
+    ]
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "story": {
+      "title": "Kisah Kami",
+      "content": "LovelyJoy didirikan di Yiwu, Tiongkok — ibu kota perdagangan barang kecil dunia. Sejak didirikan, kami telah mendedikasikan diri pada desain dan produksi boneka plush. Dengan keahlian industri lebih dari 20 tahun, kami telah berkembang menjadi perusahaan boneka plush yang komprehensif yang mengintegrasikan R&D, desain, produksi, dan operasi merek. Misi kami adalah «Rasakan Kelembutan, Sebarkan Kebahagiaan» — menyampaikan kasih sayang dan kehangatan melalui setiap produk, menjadikan dunia tempat yang lebih lembut dan lebih baik."
+    },
+    "factory": {
+      "title": "Kapasitas Produksi",
+      "area": "Luas Pabrik 20.000+ m²",
+      "workers": "Tenaga Kerja Terampil 300+",
+      "capacity": "Kapasitas Bulanan 500.000+ buah",
+      "markets": "Diekspor ke 30+ Negara dan Wilayah"
+    },
+    "certifications": {
+      "title": "Sertifikasi",
+      "list": [
+        "BSCI Inisiatif Kepatuhan Sosial Bisnis",
+        "ISO 9001 Sistem Manajemen Mutu",
+        "CE Sertifikasi Keamanan Eropa",
+        "ASTM F963 Standar Keamanan Mainan AS",
+        "EN 71 Standar Keamanan Mainan Eropa",
+        "GB 6675 Standar Keamanan Mainan Tiongkok"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Kami menantikan kerja sama dengan Anda. Jangan ragu untuk menghubungi kami kapan saja",
+    "metadata": {
+      "title": "Hubungi Kami - LovelyJoy",
+      "description": "Hubungi LovelyJoy untuk penawaran OEM/ODM boneka plush kustom, permintaan sampel, atau pertanyaan bisnis lainnya."
+    },
+    "form": {
+      "name": "Nama Anda",
+      "email": "Alamat Email",
+      "company": "Nama Perusahaan",
+      "phone": "Nomor Telepon",
+      "subject": "Subjek",
+      "message": "Pesan",
+      "messagePlaceholder": "Silakan jelaskan kebutuhan Anda, seperti jenis produk, jumlah, jadwal pengiriman, dll.",
+      "subjects": {
+        "oem": "Permintaan OEM Kustom",
+        "odm": "Desain dan Pengembangan ODM",
+        "wholesale": "Pembelian Grosir",
+        "sample": "Permintaan Sampel",
+        "other": "Pertanyaan Lainnya"
+      }
+    },
+    "submit": "Kirim Pesan",
+    "submitting": "Mengirim...",
+    "errors": {
+      "nameRequired": "Silakan masukkan nama Anda",
+      "emailRequired": "Silakan masukkan email Anda",
+      "emailInvalid": "Silakan masukkan alamat email yang valid",
+      "messageRequired": "Silakan masukkan pesan Anda"
+    },
+    "success": "Terima kasih atas pesan Anda! Kami akan menghubungi Anda kembali dalam 24 jam.",
+    "info": {
+      "address": "No.8 Siyuan Road, Niansan Li, Yiwu, Zhejiang, China",
+      "storeAddress": "4F-84556, Gate 188, Global Digital Trade Center, Yiwu",
+      "email": "info@lovelyjoy.com",
+      "phone": "+86 15957988866",
+      "wechat": "LovelyJoy_Official",
+      "workingHours": "Sen - Sab 08.00 - 18.00 (UTC+8)",
+      "addressLabel": "Pabrik",
+      "storeAddressLabel": "Showroom",
+      "workingHoursLabel": "Jam Kerja",
+      "whatsapp": "+1 (626) 586 7567"
+    }
+  },
+  "blog": {
+    "metadata": {
+      "title": "Blog - Wawasan Produksi Boneka Plush | LovelyJoy",
+      "description": "Wawasan ahli tentang produksi boneka plush, layanan OEM/ODM, standar keamanan, dan tren industri dari LovelyJoy."
+    },
+    "title": "Blog",
+    "subtitle": "Wawasan industri dan keahlian manufaktur",
+    "readMore": "Baca Selengkapnya"
+  },
+  "footer": {
+    "slogan": "Rasakan Kelembutan, Sebarkan Kebahagiaan",
+    "description": "Mengkhususkan diri dalam desain dan produksi boneka plush selama lebih dari 20 tahun, menyampaikan kasih sayang dan kehangatan dalam setiap karya",
+    "quickLinks": "Tautan Cepat",
+    "links": {
+      "products": "Produk",
+      "oemOdm": "OEM/ODM",
+      "about": "Tentang Kami",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "contact": "Kontak",
+      "privacy": "Kebijakan Privasi",
+      "terms": "Ketentuan Layanan"
+    },
+    "copyright": "© {year} LovelyJoy. Hak cipta dilindungi undang-undang."
+  }
+}
