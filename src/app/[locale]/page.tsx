@@ -4,7 +4,7 @@ import CoreAdvantages from '@/components/home/CoreAdvantages';
 import ProductShowcase from '@/components/home/ProductShowcase';
 import QualityDetails from '@/components/home/QualityDetails';
 import StoreShowcase from '@/components/home/StoreShowcase';
-import ClientLogos from '@/components/home/ClientLogos';
+import Certifications from '@/components/home/Certifications';
 import CTABanner from '@/components/home/CTABanner';
 import { CONTACT_INFO } from '@/lib/constants';
 
@@ -52,7 +52,7 @@ export default function HomePage() {
       <ProductShowcase />
       <QualityDetails />
       <StoreShowcase />
-      <ClientLogos />
+      <Certifications />
       <CTABanner />
     </>
   );

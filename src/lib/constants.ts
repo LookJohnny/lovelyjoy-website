@@ -1,7 +1,7 @@
 // ─── Company Identity ────────────────────────────────────────
 
 export const COMPANY_NAME = "LovelyJoy";
-export const COMPANY_NAME_CN = "乐芭迪";
+export const COMPANY_NAME_CN = "爱儿采";
 export const SLOGAN_EN = "Crafting Joy, One Plush at a Time";
 export const SLOGAN_CN = "用心缝制，传递快乐";
 
@@ -29,12 +29,7 @@ export interface SocialLink {
   icon: string; // lucide icon name or custom identifier
 }
 
-export const SOCIAL_LINKS: SocialLink[] = [
-  { platform: "WeChat", url: "#", icon: "message-circle" },
-  { platform: "Instagram", url: "#", icon: "instagram" },
-  { platform: "Facebook", url: "#", icon: "facebook" },
-  { platform: "LinkedIn", url: "#", icon: "linkedin" },
-];
+export const SOCIAL_LINKS: SocialLink[] = [];
 
 // ─── Contact Info ────────────────────────────────────────────
 
