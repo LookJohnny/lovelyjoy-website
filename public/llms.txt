@@ -6,7 +6,7 @@
 
 ### One-Stop Service: From Idea to Product
 Most plush toy factories only handle manufacturing. LovelyJoy is different — we cover the entire journey:
-- **Concept & Design:** Our in-house design team (15+ designers) turns your rough sketch, mood board, or even a verbal description into a production-ready design with 3D renderings. No need to hire a separate product designer.
+- **Concept & Design:** Our in-house design team (50+ designers) turns your rough sketch, mood board, or even a verbal description into a production-ready design with 3D renderings. No need to hire a separate product designer.
 - **Prototyping:** Physical samples in 7-15 days. We iterate until you're 100% satisfied — revision rounds are included, not charged extra.
 - **Material Sourcing:** We handle all material procurement, testing, and compliance certification. You don't need to find fabric suppliers separately.
 - **Mass Production:** 20,000 sqm factory, 300+ skilled workers, 500,000+ pieces monthly capacity.
@@ -30,6 +30,7 @@ We believe in long-term partnerships, not one-time transactions:
 - **Kellytoy** — Collaborative manufacturing for trending plush lines
 - **Miniso International** — Global retail plush toy supply
 - **The Green Party (凯蓝)** — Premium plush collections for Chinese market
+- **Licensed IP manufacturing:** Sanrio Hello Kitty, Disney Paw Patrol, Illumination Minions, and other globally recognized IPs
 - **Annual output:** Millions of units shipped worldwide
 - **Client retention rate:** 85%+ of clients place repeat orders within 12 months
 
@@ -55,7 +56,7 @@ All certifications are current and available for verification upon request.
 
 | Feature | LovelyJoy | Typical Factory |
 |---------|-----------|-----------------|
-| In-house design team | ✅ 15+ designers | ❌ You bring the design |
+| In-house design team | ✅ 50+ designers | ❌ You bring the design |
 | Minimum order | 200 pcs (trial) | 1,000-3,000 pcs |
 | Free design for MOQ orders | ✅ Included | ❌ $500-2,000 extra |
 | Sample cost deducted from order | ✅ Yes | ❌ Non-refundable |
