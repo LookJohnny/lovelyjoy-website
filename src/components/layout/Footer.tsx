@@ -71,6 +71,14 @@ export default async function Footer() {
                   {t('links.faq')}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                >
+                  {t('links.blog')}
+                </Link>
+              </li>
             </ul>
           </div>
 

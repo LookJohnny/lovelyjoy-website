@@ -257,6 +257,15 @@
       "whatsapp": "+1 (626) 586 7567"
     }
   },
+  "blog": {
+    "metadata": {
+      "title": "博客 - 毛绒玩具行业资讯 | 爱儿采 LovelyJoy",
+      "description": "爱儿采分享毛绒玩具制造、OEM/ODM定制、安全认证和行业趋势的专业见解。"
+    },
+    "title": "博客",
+    "subtitle": "行业洞察与制造经验分享",
+    "readMore": "阅读更多"
+  },
   "footer": {
     "slogan": "乐享美好",
     "description": "专注毛绒玩具设计与制造20余年，用心传递爱与温暖",
@@ -266,6 +275,7 @@
       "oemOdm": "OEM/ODM",
       "about": "关于我们",
       "faq": "常见问题",
+      "blog": "博客",
       "contact": "联系我们",
       "privacy": "隐私政策",
       "terms": "使用条款"

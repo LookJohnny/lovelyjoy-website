@@ -257,6 +257,15 @@
       "whatsapp": "+1 (626) 586 7567"
     }
   },
+  "blog": {
+    "metadata": {
+      "title": "Blog - Plush Toy Manufacturing Insights | LovelyJoy",
+      "description": "Expert insights on plush toy manufacturing, OEM/ODM services, safety standards, and industry trends from LovelyJoy."
+    },
+    "title": "Blog",
+    "subtitle": "Industry insights and manufacturing expertise",
+    "readMore": "Read More"
+  },
   "footer": {
     "slogan": "Feel the Lovely, Spread the Joy",
     "description": "Specializing in plush toy design and manufacturing for over 20 years, delivering love and warmth with every creation",
@@ -266,6 +275,7 @@
       "oemOdm": "OEM/ODM",
       "about": "About Us",
       "faq": "FAQ",
+      "blog": "Blog",
       "contact": "Contact",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"

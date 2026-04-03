@@ -8,6 +8,7 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Button from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
+import ShareButtons from "@/components/ui/ShareButtons";
 import { Package, Ruler, Palette, ArrowRight } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -178,6 +179,11 @@ export default async function ProductDetailPage({
                 <Button href="/oem-odm" variant="outline" size="lg">
                   {isZh ? "了解 OEM/ODM" : "OEM/ODM Services"}
                 </Button>
+              </div>
+
+              {/* Share */}
+              <div className="mt-6">
+                <ShareButtons title={name} />
               </div>
             </div>
           </div>
