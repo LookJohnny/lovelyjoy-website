@@ -141,15 +141,30 @@ export default async function AboutPage({
         <Container>
           <ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-              {/* Left: Brand philosophy image */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                <Image
-                  src="/images/brand/values.jpeg"
-                  alt={t("story.title")}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+              {/* Left: Brand philosophy */}
+              <div className="flex flex-col items-center gap-6 rounded-3xl bg-bg-warm p-8">
+                <h3 className="text-xl font-bold text-brown">
+                  {isZh ? "如何赋予品牌独特的世界观？" : "What Makes Our Brand Unique?"}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {[
+                    isZh ? "情感陪伴" : "Emotional Companionship",
+                    isZh ? "情绪价值" : "Emotional Value",
+                    isZh ? "美学设计" : "Aesthetic Design",
+                  ].map((label) => (
+                    <div
+                      key={label}
+                      className="flex h-28 w-28 items-center justify-center rounded-full bg-brown text-white md:h-32 md:w-32"
+                    >
+                      <span className="px-2 text-center text-sm font-semibold leading-tight">
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-brown/60">
+                  {isZh ? "设计独特的品牌视觉元素" : "Crafting a distinctive brand visual identity"}
+                </p>
               </div>
 
               {/* Right: Story text */}
