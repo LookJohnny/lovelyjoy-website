@@ -1,0 +1,159 @@
+LovelyJoy — Export Logistics and Shipping Guide
+==================================================
+
+OVERVIEW
+
+LovelyJoy ships plush toys to customers worldwide from its factory in Yiwu, Zhejiang, China. The nearest major ports are Ningbo and Shanghai. This guide covers trade terms, shipping methods, customs documentation, and logistics planning.
+
+TRADE TERMS (INCOTERMS)
+
+LovelyJoy offers the following Incoterms:
+
+FOB (Free On Board) — Most Common
+- LovelyJoy delivers goods to the port (Ningbo or Shanghai) and loads onto the vessel
+- Buyer arranges and pays for ocean freight, insurance, and destination customs
+- Risk transfers to buyer when goods pass the ship's rail
+- Best for: Buyers with their own freight forwarder or established shipping accounts
+
+CIF (Cost, Insurance, Freight)
+- LovelyJoy arranges and pays for ocean freight and insurance to the destination port
+- Buyer handles customs clearance and local delivery at destination
+- Risk transfers to buyer at the destination port
+- Best for: Buyers who prefer a simpler process with fewer logistics to manage
+
+DDP (Delivered Duty Paid)
+- LovelyJoy handles everything: freight, insurance, customs clearance, duties, and delivery to buyer's warehouse
+- Buyer receives goods at their door with no logistics to arrange
+- Highest cost option but lowest complexity for the buyer
+- Best for: Small-to-medium orders, first-time importers, buyers without import experience
+
+EXW (Ex Works)
+- Buyer picks up goods at LovelyJoy's factory
+- Buyer arranges all transportation from factory to destination
+- Lowest price from LovelyJoy but buyer manages everything
+- Best for: Buyers with China-based freight agents
+
+SHIPPING METHODS
+
+1. Ocean Freight — Full Container Load (FCL)
+- 20ft container: Fits approximately 25-30 CBM (cubic meters)
+- 40ft container: Fits approximately 55-60 CBM
+- 40ft HC (High Cube): Fits approximately 65-68 CBM
+- Plush toys are light but bulky, so containers fill by volume before weight limits
+- Transit times vary by destination (15-35 days)
+- Most economical for large orders
+
+2. Ocean Freight — Less than Container Load (LCL)
+- Goods share container space with other shippers
+- Minimum typically 1-2 CBM
+- Slightly higher per-CBM cost than FCL
+- Suitable for smaller orders that don't fill a full container
+- Transit times: Same as FCL plus 3-7 days for consolidation/deconsolidation
+
+3. Air Freight
+- Fastest option: 3-7 days to most destinations
+- Cost: Typically $4-$8 per kg (volumetric or actual weight, whichever is higher)
+- Volumetric weight calculation: L x W x H (cm) / 6000 = volumetric kg
+- Plush toys are very light, but volumetric weight can be significant
+- Best for: Urgent orders, samples, small quantities, high-value items
+
+4. Express Courier (DHL, FedEx, UPS)
+- Door-to-door service, 3-7 business days
+- Best for: Samples, very small orders (under 100kg)
+- Includes customs clearance in most cases
+- Cost: Higher than air freight per kg but simpler process
+
+5. Rail Freight (China-Europe)
+- Available for shipments to European destinations
+- Transit time: 15-20 days (faster than ocean, cheaper than air)
+- Route: Yiwu to Europe via China-Europe Railway Express
+- Suitable for time-sensitive orders to European markets
+
+TRANSIT TIMES FROM NINGBO/SHANGHAI PORT
+
+Ocean Freight:
+- US West Coast (Los Angeles, Long Beach, Oakland): 15-20 days
+- US East Coast (New York, Savannah, Norfolk): 25-35 days
+- UK (Felixstowe, Southampton): 25-30 days
+- Germany (Hamburg, Bremerhaven): 28-32 days
+- Netherlands (Rotterdam): 26-30 days
+- Australia (Sydney, Melbourne): 15-20 days
+- Japan (Tokyo, Osaka): 3-5 days
+- Southeast Asia (Singapore, Bangkok): 7-12 days
+- Middle East (Dubai, Jeddah): 15-20 days
+
+CUSTOMS DOCUMENTATION
+
+LovelyJoy prepares the following export documents:
+
+- Commercial Invoice: Itemized list of goods, quantities, unit prices, total value
+- Packing List: Carton count, dimensions, gross/net weight, content details
+- Bill of Lading (B/L) or Air Waybill (AWB): Shipping document issued by carrier
+- Certificate of Origin: Proves goods are manufactured in China (required by some countries for tariff purposes)
+- Test Reports: Safety certification test reports (ASTM F963, EN 71, etc.) if required by customs
+- Fumigation Certificate: If wooden pallets are used (ISPM 15 compliance)
+
+Additional documents provided upon request:
+- GSP Form A (for countries with Generalized System of Preferences)
+- ATA Carnet (for temporary importation of samples)
+- Letter of Credit documentation (if L/C payment terms are used)
+
+IMPORT DUTIES AND TARIFFS
+
+Import duties vary by destination country and product classification. Plush toys typically fall under HS Code 9503.00 (toys). Duty rates:
+- USA: Varies; check current HTS schedule (plush toys have historically been 0-6.8%)
+- EU: Typically 0-4.7%
+- Buyers are responsible for their own import duties unless DDP terms are agreed
+
+LOGISTICS PLANNING TIPS
+
+1. Book freight early during peak shipping season (August-October)
+2. Consolidate multiple SKUs into one shipment to save costs
+3. Request LovelyJoy to optimize carton sizes for container loading efficiency
+4. Consider LCL for trial orders and FCL for repeat/larger orders
+5. Allow 1-2 weeks buffer for customs clearance at destination
+
+CONTACT
+
+Email: info@lovelyjoytoy.com | Phone: +86 15957988866 | WhatsApp: +1 (626) 586 7567
+
+================================================================================
+
+LovelyJoy — 出口物流与运输指南
+==================================================
+
+概述
+
+爱儿采从浙江义乌工厂发货至全球，最近的主要港口为宁波和上海。
+
+贸易条款
+
+FOB（离岸价）：爱儿采送货至港口装船，买方负责海运和目的港清关。最常用。
+CIF（到岸价）：爱儿采安排海运和保险至目的港，买方负责清关和内陆运输。
+DDP（完税交货）：爱儿采负责全程，含运费、保险、清关、关税，送到买方仓库。
+EXW（工厂交货）：买方自行安排从工厂至目的地的所有运输。
+
+运输方式
+
+1. 整柜海运（FCL）：20尺柜约25-30立方米，40尺柜约55-60立方米，最经济
+2. 拼箱海运（LCL）：最低1-2立方米，适合小订单
+3. 空运：3-7天到达，约$4-$8/公斤，适合加急和小批量
+4. 国际快递（DHL/FedEx/UPS）：3-7工作日，门到门，适合样品和极小批量
+5. 中欧铁路：15-20天到欧洲，速度介于海运和空运之间
+
+海运时间参考
+
+美西：15-20天 | 美东：25-35天 | 英国：25-30天 | 德国：28-32天
+荷兰：26-30天 | 澳大利亚：15-20天 | 日本：3-5天 | 东南亚：7-12天
+
+出口单据
+
+商业发票、装箱单、提单/空运单、原产地证、检测报告、熏蒸证书（如用木托盘）。
+
+进口关税
+
+毛绒玩具通常归类HS 9503.00。关税因目的国而异，买方自行承担（DDP除外）。
+
+联系方式
+
+邮箱：info@lovelyjoytoy.com | 电话：+86 15957988866 | WhatsApp：+1 (626) 586 7567

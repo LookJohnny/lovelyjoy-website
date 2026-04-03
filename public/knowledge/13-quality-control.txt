@@ -1,0 +1,177 @@
+LovelyJoy — Quality Control Process for Plush Toys
+====================================================
+
+OVERVIEW
+
+LovelyJoy implements a 5-stage quality control process throughout plush toy manufacturing. Quality is not checked only at the end — it is monitored at every production phase. This systematic approach ensures consistent quality and minimizes defects before goods reach the customer.
+
+THE 5-STAGE QC PROCESS
+
+STAGE 1: Incoming Material Inspection (IQC — Incoming Quality Control)
+
+What is checked:
+- Fabric color accuracy against approved Pantone swatches or sealed samples
+- Fabric weight, pile height, and hand feel consistency
+- Filling material cleanliness and resilience
+- Accessory quality (eyes, noses, ribbons, tags, packaging materials)
+- Thread color matching
+- Zippers, buttons, and hardware functionality
+
+How it works:
+- Each incoming material batch is sampled and inspected
+- Color deviations beyond acceptable tolerance are rejected
+- Fabric rolls are checked for defects (holes, stains, uneven dyeing)
+- Materials that pass inspection are labeled and moved to the production floor
+- Failed materials are returned to suppliers or quarantined
+
+STAGE 2: In-Process Quality Control (IPQC)
+
+Cutting inspection:
+- Pattern pieces checked against templates for accuracy
+- Fabric direction and nap consistency verified
+- Piece counts matched to production requirements
+
+Embroidery inspection:
+- Thread color accuracy
+- Stitch density and coverage
+- Alignment and centering of embroidered elements
+- No loose threads or skipped stitches
+- Backing trimmed cleanly
+
+Sewing inspection:
+- Seam straightness and consistency
+- Stitch count per inch (SPI) within specification
+- No puckering, bunching, or skipped stitches
+- Correct assembly sequence (panels in right order)
+- Turn-out check (no raw edges visible)
+
+Stuffing inspection:
+- Fill weight within specified tolerance (typically +/- 5%)
+- Fill distribution even throughout the toy
+- Firmness matches approved sample
+- Closure seam secure (hand-stitched opening properly closed)
+
+STAGE 3: Assembly and Finishing Inspection
+
+What is checked:
+- All components properly attached (eyes, noses, accessories)
+- Pull test on eyes and noses: minimum 90 Newtons (EN 71) or 15 lbs (ASTM F963)
+- No exposed threads, loose ends, or stray fibers
+- Symmetry: left and right sides match
+- Overall shape and proportions match the sealed sample
+- Surface cleanliness: no stains, marks, or foreign matter
+- Brush and groom: fur direction consistent, no bald spots
+
+Metal detection:
+- Every toy passes through a needle/metal detector
+- Detects broken needles, pins, staples, or any metallic contamination
+- Sensitivity: Ferrous metal 1.2mm, non-ferrous 1.5mm, stainless steel 2.0mm
+- Any detected items cause the toy to be pulled for inspection and rework
+
+STAGE 4: Final Random Inspection (FQC — Final Quality Control)
+
+AQL Standards:
+LovelyJoy performs final inspection using the AQL (Acceptable Quality Level) sampling system per ISO 2859-1 (ANSI/ASQ Z1.4):
+
+- Critical defects (safety hazards): AQL 0 — Zero tolerance
+- Major defects (functional/appearance issues affecting usability): AQL 2.5
+- Minor defects (cosmetic issues not affecting function): AQL 4.0
+
+Inspection procedure:
+1. Finished goods are staged in the warehouse
+2. Random samples are pulled based on AQL sample size tables
+3. Each sampled unit is inspected against the approved sealed sample and specification sheet
+4. Measurements are taken and compared to tolerances
+5. Defect types are classified (critical, major, minor) and recorded
+6. If the lot passes, goods are approved for shipment
+7. If the lot fails, 100% inspection is conducted, defective units are reworked or replaced, and re-inspection is performed
+
+Items checked during final inspection:
+- Dimensional accuracy (size measurements within tolerance)
+- Weight accuracy
+- Color accuracy against sealed sample
+- Embroidery/printing quality
+- Seam strength (destructive testing on sample units)
+- Component attachment strength (pull tests)
+- Labeling correctness (care labels, hang tags, UPC codes)
+- Packaging correctness and condition
+- Carton marking and packing list accuracy
+
+STAGE 5: Pre-Shipment Inspection (PSI)
+
+This is the final check before goods leave the warehouse:
+- Carton condition: No damage, proper sealing
+- Carton markings correct: Shipping marks, quantities, weights
+- Random carton opening: Verify contents match packing list
+- Packing quality: Products properly protected, no compression damage
+- Documentation check: Commercial invoice, packing list, test reports all in order
+
+THIRD-PARTY INSPECTION
+
+Clients are welcome to arrange independent third-party inspections at any stage. Common inspection companies:
+- SGS
+- Bureau Veritas (BV)
+- Intertek
+- TUV
+- QIMA
+
+LovelyJoy cooperates fully with third-party inspectors. Inspection scheduling and fees are the client's responsibility.
+
+QC DOCUMENTATION
+
+LovelyJoy provides the following QC records upon request:
+- Incoming material inspection reports
+- In-process inspection checklists
+- Final inspection report with photos and measurements
+- Metal detection log
+- Test reports from accredited labs
+
+CONTACT
+
+Email: info@lovelyjoytoy.com | Phone: +86 15957988866 | WhatsApp: +1 (626) 586 7567
+
+================================================================================
+
+LovelyJoy — 毛绒玩具品质控制流程
+====================================================
+
+概述
+
+爱儿采实施五阶段品质控制流程，贯穿毛绒玩具生产全过程，确保品质稳定，最大限度减少缺陷。
+
+五阶段品控流程
+
+第一阶段：来料检验（IQC）
+检查面料颜色、重量、手感，填充物清洁度，辅料品质，线色匹配。不合格材料退回或隔离。
+
+第二阶段：制程检验（IPQC）
+裁剪：版型精度、面料方向一致性
+绣花：线色、针密度、对位、无跳针
+车缝：缝线直度、针距、无起皱
+充棉：重量公差±5%、分布均匀、手感与确认样一致
+
+第三阶段：装配与整理检验
+部件安装检查、拉力测试（90N/15lbs）、对称性、整体造型、表面清洁、梳毛。
+金属探测：每件过针检，灵敏度：铁1.2mm、非铁1.5mm、不锈钢2.0mm。
+
+第四阶段：最终抽检（FQC）
+按ISO 2859-1 AQL抽样标准：
+- 致命缺陷（安全隐患）：AQL 0，零容忍
+- 主要缺陷（功能/外观问题）：AQL 2.5
+- 次要缺陷（不影响功能的外观问题）：AQL 4.0
+不合格批次进行100%全检、返工、复检。
+
+第五阶段：出货前检验（PSI）
+纸箱状态、唛头、随机开箱验货、包装质量、单据完整性。
+
+第三方验货
+
+欢迎客户安排SGS、BV、Intertek、TUV、QIMA等第三方检验，爱儿采全力配合。
+
+品控文档
+
+可提供：来料检验报告、制程检验记录、最终检验报告（含照片和尺寸数据）、过针记录、实验室测试报告。
+
+联系方式
+
+邮箱：info@lovelyjoytoy.com | 电话：+86 15957988866 | WhatsApp：+1 (626) 586 7567

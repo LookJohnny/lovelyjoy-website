@@ -1,0 +1,155 @@
+LovelyJoy — Plush Toy Production Lead Times and Timelines
+============================================================
+
+OVERVIEW
+
+Understanding lead times is essential for planning product launches, seasonal campaigns, and retail delivery windows. This document details every phase from initial inquiry to goods arriving at your warehouse.
+
+PHASE-BY-PHASE TIMELINE
+
+Phase 1: Inquiry and Quotation — 1-3 business days
+After receiving your inquiry with product details, LovelyJoy provides a detailed quotation. Simple products are quoted within 1 day; complex or multi-SKU inquiries may take 2-3 days.
+
+Phase 2: Design and Concept (ODM only) — 5-10 business days
+If LovelyJoy is designing the product (ODM service), concept illustrations and technical design take 5-10 days. This phase is skipped for OEM orders where the client provides finished designs.
+
+Phase 3: Sample Development — 7-15 business days
+Physical sample production takes 7-15 days depending on complexity. Simple designs (basic shapes, few details) are closer to 7 days. Complex designs (multiple materials, accessories, large size) may take up to 15 days.
+
+Phase 4: Sample Shipping — 4-7 business days
+International express courier (DHL, FedEx, UPS) to most destinations. USA and Europe typically receive samples within 4-7 business days.
+
+Phase 5: Client Review and Approval — Variable (client-dependent)
+This is the phase clients should plan carefully, as it is entirely in their control. Allow at least 3-5 business days for internal review. If revisions are needed, each round adds 5-10 days for revised sample production plus 4-7 days for shipping.
+
+Phase 6: Material Procurement — 5-10 business days
+After order confirmation and deposit payment, raw materials are sourced. Standard fabrics and trims: 5-7 days. Custom-dyed fabrics, specialty materials, or imported components: 10-15 days.
+
+Phase 7: Pre-Production Sample (PP Sample) — 3-5 business days
+A final confirmation sample using actual production materials. Photos or video are shared for quick client approval. Physical PP sample can be shipped if the client requires it.
+
+Phase 8: Mass Production — 30-45 business days
+Standard production lead time. Factors affecting duration:
+- Quantity: 500-2,000 pieces on the faster end; 10,000+ pieces on the longer end
+- Complexity: Simple designs produce faster than complex ones
+- Season: Peak season (August-November for holiday orders) may extend lead times
+- Material availability: Custom materials may extend the timeline
+
+Phase 9: Quality Inspection — 2-3 business days
+Final random inspection using AQL 2.5 standards. If the client arranges third-party inspection, additional time must be scheduled for the inspector's visit.
+
+Phase 10: Packing and Loading — 2-3 business days
+Final packing into export cartons, palletizing, and loading into containers or arranging LCL (Less than Container Load) shipment.
+
+Phase 11: Ocean Freight — 15-35 days (varies by destination)
+Typical ocean freight times from Ningbo/Shanghai port:
+- To US West Coast (Los Angeles, Long Beach): 15-20 days
+- To US East Coast (New York, Savannah): 25-35 days
+- To Europe (Rotterdam, Hamburg): 25-30 days
+- To Southeast Asia: 7-15 days
+- To Australia: 15-20 days
+
+Phase 12: Air Freight (alternative) — 3-7 days
+For urgent orders or small quantities:
+- To USA: 5-7 days
+- To Europe: 4-6 days
+- To Southeast Asia: 2-4 days
+Cost is significantly higher than ocean freight, typically $4-$8 per kg.
+
+TOTAL TIMELINE EXAMPLES
+
+Example 1: Standard OEM Order (US Retailer, 3,000 pieces)
+- Quotation: 2 days
+- Sampling: 10 days
+- Sample shipping: 5 days
+- Client approval: 5 days
+- Material procurement: 7 days
+- Production: 35 days
+- QC and packing: 5 days
+- Ocean freight to US West Coast: 18 days
+- TOTAL: Approximately 87 days (about 3 months)
+
+Example 2: Rush Order (1,000 pieces, simple design)
+- Quotation: 1 day
+- Sampling: 7 days
+- Sample shipping (DHL): 4 days
+- Client approval: 2 days
+- Material procurement: 5 days
+- Rush production: 20 days
+- QC and packing: 3 days
+- Air freight: 5 days
+- TOTAL: Approximately 47 days (about 7 weeks)
+
+Example 3: ODM Order with Design (new product, 5,000 pieces)
+- Quotation: 2 days
+- Design and concept: 8 days
+- Sampling: 12 days + 1 revision round (8 days)
+- Sample shipping x2: 10 days
+- Client approvals: 8 days
+- Material procurement: 10 days
+- Production: 40 days
+- QC and packing: 5 days
+- Ocean freight to Europe: 28 days
+- TOTAL: Approximately 131 days (about 4.5 months)
+
+RUSH PRODUCTION
+
+Rush production is available with a minimum lead time of 20 days for manufacturing (excluding material procurement and shipping). Rush surcharge is typically 10-20% above standard pricing. Availability depends on current factory capacity.
+
+PLANNING RECOMMENDATIONS
+
+- For Christmas/holiday products: Place orders by June-July
+- For Valentine's Day: Place orders by October-November
+- For Easter: Place orders by November-December
+- Allow buffer time of 2-3 weeks for unexpected delays
+
+CONTACT
+
+Email: info@lovelyjoytoy.com | Phone: +86 15957988866 | WhatsApp: +1 (626) 586 7567
+
+================================================================================
+
+LovelyJoy — 毛绒玩具生产周期与时间规划
+============================================================
+
+概述
+
+了解生产周期对产品发布、季节性推广和零售交货窗口的规划至关重要。本文详细说明从初始询价到货物到达仓库的每个阶段。
+
+各阶段时间
+
+第1阶段：询价与报价 — 1-3个工作日
+第2阶段：设计与概念（仅ODM）— 5-10个工作日
+第3阶段：打样 — 7-15个工作日
+第4阶段：样品快递 — 4-7个工作日
+第5阶段：客户审核与确认 — 视客户而定（建议预留3-5天）
+第6阶段：原材料采购 — 5-10个工作日
+第7阶段：产前样 — 3-5个工作日
+第8阶段：量产 — 30-45个工作日
+第9阶段：质量检验 — 2-3个工作日
+第10阶段：包装装箱 — 2-3个工作日
+第11阶段：海运 — 15-35天（视目的地）
+第12阶段：空运（备选）— 3-7天
+
+海运时间参考（宁波/上海出发）
+
+- 至美国西海岸：15-20天
+- 至美国东海岸：25-35天
+- 至欧洲：25-30天
+- 至东南亚：7-15天
+- 至澳大利亚：15-20天
+
+加急生产
+
+最快20天量产（不含备料和运输），加急费通常为标准价格的10-20%，视工厂产能而定。
+
+季节性建议
+
+- 圣诞/节日产品：6-7月下单
+- 情人节：10-11月下单
+- 复活节：11-12月下单
+- 建议预留2-3周缓冲时间
+
+联系方式
+
+邮箱：info@lovelyjoytoy.com | 电话：+86 15957988866 | WhatsApp：+1 (626) 586 7567
