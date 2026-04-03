@@ -23,10 +23,15 @@ export default function BrandStory() {
       {/* Parallax background */}
       <div className="relative min-h-[600px] lg:min-h-[700px]">
         {/* Fixed background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: "url(/images/brand/brand-cover.jpeg)" }}
-        >
+        <div className="absolute inset-0">
+          <Image
+            src="/images/brand/brand-cover.jpeg"
+            alt="LovelyJoy plush toy factory and brand showcase"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            quality={75}
+          />
           <div className="absolute inset-0 bg-black/30" />
         </div>
 

@@ -50,9 +50,11 @@ export async function generateMetadata({
       images: ['/images/hero/hero-bear.png'],
     },
     alternates: {
+      canonical: `/${locale}`,
       languages: {
-        zh: '/zh',
-        en: '/en',
+        'zh': '/zh',
+        'en': '/en',
+        'x-default': '/en',
       },
     },
   };

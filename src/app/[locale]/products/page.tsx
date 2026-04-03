@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import ProductsPageContent from "@/components/products/ProductsPageContent";
 
 // ─── Static Params ──────────────────────────────────────────
@@ -35,6 +36,7 @@ export default async function ProductsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "products" });
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
   return (
     <>
@@ -64,6 +66,16 @@ export default async function ProductsPage({
           </Container>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <Container>
+        <Breadcrumb
+          items={[
+            { label: nav("home"), href: "/" },
+            { label: nav("products") },
+          ]}
+        />
+      </Container>
 
       {/* Section heading (decorative) + filter + grid */}
       <ProductsPageContent />

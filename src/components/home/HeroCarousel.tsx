@@ -40,6 +40,9 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
+      {/* SEO H1 - visually hidden but readable by crawlers */}
+      <h1 className="sr-only">LovelyJoy - Professional Plush Toy Manufacturer | OEM/ODM Custom Services</h1>
+
       {/* Slide images with crossfade */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -84,7 +87,7 @@ export default function HeroCarousel() {
             exit="exit"
           >
             {/* Title with character stagger */}
-            <h1
+            <h2
               className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
               style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
             >
@@ -104,7 +107,7 @@ export default function HeroCarousel() {
                   {word}
                 </motion.span>
               ))}
-            </h1>
+            </h2>
 
             {/* Subtitle */}
             <motion.p

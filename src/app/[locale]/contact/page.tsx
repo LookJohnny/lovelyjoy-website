@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import InquiryForm from "@/components/contact/InquiryForm";
 import ContactInfo from "@/components/contact/ContactInfo";
 
@@ -25,6 +26,7 @@ export async function generateMetadata({
 
 export default async function ContactPage() {
   const t = await getTranslations("contact");
+  const nav = await getTranslations("nav");
 
   return (
     <>
@@ -41,6 +43,16 @@ export default async function ContactPage() {
           </div>
         </Container>
       </section>
+
+      {/* Breadcrumb */}
+      <Container>
+        <Breadcrumb
+          items={[
+            { label: nav("home"), href: "/" },
+            { label: nav("contact") },
+          ]}
+        />
+      </Container>
 
       {/* Two-column layout */}
       <section className="py-16 md:py-24">

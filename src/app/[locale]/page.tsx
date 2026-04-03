@@ -32,6 +32,17 @@ function JsonLd() {
       addressCountry: 'CN',
     },
     sameAs: [],
+    foundingDate: '2003',
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: 300 },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Plush Toy Products',
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Plush Toys' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Plush Pillows' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Plush Keychains' } },
+      ],
+    },
   };
 
   return (

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import FAQ from "@/components/oem-odm/FAQ";
 import { CONTACT_INFO } from "@/lib/constants";
 
@@ -74,6 +75,7 @@ function FaqJsonLd() {
 
 export default async function FaqPage() {
   const t = await getTranslations("faq");
+  const nav = await getTranslations("nav");
 
   return (
     <>
@@ -92,6 +94,16 @@ export default async function FaqPage() {
           </div>
         </Container>
       </section>
+
+      {/* Breadcrumb */}
+      <Container>
+        <Breadcrumb
+          items={[
+            { label: nav("home"), href: "/" },
+            { label: t("title") },
+          ]}
+        />
+      </Container>
 
       {/* FAQ */}
       <FAQ />

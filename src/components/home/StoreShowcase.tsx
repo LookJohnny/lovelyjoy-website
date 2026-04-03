@@ -8,13 +8,13 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 const showcaseItems = [
   {
     src: "/images/store/store-wide.jpeg",
-    labelZh: "品牌旗舰店",
-    labelEn: "Flagship Store",
+    labelZh: "爱儿采毛绒玩具品牌旗舰店",
+    labelEn: "LovelyJoy Plush Toy Flagship Store",
   },
   {
     src: "/images/store/factory.jpeg",
-    labelZh: "生产基地",
-    labelEn: "Manufacturing Base",
+    labelZh: "爱儿采20000平方米毛绒玩具生产基地",
+    labelEn: "LovelyJoy 20,000sqm Plush Toy Manufacturing Facility",
   },
 ];
 

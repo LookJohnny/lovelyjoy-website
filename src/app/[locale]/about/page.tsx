@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FactoryStats from "./FactoryStats";
 import GalleryGrid from "./GalleryGrid";
@@ -42,6 +43,7 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
   const isZh = locale === "zh";
 
@@ -123,6 +125,16 @@ export default async function AboutPage({
           <p className="text-lg md:text-xl text-white/80">{t("story.title")}</p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <Container>
+        <Breadcrumb
+          items={[
+            { label: nav("home"), href: "/" },
+            { label: nav("about") },
+          ]}
+        />
+      </Container>
 
       {/* ───── 2. Brand Story ───── */}
       <section className="py-16 md:py-24 bg-white">
