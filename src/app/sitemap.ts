@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { products } from "@/data/products";
 
 const BASE_URL = "https://lovelyjoy.cn";
 
@@ -15,6 +16,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: route === "" ? "weekly" : "monthly",
         priority: route === "" ? 1.0 : 0.8,
+      });
+    }
+
+    // Product detail pages
+    for (const product of products) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/products/${product.id}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
       });
     }
   }

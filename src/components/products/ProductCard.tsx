@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Button from "@/components/ui/Button";
 import type { ProductItem } from "@/data/products";
 
@@ -59,15 +60,17 @@ export default function ProductCard({ product }: ProductCardProps) {
       >
         <div className="overflow-hidden rounded-3xl bg-white shadow-sm transition-shadow duration-300 group-hover:shadow-[0_8px_30px_rgba(142,202,230,0.3)]">
           {/* Image */}
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src={product.image}
-              alt={displayName}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
+          <Link href={`/products/${product.id}`}>
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={product.image}
+                alt={displayName}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          </Link>
 
           {/* Info */}
           <div className="flex items-center justify-between px-5 py-4">
