@@ -36,17 +36,28 @@ export default function BrandStory() {
             <div className="mx-auto max-w-5xl rounded-3xl bg-white/85 p-8 shadow-2xl backdrop-blur-md md:p-12 lg:p-16">
               {/* Two-column layout */}
               <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-                {/* Left: Values diagram image */}
+                {/* Left: Values diagram */}
                 <ScrollReveal direction="left">
-                  <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl lg:max-w-none">
-                    <Image
-                      src="/images/brand/values.jpeg"
-                      alt="Brand values diagram"
-                      width={600}
-                      height={500}
-                      className="h-auto w-full object-contain"
-                      sizes="(max-width: 1024px) 80vw, 40vw"
-                    />
+                  <div className="flex flex-col items-center gap-6">
+                    <h3 className="text-xl font-bold text-brown">
+                      {t("brandStory.valuesTitle")}
+                    </h3>
+                    <div className="flex flex-wrap justify-center gap-4">
+                      {VALUE_ICONS.map((Icon, i) => (
+                        <div
+                          key={i}
+                          className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-brown text-white md:h-32 md:w-32"
+                        >
+                          <Icon className="mb-1 h-5 w-5" />
+                          <span className="text-center text-sm font-semibold leading-tight px-2">
+                            {t(`brandStory.values.${i}.title`)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-sm text-brown/60">
+                      {t("brandStory.valuesSubtitle")}
+                    </p>
                   </div>
                 </ScrollReveal>
 

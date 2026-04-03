@@ -48,7 +48,7 @@ export default function StoreShowcase() {
                   </div>
                 </div>
                 <p className="mt-4 text-center text-sm font-semibold text-brown/70">
-                  {item.labelZh} / {item.labelEn}
+                  {locale === "zh" ? item.labelZh : item.labelEn}
                 </p>
               </div>
             </ScrollReveal>
