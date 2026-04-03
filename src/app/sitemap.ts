@@ -10,11 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const entries: MetadataRoute.Sitemap = [];
 
+  const staticLastModified = new Date('2026-04-03');
+
   for (const locale of locales) {
     for (const route of routes) {
       entries.push({
         url: `${BASE_URL}/${locale}${route}`,
-        lastModified: new Date(),
+        lastModified: staticLastModified,
         changeFrequency: route === "" ? "weekly" : "monthly",
         priority: route === "" ? 1.0 : 0.8,
       });
@@ -24,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const product of products) {
       entries.push({
         url: `${BASE_URL}/${locale}/products/${product.id}`,
-        lastModified: new Date(),
+        lastModified: staticLastModified,
         changeFrequency: "monthly",
         priority: 0.7,
       });

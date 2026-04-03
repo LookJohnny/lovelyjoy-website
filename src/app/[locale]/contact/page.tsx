@@ -21,10 +21,23 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `/${locale}/contact`,
+      languages: {
+        zh: '/zh/contact',
+        en: '/en/contact',
+        'x-default': '/en/contact',
+      },
+    },
   };
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("contact");
   const nav = await getTranslations("nav");
 
@@ -47,6 +60,7 @@ export default async function ContactPage() {
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             { label: nav("contact") },

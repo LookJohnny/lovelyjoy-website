@@ -21,10 +21,23 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `/${locale}/oem-odm`,
+      languages: {
+        zh: '/zh/oem-odm',
+        en: '/en/oem-odm',
+        'x-default': '/en/oem-odm',
+      },
+    },
   };
 }
 
-export default async function OemOdmPage() {
+export default async function OemOdmPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("oemOdm");
   const nav = await getTranslations("nav");
 
@@ -47,6 +60,7 @@ export default async function OemOdmPage() {
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             { label: nav("oemOdm") },

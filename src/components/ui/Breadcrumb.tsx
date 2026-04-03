@@ -7,9 +7,10 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  locale?: string;
 }
 
-export default function Breadcrumb({ items }: BreadcrumbProps) {
+export default function Breadcrumb({ items, locale }: BreadcrumbProps) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -17,7 +18,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.label,
-      ...(item.href ? { item: `https://lovelyjoy.cn${item.href}` } : {}),
+      ...(item.href ? { item: `https://lovelyjoy.cn/${locale ?? 'zh'}${item.href}` } : {}),
     })),
   };
 

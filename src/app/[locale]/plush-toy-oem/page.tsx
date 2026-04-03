@@ -160,6 +160,7 @@ export default async function PlushToyOemPage({
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             {

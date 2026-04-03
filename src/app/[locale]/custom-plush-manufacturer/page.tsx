@@ -243,6 +243,7 @@ export default async function CustomPlushManufacturerPage({
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             {

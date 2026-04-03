@@ -31,6 +31,14 @@ export async function generateMetadata({
   return {
     title: `${t("title")} | ${meta("title")}`,
     description: t("story.content"),
+    alternates: {
+      canonical: `/${locale}/about`,
+      languages: {
+        zh: '/zh/about',
+        en: '/en/about',
+        'x-default': '/en/about',
+      },
+    },
   };
 }
 
@@ -129,6 +137,7 @@ export default async function AboutPage({
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             { label: nav("about") },

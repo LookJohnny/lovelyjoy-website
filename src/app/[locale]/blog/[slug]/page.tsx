@@ -38,6 +38,14 @@ export async function generateMetadata({
       ? `${title} | 爱儿采 LovelyJoy 博客`
       : `${title} | LovelyJoy Blog`,
     description,
+    alternates: {
+      canonical: `/${locale}/blog/${slug}`,
+      languages: {
+        zh: `/zh/blog/${slug}`,
+        en: `/en/blog/${slug}`,
+        'x-default': `/en/blog/${slug}`,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -63,6 +71,7 @@ function ArticleJsonLd({
     description: isZh ? post.excerptCn : post.excerptEn,
     image: `https://lovelyjoy.cn${post.image}`,
     datePublished: post.date,
+    dateModified: post.date,
     author: {
       "@type": "Organization",
       name: "LovelyJoy 爱儿采",
@@ -118,6 +127,7 @@ export default async function BlogPostPage({
       <section className="bg-bg-sky pt-6">
         <Container>
           <Breadcrumb
+            locale={locale}
             items={[
               { label: nav("home"), href: "/" },
               { label: tBlog("title"), href: "/blog" },

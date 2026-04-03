@@ -111,7 +111,7 @@ export default async function Footer() {
                 <a
                   href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, '')}`}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="transition-colors hover:text-beige-brand"
                 >
                   {CONTACT_INFO.whatsapp}
@@ -122,7 +122,7 @@ export default async function Footer() {
                 <a
                   href={`https://maps.google.com/?q=${encodeURIComponent(tContact('info.address'))}`}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="transition-colors hover:text-beige-brand"
                 >
                   {tContact('info.address')}
@@ -133,7 +133,7 @@ export default async function Footer() {
                 <a
                   href={`https://maps.google.com/?q=${encodeURIComponent(tContact('info.storeAddress'))}`}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="transition-colors hover:text-beige-brand"
                 >
                   {tContact('info.storeAddress')}

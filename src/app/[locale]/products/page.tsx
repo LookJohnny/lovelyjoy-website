@@ -24,6 +24,14 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("subtitle"),
+    alternates: {
+      canonical: `/${locale}/products`,
+      languages: {
+        zh: '/zh/products',
+        en: '/en/products',
+        'x-default': '/en/products',
+      },
+    },
   };
 }
 
@@ -70,6 +78,7 @@ export default async function ProductsPage({
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             { label: nav("products") },

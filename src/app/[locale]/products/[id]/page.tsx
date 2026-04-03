@@ -39,10 +39,18 @@ export async function generateMetadata({
       ? `${name} - 毛绒玩具 | 爱儿采 LovelyJoy`
       : `${name} - Plush Toy | LovelyJoy`,
     description: desc,
+    alternates: {
+      canonical: `/${locale}/products/${id}`,
+      languages: {
+        zh: `/zh/products/${id}`,
+        en: `/en/products/${id}`,
+        'x-default': `/en/products/${id}`,
+      },
+    },
     openGraph: {
       title: name,
       description: desc,
-      images: [{ url: product.image, width: 800, height: 600 }],
+      images: [{ url: `https://lovelyjoy.cn${product.image}`, width: 1200, height: 630 }],
     },
   };
 }
@@ -102,6 +110,7 @@ export default async function ProductDetailPage({
       <section className="bg-bg-sky pt-6">
         <Container>
           <Breadcrumb
+            locale={locale}
             items={[
               { label: t("home"), href: "/" },
               { label: t("products"), href: "/products" },

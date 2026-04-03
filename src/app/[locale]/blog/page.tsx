@@ -22,6 +22,14 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `/${locale}/blog`,
+      languages: {
+        zh: '/zh/blog',
+        en: '/en/blog',
+        'x-default': '/en/blog',
+      },
+    },
   };
 }
 
@@ -56,6 +64,7 @@ export default async function BlogPage({
       {/* Breadcrumb */}
       <Container>
         <Breadcrumb
+          locale={locale}
           items={[
             { label: nav("home"), href: "/" },
             { label: t("title") },
