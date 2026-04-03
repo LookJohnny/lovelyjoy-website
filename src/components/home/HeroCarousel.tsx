@@ -14,7 +14,7 @@ const SLIDES = [
   { image: "/images/hero/hero-family.png", href: "/products" },
 ];
 
-const AUTOPLAY_INTERVAL = 6000;
+const AUTOPLAY_INTERVAL = 10000;
 
 export default function HeroCarousel() {
   const t = useTranslations("home");
@@ -35,8 +35,8 @@ export default function HeroCarousel() {
   const subtitle = t(`hero.slides.${current}.subtitle`);
   const cta = t(`hero.slides.${current}.cta`);
 
-  // Split title into words for stagger animation
-  const words = title.split("");
+  // Split title into words for stagger animation (word-by-word to prevent mid-word breaks)
+  const words = title.split(/(\s+)/).filter(Boolean);
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -88,7 +88,7 @@ export default function HeroCarousel() {
               className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
               style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
             >
-              {words.map((char, i) => (
+              {words.map((word, i) => (
                 <motion.span
                   key={`${current}-${i}`}
                   initial={{ opacity: 0, y: 20 }}
@@ -96,12 +96,12 @@ export default function HeroCarousel() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{
                     duration: 0.4,
-                    delay: i * 0.06,
+                    delay: i * 0.12,
                     ease: "easeOut",
                   }}
-                  className="inline-block"
+                  className="inline-block whitespace-pre"
                 >
-                  {char === " " ? "\u00A0" : char}
+                  {word}
                 </motion.span>
               ))}
             </h1>
@@ -113,7 +113,7 @@ export default function HeroCarousel() {
               exit={{ opacity: 0, y: -8 }}
               transition={{
                 duration: 0.5,
-                delay: words.length * 0.06 + 0.3,
+                delay: words.length * 0.12 + 0.3,
                 ease: "easeOut",
               }}
               className="mt-4 text-lg text-white/90 md:mt-6 md:text-xl"
@@ -129,7 +129,7 @@ export default function HeroCarousel() {
               exit={{ opacity: 0, y: -8 }}
               transition={{
                 duration: 0.5,
-                delay: words.length * 0.06 + 0.5,
+                delay: words.length * 0.12 + 0.5,
                 ease: "easeOut",
               }}
               className="mt-6 md:mt-8"
