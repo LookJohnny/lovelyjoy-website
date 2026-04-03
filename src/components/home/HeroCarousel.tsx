@@ -14,7 +14,7 @@ const SLIDES = [
   { image: "/images/hero/hero-family.png", href: "/products" },
 ];
 
-const AUTOPLAY_INTERVAL = 10000;
+const AUTOPLAY_INTERVAL = 8000;
 
 export default function HeroCarousel() {
   const t = useTranslations("home");
