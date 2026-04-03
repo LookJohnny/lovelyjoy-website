@@ -150,37 +150,42 @@
         "title": "Packaging & Shipping",
         "description": "Professional packaging solutions with safe and efficient logistics delivery worldwide"
       }
-    ],
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "subtitle": "Everything you need to know about our OEM/ODM services",
-      "items": [
-        {
-          "q": "What is the minimum order quantity (MOQ)?",
-          "a": "Our standard MOQ is 500 pieces per style. For new customers, we offer flexible small-batch trial orders starting from 200 pieces to help you test the market."
-        },
-        {
-          "q": "How long does sample development take?",
-          "a": "Sample development typically takes 7-15 working days depending on complexity. Simple modifications to existing designs can be completed in as fast as 5 days."
-        },
-        {
-          "q": "What is the production lead time?",
-          "a": "Standard production takes 30-45 days after sample approval. Rush orders can be arranged within 20 days for an additional fee, subject to production schedule availability."
-        },
-        {
-          "q": "What certifications do your products have?",
-          "a": "Our products meet ASTM F963 (US), EN 71 (EU), CE, and GB 6675 (China) safety standards. Our factory holds BSCI and ISO 9001 certifications."
-        },
-        {
-          "q": "Do you offer design services (ODM)?",
-          "a": "Yes! Our in-house design team can create original designs from scratch based on your brief, or modify existing designs. We provide 3D renderings and physical samples before mass production."
-        },
-        {
-          "q": "What payment methods do you accept?",
-          "a": "We accept T/T (bank transfer), L/C (letter of credit), and PayPal. Standard terms are 30% deposit with 70% balance before shipment."
-        }
-      ]
-    }
+    ]
+  },
+  "faq": {
+    "metadata": {
+      "title": "FAQ - LovelyJoy",
+      "description": "Frequently asked questions about LovelyJoy plush toy OEM/ODM services, MOQ, sample development, production lead times, and certifications."
+    },
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about our OEM/ODM services",
+    "contactCta": "Still have questions? Contact us directly.",
+    "items": [
+      {
+        "q": "What is the minimum order quantity (MOQ)?",
+        "a": "Our standard MOQ is 500 pieces per style. For new customers, we offer flexible small-batch trial orders starting from 200 pieces to help you test the market."
+      },
+      {
+        "q": "How long does sample development take?",
+        "a": "Sample development typically takes 7-15 working days depending on complexity. Simple modifications to existing designs can be completed in as fast as 5 days."
+      },
+      {
+        "q": "What is the production lead time?",
+        "a": "Standard production takes 30-45 days after sample approval. Rush orders can be arranged within 20 days for an additional fee, subject to production schedule availability."
+      },
+      {
+        "q": "What certifications do your products have?",
+        "a": "Our products meet ASTM F963 (US), EN 71 (EU), CE, and GB 6675 (China) safety standards. Our factory holds BSCI and ISO 9001 certifications."
+      },
+      {
+        "q": "Do you offer design services (ODM)?",
+        "a": "Yes! Our in-house design team can create original designs from scratch based on your brief, or modify existing designs. We provide 3D renderings and physical samples before mass production."
+      },
+      {
+        "q": "What payment methods do you accept?",
+        "a": "We accept T/T (bank transfer), L/C (letter of credit), and PayPal. Standard terms are 30% deposit with 70% balance before shipment."
+      }
+    ]
   },
   "about": {
     "title": "About Us",
@@ -260,6 +265,7 @@
       "products": "Products",
       "oemOdm": "OEM/ODM",
       "about": "About Us",
+      "faq": "FAQ",
       "contact": "Contact",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"

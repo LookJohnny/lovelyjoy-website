@@ -4,7 +4,6 @@ import { routing } from "@/i18n/routing";
 import Container from "@/components/ui/Container";
 import OemOdmTimeline from "@/components/oem-odm/OemOdmTimeline";
 import OemOdmCTA from "@/components/oem-odm/OemOdmCTA";
-import FAQ from "@/components/oem-odm/FAQ";
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -49,9 +48,6 @@ export default async function OemOdmPage() {
           <OemOdmTimeline />
         </Container>
       </section>
-
-      {/* FAQ */}
-      <FAQ />
 
       {/* Bottom CTA */}
       <OemOdmCTA />

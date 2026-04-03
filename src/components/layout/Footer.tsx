@@ -63,6 +63,14 @@ export default async function Footer() {
                   </li>
                 );
               })}
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                >
+                  {t('links.faq')}
+                </Link>
+              </li>
             </ul>
           </div>
 

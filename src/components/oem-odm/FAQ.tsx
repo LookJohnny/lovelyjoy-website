@@ -44,7 +44,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQ() {
-  const t = useTranslations("oemOdm.faq");
+  const t = useTranslations("faq");
 
   const faqs = Array.from({ length: FAQ_COUNT }, (_, i) => ({
     question: t(`items.${i}.q`),

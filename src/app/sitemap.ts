@@ -4,7 +4,7 @@ const BASE_URL = "https://lovelyjoy.cn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["zh", "en"];
-  const routes = ["", "/products", "/oem-odm", "/about", "/contact"];
+  const routes = ["", "/products", "/oem-odm", "/about", "/faq", "/contact"];
 
   const entries: MetadataRoute.Sitemap = [];
 
