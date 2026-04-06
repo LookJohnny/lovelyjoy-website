@@ -376,8 +376,8 @@ export default async function PlushToyOemPage({
                 {
                   title: isZh ? "知名品牌合作" : "Trusted by Major Brands",
                   desc: isZh
-                    ? "CVS、Burlington、Kellytoy、Miniso国际、凯蓝等知名品牌长期合作伙伴"
-                    : "Long-term partner for CVS, Burlington, Kellytoy, Miniso International, and The Green Party",
+                    ? "CVS、Burlington、Kellytoy、Build-A-Bear、Miniso国际、凯蓝等知名品牌长期合作伙伴"
+                    : "Long-term partner for CVS, Burlington, Kellytoy, Build-A-Bear, Miniso International, and The Green Party",
                 },
                 {
                   title: isZh ? "IP授权生产经验" : "Licensed IP Manufacturing",

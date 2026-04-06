@@ -276,8 +276,8 @@ export default async function FactoryCapabilityPage({
           <div className="mx-auto max-w-3xl">
             <p className="text-lg leading-relaxed text-brown-light">
               {isZh
-                ? "LovelyJoy爱儿采毛绒玩具工厂位于中国浙江省义乌市，2003年成立至今已有20多年历史。工厂占地20000平方米，拥有现代化的生产设备和完善的质量管理体系。工厂现有300多名熟练工人和50多名专业设计师，月产能超过50万件毛绒玩具。我们的产品出口至全球30多个国家和地区，长期服务CVS、Burlington、Kellytoy、Miniso国际、凯蓝等知名品牌客户。"
-                : "LovelyJoy's plush toy factory is located in Yiwu, Zhejiang Province, China. Founded in 2003, we have over 20 years of manufacturing experience. The factory covers 20,000 square meters with modern production equipment and a comprehensive quality management system. With 300+ skilled workers and 50+ professional designers, our monthly capacity exceeds 500,000 plush toys. Our products are exported to over 30 countries and regions, serving established brands including CVS, Burlington, Kellytoy, Miniso International, and The Green Party."}
+                ? "LovelyJoy爱儿采毛绒玩具工厂位于中国浙江省义乌市，2003年成立至今已有20多年历史。工厂占地20000平方米，拥有现代化的生产设备和完善的质量管理体系。工厂现有300多名熟练工人和50多名专业设计师，月产能超过50万件毛绒玩具。我们的产品出口至全球30多个国家和地区，长期服务CVS、Burlington、Kellytoy、Build-A-Bear、Miniso国际、凯蓝等知名品牌客户。"
+                : "LovelyJoy's plush toy factory is located in Yiwu, Zhejiang Province, China. Founded in 2003, we have over 20 years of manufacturing experience. The factory covers 20,000 square meters with modern production equipment and a comprehensive quality management system. With 300+ skilled workers and 50+ professional designers, our monthly capacity exceeds 500,000 plush toys. Our products are exported to over 30 countries and regions, serving established brands including CVS, Burlington, Kellytoy, Build-A-Bear, Miniso International, and The Green Party."}
             </p>
           </div>
         </Container>

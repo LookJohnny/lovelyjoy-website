@@ -41,6 +41,7 @@ LovelyJoy serves major retail and brand clients including:
 - CVS (US pharmacy/retail chain)
 - Burlington (US off-price retail chain)
 - Kellytoy (Squishmallows parent company)
+- Build-A-Bear (interactive plush retail brand)
 - Miniso International (global lifestyle retailer)
 - The Green Party / 凯蓝 (Chinese retail brand)
 
@@ -115,6 +116,7 @@ LovelyJoy 毛绒玩具制造商 — 公司简介
 - CVS（美国零售连锁）
 - Burlington（美国折扣零售连锁）
 - Kellytoy（Squishmallows母公司）
+- Build-A-Bear（互动毛绒零售品牌）
 - Miniso / 名创优品（全球生活方式零售商）
 - 凯蓝 / The Green Party（中国零售品牌）
 

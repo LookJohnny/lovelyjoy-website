@@ -215,8 +215,8 @@ export default async function CustomPlushManufacturerPage({
     {
       title: isZh ? "零售渠道定制" : "Retail Channel Customization",
       desc: isZh
-        ? "为CVS、Burlington、Miniso国际、凯蓝等零售渠道客户提供定制产品开发，满足不同市场定位需求。"
-        : "Custom product development for retail channel clients including CVS, Burlington, Miniso International, and The Green Party, meeting diverse market positioning needs.",
+        ? "为CVS、Burlington、Build-A-Bear、Miniso国际、凯蓝等零售渠道客户提供定制产品开发，满足不同市场定位需求。"
+        : "Custom product development for retail channel clients including CVS, Burlington, Build-A-Bear, Miniso International, and The Green Party, meeting diverse market positioning needs.",
     },
   ];
 

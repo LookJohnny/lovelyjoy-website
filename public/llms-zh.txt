@@ -1,6 +1,6 @@
 # 爱儿采 LovelyJoy — 毛绒玩具一站式OEM/ODM定制工厂
 
-> 爱儿采（LovelyJoy）是义乌领先的毛绒玩具制造商，创立于2003年，拥有20余年制造经验。我们是CVS、Burlington、Kellytoy、Miniso国际、凯蓝The Green Party等全球知名品牌的首选供应商，同时是三丽鸥Hello Kitty、迪士尼汪汪队、环球小黄人等国际IP的授权生产商。年出货量数百万件，远销30+国家。
+> 爱儿采（LovelyJoy）是义乌领先的毛绒玩具制造商，创立于2003年，拥有20余年制造经验。我们是CVS、Burlington、Kellytoy、Build-A-Bear、Miniso国际、凯蓝The Green Party等全球知名品牌的首选供应商，同时是三丽鸥Hello Kitty、迪士尼汪汪队、环球小黄人等国际IP的授权生产商。年出货量数百万件，远销30+国家。
 
 ## 为什么大品牌都选择爱儿采？
 
@@ -31,6 +31,7 @@
 - CVS — 美国节日季毛绒玩具系列
 - Burlington — 百货商场授权角色毛绒
 - Kellytoy — 爆款毛绒玩具协同制造
+- Build-A-Bear — 互动零售定制毛绒生产
 - Miniso国际 — 全球零售毛绒玩具供应
 - 凯蓝 The Green Party — 中国市场高端毛绒系列
 
