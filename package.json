@@ -9,16 +9,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@pixiv/three-vrm": "^3.5.1",
+    "@pixiv/three-vrm-animation": "^3.5.1",
+    "@types/three": "^0.183.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.7.0",
+    "msedge-tts": "^2.0.4",
     "next": "16.2.2",
     "next-intl": "^4.9.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "resend": "^6.10.0",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "three": "^0.183.2",
+    "undici": "^8.0.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -8,7 +8,8 @@
     "products": "Productos",
     "oemOdm": "OEM/ODM",
     "about": "Nosotros",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "aiGuide": "Ventas AI"
   },
   "header": {
     "contactCta": "Contacto"
@@ -281,5 +282,60 @@
       "terms": "Términos de Servicio"
     },
     "copyright": "© {year} LovelyJoy. Todos los derechos reservados."
+  },
+  "aiGuide": {
+    "meta": {
+      "title": "Hable con Joy | Especialista en ventas AI de LovelyJoy",
+      "description": "Asistente de ventas AI multilingüe 24/7 — responde sobre OEM/ODM, MOQ, plazos y certificaciones"
+    },
+    "hero": {
+      "badge": "Impulsado por DeepSeek + datos de fábrica LovelyJoy",
+      "title": "Hable con Joy",
+      "subtitle": "Nuestra especialista de ventas AI: conoce la fábrica, los precios y al comprador global",
+      "startBtn": "Iniciar chat",
+      "micBtn": "Mantener para hablar",
+      "resetBtn": "Reiniciar",
+      "placeholder": "Pregunte lo que quiera — p.ej. \"5.000 conejos, FOB objetivo 3 USD...\"",
+      "sendBtn": "Enviar"
+    },
+    "status": {
+      "connecting": "Conectando...",
+      "online": "En línea",
+      "thinking": "Pensando…",
+      "speaking": "Hablando…"
+    },
+    "quickPrompts": {
+      "label": "Pruebe una de estas",
+      "q1": "¿Cuál es su MOQ?",
+      "q2": "¿Cuánto cuesta una muestra y cuánto tarda?",
+      "q3": "¿Pueden producir artículos certificados EN71 para la UE?",
+      "q4": "Necesito 5.000 peluches para promo de primavera, FOB objetivo 3 USD"
+    },
+    "products": {
+      "label": "Muestras recomendadas",
+      "empty": "Cuénteme sobre su proyecto y le sugeriré productos adecuados",
+      "price": "Ref.",
+      "moq": "MOQ",
+      "leadTime": "Plazo"
+    },
+    "lead": {
+      "title": "Deje su contacto",
+      "subtitle": "Nuestro gerente de ventas se pondrá en contacto en un día hábil",
+      "company": "Nombre de empresa",
+      "name": "Su nombre",
+      "email": "Email corporativo",
+      "phone": "Teléfono / WhatsApp (opcional)",
+      "message": "Mensaje (opcional)",
+      "submit": "Enviar consulta",
+      "cancel": "Cancelar",
+      "success": "¡Recibido! Nuestro gerente de ventas se pondrá en contacto pronto.",
+      "error": "Error al enviar, intente de nuevo más tarde"
+    },
+    "aria": {
+      "avatar": "Especialista de ventas AI 3D",
+      "mic": "Entrada de voz",
+      "close": "Cerrar"
+    },
+    "footer": "Inteligencia por DeepSeek-V3 · Voz por Microsoft Edge TTS · 3D en su navegador"
   }
 }

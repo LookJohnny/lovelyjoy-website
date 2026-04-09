@@ -18,6 +18,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Products", labelCn: "产品展示", href: "/products" },
   { label: "OEM/ODM", labelCn: "OEM/ODM", href: "/oem-odm" },
   { label: "About", labelCn: "关于我们", href: "/about" },
+  { label: "AI Sales", labelCn: "AI 销售", href: "/ai-guide" },
   { label: "Contact", labelCn: "联系我们", href: "/contact" },
 ];
 

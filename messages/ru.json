@@ -8,7 +8,8 @@
     "products": "Продукция",
     "oemOdm": "OEM/ODM",
     "about": "О нас",
-    "contact": "Контакты"
+    "contact": "Контакты",
+    "aiGuide": "AI Продажи"
   },
   "header": {
     "contactCta": "Контакты"
@@ -281,5 +282,60 @@
       "terms": "Условия использования"
     },
     "copyright": "© {year} LovelyJoy. Все права защищены."
+  },
+  "aiGuide": {
+    "meta": {
+      "title": "Talk to Joy | LovelyJoy AI Sales Specialist",
+      "description": "24/7 multilingual AI sales rep — answers OEM/ODM, MOQ, lead time, certification questions"
+    },
+    "hero": {
+      "badge": "Powered by DeepSeek + LovelyJoy factory data",
+      "title": "Talk to Joy",
+      "subtitle": "Our AI sales specialist who knows the factory, the prices, and the global buyer",
+      "startBtn": "Start chat",
+      "micBtn": "Hold to talk",
+      "resetBtn": "Reset",
+      "placeholder": "Ask anything — e.g. \"5,000 bunnies, target FOB $3...\"",
+      "sendBtn": "Send"
+    },
+    "status": {
+      "connecting": "Connecting...",
+      "online": "Online",
+      "thinking": "Thinking…",
+      "speaking": "Speaking…"
+    },
+    "quickPrompts": {
+      "label": "Try one of these",
+      "q1": "What is your MOQ?",
+      "q2": "How much is a sample and how long does it take?",
+      "q3": "Can you produce EN71-certified items for the EU?",
+      "q4": "I need 5,000 spring promo plush, FOB target $3"
+    },
+    "products": {
+      "label": "Recommended samples",
+      "empty": "Tell me about your project and I will suggest matching products",
+      "price": "Ref.",
+      "moq": "MOQ",
+      "leadTime": "Lead time"
+    },
+    "lead": {
+      "title": "Leave your contact",
+      "subtitle": "Our sales manager will reach out within one business day",
+      "company": "Company name",
+      "name": "Your name",
+      "email": "Work email",
+      "phone": "Phone / WhatsApp (optional)",
+      "message": "Message (optional)",
+      "submit": "Send inquiry",
+      "cancel": "Cancel",
+      "success": "Got it! Our sales manager will be in touch shortly.",
+      "error": "Submission failed, please try again later"
+    },
+    "aria": {
+      "avatar": "3D AI sales specialist",
+      "mic": "Voice input",
+      "close": "Close"
+    },
+    "footer": "Intelligence by DeepSeek-V3 · Voice by Microsoft Edge TTS · 3D in your browser"
   }
 }

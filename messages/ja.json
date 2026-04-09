@@ -8,7 +8,8 @@
     "products": "製品紹介",
     "oemOdm": "OEM/ODM",
     "about": "会社概要",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "aiGuide": "AI セールス"
   },
   "header": {
     "contactCta": "お問い合わせ"
@@ -281,5 +282,60 @@
       "terms": "利用規約"
     },
     "copyright": "© {year} LovelyJoy. All rights reserved."
+  },
+  "aiGuide": {
+    "meta": {
+      "title": "Joy とお話しください | LovelyJoy AI セールス担当",
+      "description": "24時間多言語対応のAIセールス担当 — OEM/ODM、MOQ、納期、認証などのご質問にお答えします"
+    },
+    "hero": {
+      "badge": "DeepSeek + LovelyJoy 工場データで稼働",
+      "title": "Joy とお話しください",
+      "subtitle": "工場・価格・グローバルバイヤーを熟知したAIセールス担当",
+      "startBtn": "チャット開始",
+      "micBtn": "押して話す",
+      "resetBtn": "リセット",
+      "placeholder": "ご質問をどうぞ — 例「うさぎ5,000個、FOB 3ドル目標…」",
+      "sendBtn": "送信"
+    },
+    "status": {
+      "connecting": "接続中...",
+      "online": "オンライン",
+      "thinking": "考えています…",
+      "speaking": "回答中…"
+    },
+    "quickPrompts": {
+      "label": "よくある質問",
+      "q1": "MOQはいくつですか？",
+      "q2": "サンプル費用と納期は？",
+      "q3": "EU向けEN71認証の商品は作れますか？",
+      "q4": "春の販促用に5,000個、FOB 3ドル目標"
+    },
+    "products": {
+      "label": "おすすめ商品",
+      "empty": "ご要望をお聞かせください、最適なサンプルをご提案します",
+      "price": "参考",
+      "moq": "MOQ",
+      "leadTime": "納期"
+    },
+    "lead": {
+      "title": "ご連絡先をどうぞ",
+      "subtitle": "営業マネージャーが1営業日以内にご連絡いたします",
+      "company": "会社名",
+      "name": "お名前",
+      "email": "仕事用メール",
+      "phone": "電話 / WhatsApp（任意）",
+      "message": "メッセージ（任意）",
+      "submit": "問い合わせを送信",
+      "cancel": "キャンセル",
+      "success": "ありがとうございます！営業担当よりご連絡いたします。",
+      "error": "送信に失敗しました。後ほど再度お試しください"
+    },
+    "aria": {
+      "avatar": "3D AIセールス担当",
+      "mic": "音声入力",
+      "close": "閉じる"
+    },
+    "footer": "インテリジェンス: DeepSeek-V3 · 音声: Microsoft Edge TTS · ブラウザ内3D"
   }
 }

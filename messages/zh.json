@@ -8,7 +8,8 @@
     "products": "产品中心",
     "oemOdm": "OEM/ODM",
     "about": "关于我们",
-    "contact": "联系我们"
+    "contact": "联系我们",
+    "aiGuide": "AI 销售"
   },
   "header": {
     "contactCta": "联系我们"
@@ -281,5 +282,60 @@
       "terms": "使用条款"
     },
     "copyright": "© {year} 爱儿采 LovelyJoy. 保留所有权利。"
+  },
+  "aiGuide": {
+    "meta": {
+      "title": "与 Joy 对话 | LovelyJoy AI 销售顾问",
+      "description": "24/7 多语种 AI 销售顾问，回答 OEM/ODM、MOQ、交期、认证等所有问题"
+    },
+    "hero": {
+      "badge": "由 DeepSeek + LovelyJoy 工厂数据驱动",
+      "title": "与 Joy 对话",
+      "subtitle": "我们的 AI 销售顾问，懂工厂、懂报价、懂全球买手",
+      "startBtn": "开始对话",
+      "micBtn": "按住说话",
+      "resetBtn": "重置",
+      "placeholder": "输入您的问题，比如\"5000 件兔子玩具，目标 FOB 3 美元...\"",
+      "sendBtn": "发送"
+    },
+    "status": {
+      "connecting": "连接中...",
+      "online": "在线",
+      "thinking": "思考中…",
+      "speaking": "正在回答…"
+    },
+    "quickPrompts": {
+      "label": "试试这些常见问题",
+      "q1": "你们的 MOQ 是多少？",
+      "q2": "样品费多少？需要多久？",
+      "q3": "可以做欧盟 EN71 认证的产品吗？",
+      "q4": "我需要 5000 件春季促销玩具，目标 FOB 3 美元"
+    },
+    "products": {
+      "label": "相关产品推荐",
+      "empty": "聊一聊您的需求，我会推荐最匹配的工厂样品",
+      "price": "参考",
+      "moq": "MOQ",
+      "leadTime": "交期"
+    },
+    "lead": {
+      "title": "留下联系方式",
+      "subtitle": "我们的销售经理会在 1 个工作日内联系您",
+      "company": "公司名称",
+      "name": "您的姓名",
+      "email": "工作邮箱",
+      "phone": "电话/WhatsApp（可选）",
+      "message": "留言（可选）",
+      "submit": "发送询盘",
+      "cancel": "取消",
+      "success": "收到了！我们的销售经理会很快联系您。",
+      "error": "提交失败，请稍后再试"
+    },
+    "aria": {
+      "avatar": "3D 数字销售顾问",
+      "mic": "语音输入",
+      "close": "关闭"
+    },
+    "footer": "由 DeepSeek-V3 提供智能 · 由 Microsoft Edge TTS 提供声音 · 浏览器内 3D 渲染"
   }
 }

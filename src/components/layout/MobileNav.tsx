@@ -73,6 +73,8 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     ? 'oemOdm'
                     : item.href === '/about'
                     ? 'about'
+                    : item.href === '/ai-guide'
+                    ? 'aiGuide'
                     : 'contact';
 
                   return (

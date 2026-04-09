@@ -36,6 +36,7 @@ export default function Header() {
     if (href === '/products') return 'products';
     if (href === '/oem-odm') return 'oemOdm';
     if (href === '/about') return 'about';
+    if (href === '/ai-guide') return 'aiGuide';
     return 'contact';
   }
 
