@@ -190,6 +190,12 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const cardTimerRef = useRef<number | null>(null);
 
+  // Mirror of `mode` for the tick loop closure (which captures
+  // state at mount time). setMode updates both so the animation
+  // loop can react to listening/thinking/speaking state changes.
+  const modeRef = useRef<Mode>("idle");
+  useEffect(() => { modeRef.current = mode; }, [mode]);
+
   // ─────────────────────────────────────────────────────────────
   // 3D scene init
   // ─────────────────────────────────────────────────────────────
@@ -420,24 +426,34 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
         threeRef.current.camera = camera;
 
         // ──────────────────────────────────────────────────────────
-        // Animation loop — layered motion system
+        // Animation loop — multi-layer "alive" motion system
         //
         //   final_rotation[bone] = rest[bone]
-        //                        + idle_offset[bone] (continuous sine layer)
-        //                        + gesture_delta[bone] * gestureWeight (0..1)
+        //                        + idle_offset[bone]   (mode-aware sine)
+        //                        + gesture_delta[bone] * gestureWeight
         //
-        // The gestureWeight rises smoothly at gesture start (~250 ms fade-in)
-        // and decays after the hold_ms window (~400 ms fade-out), so there
-        // is never a pop or snap from one pose to another.
-        //
-        // idle_offset is a bank of slow sine waves with prime-ish periods
-        // so the body never loops visibly. It gives the character a
-        // continuous "alive" look even when no gesture is firing.
+        // "Aliveness" comes from NINE overlapping layers, each small:
+        //   1. Mode-aware idle (different sine amplitudes per mode)
+        //   2. Saccade eye jitter (tiny lookAt target drift)
+        //   3. Random glance-away events (every 4-8s, 400ms long)
+        //   4. Double-blink probability (10% chance of a second blink)
+        //   5. Blink frequency changes by mode
+        //   6. Breathing smile baseline (happy 0.16→0.22 @ 0.15Hz)
+        //   7. Chest + shoulder breath rise
+        //   8. Speech-reactive head bob (amplitude-linked)
+        //   9. Random subtle head tilt every 8-15s
         // ──────────────────────────────────────────────────────────
         const clock = new THREE.Clock();
         let elapsedGlobal = 0;
         let blinkTimer = 0;
         let blinkActive = 0;
+        let blinkPhaseCount = 0;                // for double-blink logic
+        let nextGlanceAt = 4 + Math.random() * 3;
+        let glanceUntil = 0;
+        let glanceOffset = { x: 0, y: 0 };
+        let nextTiltAt = 8 + Math.random() * 7;
+        let tiltEndAt = 0;
+        let activeTilt = { x: 0, y: 0, z: 0 };
 
         // Current active gesture + its timing, updated each frame
         const gestureState: {
@@ -467,30 +483,78 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
               mixer.update(dt);
             }
 
-            // ──────── Procedural idle (used when VRMA not loaded) ────────
-            // Small, slow, breath-driven motion. All amplitudes are under
-            // 1 degree so the character looks *present* but never "dancing".
-            // Periods are prime-ish (no visible loop).
+            // ──────── Mode-aware procedural idle ────────
+            // Base sine bank + mode modifier. Different modes produce
+            // different body language:
+            //   idle:      subtle neutral breath
+            //   listening: slight forward lean + attentive nod
+            //   thinking:  head tilted up + slight sway
+            //   speaking:  more active head bob + shoulder micro-shift
             const t = elapsedGlobal;
-            const breath = Math.sin(t * 1.3) * 0.015;              // 0.85°
-            const bodySway = Math.sin(t * 0.42) * 0.008;           // 0.46°
+            const currentMode = modeRef.current;
+
+            // Breath amplitude — larger than before so it's *visible*
+            const breath = Math.sin(t * 1.3) * 0.020;          // ~1.1°
+            const breathShoulder = Math.abs(Math.sin(t * 1.3)) * 0.012;
+
+            const bodySway = Math.sin(t * 0.42) * 0.008;
             const headSwayX = Math.sin(t * 0.57) * 0.010;
             const headSwayY = Math.sin(t * 0.49 + 0.7) * 0.014;
             const headSwayZ = Math.sin(t * 0.73 + 1.4) * 0.008;
-            // Very subtle arm float synced with breathing (arms rise with chest)
             const armFloat = Math.sin(t * 1.3 + 0.3) * 0.006;
+
+            // Mode modifiers (additive head position / chest lean)
+            let modeLeanX = 0;    // chest/head forward-back
+            let modeHeadX = 0;    // head pitch
+            let modeHeadY = 0;    // head yaw
+            let modeHeadZ = 0;    // head roll
+            let speechBob = 0;    // driven by TTS amplitude
+
+            if (currentMode === "listening") {
+              modeLeanX = 0.035;                 // subtle forward lean
+              modeHeadX = 0.02 + Math.sin(t * 0.9) * 0.008;
+            } else if (currentMode === "thinking") {
+              modeHeadX = -0.05;                 // look up slightly
+              modeHeadY = 0.08;                  // turn away
+              modeHeadZ = 0.05;                  // head tilt
+            } else if (currentMode === "speaking") {
+              // Speech-driven head bob — amplitude * small multiplier
+              speechBob = Math.min(0.025, audioRef.current.amplitude * 0.08);
+              modeHeadX = Math.sin(t * 2.1) * 0.015;
+              modeHeadY = Math.sin(t * 1.7 + 0.5) * 0.012;
+            }
+
+            // ──────── Random soft head tilt every 8-15s ────────
+            if (t > nextTiltAt && tiltEndAt === 0) {
+              // Start a new tilt that lasts ~2.5s
+              tiltEndAt = t + 2.5;
+              activeTilt = {
+                x: (Math.random() - 0.5) * 0.04,
+                y: (Math.random() - 0.5) * 0.05,
+                z: (Math.random() - 0.5) * 0.06,
+              };
+            }
+            if (tiltEndAt > 0 && t > tiltEndAt) {
+              tiltEndAt = 0;
+              activeTilt = { x: 0, y: 0, z: 0 };
+              nextTiltAt = t + 8 + Math.random() * 7;
+            }
 
             const idle: Record<string, { x: number; y: number; z: number }> = hasMixer
               ? {}
               : {
                   hips: { x: 0, y: bodySway * 0.4, z: 0 },
-                  spine: { x: breath * 0.2, y: bodySway * 0.3, z: 0 },
-                  chest: { x: breath * 0.6, y: 0, z: bodySway * 0.2 },
+                  spine: { x: modeLeanX + breath * 0.2, y: bodySway * 0.3, z: 0 },
+                  chest: { x: modeLeanX * 0.5 + breath * 0.6, y: 0, z: bodySway * 0.2 },
                   upperChest: { x: breath * 0.4, y: 0, z: 0 },
-                  neck: { x: headSwayX * 0.3, y: headSwayY * 0.3, z: 0 },
-                  head: { x: headSwayX, y: headSwayY, z: headSwayZ },
-                  leftShoulder: { x: 0, y: 0, z: 0 },
-                  rightShoulder: { x: 0, y: 0, z: 0 },
+                  neck: { x: headSwayX * 0.3 + modeHeadX * 0.3, y: headSwayY * 0.3, z: 0 },
+                  head: {
+                    x: headSwayX + modeHeadX + speechBob + activeTilt.x,
+                    y: headSwayY + modeHeadY + activeTilt.y,
+                    z: headSwayZ + modeHeadZ + activeTilt.z,
+                  },
+                  leftShoulder: { x: 0, y: 0, z: breathShoulder * 0.5 },
+                  rightShoulder: { x: 0, y: 0, z: -breathShoulder * 0.5 },
                   leftUpperArm: { x: armFloat, y: 0, z: 0 },
                   rightUpperArm: { x: armFloat, y: 0, z: 0 },
                   leftLowerArm: { x: 0, y: 0, z: 0 },
@@ -499,27 +563,95 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
                   rightHand: { x: 0, y: 0, z: 0 },
                 };
 
-            // ──────── Blinks ────────
+            // ──────── Blinks with natural variation ────────
+            // Mode-aware frequency: speaking and listening → faster blinks
+            // (closer to real ~4-5s), thinking → longer gaps (~7-10s).
+            // 10% chance of a double-blink sequence for extra realism.
             blinkTimer += dt;
-            if (blinkTimer > 3 + Math.random() * 2 && blinkActive <= 0) {
-              blinkActive = 0.18;
+            const blinkInterval =
+              currentMode === "thinking" ? 7 + Math.random() * 3
+              : currentMode === "speaking" || currentMode === "listening" ? 3 + Math.random() * 2
+              : 4 + Math.random() * 3;
+
+            if (blinkTimer > blinkInterval && blinkActive <= 0) {
+              blinkActive = 0.16;
               blinkTimer = 0;
+              // 10% chance of double-blink — queue a second blink
+              blinkPhaseCount = Math.random() < 0.1 ? 1 : 0;
             }
             if (blinkActive > 0) {
               blinkActive -= dt;
-              const v = Math.sin((1 - blinkActive / 0.18) * Math.PI);
+              const v = Math.sin((1 - blinkActive / 0.16) * Math.PI);
               vrm.expressionManager?.setValue("blink", v);
+              if (blinkActive <= 0 && blinkPhaseCount > 0) {
+                // Fire the second blink of a double-blink
+                blinkActive = 0.15;
+                blinkPhaseCount = 0;
+              }
             } else {
               vrm.expressionManager?.setValue("blink", 0);
+            }
+
+            // ──────── Saccade + random glance on lookAt target ────────
+            // Real humans never stare fixed — eyes micro-drift every frame
+            // and occasionally glance away for a moment. Moving the VRM's
+            // lookAt target makes both eyeballs AND head subtly track.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const lookAtTarget = (threeRef.current as any).lookAtTarget;
+            if (lookAtTarget) {
+              // Continuous saccade — slow sine drift in X and Y
+              const sacX = Math.sin(t * 0.83 + 2.1) * 0.06;
+              const sacY = Math.sin(t * 0.67 + 0.4) * 0.03;
+
+              // Trigger a new random glance-away every 4-8s
+              if (t > nextGlanceAt && glanceUntil === 0) {
+                glanceOffset = {
+                  x: (Math.random() - 0.5) * 0.35,
+                  y: (Math.random() - 0.3) * 0.18,
+                };
+                glanceUntil = t + 0.35 + Math.random() * 0.25;
+              }
+              let glX = 0;
+              let glY = 0;
+              if (glanceUntil > 0) {
+                if (t < glanceUntil) {
+                  // Ease in/out the glance
+                  const glancePhase =
+                    1 - Math.abs((t - (glanceUntil - 0.3)) / 0.3);
+                  const ease = Math.max(0, glancePhase);
+                  glX = glanceOffset.x * ease;
+                  glY = glanceOffset.y * ease;
+                } else {
+                  glanceUntil = 0;
+                  nextGlanceAt = t + 4 + Math.random() * 4;
+                }
+              }
+
+              // Thinking state: hold a deliberate look-away
+              let modeGazeX = 0;
+              let modeGazeY = 0;
+              if (currentMode === "thinking") {
+                modeGazeX = 0.2;
+                modeGazeY = 0.12;
+              }
+
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const cam = threeRef.current.camera as any;
+              lookAtTarget.position.set(
+                cam.position.x + sacX + glX + modeGazeX,
+                cam.position.y + sacY + glY + modeGazeY,
+                cam.position.z,
+              );
             }
 
             // ──────── Plan-driven emotion + gesture ────────
             const cur = planRef.current.plan;
             let targetGesture: string | null = null;
 
-            // Subtle baseline smile — the ambassador always looks pleasant,
-            // even between sentences. This is the "resting warm" expression.
-            const baselineHappy = 0.18;
+            // Breathing baseline smile — the ambassador's happy resting
+            // expression gently varies over time so her face never looks
+            // flat. Range 0.14 ~ 0.24 at ~0.15 Hz.
+            const baselineHappy = 0.19 + Math.sin(t * 0.94) * 0.05;
 
             if (cur) {
               const elapsedPlan = performance.now() - planRef.current.startedAt;
