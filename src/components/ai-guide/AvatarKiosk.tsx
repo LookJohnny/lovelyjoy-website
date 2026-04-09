@@ -171,11 +171,10 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
 
   const recognitionRef = useRef<unknown>(null);
   const shouldListenRef = useRef(false);
-  // If the user denies mic permission (or the browser has no mic), we
-  // permanently disable auto-listen to avoid a retry storm. User can still
-  // type into the bubble via a fallback (not exposed in kiosk UI; future).
-  const micBlockedRef = useRef(false);
-  const [micBlocked, setMicBlocked] = useState(false);
+  // Mic permission is OPT-IN. We never auto-request it — the user has to
+  // click the mic icon to enable voice input. See handleEnableMic below.
+  const [micState, setMicState] = useState<"off" | "on" | "denied">("off");
+  const [showMicHelp, setShowMicHelp] = useState(false);
 
   // Keep latest history in a ref so the speech-recognition onresult
   // closure doesn't need to be rebuilt every turn (which would drop
@@ -692,29 +691,38 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
   }, []);
 
   // ─────────────────────────────────────────────────────────────
-  // Lock body scroll + hide the site Header/Footer while in kiosk
+  // Lock body scroll + hide the site Header/Footer while in kiosk.
+  //
+  // We used to do this with document.querySelector("header").style =
+  // "display:none" but React can overwrite inline styles on re-render.
+  // Injecting a <style> tag with !important is the robust way to
+  // guarantee the chrome stays hidden for the lifetime of the mount.
   // ─────────────────────────────────────────────────────────────
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
+    const prevBg = document.body.style.background;
     document.body.style.overflow = "hidden";
-    // Hide site Header (sticky, z-30) and Footer while in kiosk
-    const header = document.querySelector("header");
-    const footer = document.querySelector("footer");
-    const prev: Array<[Element, string]> = [];
-    if (header) {
-      prev.push([header, header.getAttribute("style") ?? ""]);
-      (header as HTMLElement).style.display = "none";
-    }
-    if (footer) {
-      prev.push([footer, footer.getAttribute("style") ?? ""]);
-      (footer as HTMLElement).style.display = "none";
-    }
+    // Kill any bleed from the page body behind the fixed overlay
+    document.body.style.background = "transparent";
+
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-ai-guide-kiosk", "");
+    styleEl.textContent = `
+      body > header, body > footer,
+      body [data-nav-header], body [data-site-footer] {
+        display: none !important;
+      }
+      html, body {
+        overflow: hidden !important;
+        background: transparent !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+
     return () => {
       document.body.style.overflow = prevOverflow;
-      for (const [el, style] of prev) {
-        if (style) el.setAttribute("style", style);
-        else el.removeAttribute("style");
-      }
+      document.body.style.background = prevBg;
+      styleEl.remove();
     };
   }, []);
 
@@ -914,30 +922,28 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     rec.onerror = (e: any) => {
-      // Terminal errors: disable auto-listen to avoid retry storm
+      // Terminal errors: mic was denied at the system or browser level.
+      // We stop auto-listen and switch to denied state — the user can
+      // click the mic button to see the unblock instructions.
       if (e.error === "not-allowed" || e.error === "service-not-allowed") {
-        console.warn("[ai-guide] microphone permission blocked, disabling auto-listen");
-        micBlockedRef.current = true;
+        console.warn("[ai-guide] microphone blocked:", e.error);
         shouldListenRef.current = false;
-        setMicBlocked(true);
+        setMicState("denied");
         return;
       }
-      // "no-speech" / "aborted" are normal when silence times out
       if (e.error !== "no-speech" && e.error !== "aborted") {
         console.warn("[ai-guide] recognition error:", e.error);
       }
     };
     rec.onend = () => {
-      // Stop if mic is blocked or session ended
-      if (micBlockedRef.current || !shouldListenRef.current) {
+      if (!shouldListenRef.current) {
         setMode((m) => (m === "thinking" || m === "speaking" ? m : "idle"));
         return;
       }
       setMode((m) => {
         if (m === "thinking" || m === "speaking") return m;
-        // small delay avoids rapid restart races
         window.setTimeout(() => {
-          if (shouldListenRef.current && !micBlockedRef.current) {
+          if (shouldListenRef.current) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             try { (recognitionRef.current as any)?.start(); } catch {}
           }
@@ -954,36 +960,14 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
   }, [locale, sendChat]);
 
   // ─────────────────────────────────────────────────────────────
-  // Explicit mic permission via getUserMedia — gives a cleaner
-  // OS-level prompt than letting Web Speech API trigger it implicitly.
-  // Returns true if permission granted.
-  // ─────────────────────────────────────────────────────────────
-  const requestMicPermission = useCallback(async (): Promise<boolean> => {
-    if (!navigator.mediaDevices?.getUserMedia) return false;
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      // We don't actually need the stream — Web Speech API opens its own.
-      // Stop the tracks immediately so we don't keep the mic indicator on.
-      for (const track of stream.getTracks()) track.stop();
-      micBlockedRef.current = false;
-      setMicBlocked(false);
-      return true;
-    } catch (err) {
-      console.warn("[ai-guide] getUserMedia denied:", err);
-      micBlockedRef.current = true;
-      setMicBlocked(true);
-      return false;
-    }
-  }, []);
-
-  // ─────────────────────────────────────────────────────────────
-  // Tap-to-start: unlocks audio + asks for mic + fires welcome + begins listening
+  // Tap-to-start: ONLY unlocks audio playback and fires the welcome.
+  // Mic permission is NOT requested here — that's opt-in via the mic
+  // icon. This avoids the "persistent mic banner" UX disaster.
   // ─────────────────────────────────────────────────────────────
   const handleStart = useCallback(async () => {
     if (started) return;
     setStarted(true);
 
-    // Prime the audio context inside the user gesture so playback works later
     if (!audioRef.current.ctx) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
@@ -996,22 +980,77 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
     }
     try { await audioRef.current.ctx?.resume(); } catch {}
 
-    // Explicitly ask for mic permission right after the tap gesture so
-    // Chrome shows its prompt in the correct user-gesture window.
-    const micOk = await requestMicPermission();
-    shouldListenRef.current = micOk;
+    // Check if mic was previously granted — if so, auto-enable listening
+    if (navigator.permissions?.query) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const status = await navigator.permissions.query({ name: "microphone" as any });
+        if (status.state === "granted") {
+          shouldListenRef.current = true;
+          setMicState("on");
+          setTimeout(() => startRecognition(), 600);
+        }
+      } catch {
+        // Some browsers don't support querying 'microphone' — silently skip
+      }
+    }
 
     await sendChat("", { isWelcome: true });
-  }, [started, sendChat, requestMicPermission]);
+  }, [started, sendChat, startRecognition]);
 
-  // Retry mic permission (used by the blocked banner)
-  const retryMic = useCallback(async () => {
-    const ok = await requestMicPermission();
-    if (ok) {
-      shouldListenRef.current = true;
-      startRecognition();
+  // ─────────────────────────────────────────────────────────────
+  // Mic button handler — smart: check permission state first, then
+  // either start listening, trigger the prompt, or show instructions.
+  // ─────────────────────────────────────────────────────────────
+  const handleMicToggle = useCallback(async () => {
+    // Already on → turn off
+    if (micState === "on") {
+      shouldListenRef.current = false;
+      stopRecognition();
+      setMicState("off");
+      return;
     }
-  }, [requestMicPermission, startRecognition]);
+
+    // Query current permission state first
+    let permState: PermissionState | "unknown" = "unknown";
+    if (navigator.permissions?.query) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const status = await navigator.permissions.query({ name: "microphone" as any });
+        permState = status.state;
+        // Listen for future changes (user fixes it in settings)
+        status.onchange = () => {
+          if (status.state === "granted") {
+            setMicState("on");
+            shouldListenRef.current = true;
+            startRecognition();
+          } else if (status.state === "denied") {
+            setMicState("denied");
+            shouldListenRef.current = false;
+          }
+        };
+      } catch {}
+    }
+
+    if (permState === "denied") {
+      setMicState("denied");
+      setShowMicHelp(true);
+      return;
+    }
+
+    // permState is 'prompt' or 'granted' or 'unknown' — try getUserMedia
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      for (const track of stream.getTracks()) track.stop();
+      setMicState("on");
+      shouldListenRef.current = true;
+      setTimeout(() => startRecognition(), 200);
+    } catch (err) {
+      console.warn("[ai-guide] getUserMedia failed:", err);
+      setMicState("denied");
+      setShowMicHelp(true);
+    }
+  }, [micState, startRecognition, stopRecognition]);
 
   // Re-trigger welcome if locale changes mid-session
   useEffect(() => {
@@ -1112,28 +1151,16 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
         <div className="text-sm font-bold">{t("hero.title")}</div>
       </div>
 
-      {/* Status pill top-right (locale + mode) */}
-      {started && (
-        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur shadow-sm text-xs font-medium">
+      {/* Status pill top-right — only shows thinking/speaking, not idle */}
+      {started && (mode === "thinking" || mode === "speaking") && (
+        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur shadow-sm text-xs font-medium">
           <span
             className={`w-2 h-2 rounded-full ${
-              mode === "listening"
-                ? "bg-red-400 animate-pulse"
-                : mode === "thinking"
-                ? "bg-amber-400 animate-pulse"
-                : mode === "speaking"
-                ? "bg-sky-400 animate-pulse"
-                : "bg-green-500"
+              mode === "thinking" ? "bg-amber-400 animate-pulse" : "bg-sky-400 animate-pulse"
             }`}
           />
           <span className="text-[#5D4037]">
-            {mode === "listening"
-              ? `🎙 ${locale.toUpperCase()}`
-              : mode === "thinking"
-              ? t("status.thinking")
-              : mode === "speaking"
-              ? t("status.speaking")
-              : locale.toUpperCase()}
+            {mode === "thinking" ? t("status.thinking") : t("status.speaking")}
           </span>
         </div>
       )}
@@ -1174,36 +1201,42 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
         </div>
       )}
 
-      {/* Mic-blocked banner (shown when browser denies microphone) */}
-      {started && micBlocked && (
-        <div className="absolute left-1/2 -translate-x-1/2 top-20 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs shadow flex items-center gap-2">
-          <span>
-            {locale === "zh"
-              ? "麦克风未授权"
-              : locale === "ja"
-              ? "マイク未許可"
-              : locale === "ko"
-              ? "마이크 권한 없음"
-              : locale === "es"
-              ? "Micrófono bloqueado"
-              : "Microphone blocked"}
-          </span>
-          <button
-            type="button"
-            onClick={retryMic}
-            className="ml-1 px-2 py-0.5 rounded-full bg-amber-200 hover:bg-amber-300 text-amber-900 text-[11px] font-semibold transition"
-          >
-            {locale === "zh"
-              ? "授权麦克风"
-              : locale === "ja"
-              ? "許可する"
-              : locale === "ko"
-              ? "허용하기"
-              : locale === "es"
-              ? "Permitir"
-              : "Enable mic"}
-          </button>
-        </div>
+      {/* Mic toggle — always visible when started. One small circular button
+          in the bottom-right corner. Opt-in voice input. */}
+      {started && (
+        <button
+          type="button"
+          onClick={handleMicToggle}
+          title={
+            micState === "on"
+              ? locale === "zh" ? "关闭语音" : "Turn voice off"
+              : micState === "denied"
+              ? locale === "zh" ? "查看如何启用麦克风" : "How to enable microphone"
+              : locale === "zh" ? "启用语音对话" : "Enable voice chat"
+          }
+          className={`absolute bottom-5 right-5 w-12 h-12 rounded-full grid place-items-center shadow-lg backdrop-blur transition ${
+            micState === "on"
+              ? "bg-[#8ECAE6] text-white hover:bg-[#6AB4D8]"
+              : micState === "denied"
+              ? "bg-white/80 text-[#dc2626] hover:bg-white"
+              : "bg-white/80 text-[#6AB4D8] hover:bg-white"
+          }`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            {micState === "denied" && (
+              <line x1="3" y1="3" x2="21" y2="21" stroke="#dc2626" strokeWidth="2.5" />
+            )}
+          </svg>
+        </button>
+      )}
+
+      {/* Mic help modal — shown only when user clicks the denied-state mic
+          button. Teaches them to unblock permission in Chrome settings. */}
+      {showMicHelp && (
+        <MicHelpModal locale={locale} onClose={() => setShowMicHelp(false)} />
       )}
 
       {/* No chat bubble in kiosk mode — voice only. `bubble` state is still
@@ -1333,6 +1366,109 @@ function sampleGesture(
     }
   }
   return active;
+}
+
+// ─────────────────────────────────────────────────────────────────
+// Mic help modal — shown when Chrome has persistent mic denial and
+// clicking the button does nothing. Explains the manual unblock flow.
+// ─────────────────────────────────────────────────────────────────
+function MicHelpModal({ locale, onClose }: { locale: Locale; onClose: () => void }) {
+  const copy: Record<Locale, { title: string; body: string[]; close: string }> = {
+    zh: {
+      title: "如何启用麦克风",
+      body: [
+        "您的浏览器之前拒绝了麦克风权限，需要手动重新允许：",
+        "1. 点击地址栏左边的 🔒 锁图标",
+        "2. 找到「麦克风」→ 改为「允许」",
+        "3. 刷新本页面",
+        "Mac 用户可能还需要在「系统设置 → 隐私与安全 → 麦克风」为浏览器开启权限。",
+        "也可以继续浏览，不开麦克风我依然会主动跟您打招呼。",
+      ],
+      close: "知道了",
+    },
+    en: {
+      title: "How to enable microphone",
+      body: [
+        "Your browser has previously blocked microphone access. To re-enable it:",
+        "1. Click the 🔒 lock icon in the address bar",
+        "2. Find 'Microphone' → set to 'Allow'",
+        "3. Reload this page",
+        "On Mac you may also need to grant microphone permission to your browser in System Settings → Privacy & Security → Microphone.",
+        "You can also keep browsing without the mic — I'll still greet you.",
+      ],
+      close: "Got it",
+    },
+    ja: {
+      title: "マイクの有効化方法",
+      body: [
+        "ブラウザがマイクアクセスをブロックしています。再許可の方法：",
+        "1. アドレスバー左の 🔒 アイコンをクリック",
+        "2. 「マイク」→「許可」に変更",
+        "3. ページを再読み込み",
+        "Mac では「システム設定 → プライバシーとセキュリティ → マイク」でブラウザにも権限を付与する必要があります。",
+        "マイクなしでもご挨拶はお送りします。",
+      ],
+      close: "了解しました",
+    },
+    ko: {
+      title: "마이크 활성화 방법",
+      body: [
+        "브라우저가 이전에 마이크 접근을 차단했습니다. 다시 허용하려면：",
+        "1. 주소창 왼쪽 🔒 잠금 아이콘 클릭",
+        "2. '마이크' 찾아서 '허용'으로 설정",
+        "3. 페이지 새로고침",
+        "Mac에서는 '시스템 설정 → 개인정보 → 마이크'에서도 브라우저 권한을 허용해야 합니다.",
+        "마이크 없이도 인사는 드립니다.",
+      ],
+      close: "알겠습니다",
+    },
+    es: {
+      title: "Cómo activar el micrófono",
+      body: [
+        "Su navegador bloqueó el acceso al micrófono. Para volver a permitirlo:",
+        "1. Haga clic en el icono 🔒 del candado en la barra de direcciones",
+        "2. Busque 'Micrófono' → cambie a 'Permitir'",
+        "3. Recargue esta página",
+        "En Mac también debe dar permiso al navegador en Configuración del Sistema → Privacidad → Micrófono.",
+        "También puede seguir navegando sin micrófono.",
+      ],
+      close: "Entendido",
+    },
+  };
+  const c = copy[locale] ?? copy.en;
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/40 grid place-items-center z-[60] p-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-xl font-bold text-[#5D4037] mb-3 flex items-center gap-2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+          </svg>
+          {c.title}
+        </h2>
+        <div className="space-y-2 text-sm text-[#5D4037] leading-relaxed">
+          {c.body.map((line, i) => (
+            <p key={i} className={i === 0 ? "font-medium" : ""}>{line}</p>
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="mt-5 w-full bg-[#8ECAE6] hover:bg-[#6AB4D8] text-white py-2.5 rounded-lg text-sm font-semibold transition"
+        >
+          {c.close}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────
