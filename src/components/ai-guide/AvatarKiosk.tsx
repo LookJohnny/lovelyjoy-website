@@ -148,8 +148,11 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
     scene?: unknown;
     camera?: unknown;
     vrm?: unknown;
-    mixer?: unknown;             // THREE.AnimationMixer
-    idleAction?: unknown;        // THREE.AnimationAction for VRMA_01 idle loop
+    mixer?: unknown;                       // THREE.AnimationMixer
+    actions?: unknown[];                   // AnimationAction[] for each VRMA clip
+    clipDurations?: number[];              // duration of each clip
+    currentClipIdx?: number;               // which clip is currently active
+    clipStartedAt?: number;                // elapsedGlobal when current clip began
     rest: Record<string, { x: number; y: number; z: number }>;
     rafId?: number;
     disposed: boolean;
@@ -215,13 +218,12 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
         if (!container) return;
 
         const scene = new THREE.Scene();
-        // Waist-up framing — closer and higher, aimed at chest level.
-        // This frames face + shoulders + upper chest only, which (a) fits a
-        // brand-ambassador presence better (like a TV host shot) and (b)
-        // hides the hand/forearm area where VRM procedural posing looks off.
+        // Full-body framing — pulled back so head, body, hands and feet
+        // are all visible, since the character now plays VRMA dance clips
+        // that involve the whole body.
         const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 30);
-        camera.position.set(0, 1.42, 1.25);
-        camera.lookAt(0, 1.4, 0);
+        camera.position.set(0, 1.0, 3.2);
+        camera.lookAt(0, 0.85, 0);
 
         const renderer = new THREE.WebGLRenderer({
           antialias: true,
@@ -367,36 +369,66 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
               threeRef.current.vrm = vrm;
               setLoadState({ kind: "ready" });
 
-              // ──────────── Optional VRMA idle loop (opt-in via URL) ────────────
-              // The AIWaifu VRMA files that ship with this repo are dance emotes
-              // that don't loop cleanly — the character teleports back to frame 0
-              // at the end of every cycle. Procedural idle looks better in
-              // practice, so VRMA is now OPT-IN.
+              // ──────────── Load all 7 VRMA clips and rotate with crossfade ────────────
+              // The AIWaifu VRMA files are dance/emote loops. Single-clip
+              // looping shows a hard "teleport back to frame 0" snap. The
+              // fix is to rotate through all 7 clips: each clip plays once
+              // (LoopOnce), and 0.6s before its end we crossfade into the
+              // next clip in the rotation. Crossfades absorb pose
+              // discontinuities and the character never visibly snaps.
               //
-              // To try a specific VRMA add `?vrma=2` (or 3, 4, ...) to the URL.
-              // Use `?vrma=0` or omit to use the procedural idle.
+              // Use `?vrma=none` to disable the dance and fall back to
+              // pure procedural idle.
               const vrmaParam = new URLSearchParams(window.location.search).get("vrma");
-              const vrmaIndex = vrmaParam ? parseInt(vrmaParam, 10) : 0;
-              if (vrmaIndex >= 1 && vrmaIndex <= 7) {
+              const vrmaDisabled = vrmaParam === "none" || vrmaParam === "0";
+
+              if (!vrmaDisabled) {
                 (async () => {
-                  const url = `/images/ai-guide/VRMA_0${vrmaIndex}.vrma`;
-                  const clip = await loadVRMA(url, vrm);
-                  if (!clip || cancelled) return;
+                  const urls = [1, 2, 3, 4, 5, 6, 7].map(
+                    (i) => `/images/ai-guide/VRMA_0${i}.vrma`,
+                  );
+                  const clips = await Promise.all(urls.map((u) => loadVRMA(u, vrm)));
+                  if (cancelled) return;
+                  const validClips = clips.filter(
+                    (c): c is import("three").AnimationClip => c !== null,
+                  );
+                  if (validClips.length === 0) {
+                    console.warn("[ai-guide] no VRMA clips loaded, using procedural idle");
+                    return;
+                  }
+
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   const mixer = new THREE.AnimationMixer(vrm.scene as any);
-                  const action = mixer.clipAction(clip);
-                  action.setLoop(THREE.LoopRepeat, Infinity);
-                  action.clampWhenFinished = false;
-                  action.enabled = true;
-                  action.play();
+                  const actions = validClips.map((clip) => {
+                    const action = mixer.clipAction(clip);
+                    action.setLoop(THREE.LoopOnce, 1);
+                    action.clampWhenFinished = true;
+                    action.enabled = false;
+                    action.setEffectiveWeight(0);
+                    return action;
+                  });
+
+                  // Start playing the first clip at full weight
+                  const first = actions[0];
+                  first.reset();
+                  first.enabled = true;
+                  first.setEffectiveWeight(1);
+                  first.play();
+
                   threeRef.current.mixer = mixer;
-                  threeRef.current.idleAction = action;
+                  threeRef.current.actions = actions;
+                  threeRef.current.clipDurations = validClips.map((c) => c.duration);
+                  threeRef.current.currentClipIdx = 0;
+                  threeRef.current.clipStartedAt = elapsedGlobal;
+
                   console.log(
-                    `[ai-guide] VRMA idle loaded: ${url} (${clip.duration.toFixed(2)}s, ${clip.tracks.length} tracks)`,
+                    `[ai-guide] Loaded ${validClips.length} VRMA clips, durations: ${validClips
+                      .map((c) => c.duration.toFixed(1))
+                      .join(", ")}s`,
                   );
                 })();
               } else {
-                console.log("[ai-guide] Using procedural idle (add ?vrma=1..7 to test VRMA clips)");
+                console.log("[ai-guide] VRMA disabled via ?vrma=none — using procedural idle");
               }
             } catch (err) {
               console.error("[ai-guide] VRM post-load error", err);
@@ -476,11 +508,56 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
 
           if (vrm) {
             // ──────── Drive body animation ────────
-            // If the VRMA idle loop is loaded, let the AnimationMixer drive
-            // the whole body. Otherwise fall back to a procedural sine wave
-            // bank so the character still feels alive.
+            // If VRMA clips are loaded, let the AnimationMixer drive the
+            // whole body, AND rotate to the next clip with crossfade
+            // before the current clip ends — this eliminates the visible
+            // "snap back to frame 0" you get from a single LoopRepeat clip.
             if (hasMixer) {
               mixer.update(dt);
+
+              // Crossfade to next clip in rotation
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const ref = threeRef.current as any;
+              const actions = ref.actions as Array<{
+                reset: () => unknown;
+                enabled: boolean;
+                play: () => unknown;
+                setEffectiveWeight: (w: number) => unknown;
+                crossFadeTo: (other: unknown, dur: number, warp: boolean) => unknown;
+              }>;
+              const durations: number[] = ref.clipDurations;
+              const curIdx: number = ref.currentClipIdx;
+              const startedAt: number = ref.clipStartedAt;
+              const FADE = 0.6;
+
+              if (actions && actions.length > 1) {
+                const elapsedClip = elapsedGlobal - startedAt;
+                const curDur = durations[curIdx];
+                if (elapsedClip > curDur - FADE) {
+                  // Time to start the next clip
+                  const nextIdx = (curIdx + 1) % actions.length;
+                  const next = actions[nextIdx];
+                  next.reset();
+                  next.enabled = true;
+                  next.setEffectiveWeight(0);
+                  next.play();
+                  // Crossfade current → next over FADE seconds
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (actions[curIdx] as any).crossFadeTo(next, FADE, true);
+                  ref.currentClipIdx = nextIdx;
+                  ref.clipStartedAt = elapsedGlobal;
+                }
+              } else if (actions && actions.length === 1) {
+                // Only one clip — just loop it (no crossfade possible).
+                // Reset when it ends.
+                const elapsedClip = elapsedGlobal - startedAt;
+                if (elapsedClip > durations[0] - 0.05) {
+                  actions[0].reset();
+                  actions[0].setEffectiveWeight(1);
+                  actions[0].play();
+                  ref.clipStartedAt = elapsedGlobal;
+                }
+              }
             }
 
             // ──────── Mode-aware procedural idle ────────
