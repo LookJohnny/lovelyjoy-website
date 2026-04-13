@@ -74,14 +74,19 @@ const ALL_EXPR = ["happy", "sad", "angry", "surprised", "relaxed", "neutral"];
 const VOWELS = ["aa", "ih", "ou", "ee", "oh"] as const;
 const ZERO_ROTATION: BoneRotation = { x: 0, y: 0, z: 0 };
 const T_POSE_Z_THRESHOLD = 0.15;
-const T_POSE_ARM_SETTLE_CANDIDATES = [0.65, 0.85, 1.05, 1.2] as const;
+const T_POSE_ARM_SETTLE_CANDIDATES = [1.0, 1.2, 1.4] as const;
+const T_POSE_LOWER_ARM_Y_CANDIDATES = [0, 0.12, -0.12, 0.18, -0.18] as const;
+const T_POSE_HAND_Y_CANDIDATES = [0, 0.18, -0.18] as const;
+const T_POSE_HAND_Z_CANDIDATES = [0, 0.16, -0.16] as const;
 const T_POSE_SHOULDER_SETTLE_SCALE = 0.08;
 const T_POSE_MAX_SHOULDER_SETTLE_Z = 0.08;
 const T_POSE_HEIGHT_TOLERANCE = 0.02;
-const T_POSE_TARGET_HAND_DROP_RATIO = 0.72;
-const T_POSE_TARGET_REACH_RATIO = 0.52;
-const T_POSE_TARGET_LOWER_ARM_DROP_RATIO = 0.42;
-const T_POSE_MIN_SCORE_IMPROVEMENT = 0.15;
+const T_POSE_TARGET_HAND_DROP_RATIO = 0.88;
+const T_POSE_TARGET_REACH_RATIO = 0.24;
+const T_POSE_TARGET_LOWER_ARM_DROP_RATIO = 0.54;
+const T_POSE_TARGET_HAND_OUT_RATIO = 1.18;
+const T_POSE_TARGET_LOWER_ARM_OUT_RATIO = 1.02;
+const T_POSE_MIN_SCORE_IMPROVEMENT = 0.18;
 const IDLE_MAX_DELTA = 0.05;
 const IDLE_LERP_SPEED = 8;
 
@@ -140,6 +145,14 @@ function getWorldPosition(node: import("three").Object3D) {
   return node.getWorldPosition(node.position.clone());
 }
 
+function getHorizontalDistance(a: import("three").Object3D, b: import("three").Object3D): number {
+  const aPos = getWorldPosition(a);
+  const bPos = getWorldPosition(b);
+  const dx = aPos.x - bPos.x;
+  const dz = aPos.z - bPos.z;
+  return Math.hypot(dx, dz);
+}
+
 function getArmHeightScore(vrm: LoadedVRM, side: ArmSide): number | null {
   const nodes = getArmNodes(vrm, side);
   const shoulder = nodes.shoulder;
@@ -165,13 +178,17 @@ function getArmPoseMetrics(vrm: LoadedVRM, side: ArmSide): {
   handDropRatio: number;
   lowerArmDropRatio: number;
   reachRatio: number;
+  handOutRatio: number;
+  lowerArmOutRatio: number;
+  handInwardAlignment: number;
 } | null {
   const nodes = getArmNodes(vrm, side);
   const shoulder = nodes.shoulder;
   const lowerArm = nodes.lowerArm;
   const hand = nodes.hand;
+  const hips = vrm.humanoid?.getNormalizedBoneNode("hips");
 
-  if (!shoulder || !lowerArm || !hand) return null;
+  if (!shoulder || !lowerArm || !hand || !hips) return null;
 
   vrm.scene.updateMatrixWorld(true);
 
@@ -181,11 +198,30 @@ function getArmPoseMetrics(vrm: LoadedVRM, side: ArmSide): {
   const handDx = handPos.x - shoulderPos.x;
   const handDz = handPos.z - shoulderPos.z;
   const armLength = Math.max(1e-4, shoulderPos.distanceTo(handPos));
+  const shoulderWidth = Math.max(1e-4, getHorizontalDistance(shoulder, hips));
+  const handToHipsHorizontal = getHorizontalDistance(hand, hips);
+  const lowerArmToHipsHorizontal = getHorizontalDistance(lowerArm, hips);
+  const inwardDirection = getWorldPosition(hips).sub(handPos).setY(0);
+  const inwardDirectionLength = inwardDirection.length();
+  const handQuaternion = hand.getWorldQuaternion(hand.quaternion.clone());
+  const handXAxis = hand.position.clone().set(1, 0, 0).applyQuaternion(handQuaternion).setY(0);
+  const handZAxis = hand.position.clone().set(0, 0, 1).applyQuaternion(handQuaternion).setY(0);
+
+  let handInwardAlignment = 0.5;
+  if (inwardDirectionLength > 1e-4) {
+    inwardDirection.normalize();
+    const xAlignment = handXAxis.lengthSq() > 1e-4 ? Math.abs(handXAxis.normalize().dot(inwardDirection)) : 0;
+    const zAlignment = handZAxis.lengthSq() > 1e-4 ? Math.abs(handZAxis.normalize().dot(inwardDirection)) : 0;
+    handInwardAlignment = Math.max(xAlignment, zAlignment);
+  }
 
   return {
     handDropRatio: (shoulderPos.y - handPos.y) / armLength,
     lowerArmDropRatio: (shoulderPos.y - lowerArmPos.y) / armLength,
     reachRatio: Math.hypot(handDx, handDz) / armLength,
+    handOutRatio: handToHipsHorizontal / shoulderWidth,
+    lowerArmOutRatio: lowerArmToHipsHorizontal / shoulderWidth,
+    handInwardAlignment,
   };
 }
 
@@ -193,13 +229,27 @@ function getArmPoseScore(vrm: LoadedVRM, side: ArmSide): number | null {
   const metrics = getArmPoseMetrics(vrm, side);
   if (!metrics) return null;
 
-  const reachPenalty = Math.abs(metrics.reachRatio - T_POSE_TARGET_REACH_RATIO) * 1.4;
-  const handDropPenalty = Math.abs(metrics.handDropRatio - T_POSE_TARGET_HAND_DROP_RATIO) * 2.2;
-  const lowerArmDropPenalty = Math.abs(metrics.lowerArmDropRatio - T_POSE_TARGET_LOWER_ARM_DROP_RATIO) * 1.6;
-  const raisedHandPenalty = metrics.handDropRatio < 0.4 ? 1.4 : 0;
-  const raisedElbowPenalty = metrics.lowerArmDropRatio < 0.2 ? 1.1 : 0;
+  const reachPenalty = Math.abs(metrics.reachRatio - T_POSE_TARGET_REACH_RATIO) * 1.6;
+  const handDropPenalty = Math.abs(metrics.handDropRatio - T_POSE_TARGET_HAND_DROP_RATIO) * 2.3;
+  const lowerArmDropPenalty = Math.abs(metrics.lowerArmDropRatio - T_POSE_TARGET_LOWER_ARM_DROP_RATIO) * 1.9;
+  const handOutPenalty = Math.abs(metrics.handOutRatio - T_POSE_TARGET_HAND_OUT_RATIO) * 2.9;
+  const lowerArmOutPenalty = Math.abs(metrics.lowerArmOutRatio - T_POSE_TARGET_LOWER_ARM_OUT_RATIO) * 2.5;
+  const raisedHandPenalty = metrics.handDropRatio < 0.55 ? 1.6 : 0;
+  const raisedElbowPenalty = metrics.lowerArmDropRatio < 0.3 ? 1.2 : 0;
+  const tooWideHandPenalty = metrics.handOutRatio > 1.45 ? (metrics.handOutRatio - 1.45) * 3.6 : 0;
+  const tooWideElbowPenalty = metrics.lowerArmOutRatio > 1.22 ? (metrics.lowerArmOutRatio - 1.22) * 3.1 : 0;
+  const handInwardPenalty = (1 - metrics.handInwardAlignment) * 0.85;
 
-  return reachPenalty + handDropPenalty + lowerArmDropPenalty + raisedHandPenalty + raisedElbowPenalty;
+  return reachPenalty
+    + handDropPenalty
+    + lowerArmDropPenalty
+    + handOutPenalty
+    + lowerArmOutPenalty
+    + raisedHandPenalty
+    + raisedElbowPenalty
+    + tooWideHandPenalty
+    + tooWideElbowPenalty
+    + handInwardPenalty;
 }
 
 function isArmHorizontalOrRaised(vrm: LoadedVRM, side: ArmSide): boolean {
@@ -219,35 +269,66 @@ function hasClearlyTPoseArms(vrm: LoadedVRM, rest: BoneMap): boolean {
     && isArmHorizontalOrRaised(vrm, "right");
 }
 
-function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): { upperArmDelta: number; shoulderDelta: number } | null {
+function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): {
+  upperArmDelta: number;
+  shoulderDelta: number;
+  lowerArmYDelta: number;
+  handYDelta: number;
+  handZDelta: number;
+} | null {
   const nodes = getArmNodes(vrm, side);
   const upperArm = nodes.upperArm;
   if (!upperArm) return null;
 
   const shoulder = nodes.shoulder;
+  const lowerArm = nodes.lowerArm;
+  const hand = nodes.hand;
   const originalUpperArmZ = upperArm.rotation.z;
   const originalShoulderZ = shoulder?.rotation.z;
+  const originalLowerArmY = lowerArm?.rotation.y;
+  const originalHandY = hand?.rotation.y;
+  const originalHandZ = hand?.rotation.z;
   const baseScore = getArmPoseScore(vrm, side);
   if (baseScore == null) return null;
 
   let bestUpperArmDelta: number | null = null;
   let bestShoulderDelta = 0;
+  let bestLowerArmYDelta = 0;
+  let bestHandYDelta = 0;
+  let bestHandZDelta = 0;
   let bestScore = baseScore;
 
   for (const magnitude of T_POSE_ARM_SETTLE_CANDIDATES) {
     for (const candidate of [-magnitude, magnitude]) {
       const shoulderDelta = getShoulderSettleDelta(candidate);
+      for (const lowerArmYDelta of T_POSE_LOWER_ARM_Y_CANDIDATES) {
+        for (const handYDelta of T_POSE_HAND_Y_CANDIDATES) {
+          for (const handZDelta of T_POSE_HAND_Z_CANDIDATES) {
+            upperArm.rotation.z = originalUpperArmZ + candidate;
+            if (shoulder && originalShoulderZ !== undefined) {
+              shoulder.rotation.z = originalShoulderZ + shoulderDelta;
+            }
+            if (lowerArm && originalLowerArmY !== undefined) {
+              lowerArm.rotation.y = originalLowerArmY + lowerArmYDelta;
+            }
+            if (hand && originalHandY !== undefined) {
+              hand.rotation.y = originalHandY + handYDelta;
+            }
+            if (hand && originalHandZ !== undefined) {
+              hand.rotation.z = originalHandZ + handZDelta;
+            }
 
-      upperArm.rotation.z = originalUpperArmZ + candidate;
-      if (shoulder && originalShoulderZ !== undefined) {
-        shoulder.rotation.z = originalShoulderZ + shoulderDelta;
-      }
-
-      const candidateScore = getArmPoseScore(vrm, side);
-      if (candidateScore != null && candidateScore < bestScore) {
-        bestScore = candidateScore;
-        bestUpperArmDelta = candidate;
-        bestShoulderDelta = shoulderDelta;
+            const candidateScore = getArmPoseScore(vrm, side);
+            if (candidateScore != null && candidateScore < bestScore) {
+              bestScore = candidateScore;
+              bestUpperArmDelta = candidate;
+              bestShoulderDelta = shoulderDelta;
+              bestLowerArmYDelta = lowerArmYDelta;
+              bestHandYDelta = handYDelta;
+              bestHandZDelta = handZDelta;
+            }
+          }
+        }
       }
     }
   }
@@ -256,10 +337,25 @@ function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): { upperArmDelta: numb
   if (shoulder && originalShoulderZ !== undefined) {
     shoulder.rotation.z = originalShoulderZ;
   }
+  if (lowerArm && originalLowerArmY !== undefined) {
+    lowerArm.rotation.y = originalLowerArmY;
+  }
+  if (hand && originalHandY !== undefined) {
+    hand.rotation.y = originalHandY;
+  }
+  if (hand && originalHandZ !== undefined) {
+    hand.rotation.z = originalHandZ;
+  }
   vrm.scene.updateMatrixWorld(true);
 
   return bestUpperArmDelta != null && bestScore <= baseScore - T_POSE_MIN_SCORE_IMPROVEMENT
-    ? { upperArmDelta: bestUpperArmDelta, shoulderDelta: bestShoulderDelta }
+    ? {
+      upperArmDelta: bestUpperArmDelta,
+      shoulderDelta: bestShoulderDelta,
+      lowerArmYDelta: bestLowerArmYDelta,
+      handYDelta: bestHandYDelta,
+      handZDelta: bestHandZDelta,
+    }
     : null;
 }
 
@@ -275,6 +371,13 @@ function applyTPoseSettle(vrm: LoadedVRM): void {
     upperArm.rotation.z += settle.upperArmDelta;
     if (nodes.shoulder) {
       nodes.shoulder.rotation.z += settle.shoulderDelta;
+    }
+    if (nodes.lowerArm) {
+      nodes.lowerArm.rotation.y += settle.lowerArmYDelta;
+    }
+    if (nodes.hand) {
+      nodes.hand.rotation.y += settle.handYDelta;
+      nodes.hand.rotation.z += settle.handZDelta;
     }
   }
 
