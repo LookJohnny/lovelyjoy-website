@@ -783,54 +783,50 @@ export default function MianmianKiosk() {
   useEffect(() => () => stopDetect(), [stopDetect]);
 
   // ═══════════════════════════════════════════════════════════════
-  //  JSX — "Cotton Candy Dreamscape" UI
+  //  JSX — TV Kiosk Mode (纯显示屏，无触摸)
   // ═══════════════════════════════════════════════════════════════
+
+  // 自动启动（电视不需要点击）
+  useEffect(() => {
+    if (loadState.kind === "ready" && !started) handleStart();
+  }, [loadState.kind, started, handleStart]);
+
+  // 自动开摄像头检测
+  useEffect(() => {
+    if (started && !detectEnabled) { ensureAudio(); startDetect(); }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [started]);
+
+  // 自动开麦克风
+  useEffect(() => {
+    if (started && micState === "off") {
+      (async () => { try { const s = await navigator.mediaDevices.getUserMedia({ audio: true }); s.getTracks().forEach(t => t.stop()); setMicState("on"); shouldListenRef.current = true; setTimeout(() => startRec(), 600); } catch {} })();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [started]);
+
+  // QR 自动关闭
+  useEffect(() => { if (showQR) { const t = setTimeout(() => setShowQR(false), 15000); return () => clearTimeout(t); } }, [showQR]);
+
   return (
     <div className="fixed inset-0 overflow-hidden z-50 mm-root">
-      {/* ── Aurora background: brand palette (sky blue + warm gold + soft pink) ── */}
+      {/* Aurora blobs */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <div className="mm-blob mm-blob-1" />
         <div className="mm-blob mm-blob-2" />
         <div className="mm-blob mm-blob-3" />
-        <div className="mm-blob mm-blob-4" />
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundRepeat: "repeat", backgroundSize: "200px" }} />
       </div>
 
-      {/* ── 3D canvas ── */}
-      <div ref={canvasContainerRef} className="absolute inset-0 transition-[right] duration-500 ease-out" style={{ right: started ? "400px" : "0" }} />
+      {/* 3D canvas: FULL SCREEN (no sidebar) */}
+      <div ref={canvasContainerRef} className="absolute inset-0" />
 
-      {/* ── Start overlay ── */}
-      {!started && loadState.kind !== "error" && (
-        <button type="button" onClick={handleStart} disabled={loadState.kind !== "ready"}
-          className="absolute inset-0 flex flex-col items-center justify-end pb-[18vh] gap-5 z-10 disabled:cursor-wait transition-opacity duration-300">
-          {loadState.kind === "loading" && (
-            <div className="flex flex-col items-center gap-4 mm-fade-in">
-              <div className="w-16 h-16 rounded-full border-[3px] border-[#B5DCF0] border-t-[#8ECAE6] animate-spin" />
-              <div className="text-[#5a3a42] font-medium text-sm tracking-wide">{Math.round(loadState.progress * 100)}%</div>
-            </div>
-          )}
-          {loadState.kind === "ready" && (
-            <div className="flex flex-col items-center gap-5 mm-fade-in">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#8ECAE6]/25 animate-ping" />
-                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#8ECAE6] to-[#6AB4D8] grid place-items-center shadow-[0_8px_40px_rgba(142,202,230,0.45)]">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">
-                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                    <line x1="12" y1="19" x2="12" y2="23" />
-                  </svg>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-[#3a2a30] font-bold text-2xl tracking-tight">你好，我是棉棉</div>
-                <div className="text-[#7a6a70] text-sm mt-1.5 tracking-wide">爱儿采 · 品牌形象大使</div>
-              </div>
-              <div className="px-7 py-2.5 rounded-full bg-gradient-to-r from-[#8ECAE6] to-[#6AB4D8] text-white text-sm font-semibold shadow-lg shadow-[#8ECAE6]/30 hover:shadow-xl hover:shadow-[#8ECAE6]/40 hover:scale-[1.03] transition-all duration-200">
-                开始对话
-              </div>
-            </div>
-          )}
-        </button>
+      {/* Loading (auto-starts, no button) */}
+      {!started && loadState.kind === "loading" && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 z-10">
+          <div className="w-20 h-20 rounded-full border-[3px] border-[#B5DCF0] border-t-[#8ECAE6] animate-spin" />
+          <div className="text-[#5D4037] text-xl font-medium">{Math.round(loadState.progress * 100)}%</div>
+        </div>
       )}
 
       {/* Error */}
@@ -845,150 +841,93 @@ export default function MianmianKiosk() {
         </div>
       )}
 
-      {/* ── Brand chip (top-left) ── */}
-      <div className="absolute top-5 left-5 z-10 pointer-events-none mm-fade-in">
-        <div className="bg-white/60 backdrop-blur-lg rounded-2xl px-4 py-2.5 shadow-sm border border-white/40">
-          <div className="text-[#5D4037] text-base font-bold tracking-tight">棉棉</div>
-          <div className="text-[10px] text-[#8ECAE6] tracking-widest uppercase font-semibold">AIERCAI · Brand Ambassador</div>
+      {/* ── Idle 品牌展示 (无对话时) ── */}
+      {started && !bubble && mode === "idle" && (
+        <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none mm-fade-in">
+          <div className="text-center pb-28">
+            <div className="text-[#5D4037]/50 text-3xl font-light tracking-wider">你好，我是棉棉</div>
+            <div className="text-[#8ECAE6]/70 text-xl mt-3 tracking-widest">和我说说话吧</div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Status (大字，电视能看清) ── */}
+      {started && (mode === "thinking" || mode === "listening") && (
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-10 mm-fade-in">
+          <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/60 backdrop-blur-xl shadow-lg">
+            <span className={`w-3 h-3 rounded-full ${mode === "thinking" ? "bg-amber-400" : "bg-emerald-400"} animate-pulse`} />
+            <span className="text-[#5D4037] text-xl font-medium">{mode === "thinking" ? "思考中…" : "正在听…"}</span>
+          </div>
+        </div>
+      )}
+
+      {/* ── Chat bubble: 大字体，底部居中 ── */}
+      {started && bubble && (
+        <div className="absolute left-[8%] right-[8%] bottom-24 z-10 mm-slide-up">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl px-10 py-7 shadow-2xl shadow-black/5 border border-white/50 max-w-4xl mx-auto">
+            <div className="text-[#3a2a30] text-[28px] leading-[1.6] font-medium text-center">{bubble}</div>
+            {followUp && <div className="text-[#8ECAE6] text-xl mt-3 text-center">{followUp}</div>}
+          </div>
+        </div>
+      )}
+
+      {/* ── Floating product cards (右上角) ── */}
+      {started && cards.length > 0 && (
+        <div className="absolute top-8 right-8 w-80 flex flex-col gap-3 z-10">
+          {cards.slice(0, 2).map((c, i) => (
+            <div key={c.id} className="mm-fade-in bg-white/80 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/50"
+              style={{ animationDelay: `${i * 150}ms` }}>
+              <div className="flex gap-3">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#F0F8FB] to-[#E8F4FA] grid place-items-center text-3xl shrink-0 overflow-hidden">
+                  {c.image ? <img src={c.image} alt={c.title} className="w-full h-full object-cover" /> : "🧸"}
+                </div>
+                <div className="flex-1">
+                  <div className="font-bold text-base text-[#3a2a30]">{c.title}</div>
+                  {c.price != null && <div className="text-[#DDB892] font-bold text-xl">¥{c.price}</div>}
+                </div>
+              </div>
+              {c.reason && <div className="text-sm text-[#6AB4D8] bg-[#E8F4FA] mt-2 px-3 py-1 rounded-lg">{c.reason}</div>}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* ── Brand bar: 底部常驻 ── */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
+        <div className="flex items-center justify-between px-10 py-5 bg-gradient-to-t from-black/8 to-transparent">
+          <div className="flex items-center gap-4">
+            <div className="text-[#5D4037]/60 text-xl font-bold tracking-tight">棉棉</div>
+            <div className="w-px h-6 bg-[#5D4037]/15" />
+            <div className="text-[#8ECAE6]/70 text-sm tracking-widest uppercase font-semibold">AIERCAI · Brand Ambassador</div>
+          </div>
+          {micState === "on" && (
+            <div className="flex items-center gap-2 text-[#5D4037]/40 text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-50">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              </svg>
+              <span>语音已开启</span>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* ── Status pill (only when active) ── */}
-      {started && (mode === "thinking" || mode === "speaking") && (
-        <div className="absolute top-5 right-[416px] z-10 mm-fade-in">
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/70 backdrop-blur-lg shadow-sm border border-white/40 text-xs font-medium">
-            <span className={`w-1.5 h-1.5 rounded-full ${mode === "thinking" ? "bg-amber-400" : "bg-[#8ECAE6]"} animate-pulse`} />
-            <span className="text-[#5a3a42]">{mode === "thinking" ? "思考中…" : "说话中…"}</span>
-          </div>
-        </div>
-      )}
-
-      {/* ── Chat bubble ── */}
-      {started && bubble && (
-        <div className="absolute left-6 right-[416px] bottom-28 z-10 mm-slide-up">
-          <div className="relative bg-white/85 backdrop-blur-xl rounded-[22px] px-5 py-4 shadow-lg shadow-[#8ECAE6]/8 border border-white/50">
-            <div className="text-[#3a2a30] text-[17px] leading-relaxed">{bubble}</div>
-            {followUp && <div className="text-[#a08088] text-sm mt-2 italic">{followUp}</div>}
-            {/* Tail */}
-            <div className="absolute -bottom-2 left-12 w-4 h-4 bg-white/85 border-b border-r border-white/50 rotate-45" />
-          </div>
-        </div>
-      )}
-
-      {/* ── Bottom controls ── */}
-      {started && (
-        <div className="absolute bottom-5 left-0 right-[400px] flex justify-center items-center gap-3 z-10">
-          {/* Mic button */}
-          <button type="button" onClick={handleMic}
-            className={`relative w-14 h-14 rounded-full grid place-items-center shadow-lg transition-all duration-200 ${
-              micState === "on"
-                ? "bg-gradient-to-br from-[#8ECAE6] to-[#6AB4D8] text-white shadow-[#8ECAE6]/30 scale-105"
-                : "bg-white/80 backdrop-blur-lg text-[#8ECAE6] hover:bg-white hover:scale-105 border border-white/60"
-            }`}>
-            {micState === "on" && <div className="absolute inset-0 rounded-full bg-[#8ECAE6]/30 animate-ping" />}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" className="relative">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-              <line x1="12" y1="19" x2="12" y2="23" />
-            </svg>
-          </button>
-          {/* Reset */}
-          <button type="button" onClick={() => { setBubble(""); setFollowUp(""); setCards([]); historyRef.current = []; sendChat("", { isWelcome: true }); }}
-            className="px-4 py-2 rounded-full bg-white/60 backdrop-blur-lg text-[#a08088] text-xs font-medium border border-white/40 hover:bg-white/80 transition">重置</button>
-        </div>
-      )}
-
-      {/* ── Detection (bottom-left) ── */}
-      {started && (
-        <div className="absolute bottom-5 left-5 z-10">
-          <div className="flex items-center gap-2 bg-white/60 backdrop-blur-lg rounded-xl px-3 py-1.5 border border-white/40 text-[11px] text-[#a08088]">
-            <span className={`w-1.5 h-1.5 rounded-full ${detectEnabled ? "bg-emerald-400" : "bg-gray-300"}`} />
-            <span>{detectStatus}</span>
-            <button type="button" onClick={() => { if (detectEnabled) stopDetect(); else { ensureAudio(); startDetect(); } }}
-              className={`px-2 py-0.5 rounded-md text-[10px] font-medium transition ${detectEnabled ? "bg-[#8ECAE6] text-white" : "bg-[#8ECAE6]/15 text-[#6AB4D8] hover:bg-[#8ECAE6]/25"}`}>
-              {detectEnabled ? "关闭" : "自动迎宾"}
-            </button>
-          </div>
-        </div>
-      )}
-      {detectEnabled && (
-        <div className="absolute bottom-[52px] left-5 w-28 h-20 rounded-xl overflow-hidden shadow-lg border-2 border-white/40 z-10">
-          <video ref={camVideoRef} autoPlay muted playsInline className="w-full h-full object-cover" />
-        </div>
-      )}
-
-      {/* ── Right sidebar (glassmorphism) ── */}
-      {started && (
-        <aside className="absolute top-0 right-0 bottom-0 w-[400px] z-10 mm-slide-left"
-          style={{ background: "linear-gradient(180deg, rgba(245,237,224,0.92) 0%, rgba(232,244,250,0.95) 100%)", backdropFilter: "blur(24px) saturate(1.4)", borderLeft: "1px solid rgba(142,202,230,0.25)" }}>
-          <div className="h-full overflow-y-auto px-6 py-6">
-            {/* Section: Quick questions */}
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#8ECAE6] to-[#B5DCF0]" />
-                <h2 className="text-xs font-bold text-[#8a7178] tracking-wider uppercase">试试这样问</h2>
-              </div>
-              <div className="grid grid-cols-2 gap-2.5">
-                {QUICK_QUESTIONS.map((q) => (
-                  <button key={q.label} type="button" onClick={() => sendChat(q.q)}
-                    className="group bg-white/70 backdrop-blur-sm text-[#3a2a30] rounded-2xl px-4 py-3 text-sm text-left border border-[#E8F4FA]/80 hover:bg-white hover:shadow-md hover:shadow-[#8ECAE6]/10 hover:border-[#8ECAE6]/40 hover:scale-[1.02] transition-all duration-200">
-                    <span className="group-hover:text-[#6AB4D8] transition-colors">{q.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Section: Product cards */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#DDB892] to-[#E8D0B4]" />
-                <h2 className="text-xs font-bold text-[#8a7178] tracking-wider uppercase">推荐商品</h2>
-              </div>
-              {cards.length > 0 ? (
-                <div className="space-y-3">
-                  {cards.slice(0, 3).map((c, i) => (
-                    <div key={c.id} className="mm-fade-in bg-white/80 backdrop-blur-sm border border-[#E8F4FA]/80 rounded-2xl p-3.5 flex gap-3.5 hover:shadow-md hover:shadow-[#8ECAE6]/6 transition-all duration-200"
-                      style={{ animationDelay: `${i * 100}ms` }}>
-                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#F0F8FB] to-[#E8F4FA] grid place-items-center text-2xl shrink-0 overflow-hidden shadow-inner">
-                        {c.image ? <img src={c.image} alt={c.title} className="w-full h-full object-cover" /> : "🧸"}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="font-bold text-sm text-[#3a2a30] leading-snug">{c.title}</div>
-                        {c.price != null && <div className="text-[#DDB892] font-bold text-base mt-0.5">¥{c.price}</div>}
-                        {c.tagline && <div className="text-[10px] text-[#a08088] mt-1 leading-relaxed">{c.tagline}</div>}
-                        {c.reason && (
-                          <div className="inline-block text-[10px] text-[#6AB4D8] bg-[#E8F4FA] mt-1.5 px-2.5 py-0.5 rounded-full font-medium">{c.reason}</div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-10">
-                  <div className="text-3xl mb-3">🧸</div>
-                  <div className="text-[#a08088] text-sm leading-relaxed">和我聊几句<br />我会推荐最合适的款式~</div>
-                </div>
-              )}
-            </div>
-          </div>
-        </aside>
-      )}
-
-      {/* ── QR Modal ── */}
+      {/* ── QR (大尺寸，15秒自动关闭) ── */}
       {showQR && (
-        <div className="fixed inset-0 bg-black/30 grid place-items-center z-[60] backdrop-blur-sm" onClick={() => setShowQR(false)}>
-          <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-7 max-w-sm shadow-2xl text-center border border-white/60 mm-scale-in" onClick={e => e.stopPropagation()}>
-            <h3 className="text-lg font-bold text-[#3a2a30] mb-4">扫码加微信</h3>
-            <div className="w-52 h-52 mx-auto rounded-2xl border-2 border-dashed border-[#B5DCF0] bg-[#F0F8FB] grid place-items-center">
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent("https://aiercai.example.com/wechat")}`} width={200} height={200} alt="QR" className="rounded-lg" />
+        <div className="fixed inset-0 bg-black/40 grid place-items-center z-[60] backdrop-blur-sm">
+          <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-10 shadow-2xl text-center mm-scale-in">
+            <h3 className="text-2xl font-bold text-[#3a2a30] mb-5">扫码关注爱儿采</h3>
+            <div className="w-64 h-64 mx-auto rounded-2xl border-2 border-dashed border-[#B5DCF0] bg-[#F0F8FB] grid place-items-center">
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent("https://aiercai.example.com/wechat")}`} width={240} height={240} alt="QR" className="rounded-lg" />
             </div>
-            <p className="text-[#a08088] text-xs mt-3">领取 ¥20 新客券</p>
-            <button type="button" onClick={() => setShowQR(false)}
-              className="mt-4 w-full py-2.5 bg-gradient-to-r from-[#8ECAE6] to-[#6AB4D8] text-white rounded-xl text-sm font-semibold">好的</button>
+            <p className="text-[#8a7178] text-lg mt-4">用微信扫一扫</p>
           </div>
         </div>
       )}
       {showPhoneForm && <PhoneForm onClose={() => setShowPhoneForm(false)} />}
+
+      {/* Hidden camera for detection */}
+      <video ref={camVideoRef} autoPlay muted playsInline className="hidden" />
 
       {/* ── Styles: blobs, animations, responsive ── */}
       <style jsx>{`
@@ -1022,12 +961,7 @@ export default function MianmianKiosk() {
           bottom: -25%; left: 15%;
           animation: mm-drift3 32s ease-in-out infinite;
         }
-        .mm-blob-4 {
-          width: 40vmax; height: 40vmax;
-          background: radial-gradient(circle, #B5DCF0 0%, #8ECAE6 100%);
-          bottom: -10%; right: 10%;
-          animation: mm-drift4 40s ease-in-out infinite;
-        }
+        /* blob-4 removed for TV kiosk (3 is enough) */
 
         @keyframes mm-drift1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
@@ -1057,9 +991,6 @@ export default function MianmianKiosk() {
         .mm-slide-up {
           animation: mm-slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
-        .mm-slide-left {
-          animation: mm-slideLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
         .mm-scale-in {
           animation: mm-scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
@@ -1072,10 +1003,6 @@ export default function MianmianKiosk() {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes mm-slideLeft {
-          from { opacity: 0; transform: translateX(40px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
         @keyframes mm-scaleIn {
           from { opacity: 0; transform: scale(0.92); }
           to { opacity: 1; transform: scale(1); }
@@ -1083,22 +1010,7 @@ export default function MianmianKiosk() {
 
         @media (prefers-reduced-motion: reduce) {
           .mm-blob { animation: none !important; }
-          .mm-fade-in, .mm-slide-up, .mm-slide-left, .mm-scale-in { animation: none !important; }
-        }
-
-        @media (max-width: 900px) {
-          aside {
-            position: fixed !important;
-            top: auto !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            max-height: 45vh !important;
-            border-left: none !important;
-            border-top: 1px solid rgba(255,210,224,0.5);
-            border-radius: 24px 24px 0 0;
-          }
+          .mm-fade-in, .mm-slide-up, .mm-scale-in { animation: none !important; }
         }
       `}</style>
     </div>
