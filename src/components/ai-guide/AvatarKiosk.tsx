@@ -218,12 +218,10 @@ export default function AvatarKiosk({ locale }: AvatarKioskProps) {
         if (!container) return;
 
         const scene = new THREE.Scene();
-        // Full-body framing — pulled back so head, body, hands and feet
-        // are all visible, since the character now plays VRMA dance clips
-        // that involve the whole body.
+        // Waist-up framing — professional brand ambassador shot.
         const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 30);
-        camera.position.set(0, 1.0, 3.2);
-        camera.lookAt(0, 0.85, 0);
+        camera.position.set(0, 1.42, 1.25);
+        camera.lookAt(0, 1.4, 0);
 
         const renderer = new THREE.WebGLRenderer({
           antialias: true,

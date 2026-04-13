@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * MianmianKiosk — 棉棉 · 毛绒玩具店 AI 导购全屏 Kiosk UI。
+ * MianmianKiosk — 棉棉 · 毛绒玩具品牌形象大使全屏 Kiosk UI。
  *
  * 基于 AvatarKiosk (Joy) 的 plan-then-infill 动画引擎改造：
  *   - 粉色/珊瑚主题 (#ff8aa8)
@@ -187,9 +187,10 @@ export default function MianmianKiosk() {
         if (!container) return;
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 30);
-        camera.position.set(0, 1.42, 1.25);
-        camera.lookAt(0, 1.4, 0);
+        // 半身到全身取景，留出手势空间
+        const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 30);
+        camera.position.set(0, 1.3, 2.6);
+        camera.lookAt(0, 1.2, 0);
 
         const renderer = new THREE.WebGLRenderer({
           antialias: true, alpha: true,
@@ -242,9 +243,9 @@ export default function MianmianKiosk() {
           });
         };
 
-        // Load VRM model (reuse Joy's avatar)
+        // Load 棉棉's own VRM model
         loader.load(
-          "/images/ai-guide/avatar.vrm",
+          "/images/mianmian/avatar.vrm",
           (gltf) => {
             if (cancelled) return;
             try {
@@ -265,20 +266,7 @@ export default function MianmianKiosk() {
                 (threeRef.current as any).lookAtTarget = target;
               }
 
-              // A-pose correction
-              const APOSE: Record<string, { x?: number; y?: number; z?: number }> = {
-                leftShoulder: { z: 0.06 }, rightShoulder: { z: -0.06 },
-                leftUpperArm: { z: 1.18 }, rightUpperArm: { z: -1.18 },
-                spine: { x: 0.02 },
-              };
-              for (const [name, delta] of Object.entries(APOSE)) {
-                const node = vrm.humanoid?.getNormalizedBoneNode(name);
-                if (!node) continue;
-                if (delta.x !== undefined) node.rotation.x = delta.x;
-                if (delta.y !== undefined) node.rotation.y = delta.y;
-                if (delta.z !== undefined) node.rotation.z = delta.z;
-              }
-
+              // darkhair.vrm 使用模型自带的默认姿态（不需要 A-pose 矫正）
               const rest: Record<string, { x: number; y: number; z: number }> = {};
               for (const name of BONE_NAMES) {
                 const node = vrm.humanoid?.getNormalizedBoneNode(name);
@@ -288,34 +276,9 @@ export default function MianmianKiosk() {
               threeRef.current.vrm = vrm;
               setLoadState({ kind: "ready" });
 
-              // Load VRMA clips
-              (async () => {
-                const urls = [1, 2, 3, 4, 5, 6, 7].map((i) => `/images/ai-guide/VRMA_0${i}.vrma`);
-                const clips = await Promise.all(urls.map((u) => loadVRMA(u, vrm)));
-                if (cancelled) return;
-                const validClips = clips.filter((c): c is import("three").AnimationClip => c !== null);
-                if (validClips.length === 0) return;
-
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const mixer = new THREE.AnimationMixer(vrm.scene as any);
-                const actions = validClips.map((clip) => {
-                  const action = mixer.clipAction(clip);
-                  action.setLoop(THREE.LoopOnce, 1);
-                  action.clampWhenFinished = true;
-                  action.enabled = false;
-                  action.setEffectiveWeight(0);
-                  return action;
-                });
-                const first = actions[0];
-                first.reset(); first.enabled = true;
-                first.setEffectiveWeight(1); first.play();
-
-                threeRef.current.mixer = mixer;
-                threeRef.current.actions = actions;
-                threeRef.current.clipDurations = validClips.map((c) => c.duration);
-                threeRef.current.currentClipIdx = 0;
-                threeRef.current.clipStartedAt = elapsedGlobal;
-              })();
+              // 棉棉不用 VRMA 舞蹈动画（那些是跳舞/表演动作，不适合店员）
+              // 用 procedural idle（呼吸、身体微摆、头部微动）更自然
+              console.log("[mianmian] using procedural idle (no VRMA dance clips)");
             } catch (err) {
               setLoadState({ kind: "error", message: `VRM parse: ${(err as Error).message}` });
             }
@@ -910,7 +873,7 @@ export default function MianmianKiosk() {
                 </svg>
               </div>
               <div className="text-[#3a2a30] font-bold text-2xl">棉棉</div>
-              <div className="text-[#8a7178] text-sm">乐芭迪 · 毛绒玩具店智能导购</div>
+              <div className="text-[#8a7178] text-sm">爱儿采 · 毛绒玩具品牌形象大使</div>
               <div className="mt-2 px-5 py-2 rounded-full bg-[#ff8aa8] text-white text-sm font-semibold shadow">开始对话</div>
             </>
           )}
@@ -931,7 +894,7 @@ export default function MianmianKiosk() {
       {/* Brand chip */}
       <div className="absolute top-4 left-4 pointer-events-none">
         <div className="text-[#ff8aa8] text-lg font-bold">棉棉</div>
-        <div className="text-xs text-[#8a7178]">乐芭迪 · 毛绒玩具店</div>
+        <div className="text-xs text-[#8a7178]">爱儿采 · 毛绒玩具店</div>
       </div>
 
       {/* Status pill */}
@@ -1025,7 +988,7 @@ export default function MianmianKiosk() {
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl text-center" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-lg font-bold text-[#3a2a30] mb-3">扫码加店长微信</h3>
             <div className="w-56 h-56 mx-auto rounded-2xl border-2 border-dashed border-[#ffd6e0] bg-[#fff5f7] grid place-items-center">
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent("https://lebadi.example.com/wechat")}`} width={220} height={220} alt="QR" />
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent("https://aiercai.example.com/wechat")}`} width={220} height={220} alt="QR" />
             </div>
             <p className="text-[#8a7178] text-xs mt-2">领取 ¥20 新客券</p>
             <button type="button" onClick={() => setShowQR(false)} className="mt-4 px-6 py-2 bg-[#ff8aa8] text-white rounded-lg text-sm font-semibold">好的</button>
