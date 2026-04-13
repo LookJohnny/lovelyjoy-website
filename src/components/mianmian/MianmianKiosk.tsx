@@ -932,56 +932,50 @@ export default function MianmianKiosk() {
       {/* ── Styles: blobs, animations, responsive ── */}
       <style jsx>{`
         .mm-root {
-          background: linear-gradient(145deg, #F5EDE0 0%, #E8F4FA 40%, #FFF3E8 70%, #F0F8FB 100%);
+          background: linear-gradient(135deg, #FFE8D4 0%, #E8F4FA 50%, #FFD9E4 100%);
         }
 
-        /* Aurora blobs — brand palette (sky blue + warm gold + soft pink accent) */
+        /* Aurora blobs — warm dreamy palette (matches Joy's proven look) */
         .mm-blob {
           position: absolute;
           border-radius: 50%;
-          filter: blur(110px);
-          opacity: 0.55;
+          filter: blur(120px);
+          opacity: 0.85;
           will-change: transform;
         }
         .mm-blob-1 {
-          width: 50vmax; height: 50vmax;
-          background: radial-gradient(circle, #8ECAE6 0%, #6AB4D8 100%);
-          top: -20%; left: -15%;
-          animation: mm-drift1 28s ease-in-out infinite;
+          width: 60vmax; height: 60vmax;
+          background: #8ECAE6;
+          top: -15%; left: -20%;
+          animation: mm-drift1 32s ease-in-out infinite;
         }
         .mm-blob-2 {
-          width: 45vmax; height: 45vmax;
-          background: radial-gradient(circle, #DDB892 0%, #C9A87C 100%);
-          top: -5%; right: -10%;
-          animation: mm-drift2 36s ease-in-out infinite;
+          width: 55vmax; height: 55vmax;
+          background: #FFB494;
+          top: -10%; right: -20%;
+          animation: mm-drift2 40s ease-in-out infinite;
         }
         .mm-blob-3 {
-          width: 48vmax; height: 48vmax;
-          background: radial-gradient(circle, #FFD9E4 0%, #FFAEC9 100%);
-          bottom: -25%; left: 15%;
-          animation: mm-drift3 32s ease-in-out infinite;
+          width: 58vmax; height: 58vmax;
+          background: #FBD5E1;
+          bottom: -25%; left: 10%;
+          animation: mm-drift3 36s ease-in-out infinite;
         }
-        /* blob-4 removed for TV kiosk (3 is enough) */
 
         @keyframes mm-drift1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(8vw, 6vh) scale(1.06); }
-          66% { transform: translate(-4vw, 10vh) scale(0.95); }
+          33%      { transform: translate(12vw, 8vh) scale(1.08); }
+          66%      { transform: translate(-6vw, 14vh) scale(0.95); }
         }
         @keyframes mm-drift2 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(-10vw, 8vh) scale(1.04); }
-          66% { transform: translate(-5vw, -4vh) scale(0.94); }
+          33%      { transform: translate(-15vw, 10vh) scale(1.05); }
+          66%      { transform: translate(-8vw, -6vh) scale(0.92); }
         }
         @keyframes mm-drift3 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(6vw, -8vh) scale(1.03); }
-          66% { transform: translate(12vw, 4vh) scale(0.97); }
-        }
-        @keyframes mm-drift4 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(-8vw, -10vh) scale(1.05); }
-          66% { transform: translate(3vw, -3vh) scale(0.93); }
+          33%      { transform: translate(8vw, -10vh) scale(1.04); }
+          66%      { transform: translate(16vw, 6vh) scale(0.98); }
         }
 
         /* Entrance animations */
