@@ -35,6 +35,7 @@ type BoneName = (typeof BONE_NAMES)[number];
 type BoneRotation = { x: number; y: number; z: number };
 type BoneMap = Partial<Record<BoneName, BoneRotation>>;
 type LoadedVRM = import("@pixiv/three-vrm").VRM;
+type ArmSide = "left" | "right";
 interface SpeechRecognitionAlternativeLike { transcript?: string }
 interface SpeechRecognitionResultLike {
   isFinal?: boolean;
@@ -75,6 +76,8 @@ const ZERO_ROTATION: BoneRotation = { x: 0, y: 0, z: 0 };
 const T_POSE_Z_THRESHOLD = 0.15;
 const T_POSE_ARM_SETTLE_Z = 0.9;
 const T_POSE_SHOULDER_SETTLE_Z = 0.05;
+const T_POSE_HEIGHT_TOLERANCE = 0.02;
+const T_POSE_MIN_DROP = 0.05;
 const IDLE_MAX_DELTA = 0.05;
 const IDLE_LERP_SPEED = 8;
 
@@ -114,32 +117,109 @@ function snapshotRestPose(vrm: LoadedVRM): BoneMap {
   return rest;
 }
 
-function hasClearlyTPoseArms(rest: BoneMap): boolean {
+function getArmNodes(vrm: LoadedVRM, side: ArmSide): Partial<Record<"shoulder" | "upperArm" | "lowerArm" | "hand", import("three").Object3D | null>> {
+  const prefix = side === "left" ? "left" : "right";
+
+  return {
+    shoulder: vrm.humanoid?.getNormalizedBoneNode(`${prefix}Shoulder` as BoneName),
+    upperArm: vrm.humanoid?.getNormalizedBoneNode(`${prefix}UpperArm` as BoneName),
+    lowerArm: vrm.humanoid?.getNormalizedBoneNode(`${prefix}LowerArm` as BoneName),
+    hand: vrm.humanoid?.getNormalizedBoneNode(`${prefix}Hand` as BoneName),
+  };
+}
+
+function getWorldY(node: import("three").Object3D): number {
+  return node.getWorldPosition(node.position.clone()).y;
+}
+
+function getArmHeightScore(vrm: LoadedVRM, side: ArmSide): number | null {
+  const nodes = getArmNodes(vrm, side);
+  const shoulder = nodes.shoulder;
+  const lowerArm = nodes.lowerArm;
+  const hand = nodes.hand;
+
+  if (!shoulder || !lowerArm || !hand) return null;
+
+  vrm.scene.updateMatrixWorld(true);
+
+  const shoulderY = getWorldY(shoulder);
+  const lowerArmY = getWorldY(lowerArm);
+  const handY = getWorldY(hand);
+
+  return ((lowerArmY - shoulderY) + (handY - shoulderY)) * 0.5;
+}
+
+function isArmHorizontalOrRaised(vrm: LoadedVRM, side: ArmSide): boolean {
+  const heightScore = getArmHeightScore(vrm, side);
+  return heightScore != null && heightScore >= -T_POSE_HEIGHT_TOLERANCE;
+}
+
+function hasClearlyTPoseArms(vrm: LoadedVRM, rest: BoneMap): boolean {
   const leftUpperArm = rest.leftUpperArm;
   const rightUpperArm = rest.rightUpperArm;
 
   return leftUpperArm != null
     && rightUpperArm != null
     && Math.abs(leftUpperArm.z) <= T_POSE_Z_THRESHOLD
-    && Math.abs(rightUpperArm.z) <= T_POSE_Z_THRESHOLD;
+    && Math.abs(rightUpperArm.z) <= T_POSE_Z_THRESHOLD
+    && isArmHorizontalOrRaised(vrm, "left")
+    && isArmHorizontalOrRaised(vrm, "right");
+}
+
+function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): number | null {
+  const nodes = getArmNodes(vrm, side);
+  const upperArm = nodes.upperArm;
+  if (!upperArm) return null;
+
+  const shoulder = nodes.shoulder;
+  const originalUpperArmZ = upperArm.rotation.z;
+  const originalShoulderZ = shoulder?.rotation.z;
+  const baseScore = getArmHeightScore(vrm, side);
+  if (baseScore == null) return null;
+
+  let bestDelta: number | null = null;
+  let bestScore = baseScore;
+
+  for (const candidate of [-T_POSE_ARM_SETTLE_Z, T_POSE_ARM_SETTLE_Z]) {
+    upperArm.rotation.z = originalUpperArmZ + candidate;
+    if (shoulder && originalShoulderZ !== undefined) {
+      shoulder.rotation.z = originalShoulderZ + Math.sign(candidate) * T_POSE_SHOULDER_SETTLE_Z;
+    }
+
+    const candidateScore = getArmHeightScore(vrm, side);
+    if (candidateScore != null && candidateScore < bestScore) {
+      bestScore = candidateScore;
+      bestDelta = candidate;
+    }
+  }
+
+  upperArm.rotation.z = originalUpperArmZ;
+  if (shoulder && originalShoulderZ !== undefined) {
+    shoulder.rotation.z = originalShoulderZ;
+  }
+  vrm.scene.updateMatrixWorld(true);
+
+  return bestDelta != null && bestScore <= baseScore - T_POSE_MIN_DROP
+    ? bestDelta
+    : null;
 }
 
 function applyTPoseSettle(vrm: LoadedVRM): void {
-  const settle: Partial<Record<BoneName, Partial<BoneRotation>>> = {
-    leftShoulder: { z: T_POSE_SHOULDER_SETTLE_Z },
-    rightShoulder: { z: -T_POSE_SHOULDER_SETTLE_Z },
-    leftUpperArm: { z: T_POSE_ARM_SETTLE_Z },
-    rightUpperArm: { z: -T_POSE_ARM_SETTLE_Z },
-  };
+  for (const side of ["left", "right"] as const) {
+    const delta = chooseSettleDelta(vrm, side);
+    if (delta == null) continue;
 
-  for (const [name, delta] of Object.entries(settle) as Array<[BoneName, Partial<BoneRotation>]>) {
-    const node = vrm.humanoid?.getNormalizedBoneNode(name);
-    if (!node) continue;
+    const nodes = getArmNodes(vrm, side);
+    const upperArm = nodes.upperArm;
+    if (!upperArm) continue;
 
-    if (delta.x !== undefined) node.rotation.x += delta.x;
-    if (delta.y !== undefined) node.rotation.y += delta.y;
-    if (delta.z !== undefined) node.rotation.z += delta.z;
+    upperArm.rotation.z += delta;
+    if (nodes.shoulder) {
+      nodes.shoulder.rotation.z += Math.sign(delta) * T_POSE_SHOULDER_SETTLE_Z;
+    }
   }
+
+  vrm.scene.updateMatrixWorld(true);
 }
 
 function buildIdleLayer(elapsed: number, mode: Mode, speechAmplitude: number): BoneMap {
@@ -314,7 +394,7 @@ export default function MianmianKiosk() {
             }
 
             const loadedRest = snapshotRestPose(vrm);
-            if (hasClearlyTPoseArms(loadedRest)) {
+            if (hasClearlyTPoseArms(vrm, loadedRest)) {
               applyTPoseSettle(vrm);
             }
 
