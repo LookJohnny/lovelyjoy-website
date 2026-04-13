@@ -266,7 +266,22 @@ export default function MianmianKiosk() {
                 (threeRef.current as any).lookAtTarget = target;
               }
 
-              // darkhair.vrm 使用模型自带的默认姿态（不需要 A-pose 矫正）
+              // darkhair.vrm 默认是 T-pose（双臂展开），需要把手臂放下来
+              // 只调 upperArm 和 lowerArm，不动 shoulder/spine（不同模型那些容易出问题）
+              const APOSE: Record<string, { x?: number; y?: number; z?: number }> = {
+                leftUpperArm:  { z: 1.1 },    // 左臂放下
+                rightUpperArm: { z: -1.1 },   // 右臂放下
+                leftLowerArm:  { y: 0.15 },   // 左肘微弯
+                rightLowerArm: { y: -0.15 },  // 右肘微弯
+              };
+              for (const [name, delta] of Object.entries(APOSE)) {
+                const node = vrm.humanoid?.getNormalizedBoneNode(name);
+                if (!node) continue;
+                if (delta.x !== undefined) node.rotation.x += delta.x;
+                if (delta.y !== undefined) node.rotation.y += delta.y;
+                if (delta.z !== undefined) node.rotation.z += delta.z;
+              }
+
               const rest: Record<string, { x: number; y: number; z: number }> = {};
               for (const name of BONE_NAMES) {
                 const node = vrm.humanoid?.getNormalizedBoneNode(name);
