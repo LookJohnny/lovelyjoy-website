@@ -11,6 +11,7 @@
   "dependencies": {
     "@pixiv/three-vrm": "^3.5.1",
     "@pixiv/three-vrm-animation": "^3.5.1",
+    "@rive-app/react-canvas": "^4.28.0",
     "@types/three": "^0.183.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",

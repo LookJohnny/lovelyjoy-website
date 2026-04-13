@@ -7,6 +7,7 @@
       "dependencies": {
         "@pixiv/three-vrm": "^3.5.1",
         "@pixiv/three-vrm-animation": "^3.5.1",
+        "@rive-app/react-canvas": "^4.28.0",
         "@types/three": "^0.183.1",
         "clsx": "^2.1.1",
         "embla-carousel-react": "^8.6.0",
@@ -268,6 +269,10 @@
     "@pixiv/types-vrmc-vrm-1.0": ["@pixiv/types-vrmc-vrm-1.0@3.5.1", "", {}, "sha512-Ugf8Kv5SSORVf8i+P4i5O2iuMuyzKW6ZRvntWuGXFN6YO7Zx38Vn8zbGKtWTs+zR9dfHWdZixjWcW71Vy4NyVw=="],
 
     "@pixiv/types-vrmc-vrm-animation-1.0": ["@pixiv/types-vrmc-vrm-animation-1.0@3.5.1", "", { "dependencies": { "@pixiv/types-vrmc-vrm-1.0": "2.0.3" } }, "sha512-q5UqefIbJmxQg5fVDSQGe2p/zsD7OmhBLSxPseXohj17O7Ew/5gVKyDCFjh7XpGZtpX6Ydmpd2svSI9QACfyaw=="],
+
+    "@rive-app/canvas": ["@rive-app/canvas@2.37.1", "", {}, "sha512-Uw14b9vXD5g56ttUktlV+mXX1EOpAwqOoMS+DAVSs6EDoeaUYM4bRSKB1glDiOotqjshLSfNihua73mLPp10cQ=="],
+
+    "@rive-app/react-canvas": ["@rive-app/react-canvas@4.28.0", "", { "dependencies": { "@rive-app/canvas": "2.37.1" }, "peerDependencies": { "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0" } }, "sha512-NOCbzoyv6jA9fdGINC07+MXkc6vcX5rYyQQcRUdF5gXaNHN2TPjqom4eaXifaXgCDOvsX/BhckMvgsmBVDAamg=="],
 
     "@rtsao/scc": ["@rtsao/scc@1.1.0", "", {}, "sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g=="],
 
