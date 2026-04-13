@@ -152,7 +152,15 @@ export default function MianmianKiosk() {
             if (!vrm) throw new Error("vrm missing in userData");
             VRM.VRMUtils.removeUnnecessaryVertices(gltf.scene);
             VRM.VRMUtils.combineSkeletons(gltf.scene);
-            vrm.scene.rotation.y = Math.PI;
+            // VRM 0.x 面朝 -Z 需要翻转，VRM 1.0 面朝 +Z 不需要
+            // 检测方法：VRM 1.0 的 meta 有 metaVersion 字段
+            const isVRM1 = vrm.meta?.metaVersion === "1" || vrm.meta?.specVersion === "1.0";
+            if (!isVRM1) {
+              vrm.scene.rotation.y = Math.PI;
+              console.log("[mianmian] VRM 0.x → rotation.y = PI");
+            } else {
+              console.log("[mianmian] VRM 1.0 → no rotation needed");
+            }
             scene.add(vrm.scene);
 
             // Eye contact
@@ -164,16 +172,20 @@ export default function MianmianKiosk() {
               threeRef.current.lookAtTarget = target;
             }
 
-            // ─── Auto T-pose → A-pose correction ───
-            // Detect: if upperArm Z rotation is near 0 → model is in T-pose
-            // RPM/VRoid A-pose models have upperArm.z ≈ ±1.0~1.3, T-pose ≈ 0
+            // ─── T-pose → A-pose correction (only if needed) ───
+            // VRM normalized bones: T-pose has upperArm.z near 0
+            // A-pose (natural rest) has upperArm.z ≈ ±0.5~1.3
+            // Only correct if BOTH arms are clearly in T-pose (z near 0)
             const leftUA = vrm.humanoid?.getNormalizedBoneNode("leftUpperArm");
             const rightUA = vrm.humanoid?.getNormalizedBoneNode("rightUpperArm");
-            const isTPose = leftUA && rightUA && Math.abs(leftUA.rotation.z) < 0.3 && Math.abs(rightUA.rotation.z) < 0.3;
+            const leftZ = leftUA ? Math.abs(leftUA.rotation.z) : 999;
+            const rightZ = rightUA ? Math.abs(rightUA.rotation.z) : 999;
+            const isTPose = leftZ < 0.2 && rightZ < 0.2;
+
+            console.log(`[mianmian] arm Z: left=${leftZ.toFixed(2)} right=${rightZ.toFixed(2)} → ${isTPose ? "T-pose, correcting" : "A-pose, using as-is"}`);
 
             if (isTPose) {
-              console.log("[mianmian] T-pose detected → applying A-pose correction");
-              const corrections: Record<string, { x?: number; y?: number; z?: number }> = {
+              const corrections: Record<string, { z?: number; y?: number }> = {
                 leftUpperArm:  { z: 1.15 },
                 rightUpperArm: { z: -1.15 },
                 leftLowerArm:  { y: 0.12 },
@@ -182,12 +194,9 @@ export default function MianmianKiosk() {
               for (const [name, d] of Object.entries(corrections)) {
                 const node = vrm.humanoid?.getNormalizedBoneNode(name);
                 if (!node) continue;
-                if (d.x !== undefined) node.rotation.x += d.x;
-                if (d.y !== undefined) node.rotation.y += d.y;
                 if (d.z !== undefined) node.rotation.z += d.z;
+                if (d.y !== undefined) node.rotation.y += d.y;
               }
-            } else {
-              console.log("[mianmian] model already in A-pose, using as-is");
             }
 
             // Snapshot rest pose (works for any model)
@@ -216,6 +225,9 @@ export default function MianmianKiosk() {
         let elapsed = 0, blinkTimer = 0, blinkActive = 0, blinkDouble = 0;
         let nextGlanceAt = 4 + Math.random() * 3, glanceUntil = 0, glanceOff = { x: 0, y: 0 };
         let nextTiltAt = 8 + Math.random() * 7, tiltEndAt = 0, tilt = { x: 0, y: 0, z: 0 };
+        // Idle pose variation: 每 10-15 秒换一个微妙的站姿
+        let nextPoseAt = 10 + Math.random() * 5, poseEndAt = 0;
+        let idlePose = { hipShift: 0, spineYaw: 0, chestYaw: 0 };
         const gs: { name: string | null; startedAt: number; endAt: number; weight: number } = { name: null, startedAt: 0, endAt: 0, weight: 0 };
 
         const tick = () => {
@@ -227,31 +239,64 @@ export default function MianmianKiosk() {
           const t = elapsed, m = modeRef.current;
 
           // Procedural idle
-          const breath = Math.sin(t * 1.3) * 0.020;
-          const breathSh = Math.abs(Math.sin(t * 1.3)) * 0.012;
-          const sway = Math.sin(t * 0.42) * 0.008;
-          const hx = Math.sin(t * 0.57) * 0.010, hy = Math.sin(t * 0.49 + 0.7) * 0.014, hz = Math.sin(t * 0.73 + 1.4) * 0.008;
-          const armF = Math.sin(t * 1.3 + 0.3) * 0.006;
-          let leanX = 0, mhx = 0, mhy = 0, mhz = 0, bob = 0;
-          if (m === "listening") { leanX = 0.035; mhx = 0.02 + Math.sin(t * 0.9) * 0.008; }
-          else if (m === "thinking") { mhx = -0.05; mhy = 0.08; mhz = 0.05; }
-          else if (m === "speaking") { bob = Math.min(0.025, audioRef.current.amplitude * 0.08); mhx = Math.sin(t * 2.1) * 0.015; mhy = Math.sin(t * 1.7 + 0.5) * 0.012; }
+          // ── Enhanced idle: 更大幅度触发 spring bone 物理 ──
+          // 呼吸 (×2 幅度，让胸部起伏+头发晃动更明显)
+          const breath = Math.sin(t * 1.3) * 0.035;
+          const breathSh = Math.abs(Math.sin(t * 1.3)) * 0.018;
+          // 重心转移 (慢速左右偏移，像真人站立)
+          const weightShift = Math.sin(t * 0.25) * 0.018;
+          // 上身微扭 (spine/chest Y轴旋转，自然的身体语言)
+          const bodyTwist = Math.sin(t * 0.33 + 0.5) * 0.012;
+          // 身体侧摆 (×2)
+          const sway = Math.sin(t * 0.42) * 0.015;
+          // 头部运动 (×2 幅度，触发头发物理)
+          const hx = Math.sin(t * 0.57) * 0.022, hy = Math.sin(t * 0.49 + 0.7) * 0.028, hz = Math.sin(t * 0.73 + 1.4) * 0.016;
+          // 手臂自然浮动
+          const armF = Math.sin(t * 1.3 + 0.3) * 0.010;
+          // 手指微动 (让手不僵硬)
+          const fingerWiggle = Math.sin(t * 1.7) * 0.04;
 
-          // Random tilt
-          if (t > nextTiltAt && tiltEndAt === 0) { tiltEndAt = t + 2.5; tilt = { x: (Math.random() - 0.5) * 0.04, y: (Math.random() - 0.5) * 0.05, z: (Math.random() - 0.5) * 0.06 }; }
-          if (tiltEndAt > 0 && t > tiltEndAt) { tiltEndAt = 0; tilt = { x: 0, y: 0, z: 0 }; nextTiltAt = t + 8 + Math.random() * 7; }
+          let leanX = 0, mhx = 0, mhy = 0, mhz = 0, bob = 0;
+          if (m === "listening") {
+            leanX = 0.045;
+            mhx = 0.03 + Math.sin(t * 0.9) * 0.015;
+          } else if (m === "thinking") {
+            mhx = -0.06; mhy = 0.10; mhz = 0.06;
+          } else if (m === "speaking") {
+            // 说话时更大幅度的 head bob + 身体微动
+            bob = Math.min(0.04, audioRef.current.amplitude * 0.12);
+            mhx = Math.sin(t * 2.1) * 0.025;
+            mhy = Math.sin(t * 1.7 + 0.5) * 0.020;
+          }
+
+          // 随机偏头 (更大幅度)
+          if (t > nextTiltAt && tiltEndAt === 0) { tiltEndAt = t + 2.5; tilt = { x: (Math.random() - 0.5) * 0.07, y: (Math.random() - 0.5) * 0.08, z: (Math.random() - 0.5) * 0.10 }; }
+          if (tiltEndAt > 0 && t > tiltEndAt) { tiltEndAt = 0; tilt = { x: 0, y: 0, z: 0 }; nextTiltAt = t + 6 + Math.random() * 5; }
+
+          // Idle 姿态变化: 每 10-15s 换站姿 (重心偏左/偏右/微扭)
+          if (t > nextPoseAt && poseEndAt === 0) {
+            poseEndAt = t + 8 + Math.random() * 4;
+            idlePose = {
+              hipShift: (Math.random() - 0.5) * 0.03,
+              spineYaw: (Math.random() - 0.5) * 0.04,
+              chestYaw: (Math.random() - 0.5) * 0.03,
+            };
+          }
+          if (poseEndAt > 0 && t > poseEndAt) { poseEndAt = 0; idlePose = { hipShift: 0, spineYaw: 0, chestYaw: 0 }; nextPoseAt = t + 10 + Math.random() * 5; }
+          // 平滑过渡站姿
+          const poseBlend = poseEndAt > 0 ? Math.min(1, (t - (poseEndAt - 10)) / 1.5) : 0;
 
           const idle: Record<string, { x: number; y: number; z: number }> = {
-            hips: { x: 0, y: sway * 0.4, z: 0 },
-            spine: { x: leanX + breath * 0.2, y: sway * 0.3, z: 0 },
-            chest: { x: leanX * 0.5 + breath * 0.6, y: 0, z: sway * 0.2 },
-            upperChest: { x: breath * 0.4, y: 0, z: 0 },
-            neck: { x: hx * 0.3 + mhx * 0.3, y: hy * 0.3, z: 0 },
+            hips: { x: 0, y: sway * 0.5 + weightShift + idlePose.hipShift * poseBlend, z: 0 },
+            spine: { x: leanX + breath * 0.25, y: sway * 0.4 + bodyTwist + idlePose.spineYaw * poseBlend, z: 0 },
+            chest: { x: leanX * 0.5 + breath * 0.7, y: bodyTwist * 0.6 + idlePose.chestYaw * poseBlend, z: sway * 0.25 },
+            upperChest: { x: breath * 0.5, y: 0, z: 0 },
+            neck: { x: hx * 0.35 + mhx * 0.35, y: hy * 0.35, z: 0 },
             head: { x: hx + mhx + bob + tilt.x, y: hy + mhy + tilt.y, z: hz + mhz + tilt.z },
-            leftShoulder: { x: 0, y: 0, z: breathSh * 0.5 }, rightShoulder: { x: 0, y: 0, z: -breathSh * 0.5 },
+            leftShoulder: { x: 0, y: 0, z: breathSh * 0.6 }, rightShoulder: { x: 0, y: 0, z: -breathSh * 0.6 },
             leftUpperArm: { x: armF, y: 0, z: 0 }, rightUpperArm: { x: armF, y: 0, z: 0 },
             leftLowerArm: { x: 0, y: 0, z: 0 }, rightLowerArm: { x: 0, y: 0, z: 0 },
-            leftHand: { x: 0, y: 0, z: 0 }, rightHand: { x: 0, y: 0, z: 0 },
+            leftHand: { x: fingerWiggle * 0.3, y: 0, z: fingerWiggle * 0.2 }, rightHand: { x: -fingerWiggle * 0.3, y: 0, z: -fingerWiggle * 0.2 },
           };
 
           // Blinks
