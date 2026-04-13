@@ -5,8 +5,8 @@
  *
  * Three.js + VRM 方案，兼容任何标准 VRM 模型：
  *   - Ready Player Me、VRoid Studio、自制 VRM 均可
- *   - 自动检测 T-pose/A-pose 并矫正
- *   - Plan-then-infill 动画（emotion_arc + gesture_track）
+ *   - 运行时识别 VRM 0.x / 1.0 朝向
+ *   - 尊重模型自身 rest pose，仅在明显 T-pose 时做一次轻量下压
  *   - 多层 idle 动效（呼吸、眨眼、微动、saccade）
  *   - 多元音 lip sync（aa/ih/ou/ee/oh 循环）
  *   - Web Speech 语音输入
@@ -26,32 +26,57 @@ type VRMModule = typeof import("@pixiv/three-vrm");
 // ─── Config ───
 const VRM_PATH = "/images/mianmian/avatar.vrm";
 
-// ─── Procedural gesture poses (bone delta in radians, additive on rest) ───
-const POSES: Record<string, Record<string, { x?: number; y?: number; z?: number }>> = {
-  idle: {},
-  wave: { rightUpperArm: { z: -1.4, x: -0.3 }, rightLowerArm: { y: 1.2, x: -0.3 }, rightHand: { z: -0.3 }, head: { z: 0.06, y: -0.08 } },
-  nod: { head: { x: 0.3 }, neck: { x: 0.12 } },
-  shake_head: { head: { y: 0.4 }, neck: { y: 0.18 } },
-  point_left: { leftUpperArm: { x: -0.5, z: -0.4 }, leftLowerArm: { y: -0.6 }, head: { y: 0.3 } },
-  point_right: { rightUpperArm: { x: -0.5, z: 0.4 }, rightLowerArm: { y: 0.6 }, head: { y: -0.3 } },
-  think: { rightUpperArm: { x: -0.6, z: 0.2 }, rightLowerArm: { x: -1.8, y: 0.9 }, rightHand: { x: -0.2, y: 0.3 }, head: { x: 0.08, y: -0.12, z: 0.18 } },
-  celebrate: { leftUpperArm: { x: -0.5, z: -1.2 }, rightUpperArm: { x: -0.5, z: 1.2 }, leftLowerArm: { y: -0.4 }, rightLowerArm: { y: 0.4 }, head: { x: -0.12 } },
-  heart: { leftUpperArm: { x: -0.7, z: -0.6 }, rightUpperArm: { x: -0.7, z: 0.6 }, leftLowerArm: { x: -1.5, y: -0.6 }, rightLowerArm: { x: -1.5, y: 0.6 }, head: { x: 0.05, z: 0.05 } },
-  clap: { leftUpperArm: { x: -1.0, z: -0.5 }, rightUpperArm: { x: -1.0, z: 0.5 }, leftLowerArm: { x: -0.6, y: -0.5 }, rightLowerArm: { x: -0.6, y: 0.5 } },
-  bow: { spine: { x: 0.4 }, chest: { x: 0.18 }, neck: { x: 0.1 }, head: { x: 0.35 } },
-};
-
 const BONE_NAMES = [
   "hips", "spine", "chest", "upperChest", "neck", "head",
   "leftShoulder", "leftUpperArm", "leftLowerArm", "leftHand",
   "rightShoulder", "rightUpperArm", "rightLowerArm", "rightHand",
 ] as const;
+type BoneName = (typeof BONE_NAMES)[number];
+type BoneRotation = { x: number; y: number; z: number };
+type BoneMap = Partial<Record<BoneName, BoneRotation>>;
+type LoadedVRM = import("@pixiv/three-vrm").VRM;
+interface SpeechRecognitionAlternativeLike { transcript?: string }
+interface SpeechRecognitionResultLike {
+  isFinal?: boolean;
+  [index: number]: SpeechRecognitionAlternativeLike | undefined;
+}
+interface SpeechRecognitionEventLike {
+  results: ArrayLike<SpeechRecognitionResultLike>;
+}
+interface SpeechRecognitionErrorEventLike {
+  error?: string;
+}
+interface SpeechRecognitionLike {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEventLike) => void) | null;
+  onend: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
+interface SpeechRecognitionConstructorLike {
+  new (): SpeechRecognitionLike;
+}
+interface BrowserWindow extends Window {
+  webkitAudioContext?: typeof AudioContext;
+  SpeechRecognition?: SpeechRecognitionConstructorLike;
+  webkitSpeechRecognition?: SpeechRecognitionConstructorLike;
+}
 
 const EMOTION_TO_EXPR: Record<string, string> = {
   joy: "happy", excited: "happy", surprise: "surprised", curious: "surprised",
   relaxed: "relaxed", determined: "angry", embarrassed: "sad", sad: "sad", neutral: "neutral",
 };
 const ALL_EXPR = ["happy", "sad", "angry", "surprised", "relaxed", "neutral"];
+const VOWELS = ["aa", "ih", "ou", "ee", "oh"] as const;
+const ZERO_ROTATION: BoneRotation = { x: 0, y: 0, z: 0 };
+const T_POSE_Z_THRESHOLD = 0.15;
+const T_POSE_ARM_SETTLE_Z = 0.9;
+const T_POSE_SHOULDER_SETTLE_Z = 0.05;
+const IDLE_MAX_DELTA = 0.05;
+const IDLE_LERP_SPEED = 8;
 
 // ─── Quick questions ───
 const QUICK_QUESTIONS = [
@@ -69,18 +94,127 @@ type Mode = "idle" | "listening" | "thinking" | "speaking";
 type LoadState = { kind: "loading"; progress: number } | { kind: "ready" } | { kind: "error"; message: string };
 interface ChatHistoryItem { role: "user" | "assistant"; content: string }
 
+function clampIdleDelta(value: number): number {
+  return Math.max(-IDLE_MAX_DELTA, Math.min(IDLE_MAX_DELTA, value));
+}
+
+function snapshotRestPose(vrm: LoadedVRM): BoneMap {
+  const rest: BoneMap = {};
+
+  for (const name of BONE_NAMES) {
+    const node = vrm.humanoid?.getNormalizedBoneNode(name);
+    if (!node) continue;
+    rest[name] = {
+      x: node.rotation.x,
+      y: node.rotation.y,
+      z: node.rotation.z,
+    };
+  }
+
+  return rest;
+}
+
+function hasClearlyTPoseArms(rest: BoneMap): boolean {
+  const leftUpperArm = rest.leftUpperArm;
+  const rightUpperArm = rest.rightUpperArm;
+
+  return leftUpperArm != null
+    && rightUpperArm != null
+    && Math.abs(leftUpperArm.z) <= T_POSE_Z_THRESHOLD
+    && Math.abs(rightUpperArm.z) <= T_POSE_Z_THRESHOLD;
+}
+
+function applyTPoseSettle(vrm: LoadedVRM): void {
+  const settle: Partial<Record<BoneName, Partial<BoneRotation>>> = {
+    leftShoulder: { z: T_POSE_SHOULDER_SETTLE_Z },
+    rightShoulder: { z: -T_POSE_SHOULDER_SETTLE_Z },
+    leftUpperArm: { z: T_POSE_ARM_SETTLE_Z },
+    rightUpperArm: { z: -T_POSE_ARM_SETTLE_Z },
+  };
+
+  for (const [name, delta] of Object.entries(settle) as Array<[BoneName, Partial<BoneRotation>]>) {
+    const node = vrm.humanoid?.getNormalizedBoneNode(name);
+    if (!node) continue;
+
+    if (delta.x !== undefined) node.rotation.x += delta.x;
+    if (delta.y !== undefined) node.rotation.y += delta.y;
+    if (delta.z !== undefined) node.rotation.z += delta.z;
+  }
+}
+
+function buildIdleLayer(elapsed: number, mode: Mode, speechAmplitude: number): BoneMap {
+  const breath = Math.sin(elapsed * 1.2);
+  const chestBreath = Math.sin(elapsed * 1.2 + 0.45);
+  const upperChestBreath = Math.sin(elapsed * 1.2 + 0.9);
+  const headX = Math.sin(elapsed * 0.58) * 0.012;
+  const headY = Math.sin(elapsed * 0.46 + 0.7) * 0.018;
+  const headZ = Math.sin(elapsed * 0.52 + 1.2) * 0.012;
+  const speechBob = mode === "speaking" ? Math.min(0.008, speechAmplitude * 0.02) : 0;
+
+  let modeHeadX = 0;
+  let modeHeadY = 0;
+  let modeHeadZ = 0;
+  let modeHipsY = 0;
+
+  if (mode === "listening") {
+    modeHeadX = 0.006;
+    modeHipsY = 0.004;
+  } else if (mode === "thinking") {
+    modeHeadX = -0.008;
+    modeHeadY = 0.01;
+    modeHeadZ = 0.008;
+  }
+
+  return {
+    hips: {
+      x: 0,
+      y: clampIdleDelta(Math.sin(elapsed * 0.38 + 0.3) * 0.014 + modeHipsY),
+      z: 0,
+    },
+    spine: {
+      x: clampIdleDelta(breath * 0.012),
+      y: 0,
+      z: 0,
+    },
+    chest: {
+      x: clampIdleDelta(chestBreath * 0.018),
+      y: 0,
+      z: 0,
+    },
+    upperChest: {
+      x: clampIdleDelta(upperChestBreath * 0.008),
+      y: 0,
+      z: 0,
+    },
+    neck: {
+      x: clampIdleDelta(headX * 0.45 + modeHeadX * 0.35 + speechBob * 0.3),
+      y: clampIdleDelta(headY * 0.4 + modeHeadY * 0.35),
+      z: clampIdleDelta(headZ * 0.35 + modeHeadZ * 0.35),
+    },
+    head: {
+      x: clampIdleDelta(headX + modeHeadX + speechBob),
+      y: clampIdleDelta(headY + modeHeadY),
+      z: clampIdleDelta(headZ + modeHeadZ),
+    },
+  };
+}
+
 export default function MianmianKiosk() {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const threeRef = useRef<{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    renderer?: any; scene?: any; camera?: any; vrm?: any; lookAtTarget?: any;
-    rest: Record<string, { x: number; y: number; z: number }>;
-    rafId?: number; disposed: boolean;
+    renderer?: import("three").WebGLRenderer;
+    scene?: import("three").Scene;
+    camera?: import("three").PerspectiveCamera;
+    vrm?: LoadedVRM;
+    lookAtTarget?: import("three").Object3D;
+    rest: BoneMap;
+    rafId?: number;
+    disposed: boolean;
   }>({ rest: {}, disposed: false });
 
   const planRef = useRef<{ plan: MianmianPlan | null; startedAt: number; totalMs: number }>({ plan: null, startedAt: 0, totalMs: 0 });
   const audioRef = useRef<{ ctx: AudioContext | null; analyser: AnalyserNode | null; data: Uint8Array<ArrayBuffer> | null; amplitude: number }>({ ctx: null, analyser: null, data: null, amplitude: 0 });
-  const recognitionRef = useRef<unknown>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const shouldListenRef = useRef(false);
   const historyRef = useRef<ChatHistoryItem[]>([]);
 
@@ -111,6 +245,18 @@ export default function MianmianKiosk() {
   // ═══════════════════════════════════════════════════════════════
   useEffect(() => {
     let cancelled = false;
+    let removeResize: (() => void) | undefined;
+    let rendererInstance: import("three").WebGLRenderer | undefined;
+    let rafId: number | undefined;
+    const runtime = threeRef.current;
+
+    runtime.disposed = false;
+    runtime.rest = {};
+    runtime.lookAtTarget = undefined;
+    runtime.vrm = undefined;
+    runtime.renderer = undefined;
+    runtime.scene = undefined;
+    runtime.camera = undefined;
 
     (async () => {
       try {
@@ -129,13 +275,22 @@ export default function MianmianKiosk() {
         camera.lookAt(0, 1.25, 0);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: false, powerPreference: "high-performance" });
+        rendererInstance = renderer;
         renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.setClearColor(0x000000, 0);
         container.appendChild(renderer.domElement);
 
-        const resize = () => { const w = container.clientWidth, h = container.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / Math.max(1, h); camera.updateProjectionMatrix(); };
-        resize(); window.addEventListener("resize", resize);
+        const resize = () => {
+          const width = container.clientWidth;
+          const height = container.clientHeight;
+          renderer.setSize(width, height, false);
+          camera.aspect = width / Math.max(1, height);
+          camera.updateProjectionMatrix();
+        };
+        resize();
+        window.addEventListener("resize", resize);
+        removeResize = () => window.removeEventListener("resize", resize);
 
         scene.add(new THREE.AmbientLight(0xffffff, 0.9));
         const key = new THREE.DirectionalLight(0xfff0e8, 1.2); key.position.set(1, 2, 1); scene.add(key);
@@ -147,29 +302,35 @@ export default function MianmianKiosk() {
         loader.load(VRM_PATH, (gltf) => {
           if (cancelled) return;
           try {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const vrm = (gltf.userData as any).vrm;
+            const vrm = (gltf.userData as { vrm?: LoadedVRM }).vrm;
             if (!vrm) throw new Error("vrm missing in userData");
+
             VRM.VRMUtils.removeUnnecessaryVertices(gltf.scene);
             VRM.VRMUtils.combineSkeletons(gltf.scene);
-            // 不做任何旋转或骨骼矫正 — 先看模型原始状态
-            // 调试：打印模型所有信息帮助排查
-            console.log("[mianmian] VRM meta:", JSON.stringify(vrm.meta, null, 2));
-            console.log("[mianmian] scene rotation:", vrm.scene.rotation.toArray());
-            for (const bn of BONE_NAMES) {
-              const node = vrm.humanoid?.getNormalizedBoneNode(bn);
-              if (node) console.log(`[mianmian] bone ${bn}: x=${node.rotation.x.toFixed(3)} y=${node.rotation.y.toFixed(3)} z=${node.rotation.z.toFixed(3)}`);
+
+            vrm.scene.rotation.y = 0;
+            if (vrm.meta?.metaVersion === "0") {
+              VRM.VRMUtils.rotateVRM0(vrm);
             }
+
+            const loadedRest = snapshotRestPose(vrm);
+            if (hasClearlyTPoseArms(loadedRest)) {
+              applyTPoseSettle(vrm);
+            }
+
+            vrm.scene.updateMatrixWorld(true);
             scene.add(vrm.scene);
 
-            // Snapshot rest pose (works for any model)
-            const rest: Record<string, { x: number; y: number; z: number }> = {};
-            for (const name of BONE_NAMES) {
-              const node = vrm.humanoid?.getNormalizedBoneNode(name);
-              if (node) rest[name] = { x: node.rotation.x, y: node.rotation.y, z: node.rotation.z };
+            if (vrm.lookAt) {
+              const target = new THREE.Object3D();
+              target.position.copy(camera.position);
+              scene.add(target);
+              vrm.lookAt.target = target;
+              runtime.lookAtTarget = target;
             }
-            threeRef.current.rest = rest;
-            threeRef.current.vrm = vrm;
+
+            runtime.rest = snapshotRestPose(vrm);
+            runtime.vrm = vrm;
             setLoadState({ kind: "ready" });
           } catch (err) {
             setLoadState({ kind: "error", message: `VRM 解析失败: ${(err as Error).message}` });
@@ -179,32 +340,24 @@ export default function MianmianKiosk() {
         (err) => setLoadState({ kind: "error", message: `VRM 加载失败: ${(err as Error).message ?? "unknown"}` }),
         );
 
-        threeRef.current.renderer = renderer;
-        threeRef.current.scene = scene;
-        threeRef.current.camera = camera;
+        runtime.renderer = renderer;
+        runtime.scene = scene;
+        runtime.camera = camera;
 
         // ─── Animation tick ───
         const clock = new THREE.Clock();
         let elapsed = 0, blinkTimer = 0, blinkActive = 0, blinkDouble = 0;
         let nextGlanceAt = 4 + Math.random() * 3, glanceUntil = 0, glanceOff = { x: 0, y: 0 };
-        let nextTiltAt = 8 + Math.random() * 7, tiltEndAt = 0, tilt = { x: 0, y: 0, z: 0 };
-        // Idle pose variation: 每 10-15 秒换一个微妙的站姿
-        let nextPoseAt = 10 + Math.random() * 5, poseEndAt = 0;
-        let idlePose = { hipShift: 0, spineYaw: 0, chestYaw: 0 };
-        const gs: { name: string | null; startedAt: number; endAt: number; weight: number } = { name: null, startedAt: 0, endAt: 0, weight: 0 };
 
         const tick = () => {
-          if (threeRef.current.disposed) return;
+          if (runtime.disposed) return;
           const dt = clock.getDelta(); elapsed += dt;
-          const vrm = threeRef.current.vrm;
-          if (!vrm) { renderer.render(scene, camera); threeRef.current.rafId = requestAnimationFrame(tick); return; }
+          const vrm = runtime.vrm;
+          if (!vrm) { renderer.render(scene, camera); runtime.rafId = requestAnimationFrame(tick); return; }
 
           const t = elapsed, m = modeRef.current;
 
-          // Procedural idle
-          // ── 调试模式：所有 idle delta 清零，只看模型原始状态 + 眨眼 ──
-          const idle: Record<string, { x: number; y: number; z: number }> = {};
-          // 什么都不加，让模型保持加载时的原始姿态
+          const idle = buildIdleLayer(t, m, audioRef.current.amplitude);
 
           // Blinks
           blinkTimer += dt;
@@ -214,20 +367,19 @@ export default function MianmianKiosk() {
           else vrm.expressionManager?.setValue("blink", 0);
 
           // Saccade + glance
-          const lat = threeRef.current.lookAtTarget;
+          const lat = runtime.lookAtTarget;
           if (lat) {
             const sx = Math.sin(t * 0.83 + 2.1) * 0.06, sy = Math.sin(t * 0.67 + 0.4) * 0.03;
             if (t > nextGlanceAt && glanceUntil === 0) { glanceOff = { x: (Math.random() - 0.5) * 0.35, y: (Math.random() - 0.3) * 0.18 }; glanceUntil = t + 0.35 + Math.random() * 0.25; }
             let gx = 0, gy = 0;
             if (glanceUntil > 0) { if (t < glanceUntil) { const e = Math.max(0, 1 - Math.abs((t - (glanceUntil - 0.3)) / 0.3)); gx = glanceOff.x * e; gy = glanceOff.y * e; } else { glanceUntil = 0; nextGlanceAt = t + 4 + Math.random() * 4; } }
             let mgx = 0, mgy = 0; if (m === "thinking") { mgx = 0.2; mgy = 0.12; }
-            const cam = threeRef.current.camera;
-            lat.position.set(cam.position.x + sx + gx + mgx, cam.position.y + sy + gy + mgy, cam.position.z);
+            const cam = runtime.camera;
+            if (cam) lat.position.set(cam.position.x + sx + gx + mgx, cam.position.y + sy + gy + mgy, cam.position.z);
           }
 
-          // Plan-driven emotion + gesture + lip sync
+          // Plan-driven emotion + lip sync
           const cur = planRef.current.plan;
-          let targetGesture: string | null = null;
           const baseHappy = 0.19 + Math.sin(t * 0.94) * 0.05;
 
           if (cur) {
@@ -240,45 +392,47 @@ export default function MianmianKiosk() {
             for (const e of ALL_EXPR) { if (e !== expr && e !== "happy") vrm.expressionManager?.setValue(e, 0); }
             vrm.expressionManager?.setValue(expr === "happy" ? "happy" : expr, expr === "happy" ? Math.max(baseHappy, ci) : ci);
             if (expr !== "happy") vrm.expressionManager?.setValue("happy", baseHappy);
-            targetGesture = sampleGesture(cur.gesture_track, ep, total);
             const amp = audioRef.current.amplitude;
             const mouth = Math.min(0.45, amp * 1.8);
-            const vowels = ["aa", "ih", "ou", "ee", "oh"];
-            const vi = Math.floor(elapsed * 6) % vowels.length;
-            for (let i = 0; i < vowels.length; i++) vrm.expressionManager?.setValue(vowels[i], i === vi ? mouth : 0);
-            if (ep > total + 300) { for (const v of vowels) vrm.expressionManager?.setValue(v, 0); planRef.current.plan = null; }
+            const vi = Math.floor(elapsed * 6) % VOWELS.length;
+            for (let i = 0; i < VOWELS.length; i++) vrm.expressionManager?.setValue(VOWELS[i], i === vi ? mouth : 0);
+            if (ep > total + 300) { for (const v of VOWELS) vrm.expressionManager?.setValue(v, 0); planRef.current.plan = null; }
           } else {
-            for (const v of ["aa", "ih", "ou", "ee", "oh"]) vrm.expressionManager?.setValue(v, 0);
+            for (const v of VOWELS) vrm.expressionManager?.setValue(v, 0);
             vrm.expressionManager?.setValue("happy", baseHappy);
             for (const e of ALL_EXPR) { if (e !== "happy") vrm.expressionManager?.setValue(e, 0); }
           }
 
-          // Gesture weight
-          if (targetGesture && targetGesture !== gs.name) { gs.name = targetGesture; gs.startedAt = elapsed; gs.endAt = 0; }
-          else if (!targetGesture && gs.name && gs.endAt === 0) gs.endAt = elapsed;
-          let wt = 0;
-          if (gs.name) { const s = elapsed - gs.startedAt; if (gs.endAt === 0) wt = Math.min(1, s / 0.25); else { wt = Math.max(0, 1 - (elapsed - gs.endAt) / 0.4); if (wt <= 0) { gs.name = null; gs.endAt = 0; } } }
-          gs.weight += (wt - gs.weight) * (1 - Math.exp(-dt * 10));
-          const pose = gs.name ? POSES[gs.name] : null;
-          const gw = gs.weight;
+          const lerpRate = 1 - Math.exp(-dt * IDLE_LERP_SPEED);
+          for (const name of BONE_NAMES) {
+            const node = vrm.humanoid?.getNormalizedBoneNode(name);
+            const restBone = runtime.rest[name];
+            if (!node || !restBone) continue;
 
-          // 调试模式：不驱动任何骨骼，让模型保持原始姿态
-          // 只有眨眼和 vrm.update(dt) (spring bone 物理) 在运行
-          void idle; void pose; void gw;
+            const idleBone = idle[name] ?? ZERO_ROTATION;
+            const tx = restBone.x + idleBone.x;
+            const ty = restBone.y + idleBone.y;
+            const tz = restBone.z + idleBone.z;
+
+            node.rotation.x += (tx - node.rotation.x) * lerpRate;
+            node.rotation.y += (ty - node.rotation.y) * lerpRate;
+            node.rotation.z += (tz - node.rotation.z) * lerpRate;
+          }
 
           vrm.update(dt);
           renderer.render(scene, camera);
-          threeRef.current.rafId = requestAnimationFrame(tick);
+          rafId = requestAnimationFrame(tick);
+          runtime.rafId = rafId;
         };
         tick();
-        return () => { window.removeEventListener("resize", resize); };
       } catch (err) { setLoadState({ kind: "error", message: `init: ${(err as Error).message}` }); }
     })();
 
     return () => {
-      cancelled = true; threeRef.current.disposed = true;
-      if (threeRef.current.rafId) cancelAnimationFrame(threeRef.current.rafId);
-      const r = threeRef.current.renderer;
+      cancelled = true; runtime.disposed = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      removeResize?.();
+      const r = rendererInstance;
       if (r) { r.domElement?.parentNode?.removeChild(r.domElement); r.dispose?.(); }
     };
   }, []);
@@ -303,8 +457,9 @@ export default function MianmianKiosk() {
   // ═══════════════════════════════════════════════════════════════
   const ensureAudio = useCallback(() => {
     if (!audioRef.current.ctx) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const C = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
+      const browserWindow = window as BrowserWindow;
+      const C = window.AudioContext || browserWindow.webkitAudioContext;
+      if (!C) throw new Error("AudioContext is not available in this browser");
       const ctx = new C(); const an = ctx.createAnalyser(); an.fftSize = 256;
       audioRef.current = { ctx, analyser: an, data: new Uint8Array(new ArrayBuffer(an.frequencyBinCount)), amplitude: 0 };
     }
@@ -321,8 +476,8 @@ export default function MianmianKiosk() {
   }, [ensureAudio]);
 
   const startPlan = useCallback((plan: MianmianPlan, ms = 1500) => { planRef.current = { plan, startedAt: performance.now(), totalMs: ms }; }, []);
-  const startRec = useCallback(() => { try { (recognitionRef.current as any)?.start(); setMode(m => m === "thinking" || m === "speaking" ? m : "listening"); } catch {} }, []);
-  const stopRec = useCallback(() => { try { (recognitionRef.current as any)?.stop(); } catch {} }, []);
+  const startRec = useCallback(() => { try { recognitionRef.current?.start(); setMode(m => m === "thinking" || m === "speaking" ? m : "listening"); } catch {} }, []);
+  const stopRec = useCallback(() => { try { recognitionRef.current?.stop(); } catch {} }, []);
 
   const sendChat = useCallback(async (text: string, opts: { isWelcome?: boolean } = {}) => {
     if (!text.trim() && !opts.isWelcome) return;
@@ -345,19 +500,20 @@ export default function MianmianKiosk() {
 
   // Speech recognition
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition; if (!SR) return;
+    const browserWindow = window as BrowserWindow;
+    const SR = browserWindow.SpeechRecognition || browserWindow.webkitSpeechRecognition;
+    if (!SR) return;
     const rec = new SR(); rec.lang = "zh-CN"; rec.continuous = false; rec.interimResults = false;
-    rec.onresult = (e: any) => { const l = e.results[e.results.length - 1]; if (l?.isFinal) { const t = (l[0]?.transcript ?? "").trim(); if (t) sendChat(t); } };
-    rec.onerror = (e: any) => { if (e.error === "not-allowed") { shouldListenRef.current = false; setMicState("denied"); } };
-    rec.onend = () => { if (!shouldListenRef.current) { setMode(m => m === "thinking" || m === "speaking" ? m : "idle"); return; } setMode(m => { if (m === "thinking" || m === "speaking") return m; setTimeout(() => { if (shouldListenRef.current) try { (recognitionRef.current as any)?.start(); } catch {} }, 250); return "listening"; }); };
+    rec.onresult = (e: SpeechRecognitionEventLike) => { const l = e.results[e.results.length - 1]; if (l?.isFinal) { const t = (l[0]?.transcript ?? "").trim(); if (t) sendChat(t); } };
+    rec.onerror = (e: SpeechRecognitionErrorEventLike) => { if (e.error === "not-allowed") { shouldListenRef.current = false; setMicState("denied"); } };
+    rec.onend = () => { if (!shouldListenRef.current) { setMode(m => m === "thinking" || m === "speaking" ? m : "idle"); return; } setMode(m => { if (m === "thinking" || m === "speaking") return m; setTimeout(() => { if (shouldListenRef.current) try { recognitionRef.current?.start(); } catch {} }, 250); return "listening"; }); };
     recognitionRef.current = rec; return () => { try { rec.stop(); } catch {} recognitionRef.current = null; };
   }, [sendChat]);
 
   const handleStart = useCallback(async () => {
     if (started) return; setStarted(true); ensureAudio();
     try { await audioRef.current.ctx?.resume(); } catch {}
-    if (navigator.permissions?.query) { try { const s = await navigator.permissions.query({ name: "microphone" as any }); if (s.state === "granted") { shouldListenRef.current = true; setMicState("on"); setTimeout(() => startRec(), 600); } } catch {} }
+    if (navigator.permissions?.query) { try { const s = await navigator.permissions.query({ name: "microphone" as PermissionName }); if (s.state === "granted") { shouldListenRef.current = true; setMicState("on"); setTimeout(() => startRec(), 600); } } catch {} }
     await sendChat("", { isWelcome: true });
   }, [started, sendChat, startRec, ensureAudio]);
 
@@ -443,10 +599,6 @@ function sampleEmotion(arc: MianmianPlan["emotion_arc"]|undefined, r: number): {
   if (r <= arc[0].t) return arc[0]; if (r >= arc[arc.length-1].t) return arc[arc.length-1];
   for (let i = 0; i < arc.length-1; i++) { if (r >= arc[i].t && r < arc[i+1].t) { const a=arc[i],b=arc[i+1],u=(r-a.t)/Math.max(1e-6,b.t-a.t); return {emotion:u<0.5?a.emotion:b.emotion,intensity:a.intensity*(1-u)+b.intensity*u}; } }
   return arc[arc.length-1];
-}
-function sampleGesture(track: MianmianPlan["gesture_track"]|undefined, ms: number, total: number): string|null {
-  if (!track?.length) return null; let a: string|null=null;
-  for (const k of track) { const km=k.t*total, h=k.hold_ms||600; if (ms>=km-100&&ms<=km+h) a=k.gesture; } return a;
 }
 
 function PhoneForm({onClose}:{onClose:()=>void}) {
