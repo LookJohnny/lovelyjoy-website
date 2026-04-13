@@ -74,10 +74,14 @@ const ALL_EXPR = ["happy", "sad", "angry", "surprised", "relaxed", "neutral"];
 const VOWELS = ["aa", "ih", "ou", "ee", "oh"] as const;
 const ZERO_ROTATION: BoneRotation = { x: 0, y: 0, z: 0 };
 const T_POSE_Z_THRESHOLD = 0.15;
-const T_POSE_ARM_SETTLE_Z = 0.9;
-const T_POSE_SHOULDER_SETTLE_Z = 0.05;
+const T_POSE_ARM_SETTLE_CANDIDATES = [0.65, 0.85, 1.05, 1.2] as const;
+const T_POSE_SHOULDER_SETTLE_SCALE = 0.08;
+const T_POSE_MAX_SHOULDER_SETTLE_Z = 0.08;
 const T_POSE_HEIGHT_TOLERANCE = 0.02;
-const T_POSE_MIN_DROP = 0.05;
+const T_POSE_TARGET_HAND_DROP_RATIO = 0.72;
+const T_POSE_TARGET_REACH_RATIO = 0.52;
+const T_POSE_TARGET_LOWER_ARM_DROP_RATIO = 0.42;
+const T_POSE_MIN_SCORE_IMPROVEMENT = 0.15;
 const IDLE_MAX_DELTA = 0.05;
 const IDLE_LERP_SPEED = 8;
 
@@ -132,6 +136,10 @@ function getWorldY(node: import("three").Object3D): number {
   return node.getWorldPosition(node.position.clone()).y;
 }
 
+function getWorldPosition(node: import("three").Object3D) {
+  return node.getWorldPosition(node.position.clone());
+}
+
 function getArmHeightScore(vrm: LoadedVRM, side: ArmSide): number | null {
   const nodes = getArmNodes(vrm, side);
   const shoulder = nodes.shoulder;
@@ -147,6 +155,51 @@ function getArmHeightScore(vrm: LoadedVRM, side: ArmSide): number | null {
   const handY = getWorldY(hand);
 
   return ((lowerArmY - shoulderY) + (handY - shoulderY)) * 0.5;
+}
+
+function getShoulderSettleDelta(upperArmDelta: number): number {
+  return Math.sign(upperArmDelta) * Math.min(T_POSE_MAX_SHOULDER_SETTLE_Z, Math.abs(upperArmDelta) * T_POSE_SHOULDER_SETTLE_SCALE);
+}
+
+function getArmPoseMetrics(vrm: LoadedVRM, side: ArmSide): {
+  handDropRatio: number;
+  lowerArmDropRatio: number;
+  reachRatio: number;
+} | null {
+  const nodes = getArmNodes(vrm, side);
+  const shoulder = nodes.shoulder;
+  const lowerArm = nodes.lowerArm;
+  const hand = nodes.hand;
+
+  if (!shoulder || !lowerArm || !hand) return null;
+
+  vrm.scene.updateMatrixWorld(true);
+
+  const shoulderPos = getWorldPosition(shoulder);
+  const lowerArmPos = getWorldPosition(lowerArm);
+  const handPos = getWorldPosition(hand);
+  const handDx = handPos.x - shoulderPos.x;
+  const handDz = handPos.z - shoulderPos.z;
+  const armLength = Math.max(1e-4, shoulderPos.distanceTo(handPos));
+
+  return {
+    handDropRatio: (shoulderPos.y - handPos.y) / armLength,
+    lowerArmDropRatio: (shoulderPos.y - lowerArmPos.y) / armLength,
+    reachRatio: Math.hypot(handDx, handDz) / armLength,
+  };
+}
+
+function getArmPoseScore(vrm: LoadedVRM, side: ArmSide): number | null {
+  const metrics = getArmPoseMetrics(vrm, side);
+  if (!metrics) return null;
+
+  const reachPenalty = Math.abs(metrics.reachRatio - T_POSE_TARGET_REACH_RATIO) * 1.4;
+  const handDropPenalty = Math.abs(metrics.handDropRatio - T_POSE_TARGET_HAND_DROP_RATIO) * 2.2;
+  const lowerArmDropPenalty = Math.abs(metrics.lowerArmDropRatio - T_POSE_TARGET_LOWER_ARM_DROP_RATIO) * 1.6;
+  const raisedHandPenalty = metrics.handDropRatio < 0.4 ? 1.4 : 0;
+  const raisedElbowPenalty = metrics.lowerArmDropRatio < 0.2 ? 1.1 : 0;
+
+  return reachPenalty + handDropPenalty + lowerArmDropPenalty + raisedHandPenalty + raisedElbowPenalty;
 }
 
 function isArmHorizontalOrRaised(vrm: LoadedVRM, side: ArmSide): boolean {
@@ -166,7 +219,7 @@ function hasClearlyTPoseArms(vrm: LoadedVRM, rest: BoneMap): boolean {
     && isArmHorizontalOrRaised(vrm, "right");
 }
 
-function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): number | null {
+function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): { upperArmDelta: number; shoulderDelta: number } | null {
   const nodes = getArmNodes(vrm, side);
   const upperArm = nodes.upperArm;
   if (!upperArm) return null;
@@ -174,22 +227,28 @@ function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): number | null {
   const shoulder = nodes.shoulder;
   const originalUpperArmZ = upperArm.rotation.z;
   const originalShoulderZ = shoulder?.rotation.z;
-  const baseScore = getArmHeightScore(vrm, side);
+  const baseScore = getArmPoseScore(vrm, side);
   if (baseScore == null) return null;
 
-  let bestDelta: number | null = null;
+  let bestUpperArmDelta: number | null = null;
+  let bestShoulderDelta = 0;
   let bestScore = baseScore;
 
-  for (const candidate of [-T_POSE_ARM_SETTLE_Z, T_POSE_ARM_SETTLE_Z]) {
-    upperArm.rotation.z = originalUpperArmZ + candidate;
-    if (shoulder && originalShoulderZ !== undefined) {
-      shoulder.rotation.z = originalShoulderZ + Math.sign(candidate) * T_POSE_SHOULDER_SETTLE_Z;
-    }
+  for (const magnitude of T_POSE_ARM_SETTLE_CANDIDATES) {
+    for (const candidate of [-magnitude, magnitude]) {
+      const shoulderDelta = getShoulderSettleDelta(candidate);
 
-    const candidateScore = getArmHeightScore(vrm, side);
-    if (candidateScore != null && candidateScore < bestScore) {
-      bestScore = candidateScore;
-      bestDelta = candidate;
+      upperArm.rotation.z = originalUpperArmZ + candidate;
+      if (shoulder && originalShoulderZ !== undefined) {
+        shoulder.rotation.z = originalShoulderZ + shoulderDelta;
+      }
+
+      const candidateScore = getArmPoseScore(vrm, side);
+      if (candidateScore != null && candidateScore < bestScore) {
+        bestScore = candidateScore;
+        bestUpperArmDelta = candidate;
+        bestShoulderDelta = shoulderDelta;
+      }
     }
   }
 
@@ -199,23 +258,23 @@ function chooseSettleDelta(vrm: LoadedVRM, side: ArmSide): number | null {
   }
   vrm.scene.updateMatrixWorld(true);
 
-  return bestDelta != null && bestScore <= baseScore - T_POSE_MIN_DROP
-    ? bestDelta
+  return bestUpperArmDelta != null && bestScore <= baseScore - T_POSE_MIN_SCORE_IMPROVEMENT
+    ? { upperArmDelta: bestUpperArmDelta, shoulderDelta: bestShoulderDelta }
     : null;
 }
 
 function applyTPoseSettle(vrm: LoadedVRM): void {
   for (const side of ["left", "right"] as const) {
-    const delta = chooseSettleDelta(vrm, side);
-    if (delta == null) continue;
+    const settle = chooseSettleDelta(vrm, side);
+    if (settle == null) continue;
 
     const nodes = getArmNodes(vrm, side);
     const upperArm = nodes.upperArm;
     if (!upperArm) continue;
 
-    upperArm.rotation.z += delta;
+    upperArm.rotation.z += settle.upperArmDelta;
     if (nodes.shoulder) {
-      nodes.shoulder.rotation.z += Math.sign(delta) * T_POSE_SHOULDER_SETTLE_Z;
+      nodes.shoulder.rotation.z += settle.shoulderDelta;
     }
   }
 
