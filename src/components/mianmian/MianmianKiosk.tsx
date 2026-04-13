@@ -787,14 +787,13 @@ export default function MianmianKiosk() {
   // ═══════════════════════════════════════════════════════════════
   return (
     <div className="fixed inset-0 overflow-hidden z-50 mm-root">
-      {/* ── Aurora background: soft cotton-candy blobs ── */}
+      {/* ── Aurora background: brand palette (sky blue + warm gold + soft pink) ── */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <div className="mm-blob mm-blob-1" />
         <div className="mm-blob mm-blob-2" />
         <div className="mm-blob mm-blob-3" />
         <div className="mm-blob mm-blob-4" />
-        {/* Noise grain overlay for warmth */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundRepeat: "repeat", backgroundSize: "200px" }} />
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundRepeat: "repeat", backgroundSize: "200px" }} />
       </div>
 
       {/* ── 3D canvas ── */}
@@ -806,16 +805,15 @@ export default function MianmianKiosk() {
           className="absolute inset-0 flex flex-col items-center justify-end pb-[18vh] gap-5 z-10 disabled:cursor-wait transition-opacity duration-300">
           {loadState.kind === "loading" && (
             <div className="flex flex-col items-center gap-4 mm-fade-in">
-              <div className="w-16 h-16 rounded-full border-[3px] border-[#ffd6e0] border-t-[#ff8aa8] animate-spin" />
+              <div className="w-16 h-16 rounded-full border-[3px] border-[#B5DCF0] border-t-[#8ECAE6] animate-spin" />
               <div className="text-[#5a3a42] font-medium text-sm tracking-wide">{Math.round(loadState.progress * 100)}%</div>
             </div>
           )}
           {loadState.kind === "ready" && (
-            <div className="flex flex-col items-center gap-4 mm-fade-in">
-              {/* Pulsing mic orb */}
+            <div className="flex flex-col items-center gap-5 mm-fade-in">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#ff8aa8]/30 animate-ping" />
-                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#ff8aa8] to-[#f472b6] grid place-items-center shadow-[0_8px_40px_rgba(255,138,168,0.5)]">
+                <div className="absolute inset-0 rounded-full bg-[#8ECAE6]/25 animate-ping" />
+                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-[#8ECAE6] to-[#6AB4D8] grid place-items-center shadow-[0_8px_40px_rgba(142,202,230,0.45)]">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">
                     <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
                     <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
@@ -825,10 +823,10 @@ export default function MianmianKiosk() {
               </div>
               <div className="text-center">
                 <div className="text-[#3a2a30] font-bold text-2xl tracking-tight">你好，我是棉棉</div>
-                <div className="text-[#8a7178] text-sm mt-1">爱儿采毛绒玩具品牌形象大使</div>
+                <div className="text-[#7a6a70] text-sm mt-1.5 tracking-wide">爱儿采 · 品牌形象大使</div>
               </div>
-              <div className="px-7 py-2.5 rounded-full bg-gradient-to-r from-[#ff8aa8] to-[#f472b6] text-white text-sm font-semibold shadow-lg shadow-[#ff8aa8]/25 hover:shadow-xl hover:shadow-[#ff8aa8]/35 hover:scale-[1.03] transition-all duration-200">
-                点击开始对话
+              <div className="px-7 py-2.5 rounded-full bg-gradient-to-r from-[#8ECAE6] to-[#6AB4D8] text-white text-sm font-semibold shadow-lg shadow-[#8ECAE6]/30 hover:shadow-xl hover:shadow-[#8ECAE6]/40 hover:scale-[1.03] transition-all duration-200">
+                开始对话
               </div>
             </div>
           )}
@@ -842,7 +840,7 @@ export default function MianmianKiosk() {
             <div className="text-red-400 font-bold mb-2 text-lg">加载失败</div>
             <div className="text-sm text-[#5a3a42] leading-relaxed">{loadState.message}</div>
             <button type="button" onClick={() => window.location.reload()}
-              className="mt-5 w-full py-2.5 bg-gradient-to-r from-[#ff8aa8] to-[#f472b6] text-white rounded-xl text-sm font-semibold">重试</button>
+              className="mt-5 w-full py-2.5 bg-gradient-to-r from-[#8ECAE6] to-[#6AB4D8] text-white rounded-xl text-sm font-semibold">重试</button>
           </div>
         </div>
       )}
@@ -850,8 +848,8 @@ export default function MianmianKiosk() {
       {/* ── Brand chip (top-left) ── */}
       <div className="absolute top-5 left-5 z-10 pointer-events-none mm-fade-in">
         <div className="bg-white/60 backdrop-blur-lg rounded-2xl px-4 py-2.5 shadow-sm border border-white/40">
-          <div className="text-[#ff8aa8] text-base font-bold tracking-tight" style={{ fontFamily: "'Quicksand', system-ui, sans-serif" }}>棉棉</div>
-          <div className="text-[10px] text-[#a08088] tracking-widest uppercase">爱儿采 · Plush Toys</div>
+          <div className="text-[#5D4037] text-base font-bold tracking-tight">棉棉</div>
+          <div className="text-[10px] text-[#8ECAE6] tracking-widest uppercase font-semibold">AIERCAI · Brand Ambassador</div>
         </div>
       </div>
 
@@ -859,7 +857,7 @@ export default function MianmianKiosk() {
       {started && (mode === "thinking" || mode === "speaking") && (
         <div className="absolute top-5 right-[416px] z-10 mm-fade-in">
           <div className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/70 backdrop-blur-lg shadow-sm border border-white/40 text-xs font-medium">
-            <span className={`w-1.5 h-1.5 rounded-full ${mode === "thinking" ? "bg-amber-400" : "bg-[#ff8aa8]"} animate-pulse`} />
+            <span className={`w-1.5 h-1.5 rounded-full ${mode === "thinking" ? "bg-amber-400" : "bg-[#8ECAE6]"} animate-pulse`} />
             <span className="text-[#5a3a42]">{mode === "thinking" ? "思考中…" : "说话中…"}</span>
           </div>
         </div>
@@ -868,7 +866,7 @@ export default function MianmianKiosk() {
       {/* ── Chat bubble ── */}
       {started && bubble && (
         <div className="absolute left-6 right-[416px] bottom-28 z-10 mm-slide-up">
-          <div className="relative bg-white/85 backdrop-blur-xl rounded-[22px] px-5 py-4 shadow-lg shadow-[#ff8aa8]/8 border border-white/50">
+          <div className="relative bg-white/85 backdrop-blur-xl rounded-[22px] px-5 py-4 shadow-lg shadow-[#8ECAE6]/8 border border-white/50">
             <div className="text-[#3a2a30] text-[17px] leading-relaxed">{bubble}</div>
             {followUp && <div className="text-[#a08088] text-sm mt-2 italic">{followUp}</div>}
             {/* Tail */}
@@ -884,10 +882,10 @@ export default function MianmianKiosk() {
           <button type="button" onClick={handleMic}
             className={`relative w-14 h-14 rounded-full grid place-items-center shadow-lg transition-all duration-200 ${
               micState === "on"
-                ? "bg-gradient-to-br from-[#ff8aa8] to-[#f472b6] text-white shadow-[#ff8aa8]/30 scale-105"
-                : "bg-white/80 backdrop-blur-lg text-[#ff8aa8] hover:bg-white hover:scale-105 border border-white/60"
+                ? "bg-gradient-to-br from-[#8ECAE6] to-[#6AB4D8] text-white shadow-[#8ECAE6]/30 scale-105"
+                : "bg-white/80 backdrop-blur-lg text-[#8ECAE6] hover:bg-white hover:scale-105 border border-white/60"
             }`}>
-            {micState === "on" && <div className="absolute inset-0 rounded-full bg-[#ff8aa8]/30 animate-ping" />}
+            {micState === "on" && <div className="absolute inset-0 rounded-full bg-[#8ECAE6]/30 animate-ping" />}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" className="relative">
               <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
               <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
@@ -907,7 +905,7 @@ export default function MianmianKiosk() {
             <span className={`w-1.5 h-1.5 rounded-full ${detectEnabled ? "bg-emerald-400" : "bg-gray-300"}`} />
             <span>{detectStatus}</span>
             <button type="button" onClick={() => { if (detectEnabled) stopDetect(); else { ensureAudio(); startDetect(); } }}
-              className={`px-2 py-0.5 rounded-md text-[10px] font-medium transition ${detectEnabled ? "bg-[#ff8aa8] text-white" : "bg-[#ffd6e0]/60 text-[#ff8aa8] hover:bg-[#ffd6e0]"}`}>
+              className={`px-2 py-0.5 rounded-md text-[10px] font-medium transition ${detectEnabled ? "bg-[#8ECAE6] text-white" : "bg-[#8ECAE6]/15 text-[#6AB4D8] hover:bg-[#8ECAE6]/25"}`}>
               {detectEnabled ? "关闭" : "自动迎宾"}
             </button>
           </div>
@@ -922,19 +920,19 @@ export default function MianmianKiosk() {
       {/* ── Right sidebar (glassmorphism) ── */}
       {started && (
         <aside className="absolute top-0 right-0 bottom-0 w-[400px] z-10 mm-slide-left"
-          style={{ background: "linear-gradient(180deg, rgba(255,245,247,0.92) 0%, rgba(255,240,244,0.95) 100%)", backdropFilter: "blur(24px) saturate(1.4)", borderLeft: "1px solid rgba(255,210,224,0.5)" }}>
+          style={{ background: "linear-gradient(180deg, rgba(245,237,224,0.92) 0%, rgba(232,244,250,0.95) 100%)", backdropFilter: "blur(24px) saturate(1.4)", borderLeft: "1px solid rgba(142,202,230,0.25)" }}>
           <div className="h-full overflow-y-auto px-6 py-6">
             {/* Section: Quick questions */}
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#ff8aa8] to-[#ffc4d3]" />
+                <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#8ECAE6] to-[#B5DCF0]" />
                 <h2 className="text-xs font-bold text-[#8a7178] tracking-wider uppercase">试试这样问</h2>
               </div>
               <div className="grid grid-cols-2 gap-2.5">
                 {QUICK_QUESTIONS.map((q) => (
                   <button key={q.label} type="button" onClick={() => sendChat(q.q)}
-                    className="group bg-white/70 backdrop-blur-sm text-[#3a2a30] rounded-2xl px-4 py-3 text-sm text-left border border-[#ffe2eb]/60 hover:bg-white hover:shadow-md hover:shadow-[#ff8aa8]/8 hover:border-[#ffc4d3] hover:scale-[1.02] transition-all duration-200">
-                    <span className="group-hover:text-[#ff8aa8] transition-colors">{q.label}</span>
+                    className="group bg-white/70 backdrop-blur-sm text-[#3a2a30] rounded-2xl px-4 py-3 text-sm text-left border border-[#E8F4FA]/80 hover:bg-white hover:shadow-md hover:shadow-[#8ECAE6]/10 hover:border-[#8ECAE6]/40 hover:scale-[1.02] transition-all duration-200">
+                    <span className="group-hover:text-[#6AB4D8] transition-colors">{q.label}</span>
                   </button>
                 ))}
               </div>
@@ -943,23 +941,23 @@ export default function MianmianKiosk() {
             {/* Section: Product cards */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#ffc4d3] to-[#ffe2eb]" />
+                <div className="w-1 h-4 rounded-full bg-gradient-to-b from-[#DDB892] to-[#E8D0B4]" />
                 <h2 className="text-xs font-bold text-[#8a7178] tracking-wider uppercase">推荐商品</h2>
               </div>
               {cards.length > 0 ? (
                 <div className="space-y-3">
                   {cards.slice(0, 3).map((c, i) => (
-                    <div key={c.id} className="mm-fade-in bg-white/80 backdrop-blur-sm border border-[#ffe2eb]/60 rounded-2xl p-3.5 flex gap-3.5 hover:shadow-md hover:shadow-[#ff8aa8]/6 transition-all duration-200"
+                    <div key={c.id} className="mm-fade-in bg-white/80 backdrop-blur-sm border border-[#E8F4FA]/80 rounded-2xl p-3.5 flex gap-3.5 hover:shadow-md hover:shadow-[#8ECAE6]/6 transition-all duration-200"
                       style={{ animationDelay: `${i * 100}ms` }}>
-                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#fff0f4] to-[#ffe2eb] grid place-items-center text-2xl shrink-0 overflow-hidden shadow-inner">
+                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#F0F8FB] to-[#E8F4FA] grid place-items-center text-2xl shrink-0 overflow-hidden shadow-inner">
                         {c.image ? <img src={c.image} alt={c.title} className="w-full h-full object-cover" /> : "🧸"}
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="font-bold text-sm text-[#3a2a30] leading-snug">{c.title}</div>
-                        {c.price != null && <div className="text-[#ff8aa8] font-bold text-base mt-0.5">¥{c.price}</div>}
+                        {c.price != null && <div className="text-[#DDB892] font-bold text-base mt-0.5">¥{c.price}</div>}
                         {c.tagline && <div className="text-[10px] text-[#a08088] mt-1 leading-relaxed">{c.tagline}</div>}
                         {c.reason && (
-                          <div className="inline-block text-[10px] text-[#ff8aa8] bg-[#fff0f4] mt-1.5 px-2.5 py-0.5 rounded-full font-medium">{c.reason}</div>
+                          <div className="inline-block text-[10px] text-[#6AB4D8] bg-[#E8F4FA] mt-1.5 px-2.5 py-0.5 rounded-full font-medium">{c.reason}</div>
                         )}
                       </div>
                     </div>
@@ -981,12 +979,12 @@ export default function MianmianKiosk() {
         <div className="fixed inset-0 bg-black/30 grid place-items-center z-[60] backdrop-blur-sm" onClick={() => setShowQR(false)}>
           <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-7 max-w-sm shadow-2xl text-center border border-white/60 mm-scale-in" onClick={e => e.stopPropagation()}>
             <h3 className="text-lg font-bold text-[#3a2a30] mb-4">扫码加微信</h3>
-            <div className="w-52 h-52 mx-auto rounded-2xl border-2 border-dashed border-[#ffd6e0] bg-[#fff8fa] grid place-items-center">
+            <div className="w-52 h-52 mx-auto rounded-2xl border-2 border-dashed border-[#B5DCF0] bg-[#F0F8FB] grid place-items-center">
               <img src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent("https://aiercai.example.com/wechat")}`} width={200} height={200} alt="QR" className="rounded-lg" />
             </div>
             <p className="text-[#a08088] text-xs mt-3">领取 ¥20 新客券</p>
             <button type="button" onClick={() => setShowQR(false)}
-              className="mt-4 w-full py-2.5 bg-gradient-to-r from-[#ff8aa8] to-[#f472b6] text-white rounded-xl text-sm font-semibold">好的</button>
+              className="mt-4 w-full py-2.5 bg-gradient-to-r from-[#8ECAE6] to-[#6AB4D8] text-white rounded-xl text-sm font-semibold">好的</button>
           </div>
         </div>
       )}
@@ -995,38 +993,38 @@ export default function MianmianKiosk() {
       {/* ── Styles: blobs, animations, responsive ── */}
       <style jsx>{`
         .mm-root {
-          background: linear-gradient(145deg, #FFF5F7 0%, #FFF0F4 35%, #FFEEF0 60%, #FFF3E8 100%);
+          background: linear-gradient(145deg, #F5EDE0 0%, #E8F4FA 40%, #FFF3E8 70%, #F0F8FB 100%);
         }
 
-        /* Aurora blobs — cotton candy palette */
+        /* Aurora blobs — brand palette (sky blue + warm gold + soft pink accent) */
         .mm-blob {
           position: absolute;
           border-radius: 50%;
-          filter: blur(100px);
-          opacity: 0.6;
+          filter: blur(110px);
+          opacity: 0.55;
           will-change: transform;
         }
         .mm-blob-1 {
           width: 50vmax; height: 50vmax;
-          background: radial-gradient(circle, #FFB3C6 0%, #ff8aa8 100%);
+          background: radial-gradient(circle, #8ECAE6 0%, #6AB4D8 100%);
           top: -20%; left: -15%;
           animation: mm-drift1 28s ease-in-out infinite;
         }
         .mm-blob-2 {
           width: 45vmax; height: 45vmax;
-          background: radial-gradient(circle, #FFD6E0 0%, #FFAEC9 100%);
+          background: radial-gradient(circle, #DDB892 0%, #C9A87C 100%);
           top: -5%; right: -10%;
           animation: mm-drift2 36s ease-in-out infinite;
         }
         .mm-blob-3 {
           width: 48vmax; height: 48vmax;
-          background: radial-gradient(circle, #FFE8D4 0%, #FFDAB9 100%);
+          background: radial-gradient(circle, #FFD9E4 0%, #FFAEC9 100%);
           bottom: -25%; left: 15%;
           animation: mm-drift3 32s ease-in-out infinite;
         }
         .mm-blob-4 {
           width: 40vmax; height: 40vmax;
-          background: radial-gradient(circle, #E8D5F5 0%, #D4B6E8 100%);
+          background: radial-gradient(circle, #B5DCF0 0%, #8ECAE6 100%);
           bottom: -10%; right: 10%;
           animation: mm-drift4 40s ease-in-out infinite;
         }
@@ -1118,5 +1116,5 @@ function sampleEmotion(arc: MianmianPlan["emotion_arc"]|undefined, r: number): {
 function PhoneForm({onClose}:{onClose:()=>void}) {
   const [phone,setPhone]=useState(""); const [sub,setSub]=useState(false); const [done,setDone]=useState<null|"ok"|"err">(null);
   async function submit() { if (!/^1\d{10}$/.test(phone)) return; setSub(true); try { const r=await fetch("/api/mianmian/leads",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone,note:"新品到货通知"})}); const d=await r.json(); setDone(d.ok?"ok":"err"); if (d.ok) setTimeout(onClose,2000); } catch { setDone("err"); } finally { setSub(false); } }
-  return (<div className="fixed inset-0 bg-black/40 grid place-items-center z-[60] backdrop-blur-sm" onClick={onClose}><div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl" onClick={e=>e.stopPropagation()}><h2 className="text-xl font-bold text-[#3a2a30] mb-1">留个手机号</h2><p className="text-sm text-[#8a7178] mb-4">新品到货第一时间通知你~</p>{done==="ok"?<div className="text-center py-6 text-[#ff8aa8] font-semibold">收到！</div>:<><input type="tel" placeholder="138xxxxxxxx" maxLength={11} inputMode="numeric" value={phone} onChange={e=>setPhone(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#fff5f7] border border-[#ffd6e0] text-center text-lg focus:outline-none focus:ring-2 focus:ring-[#ff8aa8]"/>{done==="err"&&<p className="text-sm text-red-500 mt-2">失败，请重试</p>}<div className="flex gap-2 mt-4"><button type="button" onClick={onClose} className="flex-1 border border-[#ffd6e0] text-[#3a2a30] py-2 rounded-lg text-sm font-semibold">取消</button><button type="button" onClick={submit} disabled={sub||!/^1\d{10}$/.test(phone)} className="flex-1 bg-[#ff8aa8] disabled:opacity-50 text-white py-2 rounded-lg text-sm font-semibold">{sub?"...":"提交"}</button></div></>}</div></div>);
+  return (<div className="fixed inset-0 bg-black/40 grid place-items-center z-[60] backdrop-blur-sm" onClick={onClose}><div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl" onClick={e=>e.stopPropagation()}><h2 className="text-xl font-bold text-[#3a2a30] mb-1">留个手机号</h2><p className="text-sm text-[#8a7178] mb-4">新品到货第一时间通知你~</p>{done==="ok"?<div className="text-center py-6 text-[#ff8aa8] font-semibold">收到！</div>:<><input type="tel" placeholder="138xxxxxxxx" maxLength={11} inputMode="numeric" value={phone} onChange={e=>setPhone(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#fff5f7] border border-[#ffd6e0] text-center text-lg focus:outline-none focus:ring-2 focus:ring-[#ff8aa8]"/>{done==="err"&&<p className="text-sm text-red-500 mt-2">失败，请重试</p>}<div className="flex gap-2 mt-4"><button type="button" onClick={onClose} className="flex-1 border border-[#ffd6e0] text-[#3a2a30] py-2 rounded-lg text-sm font-semibold">取消</button><button type="button" onClick={submit} disabled={sub||!/^1\d{10}$/.test(phone)} className="flex-1 bg-[#8ECAE6] disabled:opacity-50 text-white py-2 rounded-lg text-sm font-semibold">{sub?"...":"提交"}</button></div></>}</div></div>);
 }
