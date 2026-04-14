@@ -786,10 +786,9 @@ export default function MianmianKiosk() {
   //  JSX — TV Kiosk Mode (纯显示屏，无触摸)
   // ═══════════════════════════════════════════════════════════════
 
-  // 自动启动（电视不需要点击）
-  useEffect(() => {
-    if (loadState.kind === "ready" && !started) handleStart();
-  }, [loadState.kind, started, handleStart]);
+  // 电视 kiosk: 加载完成后显示"轻触开始"，一次点击解锁所有权限
+  // 注意：浏览器安全策略要求至少一次用户手势才能开启 AudioContext + 麦克风
+  // Chromebook kiosk 模式可用 --autoplay-policy=no-user-gesture-required 跳过
 
   // 自动开摄像头检测
   useEffect(() => {
@@ -821,11 +820,28 @@ export default function MianmianKiosk() {
       {/* 3D canvas: FULL SCREEN (no sidebar) */}
       <div ref={canvasContainerRef} className="absolute inset-0" />
 
-      {/* Loading (auto-starts, no button) */}
-      {!started && loadState.kind === "loading" && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 z-10">
-          <div className="w-20 h-20 rounded-full border-[3px] border-[#B5DCF0] border-t-[#8ECAE6] animate-spin" />
-          <div className="text-[#5D4037] text-xl font-medium">{Math.round(loadState.progress * 100)}%</div>
+      {/* Loading + tap-to-start (一次点击解锁音频+麦克风) */}
+      {!started && loadState.kind !== "error" && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 cursor-pointer"
+          onClick={loadState.kind === "ready" ? handleStart : undefined}>
+          {loadState.kind === "loading" && (
+            <div className="flex flex-col items-center gap-6">
+              <div className="w-20 h-20 rounded-full border-[3px] border-[#B5DCF0] border-t-[#8ECAE6] animate-spin" />
+              <div className="text-[#5D4037] text-xl font-medium">{Math.round(loadState.progress * 100)}%</div>
+            </div>
+          )}
+          {loadState.kind === "ready" && (
+            <div className="flex flex-col items-center gap-6 mm-fade-in">
+              <div className="w-24 h-24 rounded-full bg-white/30 backdrop-blur-lg grid place-items-center animate-pulse">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8ECAE6" strokeWidth="2" strokeLinecap="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="23" />
+                </svg>
+              </div>
+              <div className="text-[#5D4037]/70 text-2xl font-light">轻触屏幕开始</div>
+            </div>
+          )}
         </div>
       )}
 
