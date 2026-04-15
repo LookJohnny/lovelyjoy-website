@@ -12,7 +12,7 @@ const stats = [
   { end: 20000, suffix: "+", unit: "sqm" },
   { end: 300, suffix: "+", unit: "workers" },
   { end: 800000, suffix: "+", unit: "pcs/mo" },
-  { end: 30, suffix: "+", unit: "countries" },
+  { end: 70, suffix: "+", unit: "countries" },
 ];
 
 export default function FactoryStats({ labels }: FactoryStatsProps) {
