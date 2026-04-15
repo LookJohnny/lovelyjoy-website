@@ -11,7 +11,7 @@ interface FactoryStatsProps {
 const stats = [
   { end: 20000, suffix: "+", unit: "sqm" },
   { end: 300, suffix: "+", unit: "workers" },
-  { end: 500000, suffix: "+", unit: "pcs/mo" },
+  { end: 800000, suffix: "+", unit: "pcs/mo" },
   { end: 30, suffix: "+", unit: "countries" },
 ];
 

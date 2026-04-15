@@ -58,7 +58,7 @@ WORKFORCE
 
 PRODUCTION CAPACITY
 
-- Monthly output: 500,000+ plush toy units
+- Monthly output: 800,000+ plush toy units
 - Annual output: Several million units
 - Ability to run multiple product lines simultaneously
 - Flexible capacity allocation between large orders and smaller runs
@@ -134,7 +134,7 @@ LovelyJoy 毛绒玩具工厂 — 设施与生产概览
 
 产能
 
-- 月产量：50万件以上
+- 月产量：80万件以上
 - 年产量：数百万件
 - 可同时运行多条产品线
 - 灵活调配产能，兼顾大单和小批量订单

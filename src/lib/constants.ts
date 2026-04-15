@@ -35,7 +35,7 @@ export const SOCIAL_LINKS: SocialLink[] = [];
 // ─── Contact Info ────────────────────────────────────────────
 
 export const CONTACT_INFO = {
-  email: "info@lovelyjoy.com",
+  email: "info@lovelyjoytoy.com",
   phone: "+86 15957988866",
   whatsapp: "+1 (626) 586 7567",
   address: {

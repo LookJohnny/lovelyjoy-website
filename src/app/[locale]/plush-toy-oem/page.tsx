@@ -35,8 +35,8 @@ export async function generateMetadata({
       ? "毛绒玩具OEM代工服务 | LovelyJoy 爱儿采"
       : "Plush Toy OEM Services in China | LovelyJoy",
     description: isZh
-      ? "LovelyJoy爱儿采提供专业毛绒玩具OEM代工服务。20年经验，20000平米工厂，月产能50万件以上。BSCI、ISO 9001认证，MOQ 500件起。"
-      : "LovelyJoy offers professional plush toy OEM manufacturing in Yiwu, China. 20+ years experience, 20,000sqm factory, 500K+ monthly capacity. BSCI & ISO 9001 certified. MOQ from 500 pcs.",
+      ? "LovelyJoy爱儿采提供专业毛绒玩具OEM代工服务。20年经验，20000平米工厂，月产能80万件以上。BSCI、ISO 9001认证，MOQ 500件起。"
+      : "LovelyJoy offers professional plush toy OEM manufacturing in Yiwu, China. 20+ years experience, 20,000sqm factory, 800K+ monthly capacity. BSCI & ISO 9001 certified. MOQ from 500 pcs.",
     alternates: {
       canonical: `/${locale}/plush-toy-oem`,
       languages: {
@@ -184,8 +184,8 @@ export default async function PlushToyOemPage({
           <div className="mx-auto max-w-3xl">
             <p className="text-lg leading-relaxed text-brown-light">
               {isZh
-                ? "毛绒玩具OEM代工是指品牌商或贸易商提供产品设计图纸、面料要求和包装规格，由专业工厂按照要求完成生产制造。LovelyJoy爱儿采是位于中国义乌的专业毛绒玩具OEM代工厂，拥有20000平方米现代化生产基地、300多名熟练工人和50多名专业设计师。我们为全球品牌客户提供从打样到批量生产的全流程服务，月产能超过50万件。"
-                : "Plush toy OEM manufacturing means brand owners or trading companies provide product designs, fabric specifications, and packaging requirements, while a specialized factory handles all production. LovelyJoy is a professional plush toy OEM factory located in Yiwu, China, with a 20,000sqm modern production facility, 300+ skilled workers, and 50+ professional designers. We serve global brand clients with end-to-end services from sampling to mass production, with a monthly capacity exceeding 500,000 pieces."}
+                ? "毛绒玩具OEM代工是指品牌商或贸易商提供产品设计图纸、面料要求和包装规格，由专业工厂按照要求完成生产制造。LovelyJoy爱儿采是位于中国义乌的专业毛绒玩具OEM代工厂，拥有20000平方米现代化生产基地、300多名熟练工人和50多名专业设计师。我们为全球品牌客户提供从打样到批量生产的全流程服务，月产能超过80万件。"
+                : "Plush toy OEM manufacturing means brand owners or trading companies provide product designs, fabric specifications, and packaging requirements, while a specialized factory handles all production. LovelyJoy is a professional plush toy OEM factory located in Yiwu, China, with a 20,000sqm modern production facility, 300+ skilled workers, and 50+ professional designers. We serve global brand clients with end-to-end services from sampling to mass production, with a monthly capacity exceeding 800,000 pieces."}
             </p>
           </div>
         </Container>
@@ -388,8 +388,8 @@ export default async function PlushToyOemPage({
                 {
                   title: isZh ? "大规模产能" : "High Production Capacity",
                   desc: isZh
-                    ? "20000平米工厂，300+工人，月产能50万件以上"
-                    : "20,000sqm factory, 300+ workers, 500K+ monthly production capacity",
+                    ? "20000平米工厂，300+工人，月产能80万件以上"
+                    : "20,000sqm factory, 300+ workers, 800K+ monthly production capacity",
                 },
                 {
                   title: isZh ? "50+专业设计师" : "50+ Professional Designers",
