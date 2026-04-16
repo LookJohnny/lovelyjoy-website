@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { buildAlternates } from '@/lib/seo';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import '../globals.css';
@@ -49,14 +50,7 @@ export async function generateMetadata({
       description: t('description'),
       images: ['/images/hero/hero-bear.png'],
     },
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        'zh': '/zh',
-        'en': '/en',
-        'x-default': '/en',
-      },
-    },
+    alternates: buildAlternates(locale, ''),
   };
 }
 

@@ -115,7 +115,7 @@ function ProductCard({
         <div className="relative aspect-square overflow-hidden">
           <Image
             src={product.image}
-            alt={displayName}
+            alt={`${displayName} — LovelyJoy custom plush toy OEM/ODM`}
             fill
             sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 25vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -161,6 +161,8 @@ export default function ProductShowcase() {
 
   useEffect(() => {
     if (!emblaApi) return;
+    // Initial sync of UI state from the embla carousel (an external system).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);

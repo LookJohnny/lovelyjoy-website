@@ -45,7 +45,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 <Link href="/" onClick={onClose}>
                   <Image
                     src="/images/brand/logo-color.jpeg"
-                    alt="LovelyJoy"
+                    alt="LovelyJoy 爱儿采 — plush toy manufacturer logo"
                     width={120}
                     height={40}
                     className="h-10 w-auto rounded"

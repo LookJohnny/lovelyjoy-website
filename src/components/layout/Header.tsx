@@ -25,8 +25,10 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile nav on route change
+  // Close mobile nav on route change. Syncing UI state to the router is a
+  // legitimate effect; the rule is overly strict for this navigation pattern.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileNavOpen(false);
   }, [pathname]);
 
@@ -54,7 +56,7 @@ export default function Header() {
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/images/brand/logo-color.jpeg"
-              alt="LovelyJoy"
+              alt="LovelyJoy 爱儿采 — plush toy manufacturer logo"
               width={120}
               height={40}
               className="h-10 w-auto rounded"

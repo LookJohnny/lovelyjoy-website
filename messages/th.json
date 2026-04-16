@@ -19,6 +19,7 @@
     "switchTo": "English"
   },
   "home": {
+    "h1": "LovelyJoy — โรงงานผลิตตุ๊กตาผ้ามืออาชีพในจีน | บริการรับผลิต OEM/ODM ตามแบบ",
     "hero": {
       "slides": [
         {
@@ -279,9 +280,21 @@
       "blog": "บล็อก",
       "contact": "ติดต่อเรา",
       "privacy": "นโยบายความเป็นส่วนตัว",
-      "terms": "เงื่อนไขการให้บริการ"
+      "terms": "เงื่อนไขการให้บริการ",
+      "cases": "Customer Cases"
     },
-    "copyright": "© {year} LovelyJoy. สงวนลิขสิทธิ์"
+    "copyright": "© {year} LovelyJoy. สงวนลิขสิทธิ์",
+    "services": "Manufacturing Services",
+    "serviceLinks": {
+      "plushManufacturer": "Plush Toy Manufacturer",
+      "yiwuFactory": "Yiwu Plush Factory",
+      "mascot": "Brand Mascot Custom",
+      "gift": "Promotional Plush",
+      "plushToyOem": "Plush Toy OEM",
+      "customManufacturer": "Custom Plush Manufacturer",
+      "oemOdm": "OEM/ODM Services",
+      "stuffedAnimalOem": "Stuffed Animal OEM"
+    }
   },
   "aiGuide": {
     "meta": {

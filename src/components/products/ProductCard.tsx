@@ -64,7 +64,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src={product.image}
-                alt={displayName}
+                alt={`${displayName} — LovelyJoy custom plush toy`}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -19,6 +19,7 @@
     "switchTo": "English"
   },
   "home": {
+    "h1": "LovelyJoy｜중국 이우 봉제완구 전문 제조사 | OEM/ODM 맞춤 생산 서비스",
     "hero": {
       "slides": [
         {
@@ -279,9 +280,21 @@
       "blog": "블로그",
       "contact": "문의하기",
       "privacy": "개인정보 처리방침",
-      "terms": "이용약관"
+      "terms": "이용약관",
+      "cases": "Customer Cases"
     },
-    "copyright": "© {year} LovelyJoy. All rights reserved."
+    "copyright": "© {year} LovelyJoy. All rights reserved.",
+    "services": "Manufacturing Services",
+    "serviceLinks": {
+      "plushManufacturer": "Plush Toy Manufacturer",
+      "yiwuFactory": "Yiwu Plush Factory",
+      "mascot": "Brand Mascot Custom",
+      "gift": "Promotional Plush",
+      "plushToyOem": "Plush Toy OEM",
+      "customManufacturer": "Custom Plush Manufacturer",
+      "oemOdm": "OEM/ODM Services",
+      "stuffedAnimalOem": "Stuffed Animal OEM"
+    }
   },
   "aiGuide": {
     "meta": {

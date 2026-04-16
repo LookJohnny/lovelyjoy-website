@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -31,14 +32,7 @@ export async function generateMetadata({
   return {
     title: `${t("title")} | ${meta("title")}`,
     description: t("story.content"),
-    alternates: {
-      canonical: `/${locale}/about`,
-      languages: {
-        zh: '/zh/about',
-        en: '/en/about',
-        'x-default': '/en/about',
-      },
-    },
+    alternates: buildAlternates(locale, '/about'),
   };
 }
 

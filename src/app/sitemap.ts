@@ -1,12 +1,31 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 import { posts } from "@/data/posts";
+import { cases } from "@/data/cases";
 
 const BASE_URL = "https://lovelyjoy.cn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["zh", "en", "ja", "ko", "es", "pt", "ar", "ru", "fr", "de", "it", "th", "id"];
-  const routes = ["", "/products", "/oem-odm", "/about", "/faq", "/contact", "/blog", "/plush-toy-oem", "/custom-plush-manufacturer", "/factory-capability", "/safety-certifications"];
+  const routes = [
+    "",
+    "/products",
+    "/oem-odm",
+    "/about",
+    "/faq",
+    "/contact",
+    "/blog",
+    "/plush-toy-oem",
+    "/custom-plush-manufacturer",
+    "/factory-capability",
+    "/safety-certifications",
+    "/plush-toy-manufacturer",
+    "/yiwu-plush-factory",
+    "/mascot-custom",
+    "/gift-plush-custom",
+    "/stuffed-animal-oem",
+    "/cases",
+  ];
 
   const entries: MetadataRoute.Sitemap = [];
 
@@ -39,6 +58,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(post.date),
         changeFrequency: "monthly",
         priority: 0.6,
+      });
+    }
+
+    // Case study pages
+    for (const c of cases) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/cases/${c.slug}`,
+        lastModified: staticLastModified,
+        changeFrequency: "monthly",
+        priority: 0.7,
       });
     }
   }

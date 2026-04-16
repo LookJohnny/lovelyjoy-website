@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { buildAlternates } from "@/lib/seo";
 import { notFound } from "next/navigation";
 // AvatarKiosk is a `"use client"` component — Next.js will automatically
 // hydrate it on the client and code-split the heavy three.js / three-vrm
@@ -18,12 +19,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: `/${locale}/ai-guide`,
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [l, `/${l}/ai-guide`]),
-      ),
-    },
+    alternates: buildAlternates(locale, "/ai-guide"),
     openGraph: {
       title: t("title"),
       description: t("description"),

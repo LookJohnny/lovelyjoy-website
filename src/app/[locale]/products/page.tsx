@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -24,14 +25,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("subtitle"),
-    alternates: {
-      canonical: `/${locale}/products`,
-      languages: {
-        zh: '/zh/products',
-        en: '/en/products',
-        'x-default': '/en/products',
-      },
-    },
+    alternates: buildAlternates(locale, '/products'),
   };
 }
 

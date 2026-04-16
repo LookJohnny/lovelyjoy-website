@@ -40,8 +40,8 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* SEO H1 - visually hidden but readable by crawlers */}
-      <h1 className="sr-only">LovelyJoy - Professional Plush Toy Manufacturer | OEM/ODM Custom Services</h1>
+      {/* SEO H1 - localized; visually hidden so design-driven slide title (h2) stays the visual anchor */}
+      <h1 className="sr-only">{t("h1")}</h1>
 
       {/* Slide images with crossfade */}
       <AnimatePresence mode="wait">
@@ -62,7 +62,7 @@ export default function HeroCarousel() {
           >
             <Image
               src={slide.image}
-              alt={title}
+              alt={`${title} — LovelyJoy custom plush toy manufacturer in Yiwu, China`}
               fill
               className="object-cover"
               sizes="100vw"

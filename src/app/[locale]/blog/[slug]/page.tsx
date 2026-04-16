@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -38,14 +39,7 @@ export async function generateMetadata({
       ? `${title} | 爱儿采 LovelyJoy 博客`
       : `${title} | LovelyJoy Blog`,
     description,
-    alternates: {
-      canonical: `/${locale}/blog/${slug}`,
-      languages: {
-        zh: `/zh/blog/${slug}`,
-        en: `/en/blog/${slug}`,
-        'x-default': `/en/blog/${slug}`,
-      },
-    },
+    alternates: buildAlternates(locale, `/blog/${slug}`),
     openGraph: {
       title,
       description,
@@ -144,7 +138,7 @@ export default async function BlogPostPage({
             <div className="relative aspect-[16/9]">
               <Image
                 src={post.image}
-                alt={title}
+                alt={`${title} — LovelyJoy ${isZh ? "毛绒玩具行业博客" : "plush toy industry blog"}`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 896px"
@@ -200,7 +194,7 @@ export default async function BlogPostPage({
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <Image
                         src={item.image}
-                        alt={itemTitle}
+                        alt={`${itemTitle} — LovelyJoy ${isZh ? "博客" : "blog"}`}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 50vw"

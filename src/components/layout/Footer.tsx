@@ -17,20 +17,22 @@ export default async function Footer() {
     if (href === '/products') return 'products';
     if (href === '/oem-odm') return 'oemOdm';
     if (href === '/about') return 'about';
+    if (href === '/ai-guide') return 'aiGuide';
+    if (href === '/contact') return 'contact';
     return 'contact';
   }
 
   return (
     <footer className="bg-brown text-white">
-      {/* Top section: 3 columns */}
+      {/* Top section: 4 columns */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Brand */}
           <div className="space-y-4">
             <Link href="/">
               <Image
                 src="/images/brand/logo-color.jpeg"
-                alt="LovelyJoy"
+                alt="LovelyJoy 爱儿采 — plush toy manufacturer logo"
                 width={140}
                 height={46}
                 className="h-12 w-auto rounded brightness-110"
@@ -79,10 +81,46 @@ export default async function Footer() {
                   {t('links.blog')}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/cases"
+                  className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                >
+                  {t('links.cases')}
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Column 3: Contact */}
+          {/* Column 3: Manufacturing Services — internal link cluster for SEO */}
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-beige-brand">
+              {t('services')}
+            </h3>
+            <ul className="space-y-2">
+              {[
+                { href: '/plush-toy-manufacturer', key: 'plushManufacturer' },
+                { href: '/yiwu-plush-factory', key: 'yiwuFactory' },
+                { href: '/mascot-custom', key: 'mascot' },
+                { href: '/gift-plush-custom', key: 'gift' },
+                { href: '/plush-toy-oem', key: 'plushToyOem' },
+                { href: '/custom-plush-manufacturer', key: 'customManufacturer' },
+                { href: '/oem-odm', key: 'oemOdm' },
+                { href: '/stuffed-animal-oem', key: 'stuffedAnimalOem' },
+              ].map(({ href, key }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                  >
+                    {t(`serviceLinks.${key}`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-beige-brand">
               {tNav('contact')}

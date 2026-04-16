@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -42,14 +43,7 @@ export async function generateMetadata({
     description: isZh
       ? "LovelyJoy爱儿采毛绒玩具工厂：20000平米生产基地，300+工人，月产能80万件。5道质检工序，BSCI、ISO 9001认证。了解我们的生产线和品控体系。"
       : "LovelyJoy plush toy factory: 20,000sqm facility, 300+ workers, 800K+ monthly capacity. 5-stage QC process, BSCI & ISO 9001 certified. Learn about our production lines and quality control system.",
-    alternates: {
-      canonical: `/${locale}/factory-capability`,
-      languages: {
-        zh: "/zh/factory-capability",
-        en: "/en/factory-capability",
-        "x-default": "/en/factory-capability",
-      },
-    },
+    alternates: buildAlternates(locale, '/factory-capability'),
   };
 }
 

@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -37,14 +38,7 @@ export async function generateMetadata({
     description: isZh
       ? "LovelyJoy爱儿采提供专业毛绒玩具OEM代工服务。20年经验，20000平米工厂，月产能80万件以上。BSCI、ISO 9001认证，MOQ 500件起。"
       : "LovelyJoy offers professional plush toy OEM manufacturing in Yiwu, China. 20+ years experience, 20,000sqm factory, 800K+ monthly capacity. BSCI & ISO 9001 certified. MOQ from 500 pcs.",
-    alternates: {
-      canonical: `/${locale}/plush-toy-oem`,
-      languages: {
-        zh: "/zh/plush-toy-oem",
-        en: "/en/plush-toy-oem",
-        "x-default": "/en/plush-toy-oem",
-      },
-    },
+    alternates: buildAlternates(locale, '/plush-toy-oem'),
   };
 }
 

@@ -19,6 +19,7 @@
     "switchTo": "English"
   },
   "home": {
+    "h1": "LovelyJoy — Produttore professionale di peluche in Cina | Servizi OEM/ODM personalizzati",
     "hero": {
       "slides": [
         {
@@ -279,9 +280,21 @@
       "blog": "Blog",
       "contact": "Contatti",
       "privacy": "Informativa sulla privacy",
-      "terms": "Termini di servizio"
+      "terms": "Termini di servizio",
+      "cases": "Customer Cases"
     },
-    "copyright": "© {year} LovelyJoy. Tutti i diritti riservati."
+    "copyright": "© {year} LovelyJoy. Tutti i diritti riservati.",
+    "services": "Manufacturing Services",
+    "serviceLinks": {
+      "plushManufacturer": "Plush Toy Manufacturer",
+      "yiwuFactory": "Yiwu Plush Factory",
+      "mascot": "Brand Mascot Custom",
+      "gift": "Promotional Plush",
+      "plushToyOem": "Plush Toy OEM",
+      "customManufacturer": "Custom Plush Manufacturer",
+      "oemOdm": "OEM/ODM Services",
+      "stuffedAnimalOem": "Stuffed Animal OEM"
+    }
   },
   "aiGuide": {
     "meta": {

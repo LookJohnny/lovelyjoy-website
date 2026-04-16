@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -36,14 +37,7 @@ export async function generateMetadata({
     description: isZh
       ? "了解LovelyJoy爱儿采毛绒玩具的安全认证：BSCI、ISO 9001、CE、ASTM F963、EN 71、GB 6675。每项认证的测试内容、适用市场和重要性详解。"
       : "Learn about LovelyJoy plush toy safety certifications: BSCI, ISO 9001, CE, ASTM F963, EN 71, GB 6675. Detailed explanations of each certification, what it tests, applicable markets, and why it matters.",
-    alternates: {
-      canonical: `/${locale}/safety-certifications`,
-      languages: {
-        zh: "/zh/safety-certifications",
-        en: "/en/safety-certifications",
-        "x-default": "/en/safety-certifications",
-      },
-    },
+    alternates: buildAlternates(locale, '/safety-certifications'),
   };
 }
 

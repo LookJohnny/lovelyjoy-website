@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -39,14 +40,7 @@ export async function generateMetadata({
       ? `${name} - 毛绒玩具 | 爱儿采 LovelyJoy`
       : `${name} - Plush Toy | LovelyJoy`,
     description: desc,
-    alternates: {
-      canonical: `/${locale}/products/${id}`,
-      languages: {
-        zh: `/zh/products/${id}`,
-        en: `/en/products/${id}`,
-        'x-default': `/en/products/${id}`,
-      },
-    },
+    alternates: buildAlternates(locale, `/products/${id}`),
     openGraph: {
       title: name,
       description: desc,

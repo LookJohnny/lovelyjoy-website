@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -22,14 +23,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: `/${locale}/blog`,
-      languages: {
-        zh: '/zh/blog',
-        en: '/en/blog',
-        'x-default': '/en/blog',
-      },
-    },
+    alternates: buildAlternates(locale, '/blog'),
   };
 }
 
@@ -93,7 +87,7 @@ export default async function BlogPage({
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <Image
                       src={post.image}
-                      alt={title}
+                      alt={`${title} — LovelyJoy ${isZh ? "毛绒玩具行业博客" : "plush toy industry blog"}`}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"

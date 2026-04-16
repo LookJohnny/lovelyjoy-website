@@ -19,6 +19,7 @@
     "switchTo": "English"
   },
   "home": {
+    "h1": "爱儿采 LovelyJoy｜专业毛绒玩具厂家，提供 OEM/ODM 定制生产服务",
     "hero": {
       "slides": [
         {
@@ -279,9 +280,21 @@
       "blog": "博客",
       "contact": "联系我们",
       "privacy": "隐私政策",
-      "terms": "使用条款"
+      "terms": "使用条款",
+      "cases": "客户案例"
     },
-    "copyright": "© {year} 爱儿采 LovelyJoy. 保留所有权利。"
+    "copyright": "© {year} 爱儿采 LovelyJoy. 保留所有权利。",
+    "services": "定制服务",
+    "serviceLinks": {
+      "plushManufacturer": "毛绒玩具厂家",
+      "yiwuFactory": "义乌毛绒玩具工厂",
+      "mascot": "企业吉祥物定制",
+      "gift": "礼品毛绒玩具定制",
+      "plushToyOem": "毛绒玩具 OEM 定制",
+      "customManufacturer": "毛绒玩具定制制造商",
+      "oemOdm": "OEM/ODM 服务",
+      "stuffedAnimalOem": "Stuffed Animal OEM"
+    }
   },
   "aiGuide": {
     "meta": {

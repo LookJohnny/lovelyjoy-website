@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -40,14 +41,7 @@ export async function generateMetadata({
     description: isZh
       ? "LovelyJoy爱儿采是中国义乌专业定制毛绒玩具制造商。50+设计师团队，支持颜色、尺寸、材料、包装全面定制。MOQ 200件起，7-15天出样。"
       : "LovelyJoy is a professional custom plush toy manufacturer in Yiwu, China. 50+ designer team, full customization of colors, sizes, materials, and packaging. MOQ from 200 pcs, samples in 7-15 days.",
-    alternates: {
-      canonical: `/${locale}/custom-plush-manufacturer`,
-      languages: {
-        zh: "/zh/custom-plush-manufacturer",
-        en: "/en/custom-plush-manufacturer",
-        "x-default": "/en/custom-plush-manufacturer",
-      },
-    },
+    alternates: buildAlternates(locale, '/custom-plush-manufacturer'),
   };
 }
 

@@ -44,7 +44,8 @@ export function proxy(request: NextRequest) {
     const country = request.headers.get("x-vercel-ip-country") ?? "";
     const detectedLocale = COUNTRY_LOCALE_MAP[country];
 
-    if (detectedLocale && routing.locales.includes(detectedLocale as any)) {
+    type Locale = (typeof routing.locales)[number];
+    if (detectedLocale && routing.locales.includes(detectedLocale as Locale)) {
       const url = request.nextUrl.clone();
       url.pathname = `/${detectedLocale}`;
       return Response.redirect(url);
