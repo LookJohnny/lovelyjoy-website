@@ -8,18 +8,38 @@ export const SLOGAN_CN = "用心缝制，传递快乐";
 // ─── Navigation ──────────────────────────────────────────────
 
 export interface NavLink {
-  label: string;
-  labelCn: string;
-  href: string;
+  tKey: string;            // translation key within the "nav" namespace
+  href?: string;           // present for direct links, absent for dropdown groups
+  children?: NavLink[];    // present for dropdown groups
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Home", labelCn: "首页", href: "/" },
-  { label: "Products", labelCn: "产品展示", href: "/products" },
-  { label: "OEM/ODM", labelCn: "OEM/ODM", href: "/oem-odm" },
-  { label: "About", labelCn: "关于我们", href: "/about" },
-  { label: "AI Sales", labelCn: "AI 销售", href: "/ai-guide" },
-  { label: "Contact", labelCn: "联系我们", href: "/contact" },
+  { tKey: "home", href: "/" },
+  { tKey: "products", href: "/products" },
+  {
+    tKey: "services",
+    children: [
+      { tKey: "servicesLinks.plushManufacturer", href: "/plush-toy-manufacturer" },
+      { tKey: "servicesLinks.plushToyOem", href: "/plush-toy-oem" },
+      { tKey: "servicesLinks.oemOdm", href: "/oem-odm" },
+      { tKey: "servicesLinks.customManufacturer", href: "/custom-plush-manufacturer" },
+      { tKey: "servicesLinks.stuffedAnimalOem", href: "/stuffed-animal-oem" },
+      { tKey: "servicesLinks.mascot", href: "/mascot-custom" },
+      { tKey: "servicesLinks.gift", href: "/gift-plush-custom" },
+      { tKey: "servicesLinks.yiwuFactory", href: "/yiwu-plush-factory" },
+    ],
+  },
+  {
+    tKey: "factory",
+    children: [
+      { tKey: "factoryLinks.about", href: "/about" },
+      { tKey: "factoryLinks.capability", href: "/factory-capability" },
+      { tKey: "factoryLinks.certifications", href: "/safety-certifications" },
+    ],
+  },
+  { tKey: "cases", href: "/cases" },
+  { tKey: "blog", href: "/blog" },
+  { tKey: "mianmian", href: "/mianmian" },
 ];
 
 // ─── Social Links ────────────────────────────────────────────

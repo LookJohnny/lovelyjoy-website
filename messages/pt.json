@@ -9,7 +9,27 @@
     "oemOdm": "OEM/ODM",
     "about": "Sobre Nós",
     "contact": "Contato",
-    "aiGuide": "Vendas IA"
+    "aiGuide": "Vendas IA",
+    "services": "Services",
+    "factory": "Factory",
+    "cases": "Cases",
+    "blog": "Blog",
+    "mianmian": "Mianmian",
+    "servicesLinks": {
+      "plushManufacturer": "Plush Toy Manufacturer",
+      "plushToyOem": "Plush Toy OEM",
+      "oemOdm": "OEM/ODM Services",
+      "customManufacturer": "Custom Plush Manufacturer",
+      "stuffedAnimalOem": "Stuffed Animal OEM",
+      "mascot": "Brand Mascot Custom",
+      "gift": "Promotional Plush",
+      "yiwuFactory": "Yiwu Plush Factory"
+    },
+    "factoryLinks": {
+      "about": "About Us",
+      "capability": "Factory Capability",
+      "certifications": "Safety & Certifications"
+    }
   },
   "header": {
     "contactCta": "Contato"

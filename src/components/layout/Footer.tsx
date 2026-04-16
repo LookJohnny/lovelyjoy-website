@@ -11,16 +11,9 @@ export default async function Footer() {
 
   const year = new Date().getFullYear();
 
-  // Map href to nav translation key
-  function navKey(href: string): string {
-    if (href === '/') return 'home';
-    if (href === '/products') return 'products';
-    if (href === '/oem-odm') return 'oemOdm';
-    if (href === '/about') return 'about';
-    if (href === '/ai-guide') return 'aiGuide';
-    if (href === '/contact') return 'contact';
-    return 'contact';
-  }
+  // Only direct-link nav items appear in Quick Links (dropdown groups are
+  // surfaced via the Manufacturing Services column instead).
+  const directNavLinks = NAV_LINKS.filter((l) => l.href);
 
   return (
     <footer className="bg-brown text-white">
@@ -52,19 +45,24 @@ export default async function Footer() {
               {t('quickLinks')}
             </h3>
             <ul className="space-y-2">
-              {NAV_LINKS.map((item) => {
-                const key = navKey(item.href);
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
-                    >
-                      {tNav(key)}
-                    </Link>
-                  </li>
-                );
-              })}
+              {directNavLinks.map((item) => (
+                <li key={item.tKey}>
+                  <Link
+                    href={item.href!}
+                    className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                  >
+                    {tNav(item.tKey)}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                >
+                  {tNav('contact')}
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/faq"

@@ -9,7 +9,27 @@
     "oemOdm": "OEM/ODM",
     "about": "关于我们",
     "contact": "联系我们",
-    "aiGuide": "AI 销售"
+    "aiGuide": "AI 销售",
+    "services": "定制服务",
+    "factory": "工厂实力",
+    "cases": "客户案例",
+    "blog": "博客",
+    "mianmian": "棉棉",
+    "servicesLinks": {
+      "plushManufacturer": "毛绒玩具厂家",
+      "plushToyOem": "毛绒玩具 OEM 定制",
+      "oemOdm": "OEM/ODM 综合服务",
+      "customManufacturer": "定制毛绒玩具制造商",
+      "stuffedAnimalOem": "Stuffed Animal OEM",
+      "mascot": "企业吉祥物定制",
+      "gift": "礼品毛绒玩具定制",
+      "yiwuFactory": "义乌毛绒玩具工厂"
+    },
+    "factoryLinks": {
+      "about": "关于我们",
+      "capability": "工厂能力",
+      "certifications": "质量与认证"
+    }
   },
   "header": {
     "contactCta": "联系我们"
