@@ -51,6 +51,11 @@ export async function generateMetadata({
       images: ['/images/hero/hero-bear.png'],
     },
     alternates: buildAlternates(locale, ''),
+    verification: {
+      other: {
+        'baidu-site-verification': 'codeva-uvzVItlWsi',
+      },
+    },
   };
 }
 
