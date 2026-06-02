@@ -1,10 +1,17 @@
 import type { Metadata } from 'next';
 import { Quicksand, Noto_Sans_SC } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { buildAlternates } from '@/lib/seo';
+import { buildAlternates, htmlLang } from '@/lib/seo';
+
+// Pre-render a static shell for every locale at build time. Combined with
+// `setRequestLocale` below (and on each page), this lets Vercel serve locale
+// pages from the edge cache instead of rendering them dynamically on every hit.
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import '../globals.css';
@@ -73,12 +80,15 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Opt this request into static rendering (must run before any i18n read).
+  setRequestLocale(locale);
+
   const messages = await getMessages();
   const isRtl = locale === 'ar';
 
   return (
     <html
-      lang={locale}
+      lang={htmlLang(locale)}
       dir={isRtl ? 'rtl' : 'ltr'}
       className={`${quicksand.variable} ${notoSansSC.variable} h-full antialiased`}
     >

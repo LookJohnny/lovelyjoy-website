@@ -43,18 +43,27 @@ export function proxy(request: NextRequest) {
   if (pathname === "/") {
     const country = request.headers.get("x-vercel-ip-country") ?? "";
     const detectedLocale = COUNTRY_LOCALE_MAP[country];
+    const url = request.nextUrl.clone();
 
     type Locale = (typeof routing.locales)[number];
     if (detectedLocale && routing.locales.includes(detectedLocale as Locale)) {
-      const url = request.nextUrl.clone();
+      // Geo preference varies per visitor, so this must stay a TEMPORARY (302)
+      // redirect — a 301 would be permanently cached and pin every later
+      // visitor (and shared caches) to the first country's locale.
       url.pathname = `/${detectedLocale}`;
-      return Response.redirect(url);
+      return Response.redirect(url, 302);
     }
+
+    // Default / unknown country -> PERMANENT (301) redirect to the x-default
+    // locale (/en). This is the canonical root destination and what US-based
+    // Googlebot resolves to, so it is safe and correct to make permanent.
+    url.pathname = "/en";
+    return Response.redirect(url, 301);
   }
 
   return intlMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|images|llms.*|google.*\\.html|baidu_verify.*\\.html|af2f0c.*\\.txt|knowledge).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|images|llms.*|google.*\\.html|baidu_verify.*\\.html|af2f0c.*\\.txt|[0-9a-f]{32}\\.txt|knowledge).*)"],
 };

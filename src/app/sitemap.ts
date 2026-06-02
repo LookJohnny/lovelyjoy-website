@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 import { posts } from "@/data/posts";
 import { cases } from "@/data/cases";
+import { HREFLANG_MAP } from "@/lib/seo";
 
 const BASE_URL = "https://lovelyjoy.cn";
 const LOCALES = ["zh", "en", "ja", "ko", "es", "pt", "ar", "ru", "fr", "de", "it", "th", "id"] as const;
@@ -9,7 +10,9 @@ const LOCALES = ["zh", "en", "ja", "ko", "es", "pt", "ar", "ru", "fr", "de", "it
 function buildLanguages(path: string): Record<string, string> {
   const languages: Record<string, string> = {};
   for (const l of LOCALES) {
-    languages[l] = `${BASE_URL}/${l}${path}`;
+    // Use the BCP-47 hreflang code (zh-Hans, pt-BR, es-419, ...) so the sitemap
+    // alternates match the <head> alternates exactly.
+    languages[HREFLANG_MAP[l] ?? l] = `${BASE_URL}/${l}${path}`;
   }
   languages["x-default"] = `${BASE_URL}/en${path}`;
   return languages;

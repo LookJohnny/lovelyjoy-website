@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useMotionValue,
   useSpring,
@@ -24,6 +24,13 @@ export default function CountUp({
   className,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
+
+  // `mounted` is false on the server AND on the first client render, so the SSR
+  // markup — and what a non-JS crawler or a slow connection sees — always
+  // contains the REAL number (`end`), never 0. The count-up animation only
+  // starts after hydration. This fixes the "0% Quality Control / 0+ SKUs"
+  // bug that previously shipped in the static HTML.
+  const [mounted, setMounted] = useState(false);
   const isInView = useInView(ref, { once: true, margin: "-40px 0px" });
 
   const motionValue = useMotionValue(0);
@@ -34,17 +41,27 @@ export default function CountUp({
   const rounded = useTransform(springValue, (latest) => Math.round(latest));
 
   useEffect(() => {
-    if (isInView) {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && isInView) {
       motionValue.set(end);
     }
-  }, [isInView, end, motionValue]);
+  }, [mounted, isInView, end, motionValue]);
 
   return (
     <span
       ref={ref}
       className={cn("text-4xl font-bold text-sky-brand", className)}
     >
-      <motion.span>{rounded}</motion.span>
+      {mounted ? (
+        <motion.span>{rounded}</motion.span>
+      ) : (
+        // SSR / pre-hydration fallback. Matches the first client render (no
+        // hydration mismatch) and exposes the real value to crawlers.
+        <span>{end}</span>
+      )}
       {suffix && <span>{suffix}</span>}
     </span>
   );

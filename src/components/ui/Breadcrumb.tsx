@@ -8,18 +8,27 @@ interface BreadcrumbItem {
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
   locale?: string;
+  // Canonical path of the current page (e.g. "/products/spring-duck"). When
+  // supplied, the terminal (non-linked) breadcrumb still emits a self-referencing
+  // `item` URL, which Google recommends for a complete BreadcrumbList.
+  currentPath?: string;
 }
 
-export default function Breadcrumb({ items, locale }: BreadcrumbProps) {
+export default function Breadcrumb({ items, locale, currentPath }: BreadcrumbProps) {
+  const base = `https://lovelyjoy.cn/${locale ?? 'zh'}`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.label,
-      ...(item.href ? { item: `https://lovelyjoy.cn/${locale ?? 'zh'}${item.href}` } : {}),
-    })),
+    itemListElement: items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      const href = item.href ?? (isLast ? currentPath : undefined);
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.label,
+        ...(href ? { item: `${base}${href}` } : {}),
+      };
+    }),
   };
 
   return (

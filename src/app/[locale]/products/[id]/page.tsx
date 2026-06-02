@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, ORG_ID } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -51,20 +51,39 @@ export async function generateMetadata({
 
 function ProductJsonLd({ product, locale }: { product: (typeof products)[number]; locale: string }) {
   const isZh = locale === "zh";
+  const url = `https://lovelyjoy.cn/${locale}/products/${product.id}`;
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${url}#product`,
+    url,
     name: isZh ? product.nameCn : product.name,
     description: isZh ? product.descriptionCn : product.descriptionEn,
     image: `https://lovelyjoy.cn${product.image}`,
+    sku: product.id,
     brand: { "@type": "Brand", name: "LovelyJoy" },
-    manufacturer: {
-      "@type": "Organization",
-      name: "LovelyJoy 爱儿采",
-      url: "https://lovelyjoy.cn",
-    },
+    // Reference the shared Organization node (defined on the homepage) instead
+    // of redefining it, so the manufacturer resolves to one entity.
+    manufacturer: { "@id": ORG_ID },
     material: product.material,
     category: product.category,
+    // B2B sourcing: prices are quote-based, so no numeric price is published.
+    // An Offer with availability + a price-on-request PriceSpecification makes
+    // the Product eligible for Google's product result without inventing a price.
+    // TODO(business): if an MOQ unit-price band is acceptable to publish, add
+    // `price`/`priceSpecification.price` here for full rich-result eligibility.
+    offers: {
+      "@type": "Offer",
+      url,
+      availability: "https://schema.org/InStock",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "USD",
+        valueAddedTaxIncluded: false,
+      },
+      seller: { "@id": ORG_ID },
+    },
   };
 
   return (
@@ -105,6 +124,7 @@ export default async function ProductDetailPage({
         <Container>
           <Breadcrumb
             locale={locale}
+            currentPath={`/products/${product.id}`}
             items={[
               { label: t("home"), href: "/" },
               { label: t("products"), href: "/products" },
