@@ -63,9 +63,14 @@ export const SITE = {
     'https://www.tiktok.com/@lovelyjoy_plush',
     'https://www.instagram.com/lovelyjoy.plush',
     'https://v.douyin.com/euL2l2yPYNk/',
-    // TODO(business): add the made-in-china.com showroom + any Alibaba/LinkedIn
-    // profile here so AI engines consolidate the entity across domains
-    // (lovelyjoy.cn <-> lovelyjoytoy.com).
+    // TODO(business): uncomment each line below ONCE confirmed to be the
+    // company's own official profile, so AI engines consolidate the entity
+    // across domains (lovelyjoy.cn <-> lovelyjoytoy.com). Do not add unverified
+    // URLs — a wrong sameAs pollutes the entity graph.
+    // 'https://www.lovelyjoytoy.com',                         // sister/.com site (email domain)
+    // 'https://www.made-in-china.com/showroom/lovelyjoy/',    // Made-in-China showroom (verify it's ours)
+    // 'https://lovelyjoy.en.alibaba.com',                     // Alibaba supplier page (fill real URL)
+    // 'https://www.linkedin.com/company/lovelyjoy',           // LinkedIn company page (fill real URL)
   ],
 };
 

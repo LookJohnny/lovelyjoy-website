@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 import { posts } from "@/data/posts";
 import { cases } from "@/data/cases";
+import { authors } from "@/data/authors";
 import { HREFLANG_MAP } from "@/lib/seo";
 
 const BASE_URL = "https://lovelyjoy.cn";
@@ -36,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/mascot-custom",
     "/gift-plush-custom",
     "/stuffed-animal-oem",
+    "/oem-plush-manufacturer",
     "/cases",
   ];
 
@@ -88,6 +90,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: buildDate,
         changeFrequency: "monthly",
         priority: 0.7,
+        alternates: { languages: buildLanguages(path) },
+      });
+    }
+
+    // Author profile pages (E-E-A-T)
+    for (const a of authors) {
+      const path = `/authors/${a.slug}`;
+      entries.push({
+        url: `${BASE_URL}/${locale}${path}`,
+        lastModified: buildDate,
+        changeFrequency: "monthly",
+        priority: 0.4,
         alternates: { languages: buildLanguages(path) },
       });
     }
