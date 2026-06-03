@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { posts } from "@/data/posts";
+import { getPostAuthor } from "@/data/authors";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ShareButtons from "@/components/ui/ShareButtons";
@@ -58,6 +59,7 @@ function ArticleJsonLd({
   locale: string;
 }) {
   const isZh = locale === "zh";
+  const author = getPostAuthor();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -66,10 +68,12 @@ function ArticleJsonLd({
     image: `https://lovelyjoy.cn${post.image}`,
     datePublished: post.date,
     dateModified: post.date,
+    // Author @type follows the author record: Person once a real human is set,
+    // Organization until then. Publisher always stays the Organization.
     author: {
-      "@type": "Organization",
-      name: "LovelyJoy 爱儿采",
-      url: "https://lovelyjoy.cn",
+      "@type": author.type,
+      name: author.name,
+      url: `https://lovelyjoy.cn/${locale}/authors/${author.slug}`,
     },
     publisher: {
       "@type": "Organization",
@@ -102,6 +106,7 @@ export default async function BlogPostPage({
   const isZh = locale === "zh";
   const nav = await getTranslations("nav");
   const tBlog = await getTranslations("blog");
+  const author = getPostAuthor();
 
   const title = isZh ? post.titleCn : post.titleEn;
   const content = isZh ? post.contentCn : post.contentEn;
@@ -158,6 +163,16 @@ export default async function BlogPostPage({
               <h1 className="mt-2 text-3xl font-bold text-brown md:text-4xl">
                 {title}
               </h1>
+              <p className="mt-3 text-sm text-brown/60">
+                {isZh ? "作者：" : "By "}
+                <Link
+                  href={`/authors/${author.slug}`}
+                  className="font-semibold text-sky-brand hover:underline"
+                >
+                  {author.name}
+                </Link>
+                <span className="text-brown/40"> · {isZh ? author.roleZh : author.roleEn}</span>
+              </p>
             </header>
 
             <div

@@ -29,6 +29,25 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async redirects() {
+    // Expected procurement URLs → existing canonical content (301). The locale
+    // is constrained to the 13 supported codes so we never hijack other paths.
+    const LOCALE = "zh|en|ja|ko|es|pt|ar|ru|fr|de|it|th|id";
+    return [
+      // statusCode 301 (rather than `permanent: true`, which emits 308) to match
+      // the classic permanent-redirect signal. SEO-equivalent; 301 is explicit.
+      {
+        source: `/:locale(${LOCALE})/factory`,
+        destination: "/:locale/factory-capability",
+        statusCode: 301,
+      },
+      {
+        source: `/:locale(${LOCALE})/services`,
+        destination: "/:locale/oem-odm",
+        statusCode: 301,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
