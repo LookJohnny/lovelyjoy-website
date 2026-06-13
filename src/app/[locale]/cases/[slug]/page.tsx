@@ -173,19 +173,48 @@ export default async function CaseDetailPage({
       <section className="py-16 md:py-20 bg-white">
         <Container>
           <div className="mx-auto max-w-3xl space-y-10">
+            {/* Metrics strip — procurement KPIs at a glance */}
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {c.metrics.map((m) => (
+                <div key={m.labelEn} className="rounded-xl bg-bg-sky p-4 text-center">
+                  <div className="text-lg font-bold text-sky-brand">{isZh ? m.valueZh : m.valueEn}</div>
+                  <div className="mt-1 text-xs text-brown/60">{isZh ? m.labelZh : m.labelEn}</div>
+                </div>
+              ))}
+            </div>
+
             <div>
               <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-sky-brand">
                 <Layers className="h-4 w-4" />
                 {isZh ? "客户类型" : "Client Type"}
               </div>
               <p className="mt-3 text-lg leading-relaxed text-brown-light">{clientType}</p>
+              <p className="mt-2 text-sm text-brown/60">
+                <span className="font-semibold">{isZh ? "市场：" : "Region: "}</span>
+                {isZh ? c.regionZh : c.regionEn}
+              </p>
               {c.referenceClients && c.referenceClients.length > 0 && (
-                <p className="mt-3 text-sm italic text-brown/50">
+                <p className="mt-2 text-sm italic text-brown/50">
                   {isZh ? "参考客户：" : "Reference clients: "}
                   {c.referenceClients.join(" · ")}
                 </p>
               )}
+              <p className="mt-3 text-xs leading-relaxed text-brown/40">
+                {isZh ? c.confidentialityNoteZh : c.confidentialityNoteEn}
+              </p>
             </div>
+
+            {/* Buyer quote — only rendered when a real, attributable quote exists */}
+            {(isZh ? c.quoteZh : c.quoteEn) && (
+              <blockquote className="border-l-4 border-sky-brand bg-bg-warm/50 p-5 italic text-brown">
+                “{isZh ? c.quoteZh : c.quoteEn}”
+                {(isZh ? c.quoteAttributionZh : c.quoteAttributionEn) && (
+                  <footer className="mt-2 text-sm not-italic text-brown/60">
+                    — {isZh ? c.quoteAttributionZh : c.quoteAttributionEn}
+                  </footer>
+                )}
+              </blockquote>
+            )}
 
             <div>
               <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-sky-brand">
