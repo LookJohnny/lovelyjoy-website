@@ -112,7 +112,26 @@ export default async function CasesListPage({
                     <h3 className="mt-3 font-bold text-brown group-hover:text-sky-brand transition-colors duration-200">
                       {title}
                     </h3>
-                    <p className="mt-2 line-clamp-3 text-sm text-brown/60">{summary}</p>
+                    <p className="mt-2 line-clamp-2 text-sm text-brown/60">{summary}</p>
+
+                    {c.referenceClients && c.referenceClients.length > 0 && (
+                      <p className="mt-3 text-xs text-brown/50">
+                        <span className="font-semibold text-brown/70">
+                          {isZh ? "参考客户：" : "Clients: "}
+                        </span>
+                        {c.referenceClients.join(" · ")}
+                      </p>
+                    )}
+
+                    {c.metrics[0] && (
+                      <p className="mt-1 text-xs text-brown/50">
+                        <span className="font-semibold text-sky-brand">
+                          {isZh ? c.metrics[0].valueZh : c.metrics[0].valueEn}
+                        </span>{" "}
+                        {isZh ? c.metrics[0].labelZh : c.metrics[0].labelEn}
+                      </p>
+                    )}
+
                     <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-sky-brand">
                       {isZh ? "查看案例" : "View case"}
                       <ArrowRight className="h-3.5 w-3.5" />

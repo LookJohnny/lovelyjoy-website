@@ -26,7 +26,28 @@ export interface CaseStudy {
   image: string;
   referenceClients?: string[];
   tags: string[];
+
+  // ── E-E-A-T enrichment (P3) ──
+  regionEn: string;
+  regionZh: string;
+  // Procurement KPIs surfaced as a metrics strip. Values are derived from the
+  // real project outcomes already documented above — no invented numbers.
+  metrics: { labelEn: string; labelZh: string; valueEn: string; valueZh: string }[];
+  // Honest disclosure of how clients are named vs. anonymized.
+  confidentialityNoteEn: string;
+  confidentialityNoteZh: string;
+  // TODO(business): add a REAL, attributable buyer quote per case when you have
+  // one you can publish. Leave undefined until then — never invent a quote.
+  quoteEn?: string;
+  quoteZh?: string;
+  quoteAttributionEn?: string;
+  quoteAttributionZh?: string;
 }
+
+const STANDARD_DISCLOSURE_EN =
+  "Reference clients shown are publicly acknowledged partnerships. Specific order volumes, pricing, and per-project documents are shared with qualified buyers under NDA.";
+const STANDARD_DISCLOSURE_ZH =
+  "所列参考客户为已公开的合作关系。具体订单量、价格及单项目文档将在签署保密协议后向合格买家提供。";
 
 export const cases: CaseStudy[] = [
   {
@@ -74,6 +95,15 @@ export const cases: CaseStudy[] = [
     ],
     image: "/images/products/collection.jpeg",
     referenceClients: ["Sanrio", "Disney", "Illumination"],
+    regionEn: "Global (licensor-controlled markets)",
+    regionZh: "全球（授权方控制市场）",
+    metrics: [
+      { labelEn: "Artwork → first sample", labelZh: "美术稿→首样", valueEn: "15 days", valueZh: "15 天" },
+      { labelEn: "Licensor-initiated recalls", labelZh: "授权方发起召回", valueEn: "0 on record", valueZh: "0 记录" },
+      { labelEn: "Partnership length", labelZh: "合作时长", valueEn: "Multi-year", valueZh: "多年" },
+    ],
+    confidentialityNoteEn: STANDARD_DISCLOSURE_EN,
+    confidentialityNoteZh: STANDARD_DISCLOSURE_ZH,
     tags: ["Licensed IP", "Character plush", "Export compliance"],
   },
   {
@@ -121,6 +151,15 @@ export const cases: CaseStudy[] = [
     ],
     image: "/images/store/storefront.jpeg",
     referenceClients: ["CVS", "Burlington"],
+    regionEn: "United States",
+    regionZh: "美国",
+    metrics: [
+      { labelEn: "On-time vessel rate", labelZh: "准时开船率", valueEn: ">98%", valueZh: ">98%" },
+      { labelEn: "SKUs per season", labelZh: "每季 SKU 数", valueEn: "20-80", valueZh: "20-80" },
+      { labelEn: "Capacity forecast", labelZh: "产能预测", valueEn: "6-month rolling", valueZh: "6 个月滚动" },
+    ],
+    confidentialityNoteEn: STANDARD_DISCLOSURE_EN,
+    confidentialityNoteZh: STANDARD_DISCLOSURE_ZH,
     tags: ["Retail", "Seasonal", "Big-box"],
   },
   {
@@ -168,6 +207,15 @@ export const cases: CaseStudy[] = [
     ],
     image: "/images/products/animals-trio.jpeg",
     referenceClients: ["Miniso International"],
+    regionEn: "Global (multi-country distribution)",
+    regionZh: "全球（多国分销）",
+    metrics: [
+      { labelEn: "Replenishment cycle", labelZh: "补货周期", valueEn: "4-8 weeks", valueZh: "4-8 周" },
+      { labelEn: "QC reporting", labelZh: "质检报告", valueEn: "Monthly scorecard", valueZh: "月度评分表" },
+      { labelEn: "Relationship", labelZh: "合作关系", valueEn: "Long-term supply", valueZh: "长期供货" },
+    ],
+    confidentialityNoteEn: STANDARD_DISCLOSURE_EN,
+    confidentialityNoteZh: STANDARD_DISCLOSURE_ZH,
     tags: ["Lifestyle retail", "High volume", "Replenishment"],
   },
   {
@@ -215,6 +263,15 @@ export const cases: CaseStudy[] = [
     ],
     image: "/images/products/strawberry-bear.jpeg",
     referenceClients: ["Build-A-Bear", "Kellytoy"],
+    regionEn: "Global / United States",
+    regionZh: "全球 / 美国",
+    metrics: [
+      { labelEn: "Seam durability", labelZh: "缝合耐久", valueEn: "Multi-cycle tested", valueZh: "多次填充测试" },
+      { labelEn: "Pattern consistency", labelZh: "版型一致性", valueEn: "Brand-shared library", valueZh: "品牌共享版型库" },
+      { labelEn: "Fabric", labelZh: "面料", valueEn: "Skin-safe, washable", valueZh: "亲肤可洗" },
+    ],
+    confidentialityNoteEn: STANDARD_DISCLOSURE_EN,
+    confidentialityNoteZh: STANDARD_DISCLOSURE_ZH,
     tags: ["Experience retail", "Handcrafted", "Interactive"],
   },
   {
@@ -261,6 +318,16 @@ export const cases: CaseStudy[] = [
       "首批即带合规文档的上架就绪产品",
     ],
     image: "/images/products/penguin.jpeg",
+    regionEn: "North America (DTC / Amazon)",
+    regionZh: "北美（DTC / Amazon）",
+    metrics: [
+      { labelEn: "Trial MOQ", labelZh: "试单起订", valueEn: "200 pcs", valueZh: "200 件" },
+      { labelEn: "Scaled to", labelZh: "成长至", valueEn: "5,000+ pcs", valueZh: "5,000+ 件" },
+      { labelEn: "Sample fee", labelZh: "样品费", valueEn: "Deducted from 1st order", valueZh: "首单抵扣" },
+    ],
+    confidentialityNoteEn:
+      "Anonymized to protect early-stage clients. " + STANDARD_DISCLOSURE_EN,
+    confidentialityNoteZh: "为保护初创客户已匿名处理。" + STANDARD_DISCLOSURE_ZH,
     tags: ["Startup", "Low MOQ", "DTC"],
   },
   {
@@ -307,6 +374,16 @@ export const cases: CaseStudy[] = [
       "活动日命中率满足紧凑档期需求",
     ],
     image: "/images/details/hangtag-full.jpeg",
+    regionEn: "Global (corporate & events)",
+    regionZh: "全球（企业与活动）",
+    metrics: [
+      { labelEn: "Project calendar", labelZh: "项目排期", valueEn: "T-75 days", valueZh: "T-75 天" },
+      { labelEn: "Size tiers", labelZh: "尺寸档位", valueEn: "3 (10-45 cm)", valueZh: "3 档 (10-45 cm)" },
+      { labelEn: "Budget tiers", labelZh: "预算档位", valueEn: "Economy / Standard / Premium", valueZh: "经济 / 标准 / 高端" },
+    ],
+    confidentialityNoteEn:
+      "Anonymized to protect campaign confidentiality. " + STANDARD_DISCLOSURE_EN,
+    confidentialityNoteZh: "为保护活动机密已匿名处理。" + STANDARD_DISCLOSURE_ZH,
     tags: ["Promotional", "Corporate gifts", "Mascot"],
   },
 ];
