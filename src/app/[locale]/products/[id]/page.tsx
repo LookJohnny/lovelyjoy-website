@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { products } from "@/data/products";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import ProductGallery from "@/components/products/ProductGallery";
 import Button from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import ShareButtons from "@/components/ui/ShareButtons";
@@ -59,7 +60,9 @@ function ProductJsonLd({ product, locale }: { product: (typeof products)[number]
     url,
     name: isZh ? product.nameCn : product.name,
     description: isZh ? product.descriptionCn : product.descriptionEn,
-    image: `https://lovelyjoy.cn${product.image}`,
+    image: (product.images ?? [product.image]).map(
+      (i) => `https://lovelyjoy.cn${i}`
+    ),
     sku: product.id,
     brand: { "@type": "Brand", name: "LovelyJoy" },
     // Reference the shared Organization node (defined on the homepage) instead
@@ -138,19 +141,11 @@ export default async function ProductDetailPage({
       <section className="bg-bg-sky pb-16 pt-8 md:pb-24">
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-            {/* Image */}
-            <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
-              <div className="relative aspect-square">
-                <Image
-                  src={product.image}
-                  alt={`${name} - LovelyJoy ${isZh ? "毛绒玩具" : "plush toy"}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-            </div>
+            {/* Image gallery */}
+            <ProductGallery
+              images={product.images ?? [product.image]}
+              alt={`${name} - LovelyJoy ${isZh ? "毛绒玩具" : "plush toy"}`}
+            />
 
             {/* Info */}
             <div className="flex flex-col justify-center">
