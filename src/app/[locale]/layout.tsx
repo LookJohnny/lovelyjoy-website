@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { buildAlternates, htmlLang } from '@/lib/seo';
+import { buildAlternates, htmlLang, isIndexableLocale } from '@/lib/seo';
 
 // Pre-render a static shell for every locale at build time. Combined with
 // `setRequestLocale` below (and on each page), this lets Vercel serve locale
@@ -37,6 +37,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const shouldIndex = isIndexableLocale(locale);
 
   return {
     metadataBase: new URL('https://lovelyjoy.cn'),
@@ -58,6 +59,17 @@ export async function generateMetadata({
       images: ['/images/hero/hero-bear.png'],
     },
     alternates: buildAlternates(locale, ''),
+    robots: {
+      index: shouldIndex,
+      follow: true,
+      googleBot: {
+        index: shouldIndex,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     verification: {
       other: {
         'baidu-site-verification': 'codeva-uvzVItlWsi',

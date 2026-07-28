@@ -1,11 +1,14 @@
-import { routing } from '@/i18n/routing';
-
 const SITE_URL = 'https://lovelyjoy.cn';
+
+// Only Chinese and English currently have unique, page-level content across
+// the whole site. Other locale routes remain available to visitors, but they
+// must not compete in search until their page bodies and metadata are fully
+// translated.
+export const INDEXABLE_LOCALES = ['zh', 'en'] as const;
 
 // Map a next-intl locale (the URL path segment) -> BCP-47 hreflang code.
 // URL paths stay short and stable (/zh, /pt, /es) while the hreflang tags carry
-// the precise script/region Google recommends. The sitemap imports this same
-// map, so the <head> alternates and the XML sitemap never disagree.
+// the precise script/region Google recommends.
 export const HREFLANG_MAP: Record<string, string> = {
   zh: 'zh-Hans', // Simplified Chinese (Mainland) — site content is Simplified
   en: 'en',
@@ -27,16 +30,25 @@ export function htmlLang(locale: string): string {
   return HREFLANG_MAP[locale] ?? locale;
 }
 
+export function isIndexableLocale(
+  locale: string,
+): locale is (typeof INDEXABLE_LOCALES)[number] {
+  return INDEXABLE_LOCALES.includes(
+    locale as (typeof INDEXABLE_LOCALES)[number],
+  );
+}
+
 export function buildAlternates(locale: string, path: string = '') {
   const languages: Record<string, string> = {};
-  for (const l of routing.locales) {
+  for (const l of INDEXABLE_LOCALES) {
     languages[HREFLANG_MAP[l] ?? l] = `/${l}${path}`;
   }
-  // x-default consistently resolves to the English page — matches the sitemap
-  // and the proxy's permanent root redirect.
+  // Non-indexable locale routes contain English fallback content, so their
+  // canonical must point to the real English page instead of creating a
+  // duplicate self-canonical cluster. x-default follows the same target.
   languages['x-default'] = `/en${path}`;
   return {
-    canonical: `/${locale}${path}`,
+    canonical: `/${isIndexableLocale(locale) ? locale : 'en'}${path}`,
     languages,
   };
 }
