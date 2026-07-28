@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/faq",
     "/contact",
+    "/rfq-template",
     "/blog",
     "/plush-toy-oem",
     "/custom-plush-manufacturer",
@@ -68,7 +69,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const path = `/blog/${post.slug}`;
       entries.push({
         url: `${BASE_URL}/${locale}${path}`,
-        lastModified: new Date(post.date),
+        lastModified: new Date(post.modifiedDate ?? post.date),
         changeFrequency: "monthly",
         priority: 0.6,
         alternates: { languages: buildLanguages(path) },

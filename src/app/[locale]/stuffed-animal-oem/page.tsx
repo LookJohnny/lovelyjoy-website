@@ -49,7 +49,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
         { q: "你们支持品牌吊牌、织标和包装定制吗？", a: "全部支持。可定制：纸质吊牌（含烫金/凹凸/UV）、织标（缝入式/可拆式）、OPP 自封袋（透明/磨砂/印品牌）、彩盒、礼盒、手提袋。设计稿由你方提供，或由我们设计团队按 VI 规范出图。" },
         { q: "平均量产周期是多久？", a: "样品确认后标准量产 30-45 天，订单量大或工艺复杂可能延长 5-10 天。加急订单可压缩至 20-25 天（加急费 10-15%）。每批订单含 100% 出货前全检与照片报告。" },
         { q: "补货订单（reorder）能保证质量一致吗？", a: "可以。我们保留每个客户项目的完整生产档案：版型、面料批次记录、Pantone 色号、辅料供应商清单。补货订单按原档案生产，关键工序由原班组负责，确保和首单一致。客户复购率长期保持 85%+。" },
-        { q: "出口合规支持哪些标准？", a: "已通过 EN 71（欧盟）、ASTM F963（美国 CPSC）、CE（欧盟）、GB 6675（中国）、CCPSA（加拿大）。可按目的国提供第三方测试报告（SGS/Intertek/BV）配合清关与零售商入库审核。BSCI 与 ISO 9001 工厂级认证常年有效。" },
+        { q: "出口合规支持哪些标准？", a: "我们按具体产品、目标年龄和目的国匹配 EN 71/CE（欧盟）、ASTM F963/CPSIA（美国）、GB 6675（中国）及 CCPSA（加拿大）等适用要求。第三方测试报告、工厂审核和质量体系文件可向合格买家提供，并在下单前确认适用范围与有效性。" },
       ]
     : [
         { q: "Can you manufacture private label stuffed animals?", a: "Yes — private-label OEM is our specialty. Finished products carry your brand's hang tags, woven labels, and packaging exclusively. No factory branding appears anywhere. You retain full brand ownership; we appear only as the manufacturer of record." },
@@ -57,7 +57,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
         { q: "Do you support branded tags, woven labels, and custom packaging?", a: "Fully supported. Available: paper hang tags (foil-stamping, embossing, UV), woven labels (sewn-in or removable), poly bags (clear, frosted, brand-printed), color boxes, gift boxes, and shopping bags. Provide your artwork or let our design team produce it from your VI guidelines." },
         { q: "What's the average production lead time?", a: "Standard bulk runs 30-45 days after sample approval; large or complex orders may add 5-10 days. Rush production at 20-25 days is available with a 10-15% rush fee. Every batch includes 100% pre-shipment inspection plus a photo report." },
         { q: "Can you maintain quality consistency on reorders?", a: "Yes. We keep a complete production dossier per customer project: patterns, fabric batch records, Pantone codes, accessory supplier lists. Reorders use the original dossier and the same production line for key processes, matching the first run. Our reorder rate sits consistently above 85%." },
-        { q: "What export compliance standards do you support?", a: "Certified to EN 71 (EU), ASTM F963 (US CPSC), CE (EU), GB 6675 (China), and CCPSA (Canada). Third-party test reports (SGS, Intertek, BV) provided per destination market for customs and retail vendor onboarding. Factory holds BSCI and ISO 9001 certifications, both current." },
+        { q: "What export compliance standards do you support?", a: "Requirements are matched to the product, target age and destination market, including EN 71/CE (EU), ASTM F963/CPSIA (US), GB 6675 (China) and CCPSA (Canada) where applicable. Third-party test, factory-audit and quality-system records can be supplied to qualified buyers, with scope and validity confirmed before ordering." },
       ];
 
   const structuredData = {

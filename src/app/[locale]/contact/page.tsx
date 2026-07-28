@@ -4,8 +4,10 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import Button from "@/components/ui/Button";
 import InquiryForm from "@/components/contact/InquiryForm";
 import ContactInfo from "@/components/contact/ContactInfo";
+import { FileSpreadsheet } from "lucide-react";
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -32,6 +34,7 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const isZh = locale === "zh";
   const t = await getTranslations("contact");
   const nav = await getTranslations("nav");
 
@@ -61,6 +64,32 @@ export default async function ContactPage({
           ]}
         />
       </Container>
+
+      {/* Buyer resource */}
+      <section className="bg-bg-sky py-8">
+        <Container>
+          <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-5 rounded-2xl border border-sky-brand/15 bg-white p-6 shadow-sm sm:flex-row sm:items-center">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-brand/10 text-sky-brand">
+                <FileSpreadsheet className="h-5 w-5" />
+              </span>
+              <div>
+                <h2 className="font-bold text-brown">
+                  {isZh ? "先准备一份完整RFQ" : "Prepare a complete RFQ first"}
+                </h2>
+                <p className="mt-1 text-sm leading-relaxed text-brown/65">
+                  {isZh
+                    ? "免费下载询价模板，整理尺寸、面料、数量、测试、包装与交期要求。"
+                    : "Use the free template to define size, materials, quantity, testing, packaging and timing."}
+                </p>
+              </div>
+            </div>
+            <Button href={`/${locale}/rfq-template`} variant="outline" size="sm">
+              {isZh ? "查看询价模板" : "Open RFQ template"}
+            </Button>
+          </div>
+        </Container>
+      </section>
 
       {/* Two-column layout */}
       <section className="py-16 md:py-24">

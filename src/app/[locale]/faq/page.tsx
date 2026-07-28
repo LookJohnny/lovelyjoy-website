@@ -42,7 +42,7 @@ function FaqJsonLd() {
     },
     {
       q: "What certifications do your products have?",
-      a: "Our products meet ASTM F963, EN 71, CE, and GB 6675 safety standards. Our factory holds BSCI and ISO 9001 certifications.",
+      a: "Testing and documentation are matched to the product, target age and destination market. Applicable ASTM F963/CPSIA, EN 71/CE and GB 6675 reports, plus factory-audit and quality-system records, can be supplied to qualified buyers for verification.",
     },
     {
       q: "Do you offer design services (ODM)?",

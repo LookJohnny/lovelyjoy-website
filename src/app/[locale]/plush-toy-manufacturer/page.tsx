@@ -41,7 +41,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
         { q: "What is your MOQ?", a: "Standard MOQ is 500 pcs per style. Trial orders for new customers start at 200 pcs per style. Smaller or simpler designs may be negotiated further." },
         { q: "Can I send my own artwork? How long does sampling take?", a: "Yes — we accept design files, reference photos, hand sketches, or even verbal briefs. Sample development takes 7-15 working days including fabric sourcing, pattern making, sewing, and first-round QC." },
         { q: "What is the production lead time?", a: "After sample approval, standard bulk production is 30-45 days depending on volume and complexity. Rush orders can be compressed to 20-25 days." },
-        { q: "Do you meet international export compliance?", a: "Our products comply with EN 71 (EU), ASTM F963 (US), CE, and GB 6675 (China). Our factory holds BSCI and ISO 9001 certifications and we provide third-party test reports for customs clearance." },
+        { q: "Do you support international export compliance?", a: "Yes. Testing and documentation are matched to the product, target age and destination market, including EN 71/CE (EU), ASTM F963/CPSIA (US) and GB 6675 (China) where applicable. Third-party test, factory-audit and quality-system records can be supplied for verification." },
         { q: "Which clients have you worked with?", a: "Long-term partners include CVS, Burlington, Kellytoy, Build-A-Bear, Miniso International, and The Green Party. We've shipped to 70+ countries and hold licensed-IP manufacturing experience for Sanrio Hello Kitty, Disney Paw Patrol, and Illumination Minions." },
       ];
 
@@ -195,8 +195,8 @@ export default async function PlushToyManufacturerPage({ params }: { params: Pro
           </div>
           <p className="mx-auto max-w-3xl mt-6 text-center text-sm text-brown-light">
             {isZh
-              ? "所有认证均在有效期内，可按客户需要提供最新扫描件与第三方检测报告用于清关与渠道入库。"
-              : "All certifications are current. We provide up-to-date scans and third-party test reports for customs clearance and retail onboarding on request."}
+              ? "具体证书、审核与测试报告按产品、批次和目标市场核验；可向合格买家提供适用文件，用于清关与渠道入库。"
+              : "Certificates, audits and test reports are verified by product, batch and destination market. Applicable records can be supplied to qualified buyers for customs and retail onboarding."}
           </p>
         </Container>
       </section>

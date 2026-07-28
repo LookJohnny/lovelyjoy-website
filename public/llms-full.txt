@@ -12,7 +12,7 @@ CVS, Burlington, Kellytoy, Miniso International, The Green Party (凯蓝), and h
 
 ## Factory Specifications
 - Factory area: 20,000+ square meters
-- In-house design team: 15+ professional designers
+- In-house design team: 50+ professional designers and pattern makers
 - Skilled workers: 300+
 - Monthly production capacity: 800,000+ pieces
 - Annual output: Millions of units
@@ -122,7 +122,7 @@ Sample development typically takes 7-15 working days depending on complexity. Si
 Standard production takes 30-45 days after sample approval. Rush orders can be arranged within 20 days for an additional fee, subject to production schedule availability.
 
 ### What certifications do your products have?
-Our products meet ASTM F963 (US), EN 71 (EU), CE, and GB 6675 (China) safety standards. Our factory holds BSCI and ISO 9001 certifications.
+Testing and documentation are matched to the product, target age and destination market, including ASTM F963/CPSIA for the US, EN 71/CE documentation for the EU, and GB 6675 for China where applicable. Factory-audit, quality-system and product-test records are available to qualified buyers for verification.
 
 ### Do you offer design services (ODM)?
 Yes! Our in-house design team can create original designs from scratch based on your brief, or modify existing designs. We provide 3D renderings and physical samples before mass production.

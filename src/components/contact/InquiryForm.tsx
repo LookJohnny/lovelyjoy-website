@@ -6,6 +6,10 @@ import { CheckCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import {
+  LEAD_ATTRIBUTION_KEY,
+  type LeadAttribution,
+} from "@/components/analytics/LeadAttribution";
 
 interface FormData {
   name: string;
@@ -66,10 +70,18 @@ export default function InquiryForm() {
     setIsSubmitting(true);
 
     try {
+      let attribution: LeadAttribution | null = null;
+      try {
+        const stored = window.sessionStorage.getItem(LEAD_ATTRIBUTION_KEY);
+        attribution = stored ? (JSON.parse(stored) as LeadAttribution) : null;
+      } catch {
+        attribution = null;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, attribution }),
       });
 
       if (res.ok) {

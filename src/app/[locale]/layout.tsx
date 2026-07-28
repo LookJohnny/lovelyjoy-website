@@ -14,6 +14,7 @@ export function generateStaticParams() {
 }
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import LeadAttributionCapture from '@/components/analytics/LeadAttribution';
 import '../globals.css';
 
 const quicksand = Quicksand({
@@ -106,6 +107,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <NextIntlClientProvider messages={messages} locale={locale}>
+          <LeadAttributionCapture />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

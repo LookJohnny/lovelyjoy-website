@@ -56,7 +56,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
     },
     {
       q: "What safety certifications do your OEM plush toys meet?",
-      a: "All our plush toys meet international safety standards including ASTM F963 (USA), EN 71 (EU), CE (EU), and GB 6675 (China). Our factory holds BSCI and ISO 9001 certifications.",
+      a: "Testing and documentation are matched to each product, target age and destination market. Applicable ASTM F963/CPSIA, EN 71/CE and GB 6675 reports, plus factory-audit and quality-system records, can be supplied to qualified buyers for verification.",
     },
     {
       q: "Can you produce licensed character plush toys?",

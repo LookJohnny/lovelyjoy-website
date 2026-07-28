@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/indexnow.mjs --postbuild",
     "start": "next start",
     "lint": "eslint",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "geo:validate": "node scripts/validate-geo-content.mjs"
   },
   "dependencies": {
     "@pixiv/three-vrm": "^3.5.1",

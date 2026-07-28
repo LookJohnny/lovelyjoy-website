@@ -9,6 +9,7 @@ export interface BlogPost {
   contentEn: string;
   contentCn: string;
   date: string;
+  modifiedDate?: string;
   category: string;
   image: string;
 }
@@ -273,13 +274,14 @@ export const posts: BlogPost[] = [
   {
     slug: "plush-toy-safety-standards",
     titleEn:
-      "Plush Toy Safety Standards Explained: ASTM F963, EN 71, GB 6675 & CE",
-    titleCn: "毛绒玩具安全标准详解：ASTM F963、EN 71、GB 6675与CE认证",
+      "Plush Toy Safety Standards Explained: ASTM F963, EN 71, GB 6675 & CE Compliance",
+    titleCn: "毛绒玩具安全标准详解：ASTM F963、EN 71、GB 6675与CE合规",
     excerptEn:
-      "A detailed explanation of major international toy safety standards including ASTM F963, EN 71, GB 6675, and CE certification — what they test, why they matter, and how to ensure compliance.",
+      "A buyer-focused explanation of ASTM F963, EN 71, GB 6675 and CE compliance—what applies, what documents are needed and where to verify current official guidance.",
     excerptCn:
-      "详细解读主要国际玩具安全标准，包括ASTM F963、EN 71、GB 6675和CE认证——测试内容、重要性以及如何确保合规。",
+      "面向采购方解读ASTM F963、EN 71、GB 6675与CE合规：适用范围、所需文件及最新官方核验来源。",
     date: "2025-10-08",
+    modifiedDate: "2026-07-28",
     category: "compliance",
     image: "/images/details/label.jpeg",
     contentEn: `
@@ -296,7 +298,7 @@ export const posts: BlogPost[] = [
   <li><strong>Chemical properties:</strong> Extensive testing for heavy metals (lead, cadmium, mercury), phthalates, and other toxic substances in fabrics, fillings, dyes, and surface coatings. Soluble heavy metal limits are strictly enforced, particularly for products intended for children under 3 years old.</li>
   <li><strong>Labeling requirements:</strong> Age grading recommendations, manufacturer or importer identification, tracking labels (lot numbers, production dates), and care instructions must all meet specific formatting requirements.</li>
 </ul>
-<p>Third-party testing at a CPSC-accredited laboratory is required, and a Children's Product Certificate (CPC) must be issued for every product before it can be sold in the US market.</p>
+<p>For children’s products intended primarily for ages 12 or younger, applicable CPSC requirements generally require testing by a CPSC-accepted third-party laboratory and certification through a Children’s Product Certificate (CPC). The exact ASTM F963 sections and other rules depend on the product, age grade, materials, and features.</p>
 
 <h2>EN 71: European Toy Safety Standard</h2>
 <p>EN 71 is a series of European standards that form the basis for the CE marking required for toys sold in the European Economic Area (EEA). The standard consists of multiple parts, each addressing different safety aspects:</p>
@@ -308,6 +310,7 @@ export const posts: BlogPost[] = [
   <li><strong>EN 71-14 (Trampolines for domestic use):</strong> Not applicable to plush toys, but included here to illustrate the breadth of the EN 71 series.</li>
 </ul>
 <p>To sell toys in the EU, manufacturers must also maintain a technical file documenting all testing, prepare an EU Declaration of Conformity, and apply the CE marking to products and packaging.</p>
+<p><strong>2026 update:</strong> Regulation (EU) 2025/2509 entered into force on January 1, 2026 and is scheduled to apply from August 1, 2030 after its transition period. Buyers should plan for digital product passport and updated chemical-safety obligations while continuing to follow the rules currently applicable during the transition.</p>
 
 <h2>GB 6675: China National Toy Safety Standard</h2>
 <p>GB 6675 is the mandatory national standard for toy safety in China. It was substantially revised in 2014 to align more closely with international standards, particularly EN 71. The standard consists of four parts:</p>
@@ -326,7 +329,7 @@ export const posts: BlogPost[] = [
   <li><strong>Third-party testing:</strong> While self-certification is technically possible under the directive, having an accredited laboratory (Notified Body) test your products provides stronger evidence of compliance and is strongly recommended.</li>
   <li><strong>Technical documentation:</strong> Maintain comprehensive records including product descriptions, design drawings, test reports, material certificates, risk assessments, and manufacturing processes.</li>
   <li><strong>EU Declaration of Conformity:</strong> Prepare a formal written declaration stating that your product meets all applicable requirements. This must be available to market surveillance authorities upon request.</li>
-  <li><strong>Authorized representative:</strong> If you are manufacturing outside the EU, you must designate an authorized representative within the EU who is responsible for compliance documentation.</li>
+  <li><strong>EU economic operator:</strong> Confirm who will fulfil the applicable EU economic-operator responsibilities—such as the importer or an authorized representative—and keep the required compliance information accessible.</li>
 </ul>
 
 <h2>How to Ensure Compliance</h2>
@@ -335,9 +338,17 @@ export const posts: BlogPost[] = [
   <li><strong>Design for safety from the start:</strong> Incorporate safety considerations into the initial design phase. Avoid small detachable parts for products targeting young children, select materials with known safety profiles, and design construction methods that ensure long-term integrity.</li>
   <li><strong>Choose certified materials:</strong> Source fabrics, fillings, dyes, and accessories from suppliers who can provide material safety data sheets (MSDS) and certificates of compliance with relevant standards.</li>
   <li><strong>In-process quality control:</strong> Implement testing at multiple stages of production, including incoming material inspection, in-line pull tests for attached components, and final product audits.</li>
-  <li><strong>Third-party testing:</strong> Submit samples from each production batch to accredited testing laboratories for comprehensive safety testing. Keep all test reports on file and update them regularly.</li>
-  <li><strong>Partner with experienced manufacturers:</strong> Work with manufacturers like LovelyJoy who have deep experience with international safety standards and maintain current certifications. Our in-house quality team monitors standards updates and ensures every product meets or exceeds requirements for your target markets.</li>
+  <li><strong>Third-party testing:</strong> Build a documented test plan based on product risk, age grade, destination market, material changes, buyer protocols, and applicable law. Keep reports linked to the tested product and production records.</li>
+  <li><strong>Verify before ordering:</strong> Request current, product-specific reports and factory-level records where relevant. Confirm the report scope, tested sample, issuing laboratory, dates, and destination-market applicability instead of relying on a logo or general claim.</li>
 </ul>
+
+<h2>Primary Sources and Further Verification</h2>
+<ul>
+  <li><a href="https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety" target="_blank" rel="noopener noreferrer">U.S. CPSC Toy Safety Business Guidance</a></li>
+  <li><a href="https://single-market-economy.ec.europa.eu/sectors/toys/toy-safety_en" target="_blank" rel="noopener noreferrer">European Commission: Toy Safety in the EU</a></li>
+  <li><a href="https://single-market-economy.ec.europa.eu/sectors/toys/placing-toys-eu-market_en" target="_blank" rel="noopener noreferrer">European Commission: Placing Toys on the EU Market</a></li>
+</ul>
+<p><em>Reviewed July 28, 2026. This guide is general sourcing information, not legal advice. Requirements must be confirmed for the specific product and market.</em></p>
 `,
     contentCn: `
 <h2>为什么安全标准在毛绒玩具行业至关重要</h2>
@@ -353,7 +364,7 @@ export const posts: BlogPost[] = [
   <li><strong>化学性能：</strong>对面料、填充物、染料和表面涂层中的重金属（铅、镉、汞）、邻苯二甲酸酯和其他有毒物质进行全面测试。溶出性重金属限值执行严格，特别是针对3岁以下儿童的产品。</li>
   <li><strong>标签要求：</strong>年龄分级建议、制造商或进口商标识、追溯标签（批号、生产日期）和护理说明都必须满足特定的格式要求。</li>
 </ul>
-<p>要求由CPSC认可实验室进行第三方测试，并且每个产品在美国市场销售之前必须签发儿童产品证书（CPC）。</p>
+<p>对于主要面向12岁及以下儿童的儿童产品，适用的CPSC要求通常需要由CPSC认可的第三方实验室进行测试，并签发儿童产品证书（CPC）。具体适用的ASTM F963条款及其他法规取决于产品、年龄分级、材料和功能。</p>
 
 <h2>EN 71：欧洲玩具安全标准</h2>
 <p>EN 71是一系列欧洲标准，构成了在欧洲经济区（EEA）销售的玩具所需CE标志的基础。该标准由多个部分组成，每个部分涉及不同的安全方面：</p>
@@ -364,6 +375,7 @@ export const posts: BlogPost[] = [
   <li><strong>EN 71-12（N-亚硝胺和N-亚硝胺化合物）：</strong>特别适用于某些橡胶和乳胶部件，有时用于毛绒玩具配件。</li>
 </ul>
 <p>要在欧盟销售玩具，制造商还必须维护记录所有测试的技术文件，准备欧盟符合性声明，并在产品和包装上加贴CE标志。</p>
+<p><strong>2026年更新：</strong>欧盟《玩具安全法规》(EU) 2025/2509已于2026年1月1日生效，过渡期后计划从2030年8月1日起适用。采购方应提前规划数字产品护照和更新后的化学安全义务，同时在过渡期内继续遵循当前适用规则。</p>
 
 <h2>GB 6675：中国国家玩具安全标准</h2>
 <p>GB 6675是中国玩具安全的强制性国家标准。2014年进行了大幅修订，使其更加符合国际标准，特别是EN 71。该标准包括四个部分：</p>
@@ -382,7 +394,7 @@ export const posts: BlogPost[] = [
   <li><strong>第三方测试：</strong>虽然根据指令在技术上可以进行自我认证，但由认可实验室（公告机构）测试您的产品提供了更有力的合规证据，强烈建议采用。</li>
   <li><strong>技术文件：</strong>维护全面的记录，包括产品描述、设计图纸、测试报告、材料证书、风险评估和制造工艺。</li>
   <li><strong>欧盟符合性声明：</strong>准备一份正式的书面声明，说明您的产品符合所有适用要求。市场监督机构可在需要时要求查阅。</li>
-  <li><strong>授权代理人：</strong>如果您在欧盟以外制造，您必须在欧盟内指定一名授权代理人，负责合规文件。</li>
+  <li><strong>欧盟经济运营者：</strong>明确由进口商、授权代表或其他适格主体承担适用的欧盟经济运营者责任，并确保所需合规信息可供查验。</li>
 </ul>
 
 <h2>如何确保合规</h2>
@@ -391,9 +403,17 @@ export const posts: BlogPost[] = [
   <li><strong>从设计开始就考虑安全性：</strong>在初始设计阶段融入安全考虑。避免面向幼儿的产品使用小的可拆卸零件，选择具有已知安全特性的材料，设计确保长期完整性的构造方法。</li>
   <li><strong>选择经过认证的材料：</strong>从能够提供材料安全数据表（MSDS）和相关标准合规证书的供应商处采购面料、填充物、染料和配件。</li>
   <li><strong>过程中的质量控制：</strong>在生产的多个阶段实施测试，包括来料检验、在线部件拉力测试和成品审核。</li>
-  <li><strong>第三方测试：</strong>将每批生产的样品送至认可的测试实验室进行全面安全测试。保存所有测试报告并定期更新。</li>
-  <li><strong>与有经验的制造商合作：</strong>与像爱儿采LovelyJoy这样深谙国际安全标准并保持现行认证的制造商合作。我们的内部质量团队持续关注标准更新，确保每件产品都达到或超过您目标市场的要求。</li>
+  <li><strong>第三方测试：</strong>根据产品风险、年龄分级、目的国、材料变化、买家标准和适用法规制定书面测试计划，并将报告与实际送检样品和生产记录关联。</li>
+  <li><strong>下单前核验：</strong>索取当前且与具体产品相匹配的测试报告，以及适用的工厂级审核文件。核对报告范围、送检样品、实验室、日期和目的国适用性，而不是只看Logo或笼统承诺。</li>
 </ul>
+
+<h2>官方来源与进一步核验</h2>
+<ul>
+  <li><a href="https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety" target="_blank" rel="noopener noreferrer">美国CPSC玩具安全企业指南</a></li>
+  <li><a href="https://single-market-economy.ec.europa.eu/sectors/toys/toy-safety_en" target="_blank" rel="noopener noreferrer">欧盟委员会：欧盟玩具安全</a></li>
+  <li><a href="https://single-market-economy.ec.europa.eu/sectors/toys/placing-toys-eu-market_en" target="_blank" rel="noopener noreferrer">欧盟委员会：玩具进入欧盟市场</a></li>
+</ul>
+<p><em>审核日期：2026年7月28日。本指南为一般采购信息，不构成法律意见；具体要求应按产品和目标市场确认。</em></p>
 `,
   },
   {

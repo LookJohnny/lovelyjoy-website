@@ -1,3 +1,5 @@
+import { COMPANY_FACTS } from '@/data/company-facts';
+
 const SITE_URL = 'https://lovelyjoy.cn';
 
 // Only Chinese and English currently have unique, page-level content across
@@ -57,7 +59,7 @@ export const SITE = {
   url: SITE_URL,
   name: 'LovelyJoy 爱儿采',
   legalName: 'Yiwu Lebadi Toy Factory',
-  foundingDate: '2003',
+  foundingDate: String(COMPANY_FACTS.foundedYear),
   email: 'info@lovelyjoytoy.com',
   phone: '+86-15957988866',
   whatsapp: '+1-626-586-7567',
@@ -84,6 +86,7 @@ export const SITE = {
     // 'https://lovelyjoy.en.alibaba.com',                     // Alibaba supplier page (fill real URL)
     // 'https://www.linkedin.com/company/lovelyjoy',           // LinkedIn company page (fill real URL)
   ],
+  facts: COMPANY_FACTS,
 };
 
 // Stable schema.org @id anchors. Reused across pages/locales so search engines
