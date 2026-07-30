@@ -8,9 +8,7 @@
  * Usage:
  *   node scripts/indexnow.mjs                 # submit a default core URL set
  *   node scripts/indexnow.mjs <url> [<url>…]  # submit specific URLs
- *
- * Wire it into the deploy flow, e.g. a Vercel "Deploy Hook" or a postdeploy
- * step, so freshly published/updated pages get pinged automatically.
+ *   node scripts/indexnow.mjs --postbuild      # production-only, non-blocking
  *
  * Docs: https://www.indexnow.org/documentation
  */
@@ -28,9 +26,28 @@ const DEFAULT_URLS = [
   `https://${HOST}/en/safety-certifications`,
   `https://${HOST}/en/cases`,
   `https://${HOST}/en/contact`,
+  `https://${HOST}/en/rfq-template`,
+  `https://${HOST}/zh`,
+  `https://${HOST}/zh/products`,
+  `https://${HOST}/zh/oem-odm`,
+  `https://${HOST}/zh/factory-capability`,
+  `https://${HOST}/zh/safety-certifications`,
+  `https://${HOST}/zh/cases`,
+  `https://${HOST}/zh/contact`,
+  `https://${HOST}/zh/rfq-template`,
 ];
 
-const urlList = process.argv.slice(2);
+const args = process.argv.slice(2);
+const isPostbuild = args.includes("--postbuild");
+
+// Vercel runs the npm lifecycle for preview and production builds. Only a
+// production build should notify search engines; local and preview builds skip.
+if (isPostbuild && process.env.VERCEL_ENV !== "production") {
+  console.log("IndexNow → skipped (not a Vercel production build).");
+  process.exit(0);
+}
+
+const urlList = args.filter((arg) => arg !== "--postbuild");
 const payload = {
   host: HOST,
   key: KEY,
@@ -38,15 +55,20 @@ const payload = {
   urlList: urlList.length > 0 ? urlList : DEFAULT_URLS,
 };
 
-const res = await fetch("https://api.indexnow.org/IndexNow", {
-  method: "POST",
-  headers: { "Content-Type": "application/json; charset=utf-8" },
-  body: JSON.stringify(payload),
-});
+try {
+  const res = await fetch("https://api.indexnow.org/IndexNow", {
+    method: "POST",
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify(payload),
+  });
 
-console.log(`IndexNow → HTTP ${res.status} ${res.statusText}`);
-console.log(`Submitted ${payload.urlList.length} URL(s).`);
-if (!res.ok) {
-  console.error(await res.text());
-  process.exit(1);
+  console.log(`IndexNow → HTTP ${res.status} ${res.statusText}`);
+  console.log(`Submitted ${payload.urlList.length} URL(s).`);
+  if (!res.ok) {
+    console.error(await res.text());
+    if (!isPostbuild) process.exit(1);
+  }
+} catch (error) {
+  console.error(`IndexNow → request failed: ${error.message}`);
+  if (!isPostbuild) process.exit(1);
 }

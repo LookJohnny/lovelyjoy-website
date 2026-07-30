@@ -19,6 +19,9 @@ export const NAV_LINKS: NavLink[] = [
   {
     tKey: "services",
     children: [
+      // Canonical OEM hub page first — it targets the primary commercial SERP
+      // ("custom plush toy manufacturer") and must not remain a link orphan.
+      { tKey: "servicesLinks.oemPlushManufacturer", href: "/oem-plush-manufacturer" },
       { tKey: "servicesLinks.plushManufacturer", href: "/plush-toy-manufacturer" },
       { tKey: "servicesLinks.plushToyOem", href: "/plush-toy-oem" },
       { tKey: "servicesLinks.oemOdm", href: "/oem-odm" },

@@ -53,6 +53,12 @@ export default function SourcingEssentials({ locale }: { locale: string }) {
           })}
         </dl>
 
+        {t.citable && (
+          <p className="mx-auto mt-8 max-w-3xl text-sm leading-relaxed text-brown/80">
+            {t.citable}
+          </p>
+        )}
+
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Button href="/contact" variant="primary" size="lg">
             {t.ctaSample}

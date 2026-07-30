@@ -5,6 +5,7 @@ import {
   useMotionValue,
   useSpring,
   useInView,
+  useReducedMotion,
   motion,
   useTransform,
 } from "framer-motion";
@@ -27,13 +28,14 @@ export default function CountUp({
 
   // `mounted` is false on the server AND on the first client render, so the SSR
   // markup — and what a non-JS crawler or a slow connection sees — always
-  // contains the REAL number (`end`), never 0. The count-up animation only
-  // starts after hydration. This fixes the "0% Quality Control / 0+ SKUs"
-  // bug that previously shipped in the static HTML.
+  // contains the REAL number (`end`), never 0.
   const [mounted, setMounted] = useState(false);
   const isInView = useInView(ref, { once: true, margin: "-40px 0px" });
+  const prefersReducedMotion = useReducedMotion();
 
-  const motionValue = useMotionValue(0);
+  // Start at the real value so post-hydration frames also show `end` — the
+  // rendered number never dips to 0 at any point.
+  const motionValue = useMotionValue(end);
   const springValue = useSpring(motionValue, {
     duration: duration * 1000,
     bounce: 0,
@@ -45,10 +47,14 @@ export default function CountUp({
   }, []);
 
   useEffect(() => {
-    if (mounted && isInView) {
-      motionValue.set(end);
-    }
-  }, [mounted, isInView, end, motionValue]);
+    if (!mounted || !isInView || prefersReducedMotion) return;
+    // Keep the count-up feel without ever showing 0: when the section enters
+    // the viewport, jump (no animation) to ~70% of the value, then spring up
+    // to 100%. Skipped entirely under prefers-reduced-motion, where the final
+    // value simply stays on screen.
+    motionValue.jump(Math.round(end * 0.7));
+    motionValue.set(end);
+  }, [mounted, isInView, prefersReducedMotion, end, motionValue]);
 
   return (
     <span

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { NAV_LINKS, CONTACT_INFO } from '@/lib/constants';
 import { Mail, Phone, MessageCircle, MapPin } from 'lucide-react';
@@ -8,6 +8,7 @@ export default async function Footer() {
   const t = await getTranslations('footer');
   const tNav = await getTranslations('nav');
   const tContact = await getTranslations('contact');
+  const locale = await getLocale();
 
   const year = new Date().getFullYear();
 
@@ -87,6 +88,14 @@ export default async function Footer() {
                   {t('links.cases')}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/rfq-template"
+                  className="text-sm text-white/70 transition-colors duration-200 hover:text-beige-brand"
+                >
+                  {locale === 'zh' ? 'RFQ询价模板' : 'RFQ Template'}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -97,6 +106,7 @@ export default async function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
+                { href: '/oem-plush-manufacturer', key: 'oemPlushManufacturer' },
                 { href: '/plush-toy-manufacturer', key: 'plushManufacturer' },
                 { href: '/yiwu-plush-factory', key: 'yiwuFactory' },
                 { href: '/mascot-custom', key: 'mascot' },

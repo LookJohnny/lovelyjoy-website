@@ -76,3 +76,59 @@ export const AI_GUIDE_INTRO: Record<string, AiGuideIntro> = {
 export function getAiGuideIntro(locale: string): AiGuideIntro {
   return AI_GUIDE_INTRO[locale] ?? AI_GUIDE_INTRO.en;
 }
+
+// ─── AI Guide SSR sections ("What Joy Can Answer" / "How Joy Works") ────
+//
+// Server-rendered H2 sections so the page has crawlable depth beyond the intro.
+// All numbers mirror src/data/company-facts.ts (500/200 pcs, 7–15 working days,
+// 30–45 days, 800,000/month, 70+ markets) — do not fork them here. Certification
+// acronyms are locale-neutral. Locales without a translation fall back to EN.
+
+export type AiGuideSections = {
+  whatTitle: string;
+  whatIntro: string;
+  whatItems: string[];
+  howTitle: string;
+  howBody: string[];
+};
+
+export const AI_GUIDE_SECTIONS: Record<string, AiGuideSections> = {
+  en: {
+    whatTitle: "What Joy Can Answer",
+    whatIntro:
+      "Joy answers from LovelyJoy's real factory data, so the figures it quotes match what our sales team confirms:",
+    whatItems: [
+      "MOQ — standard orders start at 500 pieces per design, with trial orders from 200 pieces for first-time buyers.",
+      "Sampling — custom samples are completed in 7–15 working days from an approved design brief.",
+      "Production — mass production takes 30–45 days after sample approval, backed by a monthly capacity of 800,000 pieces.",
+      "Certifications — BSCI and ISO 9001 audited factory; products tested to ASTM F963 (US), EN 71 (EU), and GB 6675 (China).",
+      "Shipping — export experience across 70+ markets, with sea, air, and courier options arranged from Yiwu, China.",
+    ],
+    howTitle: "How Joy Works",
+    howBody: [
+      "Joy is an AI assistant that answers from LovelyJoy's own factory information — production processes, lead times, MOQ policies, and certification records — rather than generic internet content. Ask a question in the kiosk above and Joy responds in real time, by voice or text.",
+      "Joy handles pre-sales research; it does not replace our team. For a formal quotation, sample arrangements, or contract terms, submit your requirements via the contact page and a human sales representative will follow up directly.",
+    ],
+  },
+  zh: {
+    whatTitle: "Joy 能回答什么",
+    whatIntro:
+      "Joy 基于爱儿采工厂的真实数据作答，给出的数字与销售团队确认的口径一致：",
+    whatItems: [
+      "起订量（MOQ）— 常规订单每款 500 件起订，新客户首单可低至 200 件试单。",
+      "打样 — 设计简报确认后，定制样品 7–15 个工作日内完成。",
+      "生产 — 样品确认后大货生产周期为 30–45 天，月产能达 800,000 件。",
+      "认证 — 工厂通过 BSCI 与 ISO 9001 审核；产品按 ASTM F963（美国）、EN 71（欧盟）、GB 6675（中国）标准检测。",
+      "物流 — 出口经验覆盖 70+ 个市场，可从中国义乌安排海运、空运与快递。",
+    ],
+    howTitle: "Joy 如何工作",
+    howBody: [
+      "Joy 是一个基于爱儿采自有工厂信息作答的 AI 助手——涵盖生产流程、交期、起订量政策与认证记录，而非泛泛的网络内容。在上方的互动窗口提问，Joy 会以语音或文字实时回复。",
+      "Joy 负责售前咨询，并不取代我们的团队。如需正式报价、安排样品或商讨合同条款，请通过联系页面提交需求，销售人员会直接跟进。",
+    ],
+  },
+};
+
+export function getAiGuideSections(locale: string): AiGuideSections {
+  return AI_GUIDE_SECTIONS[locale] ?? AI_GUIDE_SECTIONS.en;
+}

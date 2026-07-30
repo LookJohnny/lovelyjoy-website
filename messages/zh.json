@@ -16,6 +16,7 @@
     "blog": "博客",
     "mianmian": "棉棉",
     "servicesLinks": {
+      "oemPlushManufacturer": "OEM毛绒玩具制造商",
       "plushManufacturer": "毛绒玩具厂家",
       "plushToyOem": "毛绒玩具 OEM 定制",
       "oemOdm": "OEM/ODM 综合服务",
@@ -306,6 +307,7 @@
     "copyright": "© {year} 爱儿采 LovelyJoy. 保留所有权利。",
     "services": "定制服务",
     "serviceLinks": {
+      "oemPlushManufacturer": "OEM毛绒玩具制造商",
       "plushManufacturer": "毛绒玩具厂家",
       "yiwuFactory": "义乌毛绒玩具工厂",
       "mascot": "企业吉祥物定制",

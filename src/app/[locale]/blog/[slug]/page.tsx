@@ -46,6 +46,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.modifiedDate ?? post.date,
       images: [{ url: post.image, width: 1200, height: 630 }],
     },
   };
@@ -67,7 +68,7 @@ function ArticleJsonLd({
     description: isZh ? post.excerptCn : post.excerptEn,
     image: `https://lovelyjoy.cn${post.image}`,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.modifiedDate ?? post.date,
     // Author @type follows the author record: Person once a real human is set,
     // Organization until then. Publisher always stays the Organization.
     author: {
@@ -77,11 +78,15 @@ function ArticleJsonLd({
     },
     publisher: {
       "@type": "Organization",
+      // @id merges this node with the canonical homepage Organization entity.
+      "@id": "https://lovelyjoy.cn/#organization",
       name: "LovelyJoy 爱儿采",
       url: "https://lovelyjoy.cn",
       logo: {
         "@type": "ImageObject",
         url: "https://lovelyjoy.cn/images/brand/logo-color.jpeg",
+        width: 3780,
+        height: 2126,
       },
     },
   };

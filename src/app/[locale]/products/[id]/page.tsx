@@ -70,23 +70,10 @@ function ProductJsonLd({ product, locale }: { product: (typeof products)[number]
     manufacturer: { "@id": ORG_ID },
     material: product.material,
     category: product.category,
-    // B2B sourcing: prices are quote-based, so no numeric price is published.
-    // An Offer with availability + a price-on-request PriceSpecification makes
-    // the Product eligible for Google's product result without inventing a price.
-    // TODO(business): if an MOQ unit-price band is acceptable to publish, add
-    // `price`/`priceSpecification.price` here for full rich-result eligibility.
-    offers: {
-      "@type": "Offer",
-      url,
-      availability: "https://schema.org/InStock",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        priceCurrency: "USD",
-        valueAddedTaxIncluded: false,
-      },
-      seller: { "@id": ORG_ID },
-    },
+    // These are quote-based B2B reference products, not directly purchasable
+    // retail offers. Do not emit an incomplete Offer without a real price.
+    // Add an Offer only when a buyer-visible price or truthful price range is
+    // published on this same page.
   };
 
   return (

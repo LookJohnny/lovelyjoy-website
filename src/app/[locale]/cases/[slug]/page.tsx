@@ -1,4 +1,4 @@
-import { buildAlternates, SITE } from "@/lib/seo";
+import { buildAlternates, SITE, ORG_ID } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -32,16 +32,22 @@ export async function generateMetadata({
   const isZh = locale === "zh";
   const title = isZh ? c.titleZh : c.titleEn;
   const summary = isZh ? c.summaryZh : c.summaryEn;
+  // SERP snippets truncate around 160 chars; the bare summary (~85 chars)
+  // wastes that space. Append the region and the headline KPI as a hook.
+  const metric = c.metrics[0];
+  const enriched = isZh
+    ? `${summary}${c.regionZh ? `服务区域：${c.regionZh}。` : ""}${metric ? `${metric.labelZh}：${metric.valueZh}。` : ""}`.slice(0, 158)
+    : `${summary}${c.regionEn ? ` Region: ${c.regionEn}.` : ""}${metric ? ` ${metric.labelEn}: ${metric.valueEn}.` : ""}`.slice(0, 158);
 
   return {
     title: isZh
       ? `${title} - 案例 | 爱儿采 LovelyJoy`
       : `${title} - Case Study | LovelyJoy`,
-    description: summary,
+    description: enriched,
     alternates: buildAlternates(locale, `/cases/${slug}`),
     openGraph: {
       title,
-      description: summary,
+      description: enriched,
       type: "article",
       images: [{ url: `${SITE.url}${c.image}`, width: 1200, height: 630 }],
     },
@@ -65,12 +71,24 @@ function CaseStudyJsonLd({
     headline: title,
     description: summary,
     image: `${SITE.url}${caseStudy.image}`,
-    author: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    // Case studies went live 2026-04-16 (git 498f6c4) and were enriched with
+    // metrics/regions on 2026-06-13 (git 03c7e4b) — real dates, not invented.
+    datePublished: "2026-04-16",
+    dateModified: "2026-06-13",
+    // Carry @id so crawlers merge these nodes with the canonical Organization
+    // declared on the homepage instead of creating disconnected duplicates.
+    author: { "@type": "Organization", "@id": ORG_ID, name: SITE.name, url: SITE.url },
     publisher: {
       "@type": "Organization",
+      "@id": ORG_ID,
       name: SITE.name,
       url: SITE.url,
-      logo: { "@type": "ImageObject", url: `${SITE.url}/images/brand/logo-color.jpeg` },
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE.url}/images/brand/logo-color.jpeg`,
+        width: 3780,
+        height: 2126,
+      },
     },
     about: {
       "@type": "Service",

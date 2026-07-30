@@ -6,12 +6,15 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import CertificationVerification from "@/components/trust/CertificationVerification";
 import {
   Shield,
   Globe,
   FlaskConical,
   CheckCircle,
   ArrowRight,
+  ExternalLink,
+  CalendarDays,
 } from "lucide-react";
 
 // --------------- Static Params ---------------
@@ -32,60 +35,13 @@ export async function generateMetadata({
 
   return {
     title: isZh
-      ? "毛绒玩具安全标准与认证 | LovelyJoy 爱儿采"
-      : "Plush Toy Safety Standards & Certifications | LovelyJoy",
+      ? "毛绒玩具安全标准与合规指南 | LovelyJoy 爱儿采"
+      : "Plush Toy Safety Standards & Compliance Guide | LovelyJoy",
     description: isZh
-      ? "了解LovelyJoy爱儿采毛绒玩具的安全认证：BSCI、ISO 9001、CE、ASTM F963、EN 71、GB 6675。每项认证的测试内容、适用市场和重要性详解。"
-      : "Learn about LovelyJoy plush toy safety certifications: BSCI, ISO 9001, CE, ASTM F963, EN 71, GB 6675. Detailed explanations of each certification, what it tests, applicable markets, and why it matters.",
+      ? "了解BSCI、ISO 9001、CE、ASTM F963、EN 71与GB 6675的适用范围、目标市场及毛绒玩具测试要求，并查看官方来源与文件核验方式。"
+      : "Understand how BSCI, ISO 9001, CE, ASTM F963, EN 71 and GB 6675 apply to plush toys, with target-market guidance, official sources and document-verification details.",
     alternates: buildAlternates(locale, '/safety-certifications'),
   };
-}
-
-// --------------- FAQ JSON-LD ---------------
-
-function FaqJsonLd() {
-  const faqs = [
-    {
-      q: "What safety certifications do LovelyJoy plush toys have?",
-      a: "LovelyJoy plush toys meet ASTM F963 (USA), EN 71 (EU), CE (EU), and GB 6675 (China) safety standards. Our factory holds BSCI social compliance certification and ISO 9001 quality management certification.",
-    },
-    {
-      q: "What does ASTM F963 test for in plush toys?",
-      a: "ASTM F963 is the U.S. Consumer Safety Specification for Toy Safety. For plush toys, it tests mechanical and physical properties (small parts, sharp edges, pull strength of eyes and noses), flammability, and chemical content (lead, phthalates, heavy metals). All plush toys sold in the United States must comply with ASTM F963.",
-    },
-    {
-      q: "What is the difference between EN 71 and ASTM F963?",
-      a: "EN 71 is the European toy safety standard and ASTM F963 is the U.S. standard. While both cover mechanical safety, flammability, and chemical properties, they have different specific test methods and limits. EN 71 has stricter limits on certain chemical elements (Part 3: Migration of Certain Elements), while ASTM F963 includes additional mechanical abuse tests. Products sold in Europe need EN 71; products sold in the USA need ASTM F963.",
-    },
-    {
-      q: "Is BSCI certification required to sell plush toys?",
-      a: "BSCI (Business Social Compliance Initiative) is not a product certification but a factory social audit. It verifies that the factory meets international standards for worker rights, fair wages, safe working conditions, and environmental protection. While not legally required, major retailers like Walmart, Target, and European chains increasingly require their suppliers to hold BSCI or equivalent social compliance audits.",
-    },
-    {
-      q: "How does LovelyJoy ensure plush toy safety during production?",
-      a: "LovelyJoy implements a 5-stage quality control process: (1) Incoming Quality Control tests all raw materials, (2) First Article Inspection verifies the first production piece, (3) In-Process Quality Control with regular line inspections, (4) Final Quality Control with 100% inspection of finished products, and (5) Outgoing Quality Control before shipment. We also use metal detectors on all finished products and conduct regular third-party lab testing.",
-    },
-  ];
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
-  );
 }
 
 // --------------- Page ---------------
@@ -210,12 +166,43 @@ export default async function SafetyCertificationsPage({
     },
   ];
 
+  const officialSources = [
+    {
+      name: "U.S. Consumer Product Safety Commission — Toy Safety",
+      description: isZh
+        ? "美国儿童玩具 ASTM F963、第三方测试与 CPC 要求"
+        : "ASTM F963, third-party testing and CPC requirements for U.S. children’s toys",
+      href: "https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety",
+    },
+    {
+      name: "European Commission — Toy Safety in the EU",
+      description: isZh
+        ? "欧盟玩具安全、CE 标志、符合性评估及法规过渡安排"
+        : "EU toy safety, CE marking, conformity assessment and regulatory transition",
+      href: "https://single-market-economy.ec.europa.eu/sectors/toys/toy-safety_en",
+    },
+    {
+      name: "ISO — ISO 9001:2015",
+      description: isZh
+        ? "质量管理体系标准的官方说明与当前版本状态"
+        : "Official overview and current status of the quality-management-system standard",
+      href: "https://www.iso.org/standard/62085.html",
+    },
+    {
+      name: "amfori — amfori BSCI",
+      description: isZh
+        ? "amfori BSCI 社会责任尽职调查体系官方说明"
+        : "Official overview of the amfori BSCI social due-diligence system",
+      href: "https://www.amfori.org/amfori-bsci/",
+    },
+  ];
+
   const testingProcess = [
     {
       title: isZh ? "材料入库检测" : "Raw Material Testing",
       desc: isZh
-        ? "所有面料和填充物入库前送第三方实验室进行化学成分检测，确保铅、邻苯二甲酸盐、偶氮染料等有害物质含量符合标准。"
-        : "All fabrics and fillings are sent to third-party labs for chemical composition testing before storage, ensuring lead, phthalate, azo dye, and other harmful substance levels meet standards.",
+        ? "根据产品年龄分级和目的国要求制定材料验证计划，核查供应商文件，并在适用时安排第三方化学测试。"
+        : "A material-verification plan is set by age grade and destination market. Supplier documents are checked and third-party chemical testing is arranged where applicable.",
     },
     {
       title: isZh ? "物理性能测试" : "Physical Property Testing",
@@ -232,34 +219,32 @@ export default async function SafetyCertificationsPage({
     {
       title: isZh ? "批次抽检送检" : "Batch Sampling & Lab Testing",
       desc: isZh
-        ? "每个生产批次按比例抽样，送SGS、Bureau Veritas或Intertek等国际权威第三方检测机构进行全套安全测试。"
-        : "Proportional sampling from each production batch sent to SGS, Bureau Veritas, or Intertek for comprehensive safety testing by internationally recognized third-party labs.",
+        ? "按客户、产品风险和目的国要求确定抽样范围与频次；需要时可由客户指定的认可实验室进行检测。"
+        : "Sampling scope and frequency are agreed by buyer requirements, product risk and destination market. An accepted buyer-nominated laboratory can be used when required.",
     },
     {
       title: isZh ? "金属检测" : "Metal Detection",
       desc: isZh
-        ? "所有成品通过金属检测仪扫描，排除生产过程中可能混入的断针和金属异物，确保产品安全。"
-        : "All finished products pass through metal detectors to eliminate broken needles and metal foreign objects that may have been introduced during production.",
+        ? "成品按生产控制计划进行金属检测，并保留断针与异物控制记录。"
+        : "Finished goods are screened according to the production-control plan, with broken-needle and foreign-object control records retained.",
     },
   ];
 
   return (
     <>
-      <FaqJsonLd />
-
       {/* Hero */}
       <section className="bg-gradient-to-br from-bg-warm to-white py-20 md:py-28">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold text-brown md:text-5xl">
               {isZh
-                ? "毛绒玩具安全标准与认证"
-                : "Plush Toy Safety Standards & Certifications"}
+                ? "毛绒玩具安全标准与合规指南"
+                : "Plush Toy Safety Standards & Compliance Guide"}
             </h1>
             <p className="mt-4 text-lg text-brown/70 md:text-xl">
               {isZh
-                ? "通过6项国际权威认证，确保每一件毛绒玩具的安全与品质"
-                : "6 international certifications ensuring the safety and quality of every plush toy"}
+                ? "区分工厂审核、管理体系、产品标准与CE标志，为目标市场制定正确的测试方案"
+                : "Distinguish factory audits, management systems, product standards and CE marking to plan the right testing for each market"}
             </p>
           </div>
         </Container>
@@ -285,8 +270,8 @@ export default async function SafetyCertificationsPage({
             title={isZh ? "认证详解" : "Certification Details"}
             subtitle={
               isZh
-                ? "了解每项认证的测试内容、适用市场和重要性"
-                : "Understanding what each certification tests, where it applies, and why it matters"
+                ? "了解每项体系或标准的适用范围、目标市场和重要性"
+                : "Understand what each system or standard covers, where it applies and why it matters"
             }
           />
           <div className="space-y-8">
@@ -341,6 +326,26 @@ export default async function SafetyCertificationsPage({
               </div>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* Company-specific document verification */}
+      <section className="bg-bg-sky py-16 md:py-24">
+        <Container>
+          <SectionHeading
+            title={isZh ? "企业文件核验" : "Company Document Verification"}
+            subtitle={
+              isZh
+                ? "行业标准说明不等同于某一产品的测试证书；具体文件按产品、批次和目标市场核验"
+                : "An industry standard is not the same as a product test certificate; documents are verified by product, batch and destination market"
+            }
+          />
+          <CertificationVerification locale={locale} />
+          <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-relaxed text-brown/55">
+            {isZh
+              ? "网站仅在取得可公开的证书编号、有效期或核验链接后展示对应字段。正式采购前，请索取与您的产品及目的国相匹配的最新文件。"
+              : "Certificate numbers, validity dates and verification links are shown only after publishable records are supplied. Before ordering, request the latest documents applicable to your product and destination market."}
+          </p>
         </Container>
       </section>
 
@@ -403,6 +408,43 @@ export default async function SafetyCertificationsPage({
         </Container>
       </section>
 
+      {/* Primary sources */}
+      <section className="bg-bg-warm py-16 md:py-20">
+        <Container>
+          <SectionHeading
+            title={isZh ? "官方来源" : "Primary Sources"}
+            subtitle={
+              isZh
+                ? "法规和标准可能更新，采购决策应以主管机构最新要求为准"
+                : "Regulations and standards change; use the latest regulator guidance for purchasing decisions"
+            }
+          />
+          <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
+            {officialSources.map((source) => (
+              <a
+                key={source.href}
+                href={source.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-2xl border border-brown/10 bg-white p-5 transition hover:-translate-y-0.5 hover:border-sky-brand/40 hover:shadow-sm"
+              >
+                <span className="flex items-start justify-between gap-3">
+                  <span className="font-bold text-brown">{source.name}</span>
+                  <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-sky-brand" />
+                </span>
+                <span className="mt-2 block text-sm leading-relaxed text-brown/65">
+                  {source.description}
+                </span>
+              </a>
+            ))}
+          </div>
+          <p className="mt-6 flex items-center justify-center gap-2 text-xs text-brown/50">
+            <CalendarDays className="h-4 w-4" />
+            {isZh ? "内容审核日期：2026年7月28日" : "Content reviewed: July 28, 2026"}
+          </p>
+        </Container>
+      </section>
+
       {/* Our Testing Process */}
       <section className="py-16 md:py-24 bg-white">
         <Container>
@@ -443,8 +485,8 @@ export default async function SafetyCertificationsPage({
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold text-white md:text-4xl">
               {isZh
-                ? "需要认证合规的毛绒玩具？"
-                : "Need Certified Plush Toys?"}
+                ? "需要符合目标市场要求的毛绒玩具？"
+                : "Need Plush Toys Ready for Your Target Market?"}
             </h2>
             <p className="mt-4 text-lg text-white/80">
               {isZh

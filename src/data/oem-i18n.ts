@@ -32,6 +32,16 @@ export type OemCopy = {
   casesCta: string;
   faqTitle: string;
   faqs: { q: string; a: string }[]; // 7
+  // On-page HTML comparison table (mirrors the table published in
+  // /public/llms.txt, which was previously invisible on the live site).
+  // EN/ZH only — other locales fall back to English via getOemCopy.
+  comparison?: {
+    title: string;
+    colFeature: string;
+    colUs: string;
+    colTypical: string;
+    rows: { feature: string; us: string; typical: string }[];
+  };
   finalTitle: string;
   finalText: string;
   finalBtn: string;
@@ -78,7 +88,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
       { q: "How long does sampling take?", a: "Sampling typically takes 7-15 working days including fabric sourcing, pattern making, sewing, and first-round QC. Simple modifications can be as fast as 5 days." },
       { q: "Can you produce plush toys based on drawings or reference images?", a: "Yes. We accept design files, reference photos, hand sketches, or even verbal briefs; our 50+ in-house design team turns them into production-ready patterns and 3D renderings." },
       { q: "Do you support private label packaging?", a: "Yes. Hang tags, woven labels, color boxes, poly bags, and shopping bags are all custom-designed and produced to your brand requirements." },
-      { q: "What certifications do you have?", a: "The factory holds BSCI and ISO 9001; products comply with ASTM F963 (US), EN 71 (EU), CE, and GB 6675 (China). Third-party test reports are available." },
+      { q: "What compliance documents can you provide?", a: "Testing and documentation are matched to the product, target age, and destination market. Applicable ASTM F963/CPSIA, EN 71/CE, and GB 6675 reports plus factory-audit and quality-system records can be supplied to qualified buyers for verification." },
       { q: "Can you ship internationally?", a: "Yes. We support FOB/CIF/DDP, handle export documentation, certificates of origin, and freight, and have shipped to 70+ countries." },
       { q: "How do you control product quality?", a: "Five-stage QC (incoming material, cutting, in-process, 100% final inspection, pre-shipment audit), with a photo inspection report per order." },
     ],
@@ -86,6 +96,22 @@ export const OEM_COPY: Record<string, OemCopy> = {
     finalText: "Share your brief — our factory team responds within 24 hours.",
     finalBtn: "Send RFQ",
     links: ["Factory & Capability", "OEM / ODM Services", "Product Catalog", "Case Studies", "Sourcing FAQ", "Request a Quote"],
+    comparison: {
+      title: "How does LovelyJoy compare to a typical plush toy factory?",
+      colFeature: "Feature",
+      colUs: "LovelyJoy",
+      colTypical: "Typical factory",
+      rows: [
+        { feature: "In-house design team", us: "50+ designers", typical: "You bring the design" },
+        { feature: "Minimum order", us: "200 pcs (trial) / 500 pcs standard", typical: "1,000–3,000 pcs" },
+        { feature: "Free design for MOQ orders", us: "Included", typical: "$500–2,000 extra" },
+        { feature: "Sample cost", us: "Deducted from your order", typical: "Non-refundable" },
+        { feature: "International certifications", us: "BSCI · ISO 9001 · ASTM F963 · EN 71 · CE · GB 6675", typical: "1–2 typically" },
+        { feature: "Packaging design", us: "In-house", typical: "Outsourced" },
+        { feature: "Export logistics", us: "Full service (FOB/CIF/DDP)", typical: "FOB only" },
+        { feature: "Design-to-delivery time", us: "45–60 days", typical: "60–90 days" },
+      ],
+    },
   },
   zh: {
     metaTitle: "毛绒玩具定制工厂_义乌OEM/ODM源头厂家 | 爱儿采 LovelyJoy",
@@ -126,7 +152,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
       { q: "打样需要多久？", a: "打样周期通常为 7-15 个工作日，含面料采购、打版、缝制与首检。简单改款最快 5 天。" },
       { q: "可以根据图纸或参考图生产吗？", a: "可以。我们接受设计稿、参考照片、手绘草图甚至口头描述，由 50+ 人设计团队转化为可生产的版型与 3D 效果图。" },
       { q: "支持贴牌（Private Label）包装吗？", a: "支持。吊牌、织唛、彩盒、OPP 袋、购物袋均可按品牌要求定制设计与生产。" },
-      { q: "你们有哪些认证？", a: "工厂持有 BSCI、ISO 9001；产品符合 ASTM F963（美国）、EN 71（欧盟）、CE、GB 6675（中国）玩具安全标准，可提供第三方检测报告。" },
+      { q: "可以提供哪些合规文件？", a: "测试与文件将根据具体产品、目标年龄和销售市场逐项匹配。适用的 ASTM F963/CPSIA、EN 71/CE、GB 6675 报告，以及工厂审核和质量体系文件，可向合格买家提供核验。" },
       { q: "可以国际发货吗？", a: "可以。支持 FOB/CIF/DDP，协助出口报关、产地证与货运，已出口 70+ 国家。" },
       { q: "如何控制产品质量？", a: "5 道质检（来料/裁片/制程/成品 100% 全检/出货前抽检），每单附带带照片的检验报告。" },
     ],
@@ -134,6 +160,22 @@ export const OEM_COPY: Record<string, OemCopy> = {
     finalText: "提交设计或需求，工厂团队 24 小时内回复。",
     finalBtn: "提交 RFQ",
     links: ["工厂实力", "OEM/ODM 服务", "产品目录", "客户案例", "采购常见问题", "获取报价"],
+    comparison: {
+      title: "爱儿采与普通毛绒玩具工厂有什么区别？",
+      colFeature: "对比项",
+      colUs: "爱儿采 LovelyJoy",
+      colTypical: "普通工厂",
+      rows: [
+        { feature: "自有设计团队", us: "50+ 名设计师", typical: "需自带设计稿" },
+        { feature: "起订量", us: "试单 200 件 / 常规 500 件", typical: "1,000–3,000 件" },
+        { feature: "达到起订量免设计费", us: "包含", typical: "另收 $500–2,000" },
+        { feature: "样品费用", us: "从订单中抵扣", typical: "不予退还" },
+        { feature: "国际认证", us: "BSCI · ISO 9001 · ASTM F963 · EN 71 · CE · GB 6675", typical: "通常 1–2 项" },
+        { feature: "包装设计", us: "自有团队", typical: "外包" },
+        { feature: "出口物流", us: "全流程（FOB/CIF/DDP）", typical: "仅 FOB" },
+        { feature: "设计到交付周期", us: "45–60 天", typical: "60–90 天" },
+      ],
+    },
   },
   ja: {
     metaTitle: "ぬいぐるみOEM/ODM工場（中国・義烏）| LovelyJoy",
@@ -666,5 +708,8 @@ export const OEM_COPY: Record<string, OemCopy> = {
 };
 
 export function getOemCopy(locale: string): OemCopy {
-  return OEM_COPY[locale] ?? OEM_COPY.en;
+  const copy = OEM_COPY[locale] ?? OEM_COPY.en;
+  // Field-level EN fallback so optional fields (e.g. `comparison`) render in
+  // English for locales that haven't translated them yet.
+  return { ...OEM_COPY.en, ...copy };
 }

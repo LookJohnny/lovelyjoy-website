@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { buildAlternates, htmlLang } from '@/lib/seo';
+import { buildAlternates, htmlLang, isIndexableLocale } from '@/lib/seo';
 
 // Pre-render a static shell for every locale at build time. Combined with
 // `setRequestLocale` below (and on each page), this lets Vercel serve locale
@@ -14,6 +14,7 @@ export function generateStaticParams() {
 }
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import LeadAttributionCapture from '@/components/analytics/LeadAttribution';
 import '../globals.css';
 
 const quicksand = Quicksand({
@@ -37,6 +38,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
+  const shouldIndex = isIndexableLocale(locale);
 
   return {
     metadataBase: new URL('https://lovelyjoy.cn'),
@@ -49,15 +51,26 @@ export async function generateMetadata({
       type: 'website',
       locale: locale === 'zh' ? 'zh_CN' : 'en_US',
       alternateLocale: locale === 'zh' ? 'en_US' : 'zh_CN',
-      images: [{ url: '/images/hero/hero-bear.png', width: 1200, height: 630 }],
+      images: [{ url: '/images/hero/hero-bear.jpg', width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['/images/hero/hero-bear.png'],
+      images: ['/images/hero/hero-bear.jpg'],
     },
     alternates: buildAlternates(locale, ''),
+    robots: {
+      index: shouldIndex,
+      follow: true,
+      googleBot: {
+        index: shouldIndex,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     verification: {
       other: {
         'baidu-site-verification': 'codeva-uvzVItlWsi',
@@ -94,6 +107,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <NextIntlClientProvider messages={messages} locale={locale}>
+          <LeadAttributionCapture />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

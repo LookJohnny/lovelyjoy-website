@@ -198,7 +198,7 @@ export default function Header() {
             <button
               onClick={() => setMobileNavOpen(true)}
               aria-label="Open menu"
-              className="rounded-lg p-2 text-brown transition-colors hover:bg-brown/5 lg:hidden"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-lg text-brown transition-colors hover:bg-brown/5 lg:hidden"
             >
               <Menu className="h-6 w-6" />
             </button>

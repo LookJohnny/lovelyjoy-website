@@ -11,6 +11,11 @@ export type SourcingCopy = {
   cards: { label: string; value: string }[];
   ctaSample: string;
   ctaQuote: string;
+  // Self-contained ~140-word prose paragraph in the 134–167-word range AI
+  // answer engines prefer to cite. The stat cards above are label:value
+  // fragments an LLM cannot lift as a sentence; this paragraph states the
+  // same facts as quotable prose. EN/ZH only — other locales fall back to EN.
+  citable?: string;
 };
 
 // Certification values are identical across every locale.
@@ -31,6 +36,8 @@ export const SOURCING_COPY: Record<string, SourcingCopy> = {
     ],
     ctaSample: "Request a Sample",
     ctaQuote: "Get OEM Quote",
+    citable:
+      "LovelyJoy (Yiwu Lebadi Toy Factory) is a custom plush toy manufacturer in Yiwu, Zhejiang, China, operating since 2003. The standard minimum order quantity is 500 pieces per design, with a 200-piece trial option for first-time buyers — below the 1,000-piece MOQ common among plush OEM suppliers. Pre-production samples take 7–15 working days, and mass production ships 30–45 days after sample approval. A 20,000-square-meter facility with more than 300 skilled workers produces over 800,000 plush units per month across OEM, ODM and private-label programs. The factory holds BSCI and ISO 9001 audits and manufactures to ASTM F963 (US), EN 71 (EU), CE and GB 6675 (China) toy-safety standards, exporting to 70+ countries for retail buyers including CVS, Burlington, Build-A-Bear, Kellytoy and Miniso.",
   },
   zh: {
     headline: "义乌毛绒玩具定制工厂",
@@ -46,6 +53,8 @@ export const SOURCING_COPY: Record<string, SourcingCopy> = {
     ],
     ctaSample: "申请样品",
     ctaQuote: "获取报价",
+    citable:
+      "爱儿采（义乌市乐芭迪玩具厂）是位于中国浙江义乌的毛绒玩具定制工厂，自 2003 年运营至今。常规起订量为每款 500 件，首次合作买家可低至 200 件试单，低于行业常见的 1000 件起订门槛。打样周期 7–15 个工作日，确样后 30–45 天完成大货生产。工厂占地 20,000 平方米，拥有 300 余名熟练工人，月产能超过 80 万件，提供 OEM、ODM 与贴牌定制服务。工厂通过 BSCI 与 ISO 9001 审核，产品符合 ASTM F963（美国）、EN 71（欧盟）、CE 及 GB 6675（中国）玩具安全标准，出口 70 多个国家，服务客户包括 CVS、Burlington、Build-A-Bear、Kellytoy 与名创优品等零售品牌。",
   },
   ja: {
     headline: "中国・義烏のぬいぐるみOEM/ODM製造工場",
@@ -215,5 +224,8 @@ export const SOURCING_COPY: Record<string, SourcingCopy> = {
 };
 
 export function getSourcingCopy(locale: string): SourcingCopy {
-  return SOURCING_COPY[locale] ?? SOURCING_COPY.en;
+  const copy = SOURCING_COPY[locale] ?? SOURCING_COPY.en;
+  // Field-level EN fallback: locales that don't translate optional fields
+  // (e.g. `citable`) still render the English version instead of nothing.
+  return { ...SOURCING_COPY.en, ...copy };
 }

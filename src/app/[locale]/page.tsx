@@ -29,17 +29,20 @@ function JsonLd() {
     logo: {
       '@type': 'ImageObject',
       url: `${SITE.url}/images/brand/logo-color.jpeg`,
-      // TODO(business): confirm the real logo pixel dimensions.
-      width: 512,
-      height: 512,
+      // Measured from the actual file (sips): 3780x2126.
+      width: 3780,
+      height: 2126,
     },
-    image: `${SITE.url}/images/hero/hero-bear.png`,
+    image: `${SITE.url}/images/hero/hero-bear.jpg`,
     description:
-      'Professional plush toy manufacturer in Yiwu, China with 20+ years experience. OEM/ODM services from design to mass production. 20,000 sqm factory, 300+ workers, 800,000 pcs/month capacity. Serving 70+ countries.',
+      `Professional plush toy manufacturer in Yiwu, China, founded in ${SITE.facts.foundedYear}. OEM/ODM services from design to mass production. ${SITE.facts.factoryAreaSqm.toLocaleString('en-US')} sqm factory, ${SITE.facts.skilledWorkers}+ workers, ${SITE.facts.monthlyCapacity.toLocaleString('en-US')}+ pcs/month capacity. Serving ${SITE.facts.exportMarkets}+ countries.`,
     slogan: 'Feel the Lovely, Spread the Joy',
     foundingDate: SITE.foundingDate,
     // TODO(business): confirm current headcount.
-    numberOfEmployees: { '@type': 'QuantitativeValue', value: 300 },
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      minValue: SITE.facts.skilledWorkers,
+    },
     knowsAbout: [
       'Plush Toy Manufacturing',
       'Stuffed Animal Production',
@@ -80,21 +83,10 @@ function JsonLd() {
     alternateName: SITE.name,
     url: SITE.url,
     publisher: { '@id': ORG_ID },
-    inLanguage: [
-      'en',
-      'zh-Hans',
-      'ja',
-      'ko',
-      'es-419',
-      'pt-BR',
-      'ar',
-      'ru',
-      'fr',
-      'de',
-      'it',
-      'th',
-      'id',
-    ],
+    // Only the two languages with unique, indexable page content belong in the
+    // public WebSite language graph. Other locale routes currently fall back to
+    // English and are deliberately noindex.
+    inLanguage: ['en', 'zh-Hans'],
   };
 
   const structuredData = {

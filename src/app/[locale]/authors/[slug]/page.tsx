@@ -50,23 +50,37 @@ export default async function AuthorPage({
   const nav = await getTranslations({ locale, namespace: "nav" });
   const url = `${SITE.url}/${locale}/authors/${slug}`;
 
-  // ProfilePage describing the author entity. `type` mirrors the author data
-  // (Person once a real human is supplied, Organization until then).
+  const authorEntity =
+    author.type === "Person"
+      ? {
+          "@type": "Person",
+          "@id": `${url}#author`,
+          name: author.name,
+          jobTitle: isZh ? author.roleZh : author.roleEn,
+          description: isZh ? author.bioZh : author.bioEn,
+          url,
+          knowsAbout: isZh ? author.expertiseZh : author.expertiseEn,
+          ...(author.image ? { image: `${SITE.url}${author.image}` } : {}),
+          ...(author.sameAs.length ? { sameAs: author.sameAs } : {}),
+          worksFor: { "@id": ORG_ID },
+        }
+      : {
+          "@type": "Organization",
+          "@id": `${url}#author`,
+          name: author.name,
+          description: isZh ? author.bioZh : author.bioEn,
+          url,
+          knowsAbout: isZh ? author.expertiseZh : author.expertiseEn,
+          parentOrganization: { "@id": ORG_ID },
+        };
+
+  // ProfilePage describing the author entity. A real named contributor can be
+  // switched to Person in the data file; until then the schema stays an honest
+  // editorial Organization and avoids Person-only properties such as jobTitle.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
-    mainEntity: {
-      "@type": author.type,
-      "@id": `${url}#author`,
-      name: author.name,
-      jobTitle: isZh ? author.roleZh : author.roleEn,
-      description: isZh ? author.bioZh : author.bioEn,
-      url,
-      knowsAbout: isZh ? author.expertiseZh : author.expertiseEn,
-      ...(author.image ? { image: `${SITE.url}${author.image}` } : {}),
-      ...(author.sameAs.length ? { sameAs: author.sameAs } : {}),
-      worksFor: { "@id": ORG_ID },
-    },
+    mainEntity: authorEntity,
   };
 
   const authored = posts; // all posts currently attributed to the default author
@@ -113,6 +127,17 @@ export default async function AuthorPage({
                   <span key={e} className="rounded-full bg-bg-sky px-4 py-1.5 text-sm text-brown">{e}</span>
                 ))}
               </div>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-brown/10 bg-bg-warm p-6">
+              <h2 className="text-lg font-bold text-brown">
+                {isZh ? "编辑与核验原则" : "Editorial and verification policy"}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-brown/70">
+                {isZh
+                  ? "行业标准内容优先引用监管机构或标准制定机构资料；企业能力、案例数据、证书与测试报告仅在具有内部记录或可向买家提供核验材料时发布。法规更新时，相关页面会标注审核日期并修订。"
+                  : "Standards content prioritizes regulator and standards-body sources. Company capabilities, case metrics, certificates and test reports are published only when supported by internal records or buyer-verifiable documents. Regulatory pages show a review date and are revised when guidance changes."}
+              </p>
             </div>
 
             {authored.length > 0 && (
