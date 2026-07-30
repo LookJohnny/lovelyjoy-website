@@ -29,11 +29,11 @@ function JsonLd() {
     logo: {
       '@type': 'ImageObject',
       url: `${SITE.url}/images/brand/logo-color.jpeg`,
-      // TODO(business): confirm the real logo pixel dimensions.
-      width: 512,
-      height: 512,
+      // Measured from the actual file (sips): 3780x2126.
+      width: 3780,
+      height: 2126,
     },
-    image: `${SITE.url}/images/hero/hero-bear.png`,
+    image: `${SITE.url}/images/hero/hero-bear.jpg`,
     description:
       `Professional plush toy manufacturer in Yiwu, China, founded in ${SITE.facts.foundedYear}. OEM/ODM services from design to mass production. ${SITE.facts.factoryAreaSqm.toLocaleString('en-US')} sqm factory, ${SITE.facts.skilledWorkers}+ workers, ${SITE.facts.monthlyCapacity.toLocaleString('en-US')}+ pcs/month capacity. Serving ${SITE.facts.exportMarkets}+ countries.`,
     slogan: 'Feel the Lovely, Spread the Joy',

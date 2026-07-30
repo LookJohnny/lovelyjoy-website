@@ -174,8 +174,11 @@ export default function ProductShowcase() {
 
   const scrollSnaps = emblaApi?.scrollSnapList() ?? [];
 
+  // overflow-x-hidden: clip the carousel/reveal offsets at the section level so
+  // the page body can never scroll horizontally on mobile; the embla viewport
+  // inside keeps its own overflow handling for swiping.
   return (
-    <section className="bg-bg-sky py-20 md:py-28">
+    <section className="overflow-x-hidden bg-bg-sky py-20 md:py-28">
       <Container>
         <ScrollReveal>
           <SectionHeading

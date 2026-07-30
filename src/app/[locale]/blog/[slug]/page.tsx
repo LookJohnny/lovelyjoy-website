@@ -78,11 +78,15 @@ function ArticleJsonLd({
     },
     publisher: {
       "@type": "Organization",
+      // @id merges this node with the canonical homepage Organization entity.
+      "@id": "https://lovelyjoy.cn/#organization",
       name: "LovelyJoy 爱儿采",
       url: "https://lovelyjoy.cn",
       logo: {
         "@type": "ImageObject",
         url: "https://lovelyjoy.cn/images/brand/logo-color.jpeg",
+        width: 3780,
+        height: 2126,
       },
     },
   };

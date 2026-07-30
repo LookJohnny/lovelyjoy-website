@@ -68,13 +68,9 @@ function JsonLd({ locale }: { locale: string }) {
         about: { "@id": ORG_ID },
         inLanguage: locale === "zh" ? "zh-Hans" : locale,
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE.url}/${locale}/` },
-          { "@type": "ListItem", position: 2, name: copy.breadcrumb, item: url },
-        ],
-      },
+      // BreadcrumbList intentionally NOT declared here — the shared
+      // <Breadcrumb> component already emits it, and having both produced a
+      // duplicate BreadcrumbList in the DOM (flagged in the 2026-07 audit).
       {
         "@type": "FAQPage",
         mainEntity: copy.faqs.map((f) => ({
@@ -205,8 +201,38 @@ export default async function OemPlushManufacturerPage({
         </Container>
       </section>
 
+      {/* 6b. Comparison table — real on-page <table> (question-shaped H2).
+          Mirrors /public/llms.txt, which crawlers of the live site never saw. */}
+      {copy.comparison && (
+        <section className="py-16 md:py-24 bg-white">
+          <Container>
+            <SectionHeading title={copy.comparison.title} />
+            <div className="mx-auto max-w-4xl overflow-x-auto">
+              <table className="w-full border-collapse text-left text-sm md:text-base">
+                <thead>
+                  <tr className="border-b-2 border-brown/20">
+                    <th scope="col" className="py-3 pr-4 font-semibold text-brown">{copy.comparison.colFeature}</th>
+                    <th scope="col" className="py-3 pr-4 font-semibold text-sky-brand">{copy.comparison.colUs}</th>
+                    <th scope="col" className="py-3 font-semibold text-brown/60">{copy.comparison.colTypical}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {copy.comparison.rows.map((row) => (
+                    <tr key={row.feature} className="border-b border-brown/10">
+                      <th scope="row" className="py-3 pr-4 font-medium text-brown">{row.feature}</th>
+                      <td className="py-3 pr-4 text-brown">{row.us}</td>
+                      <td className="py-3 text-brown/60">{row.typical}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* 7. Case studies preview */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-bg-warm">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <SectionHeading title={copy.casesTitle} />

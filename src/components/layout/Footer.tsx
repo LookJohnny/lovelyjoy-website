@@ -106,6 +106,7 @@ export default async function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
+                { href: '/oem-plush-manufacturer', key: 'oemPlushManufacturer' },
                 { href: '/plush-toy-manufacturer', key: 'plushManufacturer' },
                 { href: '/yiwu-plush-factory', key: 'yiwuFactory' },
                 { href: '/mascot-custom', key: 'mascot' },

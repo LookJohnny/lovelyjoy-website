@@ -16,6 +16,7 @@
     "blog": "Blog",
     "mianmian": "Mianmian",
     "servicesLinks": {
+      "oemPlushManufacturer": "Produsen boneka OEM",
       "plushManufacturer": "Plush Toy Manufacturer",
       "plushToyOem": "Plush Toy OEM",
       "oemOdm": "OEM/ODM Services",
@@ -306,6 +307,7 @@
     "copyright": "© {year} LovelyJoy. Hak cipta dilindungi undang-undang.",
     "services": "Manufacturing Services",
     "serviceLinks": {
+      "oemPlushManufacturer": "Produsen boneka OEM",
       "plushManufacturer": "Plush Toy Manufacturer",
       "yiwuFactory": "Yiwu Plush Factory",
       "mascot": "Brand Mascot Custom",

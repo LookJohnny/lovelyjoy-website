@@ -32,6 +32,16 @@ export type OemCopy = {
   casesCta: string;
   faqTitle: string;
   faqs: { q: string; a: string }[]; // 7
+  // On-page HTML comparison table (mirrors the table published in
+  // /public/llms.txt, which was previously invisible on the live site).
+  // EN/ZH only — other locales fall back to English via getOemCopy.
+  comparison?: {
+    title: string;
+    colFeature: string;
+    colUs: string;
+    colTypical: string;
+    rows: { feature: string; us: string; typical: string }[];
+  };
   finalTitle: string;
   finalText: string;
   finalBtn: string;
@@ -86,6 +96,22 @@ export const OEM_COPY: Record<string, OemCopy> = {
     finalText: "Share your brief — our factory team responds within 24 hours.",
     finalBtn: "Send RFQ",
     links: ["Factory & Capability", "OEM / ODM Services", "Product Catalog", "Case Studies", "Sourcing FAQ", "Request a Quote"],
+    comparison: {
+      title: "How does LovelyJoy compare to a typical plush toy factory?",
+      colFeature: "Feature",
+      colUs: "LovelyJoy",
+      colTypical: "Typical factory",
+      rows: [
+        { feature: "In-house design team", us: "50+ designers", typical: "You bring the design" },
+        { feature: "Minimum order", us: "200 pcs (trial) / 500 pcs standard", typical: "1,000–3,000 pcs" },
+        { feature: "Free design for MOQ orders", us: "Included", typical: "$500–2,000 extra" },
+        { feature: "Sample cost", us: "Deducted from your order", typical: "Non-refundable" },
+        { feature: "International certifications", us: "BSCI · ISO 9001 · ASTM F963 · EN 71 · CE · GB 6675", typical: "1–2 typically" },
+        { feature: "Packaging design", us: "In-house", typical: "Outsourced" },
+        { feature: "Export logistics", us: "Full service (FOB/CIF/DDP)", typical: "FOB only" },
+        { feature: "Design-to-delivery time", us: "45–60 days", typical: "60–90 days" },
+      ],
+    },
   },
   zh: {
     metaTitle: "毛绒玩具定制工厂_义乌OEM/ODM源头厂家 | 爱儿采 LovelyJoy",
@@ -134,6 +160,22 @@ export const OEM_COPY: Record<string, OemCopy> = {
     finalText: "提交设计或需求，工厂团队 24 小时内回复。",
     finalBtn: "提交 RFQ",
     links: ["工厂实力", "OEM/ODM 服务", "产品目录", "客户案例", "采购常见问题", "获取报价"],
+    comparison: {
+      title: "爱儿采与普通毛绒玩具工厂有什么区别？",
+      colFeature: "对比项",
+      colUs: "爱儿采 LovelyJoy",
+      colTypical: "普通工厂",
+      rows: [
+        { feature: "自有设计团队", us: "50+ 名设计师", typical: "需自带设计稿" },
+        { feature: "起订量", us: "试单 200 件 / 常规 500 件", typical: "1,000–3,000 件" },
+        { feature: "达到起订量免设计费", us: "包含", typical: "另收 $500–2,000" },
+        { feature: "样品费用", us: "从订单中抵扣", typical: "不予退还" },
+        { feature: "国际认证", us: "BSCI · ISO 9001 · ASTM F963 · EN 71 · CE · GB 6675", typical: "通常 1–2 项" },
+        { feature: "包装设计", us: "自有团队", typical: "外包" },
+        { feature: "出口物流", us: "全流程（FOB/CIF/DDP）", typical: "仅 FOB" },
+        { feature: "设计到交付周期", us: "45–60 天", typical: "60–90 天" },
+      ],
+    },
   },
   ja: {
     metaTitle: "ぬいぐるみOEM/ODM工場（中国・義烏）| LovelyJoy",
@@ -666,5 +708,8 @@ export const OEM_COPY: Record<string, OemCopy> = {
 };
 
 export function getOemCopy(locale: string): OemCopy {
-  return OEM_COPY[locale] ?? OEM_COPY.en;
+  const copy = OEM_COPY[locale] ?? OEM_COPY.en;
+  // Field-level EN fallback so optional fields (e.g. `comparison`) render in
+  // English for locales that haven't translated them yet.
+  return { ...OEM_COPY.en, ...copy };
 }

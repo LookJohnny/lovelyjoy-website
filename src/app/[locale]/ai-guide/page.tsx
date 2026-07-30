@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 // component's effect).
 import AvatarKiosk from "@/components/ai-guide/AvatarKiosk";
 import Container from "@/components/ui/Container";
-import { getAiGuideIntro } from "@/data/ai-guide-i18n";
+import { getAiGuideIntro, getAiGuideSections } from "@/data/ai-guide-i18n";
 
 export async function generateMetadata({
   params,
@@ -48,6 +48,7 @@ export default async function AIGuidePage({
     : "en";
 
   const intro = getAiGuideIntro(locale);
+  const sections = getAiGuideSections(locale);
 
   return (
     <>
@@ -62,6 +63,36 @@ export default async function AIGuidePage({
         </Container>
       </section>
       <AvatarKiosk locale={aiLocale} />
+
+      {/* SSR-visible H2 sections (crawlable copy depth). Numbers mirror
+          src/data/company-facts.ts; EN/ZH translated, other locales fall
+          back to EN per the shared-dict pattern. */}
+      <section className="bg-white py-12 md:py-16">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-xl font-bold text-brown md:text-2xl">
+              {sections.whatTitle}
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-brown/80">
+              {sections.whatIntro}
+            </p>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-brown/80">
+              {sections.whatItems.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+
+            <h2 className="mt-10 text-xl font-bold text-brown md:text-2xl">
+              {sections.howTitle}
+            </h2>
+            {sections.howBody.map((paragraph, i) => (
+              <p key={i} className="mt-3 text-base leading-relaxed text-brown/80">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Container>
+      </section>
     </>
   );
 }

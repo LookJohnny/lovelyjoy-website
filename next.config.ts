@@ -8,6 +8,26 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 // safe, and carry no false-positive risk. HSTS now includes `includeSubDomains`
 // and `preload` so the domain is eligible for the HSTS preload list.
 const securityHeaders = [
+  {
+    // Static baseline CSP. 'unsafe-inline'/'unsafe-eval' are required by
+    // Next.js inline runtime scripts until nonce-based CSP is wired through
+    // middleware (tracked follow-up). Still blocks foreign script origins.
+    // frame-src pre-allows YouTube's privacy-enhanced embed for planned
+    // factory-tour videos.
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob:",
+      "font-src 'self'",
+      "connect-src 'self' https://vercel.live",
+      "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
+      "frame-ancestors 'self'",
+      "base-uri 'self'",
+      "form-action 'self'",
+    ].join("; "),
+  },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -25,6 +45,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],
+    // Default ladder tops out at 3840w; nothing on this site renders wider
+    // than a 1920 hero, and the 2048/3840 rungs only bloated every srcset
+    // string (the /products listing HTML was ~2.9x heavier than other pages).
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

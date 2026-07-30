@@ -620,7 +620,7 @@ export const posts: BlogPost[] = [
       "探索当前毛绒玩具行业趋势，包括可爱美学、环保材料、授权IP合作，以及情感价值在玩具设计中日益增长的重要性。",
     date: "2025-08-05",
     category: "trends",
-    image: "/images/hero/hero-family.png",
+    image: "/images/hero/hero-family.jpg",
     contentEn: `
 <h2>The Evolving Plush Toy Market</h2>
 <p>The global plush toy market continues to grow steadily, driven by shifting consumer preferences, new market segments, and innovative product concepts. According to industry reports, the worldwide stuffed and plush toy market is projected to reach over $15 billion by 2028, with a compound annual growth rate of approximately 7%. For entrepreneurs looking to enter or expand in this market, understanding the key trends shaping the industry is essential for making informed product and business decisions.</p>

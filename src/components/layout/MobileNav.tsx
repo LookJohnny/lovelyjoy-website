@@ -120,7 +120,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 <button
                   onClick={onClose}
                   aria-label="Close menu"
-                  className="rounded-full p-2 text-brown transition-colors hover:bg-brown/5"
+                  className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-brown transition-colors hover:bg-brown/5"
                 >
                   <X className="h-6 w-6" />
                 </button>

@@ -1,6 +1,9 @@
 "use client";
 
-import Link from "next/link";
+// Locale-aware Link: a plain next/link would drop the /en|/zh prefix and the
+// middleware would 307 the visitor to the default locale (zh) — sending
+// English buyers who click a CTA to Chinese pages.
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import type { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
 
