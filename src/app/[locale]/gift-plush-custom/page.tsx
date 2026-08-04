@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import { Link } from "@/i18n/navigation";
 import { Gift, PartyPopper, Calendar, DollarSign, Package, Tag, CheckCircle, Truck } from "lucide-react";
 
 export function generateStaticParams() {
@@ -116,6 +117,26 @@ export default async function GiftPlushCustomPage({ params }: { params: Promise<
             { label: isZh ? "礼品毛绒玩具定制" : "Promotional Plush" },
           ]}
         />
+        {/* Hub-and-spoke link to the custom-manufacturing hub */}
+        <p className="pb-2 text-sm text-brown-light">
+          {isZh ? (
+            <>
+              本页属于我们的{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                毛绒玩具定制工厂（OEM/ODM）
+              </Link>{" "}
+              服务体系。
+            </>
+          ) : (
+            <>
+              Part of our{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                custom plush toy manufacturing
+              </Link>{" "}
+              services.
+            </>
+          )}
+        </p>
       </Container>
 
       {/* Scenarios */}

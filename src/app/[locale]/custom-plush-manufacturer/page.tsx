@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import { Link } from "@/i18n/navigation";
 import {
   Palette,
   Ruler,
@@ -41,7 +42,11 @@ export async function generateMetadata({
     description: isZh
       ? "LovelyJoy爱儿采是中国义乌专业定制毛绒玩具制造商。50+设计师团队，支持颜色、尺寸、材料、包装全面定制。MOQ 200件起，7-15天出样。"
       : "LovelyJoy is a professional custom plush toy manufacturer in Yiwu, China. 50+ designer team, full customization of colors, sizes, materials, and packaging. MOQ from 200 pcs, samples in 7-15 days.",
-    alternates: buildAlternates(locale, '/custom-plush-manufacturer'),
+    // DUPLICATE of the hub for "custom plush toy manufacturer" intent
+    // (2026-07 cannibalization audit): canonical + hreflang consolidated onto
+    // /oem-plush-manufacturer so the cluster has a single ranking target.
+    // Page stays live for visitors/internal links — no redirect.
+    alternates: buildAlternates(locale, '/oem-plush-manufacturer'),
   };
 }
 
@@ -245,6 +250,26 @@ export default async function CustomPlushManufacturerPage({
             },
           ]}
         />
+        {/* Hub link — this page canonicalizes to the OEM hub */}
+        <p className="pb-2 text-sm text-brown-light">
+          {isZh ? (
+            <>
+              本页属于我们的{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                毛绒玩具定制工厂（OEM/ODM）
+              </Link>{" "}
+              服务体系。
+            </>
+          ) : (
+            <>
+              Part of our{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                custom plush toy manufacturing
+              </Link>{" "}
+              services.
+            </>
+          )}
+        </p>
       </Container>
 
       {/* Customization Capabilities */}

@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import { Link } from "@/i18n/navigation";
 import {
   Factory,
   ClipboardList,
@@ -32,12 +33,15 @@ export async function generateMetadata({
   const isZh = locale === "zh";
 
   return {
+    // Sharpened for the "how OEM production works" sub-intent (2026-07
+    // cannibalization audit) — process, MOQ, and lead-time queries; the
+    // custom-manufacturer head term belongs to /oem-plush-manufacturer.
     title: isZh
-      ? "毛绒玩具OEM代工服务 | LovelyJoy 爱儿采"
-      : "Plush Toy OEM Services in China | LovelyJoy",
+      ? "毛绒玩具OEM代工流程_起订量与生产周期 | LovelyJoy 爱儿采"
+      : "Plush Toy OEM Manufacturing: Process, MOQ & Lead Times | LovelyJoy",
     description: isZh
-      ? "LovelyJoy爱儿采提供专业毛绒玩具OEM代工服务。20年经验，20000平米工厂，月产能80万件以上。BSCI、ISO 9001认证，MOQ 500件起。"
-      : "LovelyJoy offers professional plush toy OEM manufacturing in Yiwu, China. 20+ years experience, 20,000sqm factory, 800K+ monthly capacity. BSCI & ISO 9001 certified. MOQ from 500 pcs.",
+      ? "详解LovelyJoy爱儿采毛绒玩具OEM代工流程：四步代工流程、试单MOQ 200件/标准500件、打样7-15天、大货30-45天。BSCI、ISO 9001认证工厂。"
+      : "How plush toy OEM manufacturing works at LovelyJoy's Yiwu factory: a 4-step process, MOQ from 200 pcs (trial) or 500 pcs (standard), 7-15 day sampling, and 30-45 day bulk production. BSCI & ISO 9001 certified.",
     alternates: buildAlternates(locale, '/plush-toy-oem'),
   };
 }
@@ -140,7 +144,7 @@ export default async function PlushToyOemPage({
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold text-white md:text-5xl">
-              {isZh ? "毛绒玩具OEM代工服务" : "Plush Toy OEM Services in China"}
+              {isZh ? "毛绒玩具OEM代工：流程、起订量与周期" : "Plush Toy OEM Manufacturing: Process, MOQ & Lead Times"}
             </h1>
             <p className="mt-4 text-lg text-white/85 md:text-xl">
               {isZh
@@ -162,6 +166,26 @@ export default async function PlushToyOemPage({
             },
           ]}
         />
+        {/* Hub-and-spoke link to the custom-manufacturing hub */}
+        <p className="pb-2 text-sm text-brown-light">
+          {isZh ? (
+            <>
+              本页属于我们的{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                毛绒玩具定制工厂（OEM/ODM）
+              </Link>{" "}
+              服务体系。
+            </>
+          ) : (
+            <>
+              Part of our{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                custom plush toy manufacturing
+              </Link>{" "}
+              services.
+            </>
+          )}
+        </p>
       </Container>
 
       {/* What is OEM */}

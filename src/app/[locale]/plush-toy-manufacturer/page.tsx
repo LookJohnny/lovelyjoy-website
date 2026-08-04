@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import { Link } from "@/i18n/navigation";
 import { Factory, Users, Globe2, Shield, CheckCircle, Award, Clock, Package } from "lucide-react";
 
 export function generateStaticParams() {
@@ -16,12 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isZh = locale === "zh";
   return {
+    // Sharpened for the "factory-direct / verify the manufacturer" sub-intent
+    // (2026-07 cannibalization audit) — the custom/OEM head term belongs to
+    // the /oem-plush-manufacturer hub.
     title: isZh
-      ? "毛绒玩具厂家_义乌源头工厂_OEM/ODM定制生产 | 爱儿采 LovelyJoy"
-      : "Plush Toy Manufacturer in China | Factory-Direct OEM/ODM Supplier | LovelyJoy",
+      ? "毛绒玩具厂家_义乌工贸一体源头工厂（非贸易商）| 爱儿采 LovelyJoy"
+      : "Factory-Direct Plush Toy Manufacturer in China (Not a Trading Company) | LovelyJoy",
     description: isZh
-      ? "爱儿采 LovelyJoy 是义乌源头毛绒玩具厂家，工贸一体，20+年经验，20000㎡厂房，月产80万件。BSCI/ISO9001/EN71/ASTM F963 认证，支持 OEM/ODM 与来图来样定制，出口 70+ 国家。"
-      : "LovelyJoy is a factory-direct plush toy manufacturer in Yiwu, China. 20+ years experience, 20,000 sqm facility, 800K+ monthly capacity. BSCI, ISO 9001, EN71, ASTM F963 certified. OEM/ODM services exporting to 70+ countries.",
+      ? "爱儿采 LovelyJoy 是义乌工贸一体源头毛绒玩具厂家，非贸易商：20+年经验，20000㎡自有厂房，300+工人，月产80万件，BSCI/ISO9001 审核工厂。下单前先核验工厂实力与资质。"
+      : "Verify LovelyJoy as a factory-direct plush toy manufacturer in Yiwu, China — not a trading company: 20+ years, 20,000 sqm owned facility, 300+ workers, 800K+ monthly capacity, BSCI & ISO 9001 audited, exporting to 70+ countries.",
     alternates: buildAlternates(locale, "/plush-toy-manufacturer"),
   };
 }
@@ -100,7 +104,7 @@ export default async function PlushToyManufacturerPage({ params }: { params: Pro
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold text-white md:text-5xl">
-              {isZh ? "爱儿采 LovelyJoy｜专业毛绒玩具厂家" : "LovelyJoy — Professional Plush Toy Manufacturer in China"}
+              {isZh ? "爱儿采 LovelyJoy｜工贸一体毛绒玩具厂家" : "LovelyJoy — Factory-Direct Plush Toy Manufacturer in China"}
             </h1>
             <p className="mt-4 text-lg text-white/85 md:text-xl">
               {isZh
@@ -119,6 +123,26 @@ export default async function PlushToyManufacturerPage({ params }: { params: Pro
             { label: isZh ? "毛绒玩具厂家" : "Plush Toy Manufacturer" },
           ]}
         />
+        {/* Hub-and-spoke link to the custom-manufacturing hub */}
+        <p className="pb-2 text-sm text-brown-light">
+          {isZh ? (
+            <>
+              本页属于我们的{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                毛绒玩具定制工厂（OEM/ODM）
+              </Link>{" "}
+              服务体系。
+            </>
+          ) : (
+            <>
+              Part of our{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                custom plush toy manufacturing
+              </Link>{" "}
+              services.
+            </>
+          )}
+        </p>
       </Container>
 
       {/* Why Choose */}
