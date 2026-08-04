@@ -70,18 +70,22 @@ export const cases: CaseStudy[] = [
       "覆盖多个零售市场的出口合规（EN 71 / ASTM F963 / CCPSA）",
     ],
     challengeEn:
-      "Licensed IP manufacturing requires zero deviation on character features, precise colour matching, and full traceability. Licensors reject production runs for issues as small as 0.5 mm on a character's eye position.",
+      "Licensed IP manufacturing requires zero deviation on character features, precise colour matching, and full traceability. Licensors reject production runs for issues as small as 0.5 mm on a character's eye position. On top of that, every unit must clear multi-market safety compliance (EN 71, ASTM F963, CCPSA) and pass the licensor's own QA approval rounds before mass production is even allowed to start.",
     challengeZh:
-      "IP 授权生产对角色特征零容忍：眼距偏差 0.5 毫米、色号漂移半档都会被授权方退回整批。同时要求完整可追溯。",
+      "IP 授权生产对角色特征零容忍：眼距偏差 0.5 毫米、色号漂移半档都会被授权方退回整批。同时要求完整可追溯。此外，每件产品还必须满足多市场安全合规（EN 71 / ASTM F963 / CCPSA），并在量产开始前走完授权方自己的 QA 审批流程。",
     solutionEn: [
       "Dedicated licensor-project pattern team maintains frozen pattern files per character",
       "Pre-production gold sample co-signed by our QC + licensor representative",
+      "Fabric and thread lots colour-checked against the licensor's colour standards at incoming inspection, before they ever reach the cutting line",
       "5-stage in-line inspection with photo reports archived per carton",
+      "Carton-level records tie every shipment back to its inspected production batch, giving licensors the full traceability their audits require",
     ],
     solutionZh: [
       "授权项目专属版型团队，每个角色锁定冻结版型档案",
       "产前金样由我方 QC 与授权方代表共同签字",
+      "面料与色线批次在来料检验阶段即比对授权方色彩标准，不合格不上裁床",
       "5 道在线质检，每箱留存照片报告存档",
+      "箱级记录将每批出货追溯到对应的已检生产批次，满足授权方审计的完整可追溯要求",
     ],
     outcomeEn: [
       "Multi-year recurring partner for major IP holders",
@@ -126,17 +130,21 @@ export const cases: CaseStudy[] = [
       "FOB 与 LDP 出口，附完整清关文档",
     ],
     challengeEn:
-      "Big-box retailers plan 10+ months ahead and expect zero-defect shipments with exact on-shelf dates. A missed vessel cut-off can cost the buyer an entire season.",
+      "Big-box retailers plan 10+ months ahead and expect zero-defect shipments with exact on-shelf dates. A missed vessel cut-off can cost the buyer an entire season. Seasonal collections also compress 20-80 SKUs into a narrow production window, so factory capacity has to be reserved long before final purchase orders are cut.",
     challengeZh:
-      "大型连锁零售 10 个月前就开始排单，要求零缺陷交付并精准卡上架日期。错过一次开船就是一整季报废。",
+      "大型连锁零售 10 个月前就开始排单，要求零缺陷交付并精准卡上架日期。错过一次开船就是一整季报废。季节系列还把每季 20-80 个 SKU 压缩在极窄的生产窗口内，产能必须在正式订单下达前很久就锁定。",
     solutionEn: [
       "Vendor-managed calendar synced to the retailer's planogram",
       "Pre-booked factory capacity with 6-month rolling forecast",
+      "Forecast-driven line planning converts the rolling forecast into reserved production slots ahead of each seasonal peak",
+      "Production and packing staggered by on-shelf date, so retail-ready cartons (poly bag, header card, case pack) ship in planogram sequence",
       "100% pre-shipment inspection with retailer-approved QC standards",
     ],
     solutionZh: [
       "按零售商货架规划同步的供应商交付日历",
       "提前 6 个月滚动预测并锁定产能",
+      "以滚动预测驱动排产，在每个季节高峰前把预测转化为预留的生产档期",
+      "按上架日期分批生产与包装，零售即用箱（OPP 袋、卡头、装箱规格）按货架顺序出运",
       "按零售商 QC 标准执行 100% 出货前全检",
     ],
     outcomeEn: [
@@ -182,18 +190,22 @@ export const cases: CaseStudy[] = [
       "大批量生产下的稳定质量",
     ],
     challengeEn:
-      "Lifestyle retail runs on narrow margins, tight lead times, and unforgiving quality expectations. Chain-wide replenishment outages damage trust with buyers.",
+      "Lifestyle retail runs on narrow margins, tight lead times, and unforgiving quality expectations. Chain-wide replenishment outages damage trust with buyers. With 4-8 week replenishment cycles feeding thousands of stores, there is no slack in the calendar to absorb a material shortage or a rework loop.",
     challengeZh:
-      "生活方式零售利润空间窄、交期紧、对质量零容忍。全链补货断档会严重影响采购信任。",
+      "生活方式零售利润空间窄、交期紧、对质量零容忍。全链补货断档会严重影响采购信任。4-8 周的补货循环要支撑数千家门店，日历上没有任何余量去消化缺料或返工。",
     solutionEn: [
       "Dedicated production lines for repeat-buy SKUs",
       "Rolling stock of core materials to shorten reorder lead time",
+      "Reorders slot straight onto their dedicated lines without requeuing, keeping repeat SKUs inside the 4-8 week replenishment window",
       "Monthly QC scorecard shared with buyer's audit team",
+      "Peak-season capacity ramp-ups planned in advance so replenishment holds steady across multi-country distribution",
     ],
     solutionZh: [
       "回购型 SKU 配专属生产线",
       "核心材料常备滚动库存，缩短补货周期",
+      "返单直接进入专属生产线排产、无需重新排队，确保回购 SKU 稳定落在 4-8 周补货窗口内",
       "月度 QC 评分表与买家审核团队同步",
+      "提前规划旺季产能扩张，保障多国分销下的补货稳定",
     ],
     outcomeEn: [
       "Long-term plush supply partnership",
@@ -238,18 +250,22 @@ export const cases: CaseStudy[] = [
       "特征位置严格管控，保证品牌一致性",
     ],
     challengeEn:
-      "Experience retail demands plush that performs in-store — survive children's play, hold shape after re-stuffing, and support branded accessories without structural damage.",
+      "Experience retail demands plush that performs in-store — survive children's play, hold shape after re-stuffing, and support branded accessories without structural damage. Because the plush stays in prolonged contact with customers' skin, fabrics must be skin-safe as well as durable. And feature placement has to hold within tight tolerances across every re-order, or the brand's in-store look slowly drifts.",
     challengeZh:
-      "体验式零售对毛绒性能要求极高——要能承受儿童反复玩耍、能重新填充不变形、能稳定穿戴品牌配件。",
+      "体验式零售对毛绒性能要求极高——要能承受儿童反复玩耍、能重新填充不变形、能稳定穿戴品牌配件。由于产品与顾客皮肤长时间接触，面料既要耐用又要亲肤安全。特征位置还必须在每一次补货中保持严格公差，否则品牌的门店形象会逐渐走样。",
     solutionEn: [
       "Reinforced seam construction tested across multiple stuffing cycles",
       "Custom fabric blends tuned for repeated handling and washing",
       "Brand-shared pattern library maintaining exact look across re-orders",
+      "Feature placement verified against the shared pattern library at first article inspection on every re-order run",
+      "In-line durability checks confirm seam strength and shape recovery under repeated stuffing and handling before shipment",
     ],
     solutionZh: [
       "加固缝合工艺，经多次填充循环测试",
       "定制面料组合，适应反复触摸与清洗",
       "与品牌共享版型库，保证补货外观一致",
+      "每次补货生产在首件检验时对照共享版型库核验特征位置",
+      "在线耐久检查确认缝合强度与反复填充、反复把玩后的回弹定型，合格后方可出货",
     ],
     outcomeEn: [
       "Plush products that perform reliably in interactive retail environments",
@@ -294,18 +310,22 @@ export const cases: CaseStudy[] = [
       "Amazon FBA 的零售级包装和标签",
     ],
     challengeEn:
-      "First-time plush brands often lack product design experience, clear MOQ economics, or knowledge of safety compliance. One bad first batch can kill a startup's category entry.",
+      "First-time plush brands often lack product design experience, clear MOQ economics, or knowledge of safety compliance. One bad first batch can kill a startup's category entry. Budgets and timelines are equally unforgiving — a mis-specified sample round or a missing test report can burn months before launch, and DTC and Amazon channels add their own packaging and labelling requirements on top.",
     challengeZh:
-      "首次做毛绒的品牌常常缺少产品设计经验、MOQ 经济模型认知、安全合规知识。首批做坏可能直接断送品类切入。",
+      "首次做毛绒的品牌常常缺少产品设计经验、MOQ 经济模型认知、安全合规知识。首批做坏可能直接断送品类切入。预算和时间同样不容出错——一轮规格不清的打样或缺一份测试报告就可能耗掉数月，DTC 和 Amazon 渠道还叠加了各自的包装与标签要求。",
     solutionEn: [
       "Design consultation to guide pattern, material, and feature choices",
       "Transparent cost breakdowns tied to MOQ and packaging tier",
+      "Compliance guidance from the first sample round, so 200-piece trial batches ship with the documentation their target market requires",
       "Sample cost deducted from first bulk order to reduce upfront risk",
+      "Amazon FBA packaging and labelling checked before shipment, so trial orders arrive warehouse-ready",
     ],
     solutionZh: [
       "设计咨询指导版型、材料、特征选择",
       "成本明细与 MOQ、包装档位挂钩，透明化",
+      "从首轮打样即介入合规指导，200 件试单出货即附目标市场所需文档",
       "样品费从首个大货订单中抵扣，降低前期风险",
+      "出货前核验 Amazon FBA 包装与标签，试单到仓即可直接入库",
     ],
     outcomeEn: [
       "Repeat startup clients scaling from 200-piece trials to 5,000+ orders",
@@ -350,17 +370,21 @@ export const cases: CaseStudy[] = [
       "按活动截止日期锁定交付窗口的紧急排产",
     ],
     challengeEn:
-      "Promotional projects live or die by the event date. Late delivery means the campaign flops. Budget is also tight — brands expect mascot-grade look at promotional-tier pricing.",
+      "Promotional projects live or die by the event date. Late delivery means the campaign flops. Budget is also tight — brands expect mascot-grade look at promotional-tier pricing. Many campaigns are recurring programs across holidays and product launches, so mascot patterns and packaging assets need to be reusable rather than redeveloped from scratch for every event.",
     challengeZh:
-      "促销类项目命悬活动日：晚交货 = 活动失败。预算又紧——品牌期望「吉祥物级观感 + 促销级单价」。",
+      "促销类项目命悬活动日：晚交货 = 活动失败。预算又紧——品牌期望「吉祥物级观感 + 促销级单价」。许多活动是跨节庆和新品发布的循环项目，吉祥物版型与包装资产需要可复用，而不是每次活动从零重做。",
     solutionEn: [
       "T-75-day project calendar with buffer before peak-season logistics",
+      "Production milestones tracked backwards from the locked event date, protecting the delivery window through sampling, production, and shipping",
       "Shared pattern library reducing development cost on repeat campaigns",
+      "Mascot pattern and packaging files archived per client for fast reactivation on the next campaign",
       "Budget-tier menus (economy / standard / premium) for quick proposal turnaround",
     ],
     solutionZh: [
       "T-75 天的项目日历，旺季物流前预留缓冲",
+      "以锁定的活动日期倒排生产节点，打样、生产、运输全程守住交付窗口",
       "共享版型库，让重复活动复用开发成本",
+      "按客户归档吉祥物版型与包装文件，下次活动快速复用启动",
       "三档预算菜单（经济 / 标准 / 高端），快速回复方案",
     ],
     outcomeEn: [

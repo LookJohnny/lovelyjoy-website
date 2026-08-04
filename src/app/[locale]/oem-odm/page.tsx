@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import OemOdmTimeline from "@/components/oem-odm/OemOdmTimeline";
 import OemOdmCTA from "@/components/oem-odm/OemOdmCTA";
+import { Link } from "@/i18n/navigation";
 import {
   Layers,
   Pencil,
@@ -163,7 +164,7 @@ export default async function OemOdmPage({
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold text-white md:text-5xl">
-              {isZh ? "毛绒玩具 OEM/ODM 定制服务" : "Plush Toy OEM/ODM Manufacturing Services"}
+              {isZh ? "毛绒玩具 OEM 与 ODM 定制服务" : "Plush Toy OEM vs ODM Manufacturing Services"}
             </h1>
             <p className="mt-4 text-lg text-white/85 md:text-xl">{t("subtitle")}</p>
           </div>
@@ -178,6 +179,26 @@ export default async function OemOdmPage({
             { label: nav("oemOdm") },
           ]}
         />
+        {/* Hub-and-spoke link to the custom-manufacturing hub */}
+        <p className="pb-2 text-sm text-brown-light">
+          {isZh ? (
+            <>
+              本页属于我们的{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                毛绒玩具定制工厂（OEM/ODM）
+              </Link>{" "}
+              服务体系。
+            </>
+          ) : (
+            <>
+              Part of our{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                custom plush toy manufacturing
+              </Link>{" "}
+              services.
+            </>
+          )}
+        </p>
       </Container>
 
       {/* OEM vs ODM */}

@@ -259,6 +259,29 @@ export default async function OemPlushManufacturerPage({
         </Container>
       </section>
 
+      {/* 8b. Hub-and-spoke: related specialized manufacturing services.
+          Links each spoke page so equity flows both ways in the
+          manufacturer/OEM cluster (2026-07 cannibalization fix). */}
+      {copy.related && (
+        <section className="py-16 md:py-24 bg-white">
+          <Container>
+            <SectionHeading title={copy.related.title} />
+            <div className="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {copy.related.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block rounded-2xl border border-brown/10 bg-white p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                >
+                  <h3 className="font-bold text-brown">{item.label}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-brown/70">{item.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* Internal links + 9. RFQ CTA */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-sky-brand to-sky-brand-dark">
         <Container>

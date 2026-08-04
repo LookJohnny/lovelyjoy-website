@@ -46,6 +46,13 @@ export type OemCopy = {
   finalText: string;
   finalBtn: string;
   links: string[]; // 6 — order: factory, oem-odm, products, cases, faq, contact
+  // Hub-and-spoke block: links from this hub page out to the specialized
+  // manufacturer/OEM spoke pages (2026-07 keyword-cannibalization fix).
+  // EN/ZH only — other locales fall back to English via getOemCopy.
+  related?: {
+    title: string;
+    items: { href: string; label: string; desc: string }[];
+  };
 };
 
 export const OEM_COPY: Record<string, OemCopy> = {
@@ -112,6 +119,17 @@ export const OEM_COPY: Record<string, OemCopy> = {
         { feature: "Design-to-delivery time", us: "45–60 days", typical: "60–90 days" },
       ],
     },
+    related: {
+      title: "Explore Our Specialized Manufacturing Services",
+      items: [
+        { href: "/yiwu-plush-factory", label: "Yiwu Plush Toy Factory", desc: "Our 20,000 sqm source factory in Yiwu — video tours, on-site audits, and FOB/EXW/DDP export." },
+        { href: "/mascot-custom", label: "Corporate Mascot Plush", desc: "Turn a logo or 2D character into a huggable 3D plush mascot for events and brand merch." },
+        { href: "/gift-plush-custom", label: "Promotional & Gift Plush", desc: "Budget-tiered plush for event giveaways, holiday gift sets, and member rewards." },
+        { href: "/stuffed-animal-oem", label: "Private Label Stuffed Animal OEM", desc: "100% your-brand tags, labels, and packaging — with reorder consistency guaranteed." },
+        { href: "/plush-toy-oem", label: "Plush Toy OEM Process", desc: "How OEM production works step by step: MOQ, sampling, and lead times." },
+        { href: "/plush-toy-manufacturer", label: "Factory-Direct Manufacturer Profile", desc: "Why we're a factory, not a trading company — credentials, capacity, and certifications." },
+      ],
+    },
   },
   zh: {
     metaTitle: "毛绒玩具定制工厂_义乌OEM/ODM源头厂家 | 爱儿采 LovelyJoy",
@@ -174,6 +192,17 @@ export const OEM_COPY: Record<string, OemCopy> = {
         { feature: "包装设计", us: "自有团队", typical: "外包" },
         { feature: "出口物流", us: "全流程（FOB/CIF/DDP）", typical: "仅 FOB" },
         { feature: "设计到交付周期", us: "45–60 天", typical: "60–90 天" },
+      ],
+    },
+    related: {
+      title: "更多专项定制服务",
+      items: [
+        { href: "/yiwu-plush-factory", label: "义乌毛绒玩具工厂", desc: "20,000㎡ 义乌源头厂房——支持视频看厂、现场验厂与 FOB/EXW/DDP 出口。" },
+        { href: "/mascot-custom", label: "企业吉祥物定制", desc: "从 Logo 或 2D 形象开发可抱可送的 3D 毛绒吉祥物，适合活动与品牌周边。" },
+        { href: "/gift-plush-custom", label: "礼品毛绒玩具定制", desc: "活动赠品、节庆礼盒与会员礼品的三档预算定制方案。" },
+        { href: "/stuffed-animal-oem", label: "私贴牌 Stuffed Animal OEM", desc: "100% 客户品牌吊牌、织标与包装，补货一致性有保障。" },
+        { href: "/plush-toy-oem", label: "毛绒玩具 OEM 代工流程", desc: "OEM 代工逐步详解：起订量、打样与生产周期。" },
+        { href: "/plush-toy-manufacturer", label: "源头工厂实力档案", desc: "工贸一体、非贸易商——资质、产能与认证一览。" },
       ],
     },
   },

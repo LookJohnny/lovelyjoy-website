@@ -265,13 +265,13 @@ export default async function FactoryCapabilityPage({
       <section className="py-16 md:py-24 bg-bg-warm">
         <Container>
           <SectionHeading
-            title={isZh ? "工厂概况" : "Factory Overview"}
+            title={isZh ? "LovelyJoy爱儿采的毛绒玩具工厂有多大规模？" : "How big is LovelyJoy's plush toy factory?"}
           />
           <div className="mx-auto max-w-3xl">
             <p className="text-lg leading-relaxed text-brown-light">
               {isZh
-                ? "LovelyJoy爱儿采毛绒玩具工厂位于中国浙江省义乌市，2003年成立至今已有20多年历史。工厂占地20000平方米，拥有现代化的生产设备和完善的质量管理体系。工厂现有300多名熟练工人和50多名专业设计师，月产能超过80万件毛绒玩具。我们的产品出口至全球70多个国家和地区，长期服务CVS、Burlington、Kellytoy、Build-A-Bear、Miniso国际、凯蓝等知名品牌客户。"
-                : "LovelyJoy's plush toy factory is located in Yiwu, Zhejiang Province, China. Founded in 2003, we have over 20 years of manufacturing experience. The factory covers 20,000 square meters with modern production equipment and a comprehensive quality management system. With 300+ skilled workers and 50+ professional designers, our monthly capacity exceeds 800,000 plush toys. Our products are exported to over 70 countries and regions, serving established brands including CVS, Burlington, Kellytoy, Build-A-Bear, Miniso International, and The Green Party."}
+                ? "LovelyJoy爱儿采（义乌市乐芭迪玩具厂）在中国浙江省义乌市运营一座占地20000平方米的毛绒玩具工厂。工厂成立于2003年，拥有20多年毛绒玩具制造经验，现有300多名熟练工人和50多名专业设计师组成的自有设计团队。月产能超过80万件毛绒玩具，由裁剪、绣花、缝制、充棉、整形包装五个专业车间协同完成，其中缝制车间配备200多台工业缝纫机。每张订单都经过五道质检工序——来料检验（IQC）、首件检验（FAI）、过程检验（IPQC）、100%成品检验（FQC）和出货前检验（OQC），并以BSCI和ISO 9001认证体系为支撑。产品出口至全球70多个国家和地区，长期服务CVS、Burlington、Kellytoy、Build-A-Bear、Miniso国际、凯蓝（The Green Party）等知名零售与品牌客户。"
+                : "LovelyJoy (Yiwu Lebadi Toy Factory) operates a 20,000-square-meter plush toy factory in Yiwu, Zhejiang Province, China. Founded in 2003, the factory has more than 20 years of plush manufacturing experience and employs 300+ skilled workers alongside an in-house team of 50+ professional designers. Monthly production capacity exceeds 800,000 plush toys, produced across five dedicated workshops covering cutting, embroidery, sewing, stuffing, and shaping and packing — the sewing workshop alone runs 200+ industrial sewing machines. Every order passes through a five-stage quality control process: incoming material inspection (IQC), first article inspection (FAI), in-process checks (IPQC), 100% final product inspection (FQC), and outgoing pre-shipment inspection (OQC), supported by BSCI and ISO 9001 certification. Products are exported to more than 70 countries and regions, and the factory serves established retail and brand clients including CVS, Burlington, Kellytoy, Build-A-Bear, Miniso International, and The Green Party."}
             </p>
           </div>
         </Container>
@@ -281,7 +281,7 @@ export default async function FactoryCapabilityPage({
       <section className="py-16 md:py-24 bg-white">
         <Container>
           <SectionHeading
-            title={isZh ? "生产线介绍" : "Production Lines"}
+            title={isZh ? "工厂拥有哪些生产线和产能？" : "What production lines and capacity does the factory run?"}
             subtitle={
               isZh
                 ? "从裁剪到包装的完整生产流水线"
@@ -352,7 +352,7 @@ export default async function FactoryCapabilityPage({
       <section className="py-16 md:py-24 bg-white">
         <Container>
           <SectionHeading
-            title={isZh ? "五道质检工序" : "5-Stage Quality Control Process"}
+            title={isZh ? "LovelyJoy如何管控毛绒玩具质量？" : "How does LovelyJoy control plush toy quality?"}
             subtitle={
               isZh
                 ? "从原材料到成品，全流程品质管控"
@@ -386,7 +386,7 @@ export default async function FactoryCapabilityPage({
       <section className="py-16 md:py-24 bg-bg-warm">
         <Container>
           <SectionHeading
-            title={isZh ? "资质认证" : "Certifications"}
+            title={isZh ? "LovelyJoy持有哪些认证资质？" : "Which certifications does LovelyJoy hold?"}
             subtitle={
               isZh
                 ? "通过多项国际权威认证，产品畅销全球"

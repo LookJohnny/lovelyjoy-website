@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import { Link } from "@/i18n/navigation";
 import {
   Tag,
   Layers,
@@ -31,9 +32,12 @@ export async function generateMetadata({
   const isZh = locale === "zh";
 
   return {
+    // Kept in the "stuffed animal" keyword family (2026-07 cannibalization
+    // audit): title drops the generic "plush toy factory" phrase so it stops
+    // competing with /oem-plush-manufacturer and /plush-toy-manufacturer.
     title: isZh
-      ? "Stuffed Animal OEM 制造厂家 - 私贴牌毛绒玩具 OEM 工厂 | 爱儿采 LovelyJoy"
-      : "OEM Stuffed Animal Manufacturer | Private Label Plush Toy Factory | LovelyJoy",
+      ? "Stuffed Animal OEM 制造厂家 - 私贴牌毛绒动物玩具生产 | 爱儿采 LovelyJoy"
+      : "OEM Stuffed Animal Manufacturer | Private Label Stuffed Animals | LovelyJoy",
     description: isZh
       ? "爱儿采为全球品牌提供 OEM 毛绒动物玩具贴牌生产：来图来样、品牌吊牌、定制包装、出口合规、稳定补货。MOQ 200 起，BSCI/ISO/EN71/ASTM F963 认证。"
       : "LovelyJoy is an OEM stuffed animal manufacturer for global brands: artwork-to-sample, private-label tags, custom packaging, export compliance, and reorder consistency. MOQ from 200 pcs, BSCI/ISO/EN71/ASTM F963 certified.",
@@ -161,6 +165,26 @@ export default async function StuffedAnimalOemPage({
             { label: isZh ? "Stuffed Animal OEM" : "Stuffed Animal OEM" },
           ]}
         />
+        {/* Hub-and-spoke link to the custom-manufacturing hub */}
+        <p className="pb-2 text-sm text-brown-light">
+          {isZh ? (
+            <>
+              本页属于我们的{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                毛绒玩具定制工厂（OEM/ODM）
+              </Link>{" "}
+              服务体系。
+            </>
+          ) : (
+            <>
+              Part of our{" "}
+              <Link href="/oem-plush-manufacturer" className="font-semibold text-sky-brand underline">
+                custom plush toy manufacturing
+              </Link>{" "}
+              services.
+            </>
+          )}
+        </p>
       </Container>
 
       {/* Service Pillars */}
