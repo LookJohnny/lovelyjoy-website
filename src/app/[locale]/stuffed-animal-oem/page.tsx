@@ -39,8 +39,8 @@ export async function generateMetadata({
       ? "Stuffed Animal OEM 制造厂家 - 私贴牌毛绒动物玩具生产 | 爱儿采 LovelyJoy"
       : "OEM Stuffed Animal Manufacturer | Private Label Stuffed Animals | LovelyJoy",
     description: isZh
-      ? "爱儿采为全球品牌提供 OEM 毛绒动物玩具贴牌生产：来图来样、品牌吊牌、定制包装、出口合规、稳定补货。MOQ 200 起，BSCI/ISO/EN71/ASTM F963 认证。"
-      : "LovelyJoy is an OEM stuffed animal manufacturer for global brands: artwork-to-sample, private-label tags, custom packaging, export compliance, and reorder consistency. MOQ from 200 pcs, BSCI/ISO/EN71/ASTM F963 certified.",
+      ? "爱儿采为全球品牌提供 OEM 毛绒动物玩具贴牌生产：来图来样、品牌吊牌、定制包装、出口合规、稳定补货。起订量按尺寸分档（800–3,600 件/款），BSCI/ISO/EN71/ASTM F963 认证。"
+      : "LovelyJoy is an OEM stuffed animal manufacturer for global brands: artwork-to-sample, private-label tags, custom packaging, export compliance, and reorder consistency. Size-tiered MOQs (800–3,600 pcs by size), BSCI/ISO/EN71/ASTM F963 certified.",
     alternates: buildAlternates(locale, "/stuffed-animal-oem"),
   };
 }
@@ -300,8 +300,8 @@ export default async function StuffedAnimalOemPage({
                 <Package className="h-5 w-5 text-sky-brand" />
                 <h3 className="text-lg font-bold text-brown">MOQ</h3>
               </div>
-              <p className="mt-3 text-3xl font-bold text-sky-brand">200<span className="text-base font-normal text-brown-light"> {isZh ? "起 / 款" : "pcs / style"}</span></p>
-              <p className="mt-2 text-sm text-brown-light">{isZh ? "试单 200，标准 500，量大优惠 1000+" : "Trial 200 · Standard 500 · Volume discount 1,000+"}</p>
+              <p className="mt-3 text-3xl font-bold text-sky-brand">800–3,600<span className="text-base font-normal text-brown-light"> {isZh ? "件 / 款" : "pcs / style"}</span></p>
+              <p className="mt-2 text-sm text-brown-light">{isZh ? "<20cm 3,600 · 20–35cm 2,400 · 35–50cm 1,200 · >50cm 800 件" : "<20cm 3,600 · 20–35cm 2,400 · 35–50cm 1,200 · >50cm 800 pcs"}</p>
             </div>
             <div className="rounded-2xl border border-brown/10 p-6">
               <div className="flex items-center gap-3">

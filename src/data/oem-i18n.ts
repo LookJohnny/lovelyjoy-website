@@ -67,7 +67,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "View Products",
     breadcrumb: "Custom Plush Toy Manufacturer",
     intro:
-      "LovelyJoy is a Yiwu, China-based OEM/ODM plush toy manufacturer founded in 2003, operating a 20,000 sqm in-house factory with 300+ skilled workers and a 50+ person design team, an output capacity above 800,000 pieces per month, and exports to 70+ countries. We serve international wholesalers, importers, gift brands, retailers, and sourcing managers with one-stop production — design, sampling, material sourcing, mass production, quality control, and export — across custom stuffed animals, plush toys, mascot dolls, promotional plush, baby plush, festival plush, and licensed IP plush. The standard MOQ is 500 pcs per style (trial orders from 200 pcs), with 7-15 day sampling and 30-45 day production lead times. The factory is BSCI and ISO 9001 certified, and products meet ASTM F963, EN 71, CE, and GB 6675 toy-safety standards.",
+      "LovelyJoy is a Yiwu, China-based OEM/ODM plush toy manufacturer founded in 2003, operating a 20,000 sqm in-house factory with 300+ skilled workers and a 50+ person design team, an output capacity above 800,000 pieces per month, and exports to 70+ countries. We serve international wholesalers, importers, gift brands, retailers, and sourcing managers with one-stop production — design, sampling, material sourcing, mass production, quality control, and export — across custom stuffed animals, plush toys, mascot dolls, promotional plush, baby plush, festival plush, and licensed IP plush. MOQ is size-tiered: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm, with 7-15 day sampling and 30-45 day production lead times. The factory is BSCI and ISO 9001 certified, and products meet ASTM F963, EN 71, CE, and GB 6675 toy-safety standards.",
     introCta: "Send your brief to request samples and a quote.",
     capTitle: "OEM/ODM Plush Toy Manufacturing Capabilities",
     capSub: "One-stop factory service from design to export",
@@ -91,7 +91,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "View All Case Studies",
     faqTitle: "Sourcing FAQ",
     faqs: [
-      { q: "What is your MOQ for custom plush toys?", a: "Standard MOQ is 500 pcs per style; first trial orders for new customers start at 200 pcs per style, negotiable by size and complexity." },
+      { q: "What is your MOQ for custom plush toys?", a: "MOQ is size-tiered: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per design, published upfront." },
       { q: "How long does sampling take?", a: "Sampling typically takes 7-15 working days including fabric sourcing, pattern making, sewing, and first-round QC. Simple modifications can be as fast as 5 days." },
       { q: "Can you produce plush toys based on drawings or reference images?", a: "Yes. We accept design files, reference photos, hand sketches, or even verbal briefs; our 50+ in-house design team turns them into production-ready patterns and 3D renderings." },
       { q: "Do you support private label packaging?", a: "Yes. Hang tags, woven labels, color boxes, poly bags, and shopping bags are all custom-designed and produced to your brand requirements." },
@@ -110,7 +110,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
       colTypical: "Typical factory",
       rows: [
         { feature: "In-house design team", us: "50+ designers", typical: "You bring the design" },
-        { feature: "Minimum order", us: "200 pcs (trial) / 500 pcs standard", typical: "1,000–3,000 pcs" },
+        { feature: "Minimum order quantity", us: "Size-tiered, published upfront (800–3,600 pcs by size)", typical: "Unpublished — quote-dependent" },
         { feature: "Free design for MOQ orders", us: "Included", typical: "$500–2,000 extra" },
         { feature: "Sample cost", us: "Deducted from your order", typical: "Non-refundable" },
         { feature: "International certifications", us: "BSCI · ISO 9001 · ASTM F963 · EN 71 · CE · GB 6675", typical: "1–2 typically" },
@@ -142,7 +142,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "查看产品",
     breadcrumb: "毛绒玩具定制工厂",
     intro:
-      "爱儿采 LovelyJoy 是位于中国浙江义乌的毛绒玩具 OEM/ODM 源头工厂，成立于 2003 年，拥有 20,000㎡ 自有厂房、300+ 熟练工人与 50+ 人设计团队，月产能 80 万件以上，产品出口 70+ 国家。我们为国际批发商、进口商、礼品与品牌方、零售连锁及采购经理提供从设计、打样、材料采购到大货生产、质检与出口的一站式定制服务，覆盖毛绒玩具、定制公仔与毛绒动物、企业吉祥物、促销毛绒、婴童毛绒、节庆毛绒以及 IP 授权毛绒等品类。标准起订量为每款 500 件（首单可低至 200 件），打样 7-15 天、大货 30-45 天。工厂通过 BSCI 与 ISO 9001 认证，产品满足 ASTM F963、EN 71、CE 与 GB 6675 玩具安全标准。",
+      "爱儿采 LovelyJoy 是位于中国浙江义乌的毛绒玩具 OEM/ODM 源头工厂，成立于 2003 年，拥有 20,000㎡ 自有厂房、300+ 熟练工人与 50+ 人设计团队，月产能 80 万件以上，产品出口 70+ 国家。我们为国际批发商、进口商、礼品与品牌方、零售连锁及采购经理提供从设计、打样、材料采购到大货生产、质检与出口的一站式定制服务，覆盖毛绒玩具、定制公仔与毛绒动物、企业吉祥物、促销毛绒、婴童毛绒、节庆毛绒以及 IP 授权毛绒等品类。起订量按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件，打样 7-15 天、大货 30-45 天。工厂通过 BSCI 与 ISO 9001 认证，产品满足 ASTM F963、EN 71、CE 与 GB 6675 玩具安全标准。",
     introCta: "立即提交需求获取样品与报价。",
     capTitle: "OEM/ODM 毛绒玩具制造能力",
     capSub: "从设计到出口的一站式工厂服务",
@@ -166,7 +166,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "查看全部案例",
     faqTitle: "采购常见问题",
     faqs: [
-      { q: "定制毛绒玩具的最小起订量（MOQ）是多少？", a: "标准 MOQ 为每款 500 件，新客户首单可低至 200 件/款。具体可根据尺寸与工艺协商。" },
+      { q: "定制毛绒玩具的最小起订量（MOQ）是多少？", a: "起订量按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件（均为每款），下单前公开透明。" },
       { q: "打样需要多久？", a: "打样周期通常为 7-15 个工作日，含面料采购、打版、缝制与首检。简单改款最快 5 天。" },
       { q: "可以根据图纸或参考图生产吗？", a: "可以。我们接受设计稿、参考照片、手绘草图甚至口头描述，由 50+ 人设计团队转化为可生产的版型与 3D 效果图。" },
       { q: "支持贴牌（Private Label）包装吗？", a: "支持。吊牌、织唛、彩盒、OPP 袋、购物袋均可按品牌要求定制设计与生产。" },
@@ -185,7 +185,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
       colTypical: "普通工厂",
       rows: [
         { feature: "自有设计团队", us: "50+ 名设计师", typical: "需自带设计稿" },
-        { feature: "起订量", us: "试单 200 件 / 常规 500 件", typical: "1,000–3,000 件" },
+        { feature: "起订量", us: "按尺寸分档、公开透明（800–3,600 件）", typical: "不公开，需询价" },
         { feature: "达到起订量免设计费", us: "包含", typical: "另收 $500–2,000" },
         { feature: "样品费用", us: "从订单中抵扣", typical: "不予退还" },
         { feature: "国际认证", us: "BSCI · ISO 9001 · ASTM F963 · EN 71 · CE · GB 6675", typical: "通常 1–2 项" },
@@ -217,7 +217,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "製品を見る",
     breadcrumb: "ぬいぐるみOEM/ODM工場",
     intro:
-      "LovelyJoyは2003年創業、中国・義烏のOEM/ODMぬいぐるみ製造工場です。20,000㎡の自社工場、300名以上の熟練工と50名以上のデザインチームを擁し、月産80万個以上、70カ国以上へ輸出しています。海外の卸売・輸入業者、ギフトブランド、小売、調達担当者向けに、デザイン・サンプル・資材調達・量産・品質管理・輸出までワンストップで対応し、オリジナルのぬいぐるみ、動物のぬいぐるみ、マスコット人形、販促用、ベビー、季節物、ライセンスIPのぬいぐるみを製造します。標準MOQは1型500個から（試作200個から）、サンプル7〜15日、量産30〜45日。工場はBSCI・ISO 9001認証取得、製品はASTM F963・EN 71・CE・GB 6675の玩具安全基準に適合します。",
+      "LovelyJoyは2003年創業、中国・義烏のOEM/ODMぬいぐるみ製造工場です。20,000㎡の自社工場、300名以上の熟練工と50名以上のデザインチームを擁し、月産80万個以上、70カ国以上へ輸出しています。海外の卸売・輸入業者、ギフトブランド、小売、調達担当者向けに、デザイン・サンプル・資材調達・量産・品質管理・輸出までワンストップで対応し、オリジナルのぬいぐるみ、動物のぬいぐるみ、マスコット人形、販促用、ベビー、季節物、ライセンスIPのぬいぐるみを製造します。MOQはサイズ別：20cm未満3,600個、20〜35cmは2,400個、35〜50cmは1,200個、50cm超は800個。サンプル7〜15日、量産30〜45日。工場はBSCI・ISO 9001認証取得、製品はASTM F963・EN 71・CE・GB 6675の玩具安全基準に適合します。",
     introCta: "ご要望を送信してサンプルとお見積りをご依頼ください。",
     capTitle: "OEM/ODMぬいぐるみ製造能力",
     capSub: "デザインから輸出までのワンストップ工場サービス",
@@ -241,7 +241,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "すべての事例を見る",
     faqTitle: "調達に関するFAQ",
     faqs: [
-      { q: "カスタムぬいぐるみのMOQは？", a: "標準MOQは1型500個。新規のお客様の試作注文は1型200個から、サイズや難易度により相談可能です。" },
+      { q: "カスタムぬいぐるみのMOQは？", a: "MOQはサイズ別に設定しています。20cm未満は3,600個、20〜35cmは2,400個、35〜50cmは1,200個、50cm超は800個（いずれも1型あたり）で、事前に公開しています。" },
       { q: "サンプルにどれくらいかかりますか？", a: "通常7〜15営業日（資材調達・型紙・縫製・初回検査を含む）。簡単な修正は最短5日です。" },
       { q: "図面や参考画像から製造できますか？", a: "可能です。デザインファイル・参考写真・手描き・口頭説明を、50名以上の社内デザインチームが量産用型紙と3D効果図にします。" },
       { q: "プライベートブランドの包装に対応していますか？", a: "対応します。下げ札・織ネーム・化粧箱・OPP袋・ショッパーをブランド要件通りに設計・製作します。" },
@@ -265,7 +265,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "제품 보기",
     breadcrumb: "봉제인형 OEM/ODM 공장",
     intro:
-      "LovelyJoy는 2003년 설립된 중국 이우의 OEM/ODM 봉제인형 제조공장입니다. 20,000㎡ 자체 공장, 300명 이상의 숙련공과 50명 이상의 디자인팀을 보유하고 있으며 월 생산능력 80만 개 이상, 70개국 이상 수출합니다. 해외 도매·수입업체, 기프트 브랜드, 소매업체, 소싱 매니저를 위해 디자인·샘플·자재 소싱·양산·품질관리·수출까지 원스톱으로 맞춤 제작하며, 봉제인형·동물인형·마스코트 인형·판촉용·유아용·시즌·라이선스 IP 인형을 다룹니다. 표준 MOQ는 스타일당 500개(시험주문 200개부터), 샘플 7~15일, 양산 30~45일입니다. 공장은 BSCI 및 ISO 9001 인증을 보유하고 제품은 ASTM F963, EN 71, CE, GB 6675 완구 안전기준을 충족합니다.",
+      "LovelyJoy는 2003년 설립된 중국 이우의 OEM/ODM 봉제인형 제조공장입니다. 20,000㎡ 자체 공장, 300명 이상의 숙련공과 50명 이상의 디자인팀을 보유하고 있으며 월 생산능력 80만 개 이상, 70개국 이상 수출합니다. 해외 도매·수입업체, 기프트 브랜드, 소매업체, 소싱 매니저를 위해 디자인·샘플·자재 소싱·양산·품질관리·수출까지 원스톱으로 맞춤 제작하며, 봉제인형·동물인형·마스코트 인형·판촉용·유아용·시즌·라이선스 IP 인형을 다룹니다. MOQ는 사이즈별로 구분됩니다: 20cm 미만 3,600개, 20~35cm 2,400개, 35~50cm 1,200개, 50cm 초과 800개이며, 샘플 7~15일, 양산 30~45일입니다. 공장은 BSCI 및 ISO 9001 인증을 보유하고 제품은 ASTM F963, EN 71, CE, GB 6675 완구 안전기준을 충족합니다.",
     introCta: "요청 사항을 보내 샘플과 견적을 받아보세요.",
     capTitle: "OEM/ODM 봉제인형 제조 역량",
     capSub: "디자인부터 수출까지 원스톱 공장 서비스",
@@ -289,7 +289,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "모든 사례 보기",
     faqTitle: "소싱 FAQ",
     faqs: [
-      { q: "맞춤 봉제인형의 MOQ는 얼마인가요?", a: "표준 MOQ는 스타일당 500개이며, 신규 고객의 첫 시험주문은 스타일당 200개부터, 사이즈와 난이도에 따라 협의 가능합니다." },
+      { q: "맞춤 봉제인형의 MOQ는 얼마인가요?", a: "MOQ는 사이즈별로 구분됩니다. 20cm 미만 3,600개, 20~35cm 2,400개, 35~50cm 1,200개, 50cm 초과 800개(모두 스타일당)이며, 주문 전에 공개됩니다." },
       { q: "샘플 제작은 얼마나 걸리나요?", a: "보통 7~15영업일(자재 소싱·패턴·봉제·1차 QC 포함)이며 간단한 수정은 최단 5일입니다." },
       { q: "도면이나 참고 이미지로 생산할 수 있나요?", a: "가능합니다. 디자인 파일·참고 사진·손그림·구두 설명을 50명 이상의 사내 디자인팀이 양산용 패턴과 3D 렌더링으로 만듭니다." },
       { q: "자체 브랜드 포장을 지원하나요?", a: "지원합니다. 행택·우븐라벨·컬러박스·폴리백·쇼핑백을 브랜드 요구사항에 맞춰 설계·제작합니다." },
@@ -313,7 +313,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Ver productos",
     breadcrumb: "Fabricante de peluches personalizados",
     intro:
-      "LovelyJoy es un fabricante de peluches OEM/ODM con sede en Yiwu, China, fundado en 2003. Operamos una fábrica propia de 20.000 m² con más de 300 trabajadores cualificados y un equipo de diseño de más de 50 personas, una capacidad superior a 800.000 piezas al mes y exportaciones a más de 70 países. Atendemos a mayoristas, importadores, marcas de regalos, minoristas y gestores de compras internacionales con una producción integral —diseño, muestras, abastecimiento de materiales, producción en serie, control de calidad y exportación— de animales de peluche personalizados, peluches, mascotas, peluches promocionales, para bebés, de temporada y de IP con licencia. El MOQ estándar es de 500 piezas por modelo (pedidos de prueba desde 200 piezas), con muestras en 7-15 días y plazos de producción de 30-45 días. La fábrica cuenta con certificación BSCI e ISO 9001, y los productos cumplen las normas de seguridad ASTM F963, EN 71, CE y GB 6675.",
+      "LovelyJoy es un fabricante de peluches OEM/ODM con sede en Yiwu, China, fundado en 2003. Operamos una fábrica propia de 20.000 m² con más de 300 trabajadores cualificados y un equipo de diseño de más de 50 personas, una capacidad superior a 800.000 piezas al mes y exportaciones a más de 70 países. Atendemos a mayoristas, importadores, marcas de regalos, minoristas y gestores de compras internacionales con una producción integral —diseño, muestras, abastecimiento de materiales, producción en serie, control de calidad y exportación— de animales de peluche personalizados, peluches, mascotas, peluches promocionales, para bebés, de temporada y de IP con licencia. El MOQ se escalona por tamaño: 3.600 piezas para peluches de menos de 20 cm, 2.400 para 20–35 cm, 1.200 para 35–50 cm y 800 para peluches de más de 50 cm, con muestras en 7-15 días y plazos de producción de 30-45 días. La fábrica cuenta con certificación BSCI e ISO 9001, y los productos cumplen las normas de seguridad ASTM F963, EN 71, CE y GB 6675.",
     introCta: "Envía tu brief para solicitar muestras y una cotización.",
     capTitle: "Capacidades de fabricación de peluches OEM/ODM",
     capSub: "Servicio de fábrica integral, del diseño a la exportación",
@@ -337,7 +337,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Ver todos los casos",
     faqTitle: "Preguntas frecuentes de abastecimiento",
     faqs: [
-      { q: "¿Cuál es el MOQ para peluches personalizados?", a: "El MOQ estándar es de 500 piezas por modelo; los primeros pedidos de prueba para nuevos clientes empiezan en 200 piezas por modelo, negociable según tamaño y complejidad." },
+      { q: "¿Cuál es el MOQ para peluches personalizados?", a: "El MOQ se escalona por tamaño: 3.600 piezas por modelo para peluches de menos de 20 cm, 2.400 para 20–35 cm, 1.200 para 35–50 cm y 800 para peluches de más de 50 cm, publicado antes de cotizar." },
       { q: "¿Cuánto tarda el muestreo?", a: "El muestreo suele tardar 7-15 días hábiles, incluyendo abastecimiento de tela, patronaje, costura y primer control de calidad. Las modificaciones simples pueden hacerse en 5 días." },
       { q: "¿Pueden producir a partir de dibujos o imágenes de referencia?", a: "Sí. Aceptamos archivos de diseño, fotos de referencia, bocetos a mano o incluso briefs verbales; nuestro equipo de más de 50 diseñadores los convierte en patrones listos para producción y renders 3D." },
       { q: "¿Ofrecen embalaje de marca propia?", a: "Sí. Etiquetas colgantes, etiquetas tejidas, cajas de color, bolsas de polietileno y bolsas de compra se diseñan y producen según los requisitos de tu marca." },
@@ -361,7 +361,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Ver produtos",
     breadcrumb: "Fabricante de pelúcias personalizadas",
     intro:
-      "A LovelyJoy é um fabricante de pelúcias OEM/ODM sediado em Yiwu, China, fundado em 2003. Operamos uma fábrica própria de 20.000 m² com mais de 300 trabalhadores qualificados e uma equipe de design de mais de 50 pessoas, capacidade acima de 800.000 peças por mês e exportações para mais de 70 países. Atendemos atacadistas, importadores, marcas de presentes, varejistas e gerentes de compras internacionais com produção completa —design, amostras, compra de materiais, produção em massa, controle de qualidade e exportação— de bichos de pelúcia personalizados, pelúcias, mascotes, pelúcias promocionais, para bebês, sazonais e de IP licenciada. O MOQ padrão é de 500 peças por modelo (pedidos de teste a partir de 200 peças), com amostras em 7-15 dias e prazos de produção de 30-45 dias. A fábrica é certificada BSCI e ISO 9001, e os produtos atendem às normas de segurança ASTM F963, EN 71, CE e GB 6675.",
+      "A LovelyJoy é um fabricante de pelúcias OEM/ODM sediado em Yiwu, China, fundado em 2003. Operamos uma fábrica própria de 20.000 m² com mais de 300 trabalhadores qualificados e uma equipe de design de mais de 50 pessoas, capacidade acima de 800.000 peças por mês e exportações para mais de 70 países. Atendemos atacadistas, importadores, marcas de presentes, varejistas e gerentes de compras internacionais com produção completa —design, amostras, compra de materiais, produção em massa, controle de qualidade e exportação— de bichos de pelúcia personalizados, pelúcias, mascotes, pelúcias promocionais, para bebês, sazonais e de IP licenciada. O MOQ é escalonado por tamanho: 3.600 peças para pelúcias com menos de 20 cm, 2.400 para 20–35 cm, 1.200 para 35–50 cm e 800 para pelúcias com mais de 50 cm, com amostras em 7-15 dias e prazos de produção de 30-45 dias. A fábrica é certificada BSCI e ISO 9001, e os produtos atendem às normas de segurança ASTM F963, EN 71, CE e GB 6675.",
     introCta: "Envie seu briefing para solicitar amostras e uma cotação.",
     capTitle: "Capacidades de fabricação de pelúcias OEM/ODM",
     capSub: "Serviço de fábrica completo, do design à exportação",
@@ -385,7 +385,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Ver todos os casos",
     faqTitle: "Perguntas frequentes de sourcing",
     faqs: [
-      { q: "Qual é o MOQ para pelúcias personalizadas?", a: "O MOQ padrão é de 500 peças por modelo; os primeiros pedidos de teste para novos clientes começam em 200 peças por modelo, negociável conforme tamanho e complexidade." },
+      { q: "Qual é o MOQ para pelúcias personalizadas?", a: "O MOQ é escalonado por tamanho: 3.600 peças por modelo para pelúcias com menos de 20 cm, 2.400 para 20–35 cm, 1.200 para 35–50 cm e 800 para pelúcias com mais de 50 cm, publicado antes da cotação." },
       { q: "Quanto tempo leva a amostragem?", a: "A amostragem costuma levar 7-15 dias úteis, incluindo compra de tecido, modelagem, costura e primeiro controle de qualidade. Modificações simples podem levar 5 dias." },
       { q: "Vocês produzem a partir de desenhos ou imagens de referência?", a: "Sim. Aceitamos arquivos de design, fotos de referência, esboços à mão ou até briefings verbais; nossa equipe de mais de 50 designers os transforma em moldes prontos para produção e renders 3D." },
       { q: "Vocês oferecem embalagem de marca própria?", a: "Sim. Tags, etiquetas tecidas, caixas coloridas, sacos plásticos e sacolas são projetados e produzidos conforme os requisitos da sua marca." },
@@ -409,7 +409,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "عرض المنتجات",
     breadcrumb: "مصنع دمى محشوة مخصصة",
     intro:
-      "‏LovelyJoy مصنع دمى محشوة OEM/ODM مقره ييوو بالصين، تأسس عام 2003. نُشغّل مصنعًا خاصًا مساحته 20,000 م² مع أكثر من 300 عامل ماهر وفريق تصميم من أكثر من 50 شخصًا، وطاقة إنتاجية تتجاوز 800,000 قطعة شهريًا، ونصدّر إلى أكثر من 70 دولة. نخدم تجار الجملة والمستوردين وعلامات الهدايا وتجار التجزئة ومديري المشتريات الدوليين بإنتاج متكامل — التصميم والعينات وتوريد المواد والإنتاج الضخم ومراقبة الجودة والتصدير — يشمل الحيوانات المحشوة المخصصة والدمى المحشوة ودمى التميمة والدمى الترويجية ودمى الأطفال والموسمية ودمى الملكية الفكرية المرخصة. الحد الأدنى للطلب 500 قطعة لكل تصميم (طلبات تجريبية من 200 قطعة)، مع عينات خلال 7-15 يومًا وإنتاج خلال 30-45 يومًا. المصنع حاصل على شهادتي BSCI وISO 9001، والمنتجات تستوفي معايير سلامة الألعاب ASTM F963 وEN 71 وCE وGB 6675.",
+      "‏LovelyJoy مصنع دمى محشوة OEM/ODM مقره ييوو بالصين، تأسس عام 2003. نُشغّل مصنعًا خاصًا مساحته 20,000 م² مع أكثر من 300 عامل ماهر وفريق تصميم من أكثر من 50 شخصًا، وطاقة إنتاجية تتجاوز 800,000 قطعة شهريًا، ونصدّر إلى أكثر من 70 دولة. نخدم تجار الجملة والمستوردين وعلامات الهدايا وتجار التجزئة ومديري المشتريات الدوليين بإنتاج متكامل — التصميم والعينات وتوريد المواد والإنتاج الضخم ومراقبة الجودة والتصدير — يشمل الحيوانات المحشوة المخصصة والدمى المحشوة ودمى التميمة والدمى الترويجية ودمى الأطفال والموسمية ودمى الملكية الفكرية المرخصة. الحد الأدنى للطلب متدرج حسب الحجم: 3,600 قطعة للدمى الأصغر من 20 سم، و2,400 قطعة لمقاس 20–35 سم، و1,200 قطعة لمقاس 35–50 سم، و800 قطعة للدمى الأكبر من 50 سم، مع عينات خلال 7-15 يومًا وإنتاج خلال 30-45 يومًا. المصنع حاصل على شهادتي BSCI وISO 9001، والمنتجات تستوفي معايير سلامة الألعاب ASTM F963 وEN 71 وCE وGB 6675.",
     introCta: "أرسل متطلباتك لطلب العينات وعرض السعر.",
     capTitle: "قدرات تصنيع الدمى المحشوة OEM/ODM",
     capSub: "خدمة مصنع متكاملة من التصميم إلى التصدير",
@@ -433,7 +433,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "عرض جميع الحالات",
     faqTitle: "الأسئلة الشائعة حول التوريد",
     faqs: [
-      { q: "ما الحد الأدنى للطلب للدمى المخصصة؟", a: "الحد الأدنى القياسي 500 قطعة لكل تصميم؛ وطلبات التجربة الأولى للعملاء الجدد تبدأ من 200 قطعة لكل تصميم، قابلة للتفاوض حسب الحجم والتعقيد." },
+      { q: "ما الحد الأدنى للطلب للدمى المخصصة؟", a: "الحد الأدنى للطلب متدرج حسب الحجم: 3,600 قطعة لكل تصميم للدمى الأصغر من 20 سم، و2,400 قطعة لمقاس 20–35 سم، و1,200 قطعة لمقاس 35–50 سم، و800 قطعة للدمى الأكبر من 50 سم، ويُعلن قبل الطلب." },
       { q: "كم تستغرق العينة؟", a: "عادةً 7-15 يوم عمل تشمل توريد القماش وعمل الباترون والخياطة والفحص الأول. التعديلات البسيطة قد تستغرق 5 أيام." },
       { q: "هل يمكنكم الإنتاج من الرسومات أو الصور المرجعية؟", a: "نعم. نقبل ملفات التصميم والصور المرجعية والرسومات اليدوية أو حتى الأوصاف الشفهية، ويحوّلها فريق التصميم لدينا (أكثر من 50 شخصًا) إلى باترونات جاهزة للإنتاج ورسومات ثلاثية الأبعاد." },
       { q: "هل تدعمون تغليف العلامة الخاصة؟", a: "نعم. البطاقات المعلقة والعلامات المنسوجة والعلب الملونة وأكياس OPP وأكياس التسوق تُصمّم وتُنتج وفق متطلبات علامتك." },
@@ -457,7 +457,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Смотреть продукцию",
     breadcrumb: "Производитель мягких игрушек на заказ",
     intro:
-      "LovelyJoy — производитель мягких игрушек OEM/ODM из Иу, Китай, основанный в 2003 году. Мы располагаем собственной фабрикой площадью 20 000 м² с более чем 300 квалифицированными работниками и командой дизайнеров из более чем 50 человек, мощностью свыше 800 000 изделий в месяц и экспортом в более чем 70 стран. Мы обслуживаем международных оптовиков, импортёров, подарочные бренды, розничные сети и менеджеров по закупкам, предлагая производство под ключ — дизайн, образцы, закупку материалов, серийное производство, контроль качества и экспорт — для мягких игрушек на заказ, плюшевых животных, кукол-маскотов, промо-, детских, сезонных и лицензионных IP-игрушек. Стандартный MOQ — 500 шт на модель (пробные заказы от 200 шт), образцы 7-15 дней, производство 30-45 дней. Фабрика сертифицирована по BSCI и ISO 9001, продукция соответствует стандартам безопасности ASTM F963, EN 71, CE и GB 6675.",
+      "LovelyJoy — производитель мягких игрушек OEM/ODM из Иу, Китай, основанный в 2003 году. Мы располагаем собственной фабрикой площадью 20 000 м² с более чем 300 квалифицированными работниками и командой дизайнеров из более чем 50 человек, мощностью свыше 800 000 изделий в месяц и экспортом в более чем 70 стран. Мы обслуживаем международных оптовиков, импортёров, подарочные бренды, розничные сети и менеджеров по закупкам, предлагая производство под ключ — дизайн, образцы, закупку материалов, серийное производство, контроль качества и экспорт — для мягких игрушек на заказ, плюшевых животных, кукол-маскотов, промо-, детских, сезонных и лицензионных IP-игрушек. MOQ зависит от размера: 3 600 шт для игрушек до 20 см, 2 400 шт для 20–35 см, 1 200 шт для 35–50 см и 800 шт для игрушек более 50 см; образцы 7-15 дней, производство 30-45 дней. Фабрика сертифицирована по BSCI и ISO 9001, продукция соответствует стандартам безопасности ASTM F963, EN 71, CE и GB 6675.",
     introCta: "Отправьте бриф, чтобы запросить образцы и расчёт.",
     capTitle: "Возможности производства мягких игрушек OEM/ODM",
     capSub: "Фабрика полного цикла — от дизайна до экспорта",
@@ -481,7 +481,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Смотреть все кейсы",
     faqTitle: "Частые вопросы по закупкам",
     faqs: [
-      { q: "Какой MOQ на игрушки на заказ?", a: "Стандартный MOQ — 500 шт на модель; первые пробные заказы для новых клиентов от 200 шт на модель, обсуждается в зависимости от размера и сложности." },
+      { q: "Какой MOQ на игрушки на заказ?", a: "MOQ зависит от размера изделия: 3 600 шт на модель для игрушек до 20 см, 2 400 шт для 20–35 см, 1 200 шт для 35–50 см и 800 шт для игрушек более 50 см — публикуется до заказа." },
       { q: "Сколько занимает изготовление образца?", a: "Обычно 7-15 рабочих дней, включая закупку ткани, изготовление лекал, пошив и первичный контроль качества. Простые правки — за 5 дней." },
       { q: "Можете ли вы производить по эскизам или референсам?", a: "Да. Мы принимаем файлы дизайна, референс-фото, ручные эскизы и даже устные брифы; наша команда из 50+ дизайнеров превращает их в готовые к производству лекала и 3D-рендеры." },
       { q: "Поддерживаете ли вы упаковку под собственной маркой?", a: "Да. Бирки, тканые этикетки, цветные коробки, полипакеты и пакеты разрабатываются и производятся по требованиям вашего бренда." },
@@ -505,7 +505,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Voir les produits",
     breadcrumb: "Fabricant de peluches personnalisées",
     intro:
-      "LovelyJoy est un fabricant de peluches OEM/ODM basé à Yiwu, en Chine, fondé en 2003. Nous exploitons une usine de 20 000 m² avec plus de 300 ouvriers qualifiés et une équipe de conception de plus de 50 personnes, une capacité de plus de 800 000 pièces par mois et des exportations vers plus de 70 pays. Nous servons les grossistes, importateurs, marques de cadeaux, détaillants et acheteurs internationaux avec une production clé en main —conception, échantillonnage, approvisionnement en matériaux, production de masse, contrôle qualité et exportation— pour des animaux en peluche personnalisés, peluches, mascottes, peluches promotionnelles, pour bébés, saisonnières et sous licence IP. Le MOQ standard est de 500 pièces par modèle (commandes d'essai dès 200 pièces), avec un échantillonnage de 7-15 jours et des délais de production de 30-45 jours. L'usine est certifiée BSCI et ISO 9001, et les produits respectent les normes de sécurité ASTM F963, EN 71, CE et GB 6675.",
+      "LovelyJoy est un fabricant de peluches OEM/ODM basé à Yiwu, en Chine, fondé en 2003. Nous exploitons une usine de 20 000 m² avec plus de 300 ouvriers qualifiés et une équipe de conception de plus de 50 personnes, une capacité de plus de 800 000 pièces par mois et des exportations vers plus de 70 pays. Nous servons les grossistes, importateurs, marques de cadeaux, détaillants et acheteurs internationaux avec une production clé en main —conception, échantillonnage, approvisionnement en matériaux, production de masse, contrôle qualité et exportation— pour des animaux en peluche personnalisés, peluches, mascottes, peluches promotionnelles, pour bébés, saisonnières et sous licence IP. Le MOQ est échelonné selon la taille : 3 600 pièces pour les peluches de moins de 20 cm, 2 400 pour 20–35 cm, 1 200 pour 35–50 cm et 800 pour les peluches de plus de 50 cm, avec un échantillonnage de 7-15 jours et des délais de production de 30-45 jours. L'usine est certifiée BSCI et ISO 9001, et les produits respectent les normes de sécurité ASTM F963, EN 71, CE et GB 6675.",
     introCta: "Envoyez votre brief pour demander des échantillons et un devis.",
     capTitle: "Capacités de fabrication de peluches OEM/ODM",
     capSub: "Service d'usine clé en main, de la conception à l'exportation",
@@ -529,7 +529,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Voir tous les cas",
     faqTitle: "FAQ approvisionnement",
     faqs: [
-      { q: "Quel est le MOQ pour les peluches personnalisées ?", a: "Le MOQ standard est de 500 pièces par modèle ; les premières commandes d'essai pour les nouveaux clients démarrent à 200 pièces par modèle, négociable selon la taille et la complexité." },
+      { q: "Quel est le MOQ pour les peluches personnalisées ?", a: "Le MOQ est échelonné selon la taille : 3 600 pièces par modèle pour les peluches de moins de 20 cm, 2 400 pour 20–35 cm, 1 200 pour 35–50 cm et 800 pour les peluches de plus de 50 cm, publié avant commande." },
       { q: "Combien de temps prend l'échantillonnage ?", a: "L'échantillonnage prend généralement 7-15 jours ouvrés, incluant l'approvisionnement du tissu, le patronage, la couture et un premier contrôle qualité. Les modifications simples peuvent prendre 5 jours." },
       { q: "Pouvez-vous produire d'après des dessins ou des images de référence ?", a: "Oui. Nous acceptons les fichiers de design, photos de référence, croquis à la main ou même briefs verbaux ; notre équipe de plus de 50 designers les transforme en patrons prêts pour la production et rendus 3D." },
       { q: "Proposez-vous l'emballage en marque de distributeur ?", a: "Oui. Étiquettes volantes, étiquettes tissées, boîtes couleur, sacs polypropylène et sacs cadeaux sont conçus et produits selon les exigences de votre marque." },
@@ -553,7 +553,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Produkte ansehen",
     breadcrumb: "Hersteller von kundenspezifischem Plüschspielzeug",
     intro:
-      "LovelyJoy ist ein 2003 gegründeter OEM/ODM-Plüschtierhersteller mit Sitz in Yiwu, China. Wir betreiben eine 20.000 m² große eigene Fabrik mit über 300 Fachkräften und einem Designteam von über 50 Personen, einer Kapazität von mehr als 800.000 Stück pro Monat und Exporten in über 70 Länder. Wir bedienen internationale Großhändler, Importeure, Geschenkmarken, Einzelhändler und Einkaufsleiter mit Komplettproduktion —Design, Musterbau, Materialbeschaffung, Serienfertigung, Qualitätskontrolle und Export— für kundenspezifische Stofftiere, Plüschtiere, Maskottchen, Werbe-, Baby-, Saison- und lizenzierte IP-Plüschartikel. Die Standard-MOQ beträgt 500 Stück pro Modell (Testbestellungen ab 200 Stück), mit 7-15 Tagen Bemusterung und 30-45 Tagen Produktionszeit. Die Fabrik ist BSCI- und ISO-9001-zertifiziert, und die Produkte erfüllen die Spielzeugsicherheitsnormen ASTM F963, EN 71, CE und GB 6675.",
+      "LovelyJoy ist ein 2003 gegründeter OEM/ODM-Plüschtierhersteller mit Sitz in Yiwu, China. Wir betreiben eine 20.000 m² große eigene Fabrik mit über 300 Fachkräften und einem Designteam von über 50 Personen, einer Kapazität von mehr als 800.000 Stück pro Monat und Exporten in über 70 Länder. Wir bedienen internationale Großhändler, Importeure, Geschenkmarken, Einzelhändler und Einkaufsleiter mit Komplettproduktion —Design, Musterbau, Materialbeschaffung, Serienfertigung, Qualitätskontrolle und Export— für kundenspezifische Stofftiere, Plüschtiere, Maskottchen, Werbe-, Baby-, Saison- und lizenzierte IP-Plüschartikel. Die MOQ ist nach Größe gestaffelt: 3.600 Stück für Plüsch unter 20 cm, 2.400 für 20–35 cm, 1.200 für 35–50 cm und 800 für Plüsch über 50 cm, mit 7-15 Tagen Bemusterung und 30-45 Tagen Produktionszeit. Die Fabrik ist BSCI- und ISO-9001-zertifiziert, und die Produkte erfüllen die Spielzeugsicherheitsnormen ASTM F963, EN 71, CE und GB 6675.",
     introCta: "Senden Sie Ihr Briefing, um Muster und ein Angebot anzufordern.",
     capTitle: "OEM/ODM-Plüschtier-Fertigungskompetenzen",
     capSub: "Komplettservice der Fabrik vom Design bis zum Export",
@@ -577,7 +577,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Alle Fallstudien ansehen",
     faqTitle: "Beschaffungs-FAQ",
     faqs: [
-      { q: "Wie hoch ist die MOQ für kundenspezifische Plüschtiere?", a: "Die Standard-MOQ beträgt 500 Stück pro Modell; erste Testbestellungen für Neukunden starten bei 200 Stück pro Modell, verhandelbar nach Größe und Komplexität." },
+      { q: "Wie hoch ist die MOQ für kundenspezifische Plüschtiere?", a: "Die MOQ ist nach Größe gestaffelt: 3.600 Stück pro Modell für Plüsch unter 20 cm, 2.400 für 20–35 cm, 1.200 für 35–50 cm und 800 für Plüsch über 50 cm — vorab veröffentlicht." },
       { q: "Wie lange dauert die Bemusterung?", a: "Die Bemusterung dauert in der Regel 7-15 Arbeitstage, einschließlich Stoffbeschaffung, Schnittmuster, Nähen und erster Qualitätskontrolle. Einfache Änderungen können in 5 Tagen erfolgen." },
       { q: "Können Sie nach Zeichnungen oder Referenzbildern produzieren?", a: "Ja. Wir akzeptieren Designdateien, Referenzfotos, Handskizzen oder sogar mündliche Briefings; unser Team von über 50 Designern macht daraus produktionsfertige Schnittmuster und 3D-Renderings." },
       { q: "Bieten Sie Eigenmarken-Verpackung an?", a: "Ja. Anhänger, Webetiketten, Farbkartons, Polybeutel und Tragetaschen werden nach den Anforderungen Ihrer Marke gestaltet und produziert." },
@@ -601,7 +601,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Vedi i prodotti",
     breadcrumb: "Produttore di peluche personalizzati",
     intro:
-      "LovelyJoy è un produttore di peluche OEM/ODM con sede a Yiwu, Cina, fondato nel 2003. Gestiamo una fabbrica di proprietà di 20.000 m² con oltre 300 operai qualificati e un team di design di oltre 50 persone, una capacità superiore a 800.000 pezzi al mese ed esportazioni in oltre 70 paesi. Serviamo grossisti, importatori, marchi di articoli da regalo, rivenditori e responsabili acquisti internazionali con una produzione chiavi in mano —design, campionatura, approvvigionamento materiali, produzione in serie, controllo qualità ed esportazione— per animali di peluche personalizzati, peluche, mascotte, peluche promozionali, per neonati, stagionali e con IP su licenza. Il MOQ standard è di 500 pezzi per modello (ordini di prova da 200 pezzi), con campionatura in 7-15 giorni e tempi di produzione di 30-45 giorni. La fabbrica è certificata BSCI e ISO 9001 e i prodotti rispettano gli standard di sicurezza ASTM F963, EN 71, CE e GB 6675.",
+      "LovelyJoy è un produttore di peluche OEM/ODM con sede a Yiwu, Cina, fondato nel 2003. Gestiamo una fabbrica di proprietà di 20.000 m² con oltre 300 operai qualificati e un team di design di oltre 50 persone, una capacità superiore a 800.000 pezzi al mese ed esportazioni in oltre 70 paesi. Serviamo grossisti, importatori, marchi di articoli da regalo, rivenditori e responsabili acquisti internazionali con una produzione chiavi in mano —design, campionatura, approvvigionamento materiali, produzione in serie, controllo qualità ed esportazione— per animali di peluche personalizzati, peluche, mascotte, peluche promozionali, per neonati, stagionali e con IP su licenza. Il MOQ è scaglionato per dimensione: 3.600 pezzi per peluche sotto i 20 cm, 2.400 per 20–35 cm, 1.200 per 35–50 cm e 800 per peluche oltre i 50 cm, con campionatura in 7-15 giorni e tempi di produzione di 30-45 giorni. La fabbrica è certificata BSCI e ISO 9001 e i prodotti rispettano gli standard di sicurezza ASTM F963, EN 71, CE e GB 6675.",
     introCta: "Invia il tuo brief per richiedere campioni e un preventivo.",
     capTitle: "Capacità di produzione di peluche OEM/ODM",
     capSub: "Servizio di fabbrica chiavi in mano, dal design all'esportazione",
@@ -625,7 +625,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Vedi tutti i casi",
     faqTitle: "FAQ approvvigionamento",
     faqs: [
-      { q: "Qual è il MOQ per i peluche personalizzati?", a: "Il MOQ standard è di 500 pezzi per modello; i primi ordini di prova per i nuovi clienti partono da 200 pezzi per modello, negoziabili in base a dimensioni e complessità." },
+      { q: "Qual è il MOQ per i peluche personalizzati?", a: "Il MOQ è scaglionato per dimensione: 3.600 pezzi per modello per peluche sotto i 20 cm, 2.400 per 20–35 cm, 1.200 per 35–50 cm e 800 per peluche oltre i 50 cm, pubblicato prima dell'ordine." },
       { q: "Quanto dura la campionatura?", a: "La campionatura richiede in genere 7-15 giorni lavorativi, inclusi approvvigionamento del tessuto, modellistica, cucitura e primo controllo qualità. Le modifiche semplici possono richiedere 5 giorni." },
       { q: "Potete produrre da disegni o immagini di riferimento?", a: "Sì. Accettiamo file di design, foto di riferimento, schizzi a mano o anche brief verbali; il nostro team di oltre 50 designer li trasforma in cartamodelli pronti per la produzione e rendering 3D." },
       { q: "Offrite packaging a marchio privato?", a: "Sì. Cartellini, etichette tessute, scatole a colori, sacchetti in polietilene e shopper sono progettati e prodotti secondo i requisiti del tuo brand." },
@@ -649,7 +649,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "ดูสินค้า",
     breadcrumb: "โรงงานผลิตตุ๊กตาผ้าสั่งทำ",
     intro:
-      "LovelyJoy คือโรงงานผลิตตุ๊กตาผ้า OEM/ODM ในเมืองอี้อู ประเทศจีน ก่อตั้งเมื่อปี 2003 เรามีโรงงานของตัวเองขนาด 20,000 ตร.ม. พนักงานฝีมือกว่า 300 คน และทีมออกแบบกว่า 50 คน กำลังการผลิตมากกว่า 800,000 ชิ้นต่อเดือน และส่งออกไปกว่า 70 ประเทศ เราให้บริการผู้ค้าส่ง ผู้นำเข้า แบรนด์ของขวัญ ผู้ค้าปลีก และฝ่ายจัดซื้อทั่วโลก ด้วยการผลิตครบวงจร—ออกแบบ ทำตัวอย่าง จัดหาวัตถุดิบ ผลิตจำนวนมาก ควบคุมคุณภาพ และส่งออก—ครอบคลุมตุ๊กตาสัตว์สั่งทำ ตุ๊กตาผ้า ตุ๊กตามาสคอต ตุ๊กตาส่งเสริมการขาย ตุ๊กตาเด็ก ตุ๊กตาตามเทศกาล และตุ๊กตาลิขสิทธิ์ IP ยอดสั่งขั้นต่ำมาตรฐานคือ 500 ชิ้นต่อแบบ (ออเดอร์ทดลองตั้งแต่ 200 ชิ้น) ทำตัวอย่าง 7-15 วัน และผลิต 30-45 วัน โรงงานได้รับการรับรอง BSCI และ ISO 9001 และสินค้าเป็นไปตามมาตรฐานความปลอดภัยของเล่น ASTM F963, EN 71, CE และ GB 6675",
+      "LovelyJoy คือโรงงานผลิตตุ๊กตาผ้า OEM/ODM ในเมืองอี้อู ประเทศจีน ก่อตั้งเมื่อปี 2003 เรามีโรงงานของตัวเองขนาด 20,000 ตร.ม. พนักงานฝีมือกว่า 300 คน และทีมออกแบบกว่า 50 คน กำลังการผลิตมากกว่า 800,000 ชิ้นต่อเดือน และส่งออกไปกว่า 70 ประเทศ เราให้บริการผู้ค้าส่ง ผู้นำเข้า แบรนด์ของขวัญ ผู้ค้าปลีก และฝ่ายจัดซื้อทั่วโลก ด้วยการผลิตครบวงจร—ออกแบบ ทำตัวอย่าง จัดหาวัตถุดิบ ผลิตจำนวนมาก ควบคุมคุณภาพ และส่งออก—ครอบคลุมตุ๊กตาสัตว์สั่งทำ ตุ๊กตาผ้า ตุ๊กตามาสคอต ตุ๊กตาส่งเสริมการขาย ตุ๊กตาเด็ก ตุ๊กตาตามเทศกาล และตุ๊กตาลิขสิทธิ์ IP ยอดสั่งขั้นต่ำแบ่งตามขนาด: ต่ำกว่า 20 ซม. 3,600 ชิ้น, 20–35 ซม. 2,400 ชิ้น, 35–50 ซม. 1,200 ชิ้น และมากกว่า 50 ซม. 800 ชิ้น ทำตัวอย่าง 7-15 วัน และผลิต 30-45 วัน โรงงานได้รับการรับรอง BSCI และ ISO 9001 และสินค้าเป็นไปตามมาตรฐานความปลอดภัยของเล่น ASTM F963, EN 71, CE และ GB 6675",
     introCta: "ส่งรายละเอียดของคุณเพื่อขอตัวอย่างและใบเสนอราคา",
     capTitle: "ความสามารถในการผลิตตุ๊กตาผ้า OEM/ODM",
     capSub: "บริการโรงงานครบวงจรตั้งแต่ออกแบบจนถึงส่งออก",
@@ -673,7 +673,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "ดูกรณีศึกษาทั้งหมด",
     faqTitle: "คำถามที่พบบ่อยเรื่องการจัดหา",
     faqs: [
-      { q: "MOQ ของตุ๊กตาสั่งทำคือเท่าไร?", a: "MOQ มาตรฐานคือ 500 ชิ้นต่อแบบ ออเดอร์ทดลองครั้งแรกสำหรับลูกค้าใหม่เริ่มที่ 200 ชิ้นต่อแบบ ต่อรองได้ตามขนาดและความซับซ้อน" },
+      { q: "MOQ ของตุ๊กตาสั่งทำคือเท่าไร?", a: "MOQ แบ่งตามขนาดของตุ๊กตา: ต่ำกว่า 20 ซม. 3,600 ชิ้นต่อแบบ, 20–35 ซม. 2,400 ชิ้น, 35–50 ซม. 1,200 ชิ้น และมากกว่า 50 ซม. 800 ชิ้น ประกาศชัดเจนก่อนสั่งซื้อ" },
       { q: "ทำตัวอย่างใช้เวลานานแค่ไหน?", a: "โดยทั่วไป 7-15 วันทำการ รวมการจัดหาผ้า ทำแพตเทิร์น เย็บ และตรวจคุณภาพรอบแรก การแก้ไขเล็กน้อยอาจเร็วถึง 5 วัน" },
       { q: "ผลิตจากแบบวาดหรือภาพอ้างอิงได้ไหม?", a: "ได้ เรารับไฟล์ดีไซน์ ภาพอ้างอิง ภาพร่างมือ หรือแม้แต่คำอธิบายปากเปล่า ทีมออกแบบกว่า 50 คนจะแปลงเป็นแพตเทิร์นพร้อมผลิตและภาพ 3D" },
       { q: "รองรับบรรจุภัณฑ์แบรนด์ของคุณเองไหม?", a: "รองรับ ป้ายแขวน ป้ายทอ กล่องสี ถุง OPP และถุงช้อปปิ้งออกแบบและผลิตตามข้อกำหนดแบรนด์ของคุณ" },
@@ -697,7 +697,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     ctaProducts: "Lihat Produk",
     breadcrumb: "Produsen Boneka Plush Kustom",
     intro:
-      "LovelyJoy adalah produsen boneka plush OEM/ODM yang berbasis di Yiwu, Tiongkok, didirikan pada 2003. Kami mengoperasikan pabrik sendiri seluas 20.000 m² dengan lebih dari 300 pekerja terampil dan tim desain lebih dari 50 orang, kapasitas lebih dari 800.000 buah per bulan, dan ekspor ke lebih dari 70 negara. Kami melayani grosir, importir, merek hadiah, peritel, dan manajer sourcing internasional dengan produksi satu atap —desain, sampel, pengadaan bahan, produksi massal, kontrol kualitas, dan ekspor— mencakup boneka hewan kustom, boneka plush, boneka maskot, plush promosi, plush bayi, plush musiman, dan plush IP berlisensi. MOQ standar adalah 500 pcs per model (pesanan uji coba mulai 200 pcs), dengan sampel 7-15 hari dan waktu produksi 30-45 hari. Pabrik bersertifikat BSCI dan ISO 9001, dan produk memenuhi standar keamanan mainan ASTM F963, EN 71, CE, dan GB 6675.",
+      "LovelyJoy adalah produsen boneka plush OEM/ODM yang berbasis di Yiwu, Tiongkok, didirikan pada 2003. Kami mengoperasikan pabrik sendiri seluas 20.000 m² dengan lebih dari 300 pekerja terampil dan tim desain lebih dari 50 orang, kapasitas lebih dari 800.000 buah per bulan, dan ekspor ke lebih dari 70 negara. Kami melayani grosir, importir, merek hadiah, peritel, dan manajer sourcing internasional dengan produksi satu atap —desain, sampel, pengadaan bahan, produksi massal, kontrol kualitas, dan ekspor— mencakup boneka hewan kustom, boneka plush, boneka maskot, plush promosi, plush bayi, plush musiman, dan plush IP berlisensi. MOQ bertingkat menurut ukuran: 3.600 pcs untuk plush di bawah 20 cm, 2.400 untuk 20–35 cm, 1.200 untuk 35–50 cm, dan 800 untuk plush di atas 50 cm, dengan sampel 7-15 hari dan waktu produksi 30-45 hari. Pabrik bersertifikat BSCI dan ISO 9001, dan produk memenuhi standar keamanan mainan ASTM F963, EN 71, CE, dan GB 6675.",
     introCta: "Kirim brief Anda untuk meminta sampel dan penawaran.",
     capTitle: "Kemampuan Manufaktur Boneka Plush OEM/ODM",
     capSub: "Layanan pabrik satu atap dari desain hingga ekspor",
@@ -721,7 +721,7 @@ export const OEM_COPY: Record<string, OemCopy> = {
     casesCta: "Lihat Semua Studi Kasus",
     faqTitle: "FAQ Sourcing",
     faqs: [
-      { q: "Berapa MOQ untuk boneka plush kustom?", a: "MOQ standar adalah 500 pcs per model; pesanan uji coba pertama untuk pelanggan baru mulai 200 pcs per model, dapat dinegosiasikan menurut ukuran dan kompleksitas." },
+      { q: "Berapa MOQ untuk boneka plush kustom?", a: "MOQ bertingkat menurut ukuran: 3.600 pcs per model untuk plush di bawah 20 cm, 2.400 untuk 20–35 cm, 1.200 untuk 35–50 cm, dan 800 untuk plush di atas 50 cm, dipublikasikan sebelum pemesanan." },
       { q: "Berapa lama pembuatan sampel?", a: "Pembuatan sampel biasanya 7-15 hari kerja, termasuk pengadaan kain, pembuatan pola, penjahitan, dan QC putaran pertama. Modifikasi sederhana bisa secepat 5 hari." },
       { q: "Bisakah memproduksi dari gambar atau gambar referensi?", a: "Ya. Kami menerima file desain, foto referensi, sketsa tangan, atau bahkan brief lisan; tim 50+ desainer kami mengubahnya menjadi pola siap produksi dan render 3D." },
       { q: "Apakah mendukung kemasan private label?", a: "Ya. Hang tag, label tenun, kotak warna, kantong poli, dan tas belanja dirancang dan diproduksi sesuai persyaratan merek Anda." },

@@ -31,7 +31,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
   const faqs = isZh
     ? [
         { q: "只有 Logo 或平面形象，能开发吉祥物毛绒玩具吗？", a: "可以。这是我们最常接的项目类型。客户只需提供 Logo / 2D 角色插画 / 品牌 VI，我们的设计团队会出 3D 效果图、结构拆解、版型样衣图，确认后进入打样。无需客户自己具备玩具设计能力。" },
-        { q: "企业吉祥物一般起订量多少？", a: "定制吉祥物推荐起订 300-500 件，确保打样开模成本能有效摊薄。量小的活动礼品项目（100-200 件）也可协商，但单价会相应上浮。量大的渠道产品 1000+ 件起可享批量优惠。" },
+        { q: "企业吉祥物一般起订量多少？", a: "吉祥物定制与常规产品一致，起订量按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件（均为每款），下单前公开透明。量大可享批量优惠。" },
         { q: "可以做活动礼品包装吗？", a: "支持。吊牌、品牌标签、OPP 袋、手提袋、彩盒、礼品卡全套可一体开发。常见配置：毛绒公仔 + 品牌吊牌 + 定制礼盒 + 贺卡，适合新品发布会、年会、会员日。" },
         { q: "是否支持多尺寸开发？", a: "支持。常见组合是同一形象做 3 个尺寸：15cm 钥匙扣版（活动伴手礼）、25cm 桌面版（员工礼品）、45cm 大号版（门店摆件）。一次打样可并行开发 2-3 个尺寸。" },
         { q: "打样和量产周期如何安排？", a: "3D 设计稿 3-5 天，首版样品 10-15 天，修改样 5-7 天，确认后大货 30-45 天。急单可压缩：设计+首样 10 天内，大货 20-25 天（加急费另算）。" },
@@ -39,7 +39,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
       ]
     : [
         { q: "I only have a logo or 2D character — can you still develop a plush mascot?", a: "Yes, this is our most common project type. Just provide your logo, 2D character art, or brand VI guidelines. Our design team produces 3D renderings, structural breakdowns, and pattern sheets. No toy-design experience needed on your side." },
-        { q: "What is the typical MOQ for corporate mascots?", a: "Recommended MOQ is 300-500 pcs to amortize tooling and pattern costs. Smaller promotional runs (100-200 pcs) can be negotiated with higher unit cost. Large retail volumes (1,000+) qualify for batch discounts." },
+        { q: "What is the typical MOQ for corporate mascots?", a: "Mascot MOQs follow our standard size tiers: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per design, published upfront. Large volumes qualify for batch discounts." },
         { q: "Can you do event gift packaging?", a: "Yes. We can develop hang tags, brand labels, poly bags, tote bags, gift boxes, and greeting cards as a set. Common bundle: plush mascot + branded hang tag + custom gift box + greeting card — ideal for product launches, annual meetings, and member days." },
         { q: "Do you support multiple sizes?", a: "Yes. A common combination is one character developed in three sizes: 15 cm keychain (event giveaway), 25 cm desktop (staff gift), 45 cm large (in-store display). One sampling round can cover 2-3 sizes in parallel." },
         { q: "What are the sample and production timelines?", a: "3D design 3-5 days, first physical sample 10-15 days, revision 5-7 days. After approval, bulk production 30-45 days. Rush: design+first sample within 10 days, bulk in 20-25 days (rush fee applies)." },

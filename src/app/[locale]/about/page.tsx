@@ -376,8 +376,8 @@ export default async function AboutPage({
             <div className="mx-auto mt-12 max-w-3xl">
               <p className="text-base leading-relaxed text-brown-light">
                 {isZh
-                  ? "认证只是底线，日常执行才是关键。每张订单都要经过五道质检工序：来料检验（IQC）、首件检验（FAI）、过程检验（IPQC）、100%成品检验（FQC）和出货前检验（OQC）。我们相信长期合作而非一锤子买卖——报价透明、成本明细清晰，标准起订量500件，首次合作可低至200件试单，样品费在首个大货订单中抵扣。"
-                  : "Certifications set the baseline; daily execution is what keeps quality consistent. Every order runs through our 5-stage quality control process — incoming material inspection (IQC), first article inspection (FAI), in-process checks (IPQC), 100% final product inspection (FQC), and outgoing pre-shipment inspection (OQC). We also believe in long-term partnerships over one-off transactions: transparent pricing with clear cost breakdowns, a standard MOQ of 500 pieces with trial orders from 200 pieces, and sample costs deducted from your first production order."}
+                  ? "认证只是底线，日常执行才是关键。每张订单都要经过五道质检工序：来料检验（IQC）、首件检验（FAI）、过程检验（IPQC）、100%成品检验（FQC）和出货前检验（OQC）。我们相信长期合作而非一锤子买卖——报价透明、成本明细清晰，起订量按尺寸分档：20cm以下3,600件，20–35cm 2,400件，35–50cm 1,200件，50cm以上800件，样品费在首个大货订单中抵扣。"
+                  : "Certifications set the baseline; daily execution is what keeps quality consistent. Every order runs through our 5-stage quality control process — incoming material inspection (IQC), first article inspection (FAI), in-process checks (IPQC), 100% final product inspection (FQC), and outgoing pre-shipment inspection (OQC). We also believe in long-term partnerships over one-off transactions: transparent pricing with clear cost breakdowns, size-tiered MOQs published upfront (3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm), and sample costs deducted from your first production order."}
               </p>
             </div>
           </ScrollReveal>
@@ -405,8 +405,8 @@ export default async function AboutPage({
             </h2>
             <p className="mt-4 text-lg text-white/80">
               {isZh
-                ? "无论您是首次试单的初创品牌，还是需要稳定大批量供货的零售连锁，欢迎联系我们获取报价，或进一步了解我们的工厂实力与品控体系。"
-                : "Whether you are a startup placing a first trial order or a retail chain that needs reliable high-volume supply, get in touch for a quote — or take a closer look at our factory capability and quality control system."}
+                ? "无论您是首次下单的初创品牌，还是需要稳定大批量供货的零售连锁，欢迎联系我们获取报价，或进一步了解我们的工厂实力与品控体系。"
+                : "Whether you are a startup placing its first order or a retail chain that needs reliable high-volume supply, get in touch for a quote — or take a closer look at our factory capability and quality control system."}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button href="/contact" variant="secondary" size="lg">

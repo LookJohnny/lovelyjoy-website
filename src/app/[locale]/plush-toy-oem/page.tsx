@@ -40,8 +40,8 @@ export async function generateMetadata({
       ? "毛绒玩具OEM代工流程_起订量与生产周期 | LovelyJoy 爱儿采"
       : "Plush Toy OEM Manufacturing: Process, MOQ & Lead Times | LovelyJoy",
     description: isZh
-      ? "详解LovelyJoy爱儿采毛绒玩具OEM代工流程：四步代工流程、试单MOQ 200件/标准500件、打样7-15天、大货30-45天。BSCI、ISO 9001认证工厂。"
-      : "How plush toy OEM manufacturing works at LovelyJoy's Yiwu factory: a 4-step process, MOQ from 200 pcs (trial) or 500 pcs (standard), 7-15 day sampling, and 30-45 day bulk production. BSCI & ISO 9001 certified.",
+      ? "详解LovelyJoy爱儿采毛绒玩具OEM代工流程：四步代工流程、起订量按尺寸分档（800–3,600件/款）、打样7-15天、大货30-45天。BSCI、ISO 9001认证工厂。"
+      : "How plush toy OEM manufacturing works at LovelyJoy's Yiwu factory: a 4-step process, size-tiered MOQs (800–3,600 pcs by size), 7-15 day sampling, and 30-45 day bulk production. BSCI & ISO 9001 certified.",
     alternates: buildAlternates(locale, '/plush-toy-oem'),
   };
 }
@@ -52,7 +52,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
   const faqs = [
     {
       q: "What is the MOQ for plush toy OEM orders?",
-      a: "Our standard MOQ is 500 pieces per style. For new customers or trial orders, we offer a reduced MOQ of 200 pieces to help you test the market before committing to larger volumes.",
+      a: "MOQ is size-tiered: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per style, published upfront.",
     },
     {
       q: "How long does OEM production take from order to delivery?",
@@ -249,33 +249,25 @@ export default async function PlushToyOemPage({
           />
           <div className="mx-auto max-w-3xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-brown/10 p-6">
-                <h3 className="text-lg font-bold text-brown">
-                  {isZh ? "标准订单" : "Standard Orders"}
-                </h3>
-                <p className="mt-2 text-3xl font-bold text-sky-brand">
-                  MOQ 500 <span className="text-base font-normal text-brown-light">{isZh ? "件/款" : "pcs/style"}</span>
-                </p>
-                <p className="mt-2 text-sm text-brown-light">
-                  {isZh
-                    ? "适合已有市场验证的成熟款式批量生产"
-                    : "Ideal for proven designs ready for mass production"}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-brown/10 p-6">
-                <h3 className="text-lg font-bold text-brown">
-                  {isZh ? "试单" : "Trial Orders"}
-                </h3>
-                <p className="mt-2 text-3xl font-bold text-sky-brand">
-                  MOQ 200 <span className="text-base font-normal text-brown-light">{isZh ? "件/款" : "pcs/style"}</span>
-                </p>
-                <p className="mt-2 text-sm text-brown-light">
-                  {isZh
-                    ? "适合新客户首次合作或新品市场测试"
-                    : "Perfect for first-time customers or market testing new designs"}
-                </p>
-              </div>
+              {[
+                { size: isZh ? "20cm 以下" : "Under 20 cm", moq: "3,600" },
+                { size: isZh ? "20–35cm" : "20–35 cm", moq: "2,400" },
+                { size: isZh ? "35–50cm" : "35–50 cm", moq: "1,200" },
+                { size: isZh ? "50cm 以上" : "Over 50 cm", moq: "800" },
+              ].map((tier) => (
+                <div key={tier.moq} className="rounded-2xl border border-brown/10 p-6">
+                  <h3 className="text-lg font-bold text-brown">{tier.size}</h3>
+                  <p className="mt-2 text-3xl font-bold text-sky-brand">
+                    MOQ {tier.moq} <span className="text-base font-normal text-brown-light">{isZh ? "件/款" : "pcs/style"}</span>
+                  </p>
+                </div>
+              ))}
             </div>
+            <p className="mt-6 text-center text-sm text-brown-light">
+              {isZh
+                ? "起订量按成品尺寸分档，下单前公开透明"
+                : "MOQ is tiered by finished product size and published upfront"}
+            </p>
             <p className="mt-8 text-center text-brown-light">
               {isZh
                 ? "价格根据尺寸、材料、工艺复杂度和订单数量确定。请联系我们获取详细报价。"

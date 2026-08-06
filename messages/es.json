@@ -186,7 +186,7 @@
     "items": [
       {
         "q": "¿Cuál es la cantidad mínima de pedido (MOQ)?",
-        "a": "Nuestra cantidad mínima de pedido estándar es de 500 piezas por modelo. Para nuevos clientes, ofrecemos pedidos de prueba flexibles en lotes pequeños desde 200 piezas para ayudarle a probar el mercado."
+        "a": "El MOQ se escalona por tamaño: 3,600 piezas para peluches de menos de 20 cm, 2,400 para 20–35 cm, 1,200 para 35–50 cm y 800 para peluches de más de 50 cm (por modelo, publicado por adelantado)."
       },
       {
         "q": "¿Cuánto tiempo toma el desarrollo de muestras?",

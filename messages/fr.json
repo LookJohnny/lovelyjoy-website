@@ -186,7 +186,7 @@
     "items": [
       {
         "q": "Quelle est la quantité minimale de commande (MOQ) ?",
-        "a": "Notre MOQ standard est de 500 pièces par modèle. Pour les nouveaux clients, nous proposons des commandes d'essai flexibles en petites séries à partir de 200 pièces pour tester le marché."
+        "a": "Le MOQ est échelonné selon la taille : 3 600 pièces pour les peluches de moins de 20 cm, 2 400 pour 20–35 cm, 1 200 pour 35–50 cm et 800 pour les peluches de plus de 50 cm (par modèle, publié à l'avance)."
       },
       {
         "q": "Quel est le délai de développement d'un échantillon ?",

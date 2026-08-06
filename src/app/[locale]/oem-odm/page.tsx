@@ -45,7 +45,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
     ? [
         { q: "OEM 和 ODM 有什么区别？", a: "OEM（Original Equipment Manufacturer）= 客户提供完整设计稿，工厂按图生产。ODM（Original Design Manufacturer）= 客户提供需求或概念，工厂参与从设计到量产的全过程。两者本质区别在于谁负责设计：OEM 适合已有产品的品牌做扩量，ODM 适合品牌没有玩具开发能力但想推出毛绒新品。" },
         { q: "我没有设计稿能做 ODM 吗？", a: "可以。我们 50+ 设计师团队接受多种输入：手绘草图、参考图、文字描述、Logo 或品牌 VI、甚至口头创意。常见 ODM 流程：客户提需求 → 我们出 3D 渲染图 → 确认结构方案 → 打样 → 修改 → 量产。整个 ODM 设计阶段对达到 MOQ 的客户免费。" },
-        { q: "OEM/ODM 项目的 MOQ 是多少？", a: "OEM 标准 MOQ 500 件/款，新客户试单可降至 200 件/款。ODM 由于含开发成本，推荐 500 件起，量小项目（300 件）可协商但单价上浮约 20-30%。多 SKU 拼单也可凑足 MOQ。" },
+        { q: "OEM/ODM 项目的 MOQ 是多少？", a: "OEM 与 ODM 的起订量均按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件（均为每款），下单前公开透明。" },
         { q: "打样和量产周期？", a: "OEM：打样 7-15 天，大货 30-45 天。ODM：3D 设计 3-5 天 + 首样 10-15 天 + 修改样 5-7 天 + 大货 30-45 天。加急可压缩约 30%。" },
         { q: "你们支持哪些安全与质量认证？", a: "国际认证：BSCI（社会责任）、ISO 9001（质量管理）、EN 71（欧盟玩具安全）、ASTM F963（美国 CPSC）、CE（欧盟合规）、GB 6675（中国）。我们可提供原件扫描和第三方测试报告用于清关与渠道入库。" },
         { q: "为什么选工贸一体的工厂而不是贸易商？", a: "贸易商不掌握生产，质量和交期完全依赖外发，出问题难追溯。工贸一体的厂家（如爱儿采）：（1）报价更透明，没有中间加价；（2）打样速度快 30-40%；（3）大货生产可见可控，每周进度更新；（4）质量问题可现场返工，不像贸易商需要协调多方。长期合作角度，工贸一体是更安全的选择。" },
@@ -55,7 +55,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
     : [
         { q: "What's the difference between OEM and ODM?", a: "OEM (Original Equipment Manufacturer) = you provide complete design files, the factory produces to spec. ODM (Original Design Manufacturer) = you provide a brief or concept, the factory participates in the full design-to-production process. The core distinction is who owns the design — OEM suits brands scaling existing products; ODM suits brands without in-house plush development capability." },
         { q: "Can I do ODM without a design file?", a: "Yes. Our 50+ designer team accepts: hand sketches, reference photos, written briefs, your logo or brand VI, even verbal ideas. Typical ODM flow: brief → 3D rendering → structure approval → sample → revisions → mass production. ODM design is free for orders above MOQ." },
-        { q: "What's the MOQ for OEM/ODM?", a: "OEM standard MOQ is 500 pcs/style; new-customer trials accept 200 pcs/style. ODM (with development cost included) recommends 500 pcs; smaller runs (300 pcs) negotiable with a 20-30% unit-cost premium. Multi-SKU bundling can hit MOQ." },
+        { q: "What's the MOQ for OEM/ODM?", a: "MOQ is size-tiered for both OEM and ODM: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per design, published upfront." },
         { q: "What are the sample and production lead times?", a: "OEM: sample 7-15 days, bulk 30-45 days. ODM: 3D design 3-5 days + first sample 10-15 days + revisions 5-7 days + bulk 30-45 days. Rush can compress timelines by ~30%." },
         { q: "What safety and quality certifications do you hold?", a: "International: BSCI (social compliance), ISO 9001 (quality management), EN 71 (EU toy safety), ASTM F963 (US CPSC), CE (EU compliance), GB 6675 (China). We provide original scans and third-party test reports for customs clearance and retail onboarding." },
         { q: "Why pick a factory-direct manufacturer over a trading company?", a: "Trading companies don't control production — quality and timing depend on subcontractors with poor traceability. A factory-direct manufacturer like LovelyJoy gives you: (1) transparent pricing with no middleman markup; (2) sampling 30-40% faster; (3) visible, controllable bulk production with weekly updates; (4) on-site rework when issues arise. For long-term partnerships, factory-direct is safer." },
@@ -335,8 +335,8 @@ export default async function OemOdmPage({
                 icon: Package,
                 title: isZh ? "MOQ" : "MOQ",
                 rows: isZh
-                  ? [["OEM 标准", "500 件/款"], ["OEM 试单", "200 件/款"], ["ODM 推荐", "500 件起"]]
-                  : [["OEM standard", "500 pcs/style"], ["OEM trial", "200 pcs/style"], ["ODM recommended", "500 pcs+"]],
+                  ? [["20cm 以下", "3,600 件/款"], ["20–35cm", "2,400 件/款"], ["35–50cm", "1,200 件/款"], ["50cm 以上", "800 件/款"]]
+                  : [["Under 20 cm", "3,600 pcs/style"], ["20–35 cm", "2,400 pcs/style"], ["35–50 cm", "1,200 pcs/style"], ["Over 50 cm", "800 pcs/style"]],
               },
               {
                 icon: Pencil,

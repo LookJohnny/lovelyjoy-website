@@ -34,7 +34,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
   const faqs = isZh
     ? [
         { q: "你们是工厂还是贸易公司？", a: "爱儿采 LovelyJoy 是工贸一体的源头毛绒玩具厂家。自有 20000 平方米厂房、300+ 熟练工人、50+ 专业设计师，所有产品都在我们义乌自有工厂内生产，不依赖外协。" },
-        { q: "最小起订量（MOQ）是多少？", a: "标准 MOQ 为每款 500 件。新客户或市场测试订单可降至 200 件/款。尺寸小或工艺简单的订单还可进一步协商。" },
+        { q: "最小起订量（MOQ）是多少？", a: "起订量按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件（均为每款），下单前公开透明。" },
         { q: "可以来图定制吗？打样需要多久？", a: "支持来图（设计稿/参考图/手绘草图/口头描述均可）来样定制。打样周期 7-15 个工作日，首版样品包含面料、打版、缝制与初检。" },
         { q: "大货生产周期多久？", a: "样品确认后，标准大货生产周期为 30-45 天，具体取决于订单量和工艺复杂度。加急订单可压缩至 20-25 天。" },
         { q: "是否支持出口认证要求？", a: "我们的产品已通过 EN71（欧盟）、ASTM F963（美国）、CE、GB 6675（中国）等玩具安全标准。工厂持有 BSCI、ISO 9001 认证，可提供第三方检测报告配合清关。" },
@@ -42,7 +42,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
       ]
     : [
         { q: "Are you a factory or a trading company?", a: "LovelyJoy is a factory-direct plush toy manufacturer. We own a 20,000 sqm facility in Yiwu with 300+ skilled workers and 50+ in-house designers — all production happens under our own roof." },
-        { q: "What is your MOQ?", a: "Standard MOQ is 500 pcs per style. Trial orders for new customers start at 200 pcs per style. Smaller or simpler designs may be negotiated further." },
+        { q: "What is your MOQ?", a: "MOQ is size-tiered: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per style, published upfront." },
         { q: "Can I send my own artwork? How long does sampling take?", a: "Yes — we accept design files, reference photos, hand sketches, or even verbal briefs. Sample development takes 7-15 working days including fabric sourcing, pattern making, sewing, and first-round QC." },
         { q: "What is the production lead time?", a: "After sample approval, standard bulk production is 30-45 days depending on volume and complexity. Rush orders can be compressed to 20-25 days." },
         { q: "Do you support international export compliance?", a: "Yes. Testing and documentation are matched to the product, target age and destination market, including EN 71/CE (EU), ASTM F963/CPSIA (US) and GB 6675 (China) where applicable. Third-party test, factory-audit and quality-system records can be supplied for verification." },
