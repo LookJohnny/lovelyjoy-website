@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       : "Promotional Plush Toy Manufacturer | Custom Gift & Event Plush OEM | LovelyJoy"
     ,
     description: isZh
-      ? "爱儿采承接礼品与活动毛绒玩具定制项目：节庆礼盒、促销伴手礼、品牌周边、会员礼品、企业团建。预算可控、交期稳定、包装一体化，支持小批量起订。"
-      : "LovelyJoy manufactures promotional and event plush toys: holiday gift sets, giveaways, brand merch, member rewards, and corporate gifts. Budget-controlled, on-time delivery, integrated packaging, and low MOQ supported.",
+      ? "爱儿采承接礼品与活动毛绒玩具定制项目：节庆礼盒、促销伴手礼、品牌周边、会员礼品、企业团建。预算可控、交期稳定、包装一体化，起订量按尺寸分档、公开透明。"
+      : "LovelyJoy manufactures promotional and event plush toys: holiday gift sets, giveaways, brand merch, member rewards, and corporate gifts. Budget-controlled, on-time delivery, integrated packaging, and size-tiered MOQs published upfront.",
     alternates: buildAlternates(locale, "/gift-plush-custom"),
   };
 }
@@ -36,7 +36,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
         { q: "包装是否可以一起定制？", a: "可以，推荐一起做——包装是礼品感的关键。常见组合：OPP 袋 + 品牌吊牌（最经济）/ 彩盒 + 卡片（中档）/ 烫金礼盒 + 蝴蝶结 + 贺卡（高端）。包装设计我们有专门团队，可按你的 VI 规范做。" },
         { q: "活动前多久要下单？", a: "推荐至少 60-75 天前下单：打样 10-15 天 + 确认 5-7 天 + 大货 30-45 天 + 物流 5-10 天。节庆旺季（圣诞/春节/中秋前 2 个月）产能紧张，建议再往前留 15 天缓冲。加急订单 45 天交付可做，加急费约 10-15%。" },
         { q: "可以做节日限定款吗？", a: "可以。我们常年承接圣诞/新年/情人节/中秋/万圣节/七夕等节日限定项目。也支持品牌日/周年庆等客户专属节日版。一次打样出多款（如同一形象的春节/圣诞两版）可共用版型节省成本。" },
-        { q: "最小起订量多少？礼品项目有灵活起订吗？", a: "标准 MOQ 500 件/款。活动礼品类我们支持 200 件起订（首次试单），会员限定版可低至 100 件（但单价会上浮约 30-40%）。如果你是采购多 SKU 的礼盒项目，总量满 500 件可跨款拼单。" },
+        { q: "最小起订量多少？礼品项目有灵活起订吗？", a: "礼品项目与常规产品一致，起订量按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件（均为每款），下单前公开透明。" },
       ]
     : [
         { q: "Which plush work best for promotional gifts?", a: "Small plush (10-20 cm keychains, small characters) are most popular — low unit cost and gift-ready. Gift-set projects often pair a 25 cm mid-size plush with a box and card. Seasonal programs use limited-edition shapes (Christmas bears, zodiac editions, Valentine's heart bears, etc.)." },
@@ -44,7 +44,7 @@ function FaqJsonLd({ isZh }: { isZh: boolean }) {
         { q: "Can packaging be customized too?", a: "Absolutely — and we recommend it. Packaging is what makes it feel like a gift. Common tiers: poly bag + branded hang tag (budget), color box + card (mid), foil-stamped gift box + ribbon + greeting card (premium). Our in-house packaging team designs to your VI guidelines." },
         { q: "How far in advance should I place an order?", a: "Recommend booking 60-75 days ahead: sample 10-15 days + approval 5-7 + bulk 30-45 + shipping 5-10. Peak seasons (2 months before Christmas, CNY, Mid-Autumn) get tight — add 15-day buffer. Rush production at 45 days total is possible with a 10-15% rush fee." },
         { q: "Can you do limited-edition holiday designs?", a: "Yes. Regular projects include Christmas, New Year, Valentine's, Mid-Autumn, Halloween, and Qixi editions. We also support brand-specific holidays (product launches, anniversaries). Running multiple editions of one character (e.g. CNY + Christmas) shares patterns to cut costs." },
-        { q: "What is the MOQ? Flexibility for gift projects?", a: "Standard MOQ 500 pcs/style. Event-gift projects accept 200 pcs (first trial) and member-exclusive runs as low as 100 pcs (unit cost up ~30-40%). Multi-SKU gift sets totaling 500+ can be split across designs." },
+        { q: "What is the MOQ? Flexibility for gift projects?", a: "Gift projects follow our standard size-tiered MOQs: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per design, published upfront." },
       ];
 
   const structuredData = {

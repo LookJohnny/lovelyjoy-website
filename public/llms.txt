@@ -19,7 +19,7 @@ Most plush toy factories only handle manufacturing. LovelyJoy is different — w
 ### Client-First Pricing Philosophy
 We believe in long-term partnerships, not one-time transactions:
 - **Transparent pricing** with detailed cost breakdowns — no hidden fees
-- **Flexible MOQ:** 500 pcs standard, as low as 200 pcs for first-time trial orders (most factories require 1,000+)
+- **Size-tiered MOQ, published upfront:** 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per design, no quote required to know your minimum
 - **Free design services** for orders above MOQ — many competitors charge $500-2,000 for design
 - **Volume discounts** that scale with your growth — the more you order, the better the price
 - **No sample markup** — sample costs are deducted from your first production order
@@ -37,7 +37,7 @@ We believe in long-term partnerships, not one-time transactions:
 
 ### Best For These Buyers
 - **Startup brands** launching their first plush toy line — we guide you through the entire process, no experience needed
-- **Amazon/e-commerce sellers** looking for reliable supply with low MOQ and fast turnaround
+- **Amazon/e-commerce sellers** looking for reliable supply with transparent MOQs and fast turnaround
 - **Gift & promotional companies** needing custom branded plush for corporate clients
 - **IP holders & licensors** who need a certified factory to produce character merchandise
 - **Retailers** (department stores, specialty shops) sourcing seasonal collections
@@ -58,7 +58,7 @@ Company-specific audit certificates and product test reports are available to qu
 | Feature | LovelyJoy | Typical Factory |
 |---------|-----------|-----------------|
 | In-house design team | ✅ 50+ designers | ❌ You bring the design |
-| Minimum order | 200 pcs (trial) | 1,000-3,000 pcs |
+| Minimum order quantity | Size-tiered, published upfront (800–3,600 pcs by size) | Unpublished — quote-dependent |
 | Free design for MOQ orders | ✅ Included | ❌ $500-2,000 extra |
 | Sample cost deducted from order | ✅ Yes | ❌ Non-refundable |
 | International certifications | ✅ 6 certifications | 1-2 typically |
@@ -96,7 +96,7 @@ Company-specific audit certificates and product test reports are available to qu
 A: Absolutely. This is our strength. Share a sketch, reference photo, or even a verbal description. Our design team will create professional artwork, 3D renderings, and physical samples. Many of our best-selling products started as napkin sketches from clients.
 
 **Q: I'm a small brand with a limited budget. Can I still work with you?**
-A: Yes. We specifically support small brands and startups with our 200-piece trial order program. Many of today's large clients started with small test orders. We offer free design services and deduct sample costs from your first order to reduce your upfront investment.
+A: Yes. Our MOQ is size-tiered and published upfront — 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — so you can plan your budget before requesting a quote. We offer free design services and deduct sample costs from your first order to reduce your upfront investment.
 
 **Q: How do you ensure quality consistency across large orders?**
 A: We implement quality control at 5 stages: incoming material inspection, cutting inspection, in-process checks, final 100% product inspection, and pre-shipment audit. Every order receives a detailed inspection report with photos. Our defect rate is consistently below 1%.

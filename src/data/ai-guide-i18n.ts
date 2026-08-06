@@ -80,7 +80,7 @@ export function getAiGuideIntro(locale: string): AiGuideIntro {
 // ─── AI Guide SSR sections ("What Joy Can Answer" / "How Joy Works") ────
 //
 // Server-rendered H2 sections so the page has crawlable depth beyond the intro.
-// All numbers mirror src/data/company-facts.ts (500/200 pcs, 7–15 working days,
+// All numbers mirror src/data/company-facts.ts (size-tiered MOQ 800–3,600 pcs, 7–15 working days,
 // 30–45 days, 800,000/month, 70+ markets) — do not fork them here. Certification
 // acronyms are locale-neutral. Locales without a translation fall back to EN.
 
@@ -98,7 +98,7 @@ export const AI_GUIDE_SECTIONS: Record<string, AiGuideSections> = {
     whatIntro:
       "Joy answers from LovelyJoy's real factory data, so the figures it quotes match what our sales team confirms:",
     whatItems: [
-      "MOQ — standard orders start at 500 pieces per design, with trial orders from 200 pieces for first-time buyers.",
+      "MOQ — MOQ is size-tiered: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm, per design.",
       "Sampling — custom samples are completed in 7–15 working days from an approved design brief.",
       "Production — mass production takes 30–45 days after sample approval, backed by a monthly capacity of 800,000 pieces.",
       "Certifications — BSCI and ISO 9001 audited factory; products tested to ASTM F963 (US), EN 71 (EU), and GB 6675 (China).",
@@ -115,7 +115,7 @@ export const AI_GUIDE_SECTIONS: Record<string, AiGuideSections> = {
     whatIntro:
       "Joy 基于爱儿采工厂的真实数据作答，给出的数字与销售团队确认的口径一致：",
     whatItems: [
-      "起订量（MOQ）— 常规订单每款 500 件起订，新客户首单可低至 200 件试单。",
+      "起订量（MOQ）— 起订量按尺寸分档：20cm 以下 3,600 件，20–35cm 2,400 件，35–50cm 1,200 件，50cm 以上 800 件（均为每款）。",
       "打样 — 设计简报确认后，定制样品 7–15 个工作日内完成。",
       "生产 — 样品确认后大货生产周期为 30–45 天，月产能达 800,000 件。",
       "认证 — 工厂通过 BSCI 与 ISO 9001 审核；产品按 ASTM F963（美国）、EN 71（欧盟）、GB 6675（中国）标准检测。",

@@ -26,8 +26,8 @@ export async function generateMetadata({
       ? "客户案例 - 全球品牌与零售的毛绒玩具代工合作 | 爱儿采 LovelyJoy"
       : "Customer Cases — Plush Manufacturing for Global Brands & Retail | LovelyJoy",
     description: isZh
-      ? "爱儿采 LovelyJoy 的客户案例集——IP 授权生产、全球连锁零售季节项目、体验式零售、初创品牌首线、企业促销礼品。覆盖从 200 件试单到万级大货的多档位合作。"
-      : "LovelyJoy customer cases — licensed IP manufacturing, global retail seasonal programs, experience retail, first-line startup brands, and promotional gift projects. From 200-pc trials to 5-figure bulk orders.",
+      ? "爱儿采 LovelyJoy 的客户案例集——IP 授权生产、全球连锁零售季节项目、体验式零售、初创品牌首线、企业促销礼品。覆盖从初创品牌首线到万级大货的多档位合作。"
+      : "LovelyJoy customer cases — licensed IP manufacturing, global retail seasonal programs, experience retail, first-line startup brands, and promotional gift projects. From first startup lines to 5-figure bulk orders.",
     alternates: buildAlternates(locale, "/cases"),
   };
 }

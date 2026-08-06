@@ -186,7 +186,7 @@
     "items": [
       {
         "q": "Qual è la quantità minima d'ordine (MOQ)?",
-        "a": "Il nostro MOQ standard è di 500 pezzi per modello. Per i nuovi clienti, offriamo ordini di prova flessibili in piccoli lotti a partire da 200 pezzi per testare il mercato."
+        "a": "Il MOQ è scaglionato per dimensione: 3.600 pezzi per peluche sotto i 20 cm, 2.400 per 20–35 cm, 1.200 per 35–50 cm e 800 per peluche oltre i 50 cm (per modello, pubblicato in anticipo)."
       },
       {
         "q": "Quanto tempo richiede lo sviluppo di un campione?",

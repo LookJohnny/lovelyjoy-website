@@ -40,8 +40,8 @@ export async function generateMetadata({
       ? "定制毛绒玩具制造商 | LovelyJoy 爱儿采"
       : "Custom Plush Toy Manufacturer | LovelyJoy",
     description: isZh
-      ? "LovelyJoy爱儿采是中国义乌专业定制毛绒玩具制造商。50+设计师团队，支持颜色、尺寸、材料、包装全面定制。MOQ 200件起，7-15天出样。"
-      : "LovelyJoy is a professional custom plush toy manufacturer in Yiwu, China. 50+ designer team, full customization of colors, sizes, materials, and packaging. MOQ from 200 pcs, samples in 7-15 days.",
+      ? "LovelyJoy爱儿采是中国义乌专业定制毛绒玩具制造商。50+设计师团队，支持颜色、尺寸、材料、包装全面定制。起订量按尺寸分档（800–3,600件/款），7-15天出样。"
+      : "LovelyJoy is a professional custom plush toy manufacturer in Yiwu, China. 50+ designer team, full customization of colors, sizes, materials, and packaging. Size-tiered MOQs (800–3,600 pcs by size), samples in 7-15 days.",
     // DUPLICATE of the hub for "custom plush toy manufacturer" intent
     // (2026-07 cannibalization audit): canonical + hreflang consolidated onto
     // /oem-plush-manufacturer so the cluster has a single ranking target.
@@ -68,7 +68,7 @@ function FaqJsonLd() {
     },
     {
       q: "What is the minimum order for custom plush toys?",
-      a: "Our standard MOQ for custom plush toys is 500 pieces per style. For new customers or market testing, we offer trial orders starting from 200 pieces per style.",
+      a: "MOQ is size-tiered: 3,600 pcs for plush under 20 cm, 2,400 pcs for 20–35 cm, 1,200 pcs for 35–50 cm, and 800 pcs for plush over 50 cm — per style, published upfront.",
     },
     {
       q: "Can you replicate an existing plush toy design?",
